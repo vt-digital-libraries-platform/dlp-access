@@ -33,12 +33,15 @@ div.clear {
   clear: both;
 }
 
-div.view-section p,
-div.view-section ul li {
-  font-size: 18px;
-}
-div.view-section ul li {
-  margin-bottom: 10px;
+div.view-section span,
+div.view-section {
+  ul {
+    list-style: "-" outside;
+    li {
+      font-size: 16px;
+      padding-left: 8px;
+    }
+  }
 }
 div.view-section ul li span.entry {
   margin-right: 15px;

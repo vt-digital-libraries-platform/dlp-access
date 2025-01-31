@@ -45,7 +45,7 @@ class SiteForm extends Component {
         siteOptions: options,
         siteTitle: site.siteTitle,
         contact: site.contact.length
-          ? site.contact.map(contact => {
+          ? site.contact.map((contact) => {
               return JSON.parse(contact);
             })
           : [],
@@ -54,10 +54,10 @@ class SiteForm extends Component {
         collectionPageSettings: options.collectionPageSettings
           ? options.collectionPageSettings
           : {},
-        collectionViewOption: options.collectionPageSettings.viewOption
+        collectionViewOption: options.collectionPageSettings?.viewOption
           ? options.collectionPageSettings.viewOption
           : "Grid",
-        collectionItemsPosition: options.collectionPageSettings.itemsPosition
+        collectionItemsPosition: options.collectionPageSettings?.itemsPosition
           ? options.collectionPageSettings.itemsPosition
           : "1"
       };
@@ -83,7 +83,7 @@ class SiteForm extends Component {
       } else {
         array.push(data.value);
       }
-      this.setState(prevState => {
+      this.setState((prevState) => {
         return {
           formState: { ...prevState.formState, socialMedia: array }
         };
@@ -92,13 +92,13 @@ class SiteForm extends Component {
       data.name === "collectionViewOption" ||
       data.name === "collectionItemsPosition"
     ) {
-      this.setState(prevState => {
+      this.setState((prevState) => {
         return {
           formState: { ...prevState.formState, [data.name]: data.value }
         };
       });
     } else {
-      this.setState(prevState => {
+      this.setState((prevState) => {
         return {
           formState: { ...prevState.formState, [name]: value }
         };
@@ -106,9 +106,9 @@ class SiteForm extends Component {
     }
   };
 
-  formatData = siteInfo => {
+  formatData = (siteInfo) => {
     let site = siteInfo;
-    site.contact = site.contact.map(contact => {
+    site.contact = site.contact.map((contact) => {
       return JSON.stringify(contact);
     });
     site.siteOptions = JSON.stringify(site.siteOptions);
@@ -121,14 +121,17 @@ class SiteForm extends Component {
 
     if (this.state.formState.siteOptions) {
       const options = this.state.formState.siteOptions;
-      options.collectionPageSettings = this.state.formState.collectionPageSettings;
+      options.collectionPageSettings =
+        this.state.formState.collectionPageSettings;
       if (this.state.formState.redirectURL.length) {
         options.redirectURL = this.state.formState.redirectURL;
       }
       options.socialMedia = this.state.formState.socialMedia;
-      options.collectionPageSettings.itemsPosition = this.state.formState.collectionItemsPosition;
-      options.collectionPageSettings.viewOption = this.state.formState.collectionViewOption;
-      this.setState(prevState => {
+      options.collectionPageSettings.itemsPosition =
+        this.state.formState.collectionItemsPosition;
+      options.collectionPageSettings.viewOption =
+        this.state.formState.collectionViewOption;
+      this.setState((prevState) => {
         return {
           formState: { ...prevState.formState, siteOptions: options }
         };
@@ -182,10 +185,10 @@ class SiteForm extends Component {
     this.setState({ viewState: value });
   };
 
-  updateContactValue = event => {
+  updateContactValue = (event) => {
     const { name, value, dataset } = event.target;
     const index = dataset.index;
-    this.setState(prevState => {
+    this.setState((prevState) => {
       let contactArray = [...prevState.formState.contact];
       let contact = { ...contactArray[index], [name]: value };
       contactArray[index] = contact;
@@ -212,7 +215,7 @@ class SiteForm extends Component {
   };
 
   addContact = () => {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       let contactArray = [...prevState.formState.contact];
       let newContact = {
         title: "",
@@ -230,9 +233,9 @@ class SiteForm extends Component {
     });
   };
 
-  removeContact = event => {
+  removeContact = (event) => {
     const index = event.target.dataset.index;
-    this.setState(prevState => {
+    this.setState((prevState) => {
       let contactArray = [...prevState.formState.contact];
       contactArray.splice(index, 1);
       return {
@@ -381,7 +384,7 @@ class SiteForm extends Component {
             <p>Sharing Options:</p>
             <ul className="sharing-options">
               {this.state.formState.socialMedia.length ? (
-                this.state.formState.socialMedia.map(item => {
+                this.state.formState.socialMedia.map((item) => {
                   return <li key={`${item}`}>{`${item}`}</li>;
                 })
               ) : (

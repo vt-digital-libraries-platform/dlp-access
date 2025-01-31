@@ -324,6 +324,15 @@ export const fetchSearchResults = async (
   return searchResults;
 };
 
+export const fetchCollection = async (collectionID) => {
+  const response = await API.graphql(
+    graphqlOperation(queries.getCollection, {
+      id: collectionID
+    })
+  );
+  return response.data.getCollection;
+};
+
 export const getAllCollections = async (filter) => {
   let collections = [];
   let nextToken = null;

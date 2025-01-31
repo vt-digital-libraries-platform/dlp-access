@@ -65,48 +65,9 @@ export const createArchive = /* GraphQL */ `
       title
       type
       visibility
-      collection {
-        bibliographic_citation
-        collection_category
-        collectionmap_id
-        collectionOptions
-        create_date
-        creator
-        custom_key
-        description
-        display_date
-        end_date
-        explicit_content
-        heirarchy_path
-        id
-        identifier
-        is_part_of
-        language
-        location
-        modified_date
-        ownerinfo
-        parent_collection
-        parent_collection_identifier
-        provenance
-        relation
-        rights_holder
-        rights
-        source
-        spatial
-        start_date
-        subject
-        thumbnail_path
-        title
-        visibility
-        createdAt
-        updatedAt
-        collectionCollectionmapId
-        __typename
-      }
       createdAt
       updatedAt
       collectionArchivesId
-      archiveCollectionId
       __typename
     }
   }
@@ -175,48 +136,9 @@ export const updateArchive = /* GraphQL */ `
       title
       type
       visibility
-      collection {
-        bibliographic_citation
-        collection_category
-        collectionmap_id
-        collectionOptions
-        create_date
-        creator
-        custom_key
-        description
-        display_date
-        end_date
-        explicit_content
-        heirarchy_path
-        id
-        identifier
-        is_part_of
-        language
-        location
-        modified_date
-        ownerinfo
-        parent_collection
-        parent_collection_identifier
-        provenance
-        relation
-        rights_holder
-        rights
-        source
-        spatial
-        start_date
-        subject
-        thumbnail_path
-        title
-        visibility
-        createdAt
-        updatedAt
-        collectionCollectionmapId
-        __typename
-      }
       createdAt
       updatedAt
       collectionArchivesId
-      archiveCollectionId
       __typename
     }
   }
@@ -285,48 +207,9 @@ export const deleteArchive = /* GraphQL */ `
       title
       type
       visibility
-      collection {
-        bibliographic_citation
-        collection_category
-        collectionmap_id
-        collectionOptions
-        create_date
-        creator
-        custom_key
-        description
-        display_date
-        end_date
-        explicit_content
-        heirarchy_path
-        id
-        identifier
-        is_part_of
-        language
-        location
-        modified_date
-        ownerinfo
-        parent_collection
-        parent_collection_identifier
-        provenance
-        relation
-        rights_holder
-        rights
-        source
-        spatial
-        start_date
-        subject
-        thumbnail_path
-        title
-        visibility
-        createdAt
-        updatedAt
-        collectionCollectionmapId
-        __typename
-      }
       createdAt
       updatedAt
       collectionArchivesId
-      archiveCollectionId
       __typename
     }
   }

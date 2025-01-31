@@ -90,7 +90,6 @@ export const searchObjects = /* GraphQL */ `
           createdAt
           updatedAt
           collectionArchivesId
-          archiveCollectionId
         }
       }
       nextToken
@@ -235,7 +234,6 @@ export const fulltextArchives = /* GraphQL */ `
         createdAt
         updatedAt
         collectionArchivesId
-        archiveCollectionId
         __typename
       }
       nextToken
@@ -305,48 +303,9 @@ export const getArchive = /* GraphQL */ `
       title
       type
       visibility
-      collection {
-        bibliographic_citation
-        collection_category
-        collectionmap_id
-        collectionOptions
-        create_date
-        creator
-        custom_key
-        description
-        display_date
-        end_date
-        explicit_content
-        heirarchy_path
-        id
-        identifier
-        is_part_of
-        language
-        location
-        modified_date
-        ownerinfo
-        parent_collection
-        parent_collection_identifier
-        provenance
-        relation
-        rights_holder
-        rights
-        source
-        spatial
-        start_date
-        subject
-        thumbnail_path
-        title
-        visibility
-        createdAt
-        updatedAt
-        collectionCollectionmapId
-        __typename
-      }
       createdAt
       updatedAt
       collectionArchivesId
-      archiveCollectionId
       __typename
     }
   }
@@ -420,7 +379,6 @@ export const listArchives = /* GraphQL */ `
         createdAt
         updatedAt
         collectionArchivesId
-        archiveCollectionId
         __typename
       }
       nextToken
@@ -505,7 +463,6 @@ export const archiveByIdentifier = /* GraphQL */ `
         createdAt
         updatedAt
         collectionArchivesId
-        archiveCollectionId
         __typename
       }
       nextToken
@@ -592,7 +549,6 @@ export const searchArchives = /* GraphQL */ `
         createdAt
         updatedAt
         collectionArchivesId
-        archiveCollectionId
         __typename
       }
       nextToken

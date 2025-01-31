@@ -3,9 +3,10 @@ import { Form, Input } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import ViewMetadata from "./ViewMetadata";
 import EditMetadata from "./EditMetadata";
-import { API } from "aws-amplify";
+import { API, graphqlOperation } from "aws-amplify";
 import {
   getArchiveByIdentifier,
+  fetchCollection,
   getAllCollections,
   mintNOID
 } from "../../../lib/fetchTools";
@@ -45,16 +46,18 @@ const editableFields = singleFields
 
 let resultMessage = "";
 
-const ArchiveForm = React.memo(props => {
+const ArchiveForm = React.memo((props) => {
   const { identifier, newArchive, resetForm } = props;
   const [error, setError] = useState(null);
   const [fullArchive, setFullArchive] = useState(null);
   const [oldArchive, setOldArchive] = useState(null);
   const [archive, setArchive] = useState(null);
   const [archiveId, setArchiveId] = useState(null);
+  const [existingOptions, setExistingOptions] = useState(null);
   const [viewState, setViewState] = useState("view");
   const [validForm, setValidForm] = useState(true);
   const [embargo, setEmbargo] = useState(null);
+  const [parentCollection, setParentCollection] = useState(null);
   const [allCollections, setAllCollections] = useState(null);
   const [selectedCollection, setSelectedCollection] = useState(null);
   const [matches, setMatches] = useState([]);
@@ -72,6 +75,10 @@ const ArchiveForm = React.memo(props => {
         setFullArchive(item);
         setError(null);
 
+        const collectionId = item.parent_collection[0];
+        const parent = await fetchCollection(collectionId);
+        setParentCollection(parent);
+
         if (item.manifest_url) {
           if (
             item.manifest_url.match(/\.(mp3|ogg|wav)$/) ||
@@ -81,7 +88,7 @@ const ArchiveForm = React.memo(props => {
           }
         }
 
-        const defaultValue = key => {
+        const defaultValue = (key) => {
           let value = null;
           if (singleFields.includes(key)) {
             value = "";
@@ -93,9 +100,10 @@ const ArchiveForm = React.memo(props => {
           return value;
         };
 
-        const inOptions = key => {
+        const inOptions = (key) => {
+          const parsedOptions = JSON.parse(item.archiveOptions);
           let retVal = null;
-          if (item.archiveOptions && item.archiveOptions[key] !== null) {
+          if (parsedOptions && parsedOptions[key] !== null) {
             const options = JSON.parse(item.archiveOptions);
             retVal = options[key];
           }
@@ -107,7 +115,9 @@ const ArchiveForm = React.memo(props => {
           editableArchive[field] =
             item[field] || inOptions(field) || defaultValue(field);
         }
-
+        if (item.archiveOptions) {
+          setExistingOptions(JSON.parse(item.archiveOptions));
+        }
         item_id = item.id;
       } catch (e) {
         console.error(`Error fetch archive for ${identifier}`);
@@ -147,7 +157,7 @@ const ArchiveForm = React.memo(props => {
       }
       if (fullArchive) {
         const embargoResponse = await loadEmbargo(fullArchive, setEmbargo);
-        setArchive(arch => {
+        setArchive((arch) => {
           try {
             arch["embargo_start_date"] =
               arch["embargo_start_date"] || embargoResponse.start_date || "";
@@ -156,7 +166,7 @@ const ArchiveForm = React.memo(props => {
             arch["embargo_note"] =
               arch["embargo_note"] || embargoResponse.note || "";
           } catch (error) {
-            console.log("no embargoResponse");
+            // console.log("no embargoResponse");
           }
           return arch;
         });
@@ -182,8 +192,8 @@ const ArchiveForm = React.memo(props => {
     allCollections
   ]);
 
-  const isRequiredField = attribute => {
-    const requiredFields = ["title", "manifest_url"];
+  const isRequiredField = (attribute) => {
+    const requiredFields = ["title"];
     return requiredFields.includes(attribute);
   };
 
@@ -207,28 +217,38 @@ const ArchiveForm = React.memo(props => {
     }
   };
 
-  const submitArchiveHandler = async event => {
+  const submitArchiveHandler = async (event) => {
     for (const key in archive) {
       if (isRequiredField(key) && !archive[key]) {
         setValidForm(false);
         return null;
       }
       if (Array.isArray(archive[key])) {
-        archive[key] = [...archive[key].filter(val => val !== null)];
+        archive[key] = [
+          ...archive[key].filter((val) => val !== null && val.length)
+        ];
         if (archive[key].length === 0) {
-          archive[key] = null;
+          delete archive[key];
         }
       }
     }
     const empty = new RegExp("<p>(<br>|\\s+)</p>");
     for (const key in archive) {
       if (Array.isArray(archive[key])) {
-        archive[key].forEach(el => {
-          archive[key] = [...archive[key].filter(el => !empty.test(el))];
+        archive[key].forEach((el) => {
+          archive[key] = [...archive[key].filter((el) => !empty.test(el))];
         });
+        if (!archive[key].length) {
+          delete archive[key];
+        }
       } else {
-        if (empty.test(archive[key])) {
-          archive[key] = null;
+        if (
+          empty.test(archive[key]) ||
+          archive[key] === null ||
+          archive[key] === "" ||
+          !archive[key].length
+        ) {
+          delete archive[key];
         }
       }
     }
@@ -242,16 +262,17 @@ const ArchiveForm = React.memo(props => {
     delete archive.embargo_end_date;
     delete archive.embargo_note;
 
-    let options = null;
-    if (archive.archiveOptions) {
-      options = JSON.parse(archive.archiveOptions);
-      options.audioTranscript = archive.audioTranscript;
-    } else {
-      options = {
-        audioTranscript: archive.audioTranscript
-      };
+    let options = {};
+    if (existingOptions) {
+      options = existingOptions;
     }
-    archive.archiveOptions = JSON.stringify(options);
+    if (archive.audioTranscript?.length) {
+      options.audioTranscript = archive.audioTranscript;
+    }
+
+    if (Object.keys(options).length) {
+      archive.archiveOptions = JSON.stringify(options);
+    }
     delete archive.audioTranscript;
 
     if (newArchive) {
@@ -267,8 +288,10 @@ const ArchiveForm = React.memo(props => {
       archive.custom_key = customKey;
       archive.item_category = siteContext.site.groups[0];
       archive.parent_collection = selectedCollection.id;
+      archive.collectionArchivesId = selectedCollection.id;
+    } else {
+      archive.collectionArchivesId = parentCollection.id;
     }
-    delete archive.collection;
 
     const archiveInfo = {
       id: archiveId,
@@ -277,11 +300,15 @@ const ArchiveForm = React.memo(props => {
     const mutation = newArchive
       ? mutations.createArchive
       : mutations.updateArchive;
-    await API.graphql({
-      query: mutation,
-      variables: { input: archiveInfo },
-      authMode: "AMAZON_COGNITO_USER_POOLS"
-    });
+    try {
+      await API.graphql({
+        query: mutation,
+        variables: { input: archiveInfo },
+        authMode: "AMAZON_COGNITO_USER_POOLS"
+      });
+    } catch (error) {
+      console.error(error);
+    }
 
     const addedData = addedDiff(oldArchive, archive);
     const newData = updatedDiff(oldArchive, archive);
@@ -305,14 +332,12 @@ const ArchiveForm = React.memo(props => {
     };
 
     siteContext.updateSite(eventInfo);
-
-    archive.audioTranscript = options.audioTranscript;
     setValidForm(true);
     setViewState("view");
   };
 
   const deleteMetadataHandler = (field, valueIdx) => {
-    setArchive(prevArchive => {
+    setArchive((prevArchive) => {
       const values = [...prevArchive[field]];
       values.splice(valueIdx, 1);
       return {
@@ -322,8 +347,8 @@ const ArchiveForm = React.memo(props => {
     });
   };
 
-  const addMetadataHandler = field => {
-    setArchive(prevArchive => {
+  const addMetadataHandler = (field) => {
+    setArchive((prevArchive) => {
       const values = Array.isArray(prevArchive[field])
         ? [...prevArchive[field]]
         : [];
@@ -355,7 +380,7 @@ const ArchiveForm = React.memo(props => {
       fieldName = arr[0];
       index = arr[1];
     }
-    setArchive(prevArchive => {
+    setArchive((prevArchive) => {
       if (!index) {
         return {
           ...prevArchive,
@@ -383,7 +408,7 @@ const ArchiveForm = React.memo(props => {
     changeValueHandler(event, field);
   };
 
-  const onChangeCollection = async e => {
+  const onChangeCollection = async (e) => {
     let matchList = [];
     setExactMatch(false);
     for (const idx in allCollections) {
@@ -418,7 +443,7 @@ const ArchiveForm = React.memo(props => {
     let display = null;
 
     if (matches.length > 0 && !exactMatch) {
-      displayEntries = matches.map(match => {
+      displayEntries = matches.map((match) => {
         const evt = { target: { value: match } };
         return (
           <li key={match}>
@@ -435,7 +460,7 @@ const ArchiveForm = React.memo(props => {
     return display;
   };
 
-  const collectionSelector = attribute => {
+  const collectionSelector = (attribute) => {
     const value = archive.collection || "";
     return (
       <section key="collection-selector">
@@ -443,7 +468,7 @@ const ArchiveForm = React.memo(props => {
           <label>Collection (by identifier)</label>
           <Input
             name={attribute}
-            onChange={event => onChangeCollection(event, attribute)}
+            onChange={(event) => onChangeCollection(event, attribute)}
             placeholder={`Type the Collection identifer that this record belongs to`}
             value={value}
             autoComplete="off"
