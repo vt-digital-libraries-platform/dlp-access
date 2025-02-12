@@ -518,6 +518,9 @@ export const getCollectionByIdentifier = async (identifier) => {
       limit: 1
     }
   });
+  console.log(REP_TYPE);
+  console.log(identifier);
+  console.log(apiData);
   const {
     data: {
       collectionByIdentifier: { items }

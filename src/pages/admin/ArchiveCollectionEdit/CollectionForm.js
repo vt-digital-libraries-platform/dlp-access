@@ -42,7 +42,7 @@ const editableFields = singleFields
 
 let resultMessage = "";
 
-const CollectionForm = React.memo(props => {
+const CollectionForm = React.memo((props) => {
   const { identifier, newCollection } = props;
   const [error, setError] = useState(null);
   const [fullCollection, setFullCollection] = useState(null);
@@ -65,15 +65,16 @@ const CollectionForm = React.memo(props => {
     }
 
     async function loadItem(collection) {
-      let item;
+      let item = null;
       let editableCollection = {};
       let item_id = null;
       try {
         item = await getCollectionByIdentifier(identifier);
+
         setFullCollection(item);
         setError(null);
 
-        const defaultValue = key => {
+        const defaultValue = (key) => {
           let value = null;
           if (singleFields.includes(key) || embargoFields.includes(key)) {
             value = "";
@@ -85,7 +86,7 @@ const CollectionForm = React.memo(props => {
           return value;
         };
 
-        const inOptions = key => {
+        const inOptions = (key) => {
           let retVal = null;
           if (item.collectionOptions && item.collectionOptions[key] !== null) {
             const options = JSON.parse(item.collectionOptions);
@@ -105,11 +106,12 @@ const CollectionForm = React.memo(props => {
         console.error(`Error fetch collection for ${identifier} due to ${e}`);
         setError(`No item found for identifier: ${identifier}!`);
       }
-
-      setOldCollection(editableCollection);
-      setCollection(editableCollection);
-      setCollectionId(item_id);
-      setTopLevelCollection(!item.parent_collection);
+      if (item) {
+        setOldCollection(editableCollection);
+        setCollection(editableCollection);
+        setCollectionId(item_id);
+        setTopLevelCollection(!item.parent_collection);
+      }
 
       return item;
     }
@@ -140,7 +142,7 @@ const CollectionForm = React.memo(props => {
       }
       if (fullCollection) {
         const embargoResponse = await loadEmbargo(fullCollection, setEmbargo);
-        setCollection(col => {
+        setCollection((col) => {
           try {
             col["embargo_start_date"] =
               col["embargo_start_date"] || embargoResponse.start_date || "";
@@ -164,7 +166,7 @@ const CollectionForm = React.memo(props => {
     viewState
   ]);
 
-  const isRequiredField = attribute => {
+  const isRequiredField = (attribute) => {
     const requiredFields = ["title"];
     return requiredFields.includes(attribute);
   };
@@ -176,7 +178,7 @@ const CollectionForm = React.memo(props => {
     setViewState(value);
   };
 
-  const titleChanged = newTitle => {
+  const titleChanged = (newTitle) => {
     let changed = true;
     if (newCollection) {
       changed = false;
@@ -190,7 +192,7 @@ const CollectionForm = React.memo(props => {
     return changed;
   };
 
-  const createCollectionMap = collection => {
+  const createCollectionMap = (collection) => {
     const mapId = uuidv4();
     const customKeyPrefix = "ark:/53696/";
     const mapObject = {
@@ -207,7 +209,7 @@ const CollectionForm = React.memo(props => {
     };
   };
 
-  const submitCollectionHandler = async event => {
+  const submitCollectionHandler = async (event) => {
     delete collection.ownerinfo_name;
     delete collection.ownerinfo_email;
 
@@ -217,7 +219,7 @@ const CollectionForm = React.memo(props => {
         return null;
       }
       if (Array.isArray(collection[key])) {
-        collection[key] = [...collection[key].filter(val => val !== null)];
+        collection[key] = [...collection[key].filter((val) => val !== null)];
         if (collection[key].length === 0) {
           collection[key] = null;
         }
@@ -226,7 +228,7 @@ const CollectionForm = React.memo(props => {
     const empty = new RegExp("<p>(<br>|\\s+)</p>");
     for (const key in collection) {
       if (Array.isArray(collection[key])) {
-        collection[key] = [...collection[key].filter(el => !empty.test(el))];
+        collection[key] = [...collection[key].filter((el) => !empty.test(el))];
       } else {
         if (empty.test(collection[key])) {
           collection[key] = null;
@@ -406,7 +408,7 @@ const CollectionForm = React.memo(props => {
       fieldName = "ownerinfo";
       inputValue = ownerinfo;
     }
-    setCollection(prevCollection => {
+    setCollection((prevCollection) => {
       if (!index) {
         return {
           ...prevCollection,
@@ -424,7 +426,7 @@ const CollectionForm = React.memo(props => {
   };
 
   const deleteMetadataHandler = (field, valueIdx) => {
-    setCollection(prevCollection => {
+    setCollection((prevCollection) => {
       const values = [...prevCollection[field]];
       values.splice(valueIdx, 1);
       return {
@@ -434,8 +436,8 @@ const CollectionForm = React.memo(props => {
     });
   };
 
-  const addMetadataHandler = field => {
-    setCollection(prevCollection => {
+  const addMetadataHandler = (field) => {
+    setCollection((prevCollection) => {
       const values = Array.isArray(prevCollection[field])
         ? [...prevCollection[field]]
         : [];
@@ -453,7 +455,7 @@ const CollectionForm = React.memo(props => {
     return `${pathPrefix}${value}`;
   };
 
-  const setThumbnailSrc = event => {
+  const setThumbnailSrc = (event) => {
     const fileUrl = getFileUrl(event.target.name, event.target.value);
     event.target.value = fileUrl;
     changeValueHandler(event, "thumbnail_path");
