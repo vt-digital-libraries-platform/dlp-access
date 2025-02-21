@@ -68,49 +68,59 @@ const CollectionForm = React.memo((props) => {
       let item = null;
       let editableCollection = {};
       let item_id = null;
+
+      const defaultValue = (key) => {
+        let value = null;
+        if (singleFields.includes(key) || embargoFields.includes(key)) {
+          value = "";
+        } else if (multiFields.includes(key)) {
+          value = [];
+        } else if (booleanFields.includes(key)) {
+          value = false;
+        }
+        return value;
+      };
+
+      const inOptions = (key) => {
+        let retVal = null;
+        if (item.collectionOptions && item.collectionOptions[key] !== null) {
+          const options = JSON.parse(item.collectionOptions);
+          retVal = options[key];
+        }
+        return retVal;
+      };
+
       try {
         item = await getCollectionByIdentifier(identifier);
-
         setFullCollection(item);
         setError(null);
-
-        const defaultValue = (key) => {
-          let value = null;
-          if (singleFields.includes(key) || embargoFields.includes(key)) {
-            value = "";
-          } else if (multiFields.includes(key)) {
-            value = [];
-          } else if (booleanFields.includes(key)) {
-            value = false;
-          }
-          return value;
-        };
-
-        const inOptions = (key) => {
-          let retVal = null;
-          if (item.collectionOptions && item.collectionOptions[key] !== null) {
-            const options = JSON.parse(item.collectionOptions);
-            retVal = options[key];
-          }
-          return retVal;
-        };
-
-        for (const idx in editableFields) {
-          const field = editableFields[idx];
-          editableCollection[field] =
-            item[field] || inOptions(field) || defaultValue(field);
-        }
-        item_id = item.id;
       } catch (e) {
         console.log(e);
         console.error(`Error fetch collection for ${identifier} due to ${e}`);
-        setError(`No item found for identifier: ${identifier}!`);
+        setError(`No item found for identifier: ${identifier}`);
       }
       if (item) {
+        try {
+          for (const idx in editableFields) {
+            const field = editableFields[idx];
+            const itemValue = item[field];
+            editableCollection[field] =
+              itemValue || inOptions(field) || defaultValue(field);
+          }
+          item_id = item.id;
+        } catch (e) {
+          console.log(
+            `Error creating editableCollection for ${identifier} due to ${e}`
+          );
+          setError(`Error creating editableCollection: ${identifier}!`);
+        }
+
         setOldCollection(editableCollection);
         setCollection(editableCollection);
         setCollectionId(item_id);
         setTopLevelCollection(!item.parent_collection);
+      } else {
+        setError(`No item found for identifier: ${identifier}`);
       }
 
       return item;
@@ -221,7 +231,7 @@ const CollectionForm = React.memo((props) => {
       if (Array.isArray(collection[key])) {
         collection[key] = [...collection[key].filter((val) => val !== null)];
         if (collection[key].length === 0) {
-          collection[key] = null;
+          delete collection[key];
         }
       }
     }
@@ -231,7 +241,7 @@ const CollectionForm = React.memo((props) => {
         collection[key] = [...collection[key].filter((el) => !empty.test(el))];
       } else {
         if (empty.test(collection[key])) {
-          collection[key] = null;
+          delete collection[key];
         }
       }
     }
@@ -297,10 +307,13 @@ const CollectionForm = React.memo((props) => {
       delete collection[key];
     }
 
+    collection.collectionCollectionmapId = fullCollection.collectionmap_id;
+
     const collectionInfo = {
       id: collectionId,
       ...collection
     };
+    console.log(JSON.stringify(collectionInfo));
     let mutation = mutations.updateCollection;
     if (newCollection) {
       mutation = mutations.createCollection;

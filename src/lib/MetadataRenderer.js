@@ -251,9 +251,13 @@ function listValue(category, attr, value, languages) {
 }
 
 function textFormat(item, attr, languages, collectionCustomKey, site) {
-  if (item[attr] === null) return null;
+  if (item[attr] === null) {
+    return null;
+  }
   let category = "archive";
-  if (item.collection_category) category = "collection";
+  if (item.collection_category) {
+    category = "collection";
+  }
   if (Array.isArray(item[attr]) && attr !== "description") {
     return (
       <div className="archive-item-tags multi">

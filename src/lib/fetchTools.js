@@ -217,23 +217,23 @@ export const fetchSearchResults = async (
 ) => {
   const REP_TYPE = process.env.REACT_APP_REP_TYPE.toLowerCase();
   let archiveFilter = {
-    item_category: { eq: REP_TYPE },
+    project: { eq: REP_TYPE },
     visibility: { eq: true }
   };
   let collectionFilter = {
-    collection_category: { eq: REP_TYPE },
+    project: { eq: REP_TYPE },
     visibility: { eq: true },
     parent_collection: { exists: false }
   };
   let objectFilter = {
     or: [
       {
-        collection_category: { eq: REP_TYPE },
+        project: { eq: REP_TYPE },
         visibility: { eq: true },
         parent_collection: { exists: false }
       },
       {
-        item_category: { eq: REP_TYPE },
+        project: { eq: REP_TYPE },
         visibility: { eq: true }
       }
     ]
@@ -405,7 +405,7 @@ export const getPodcastCollections = async () => {
     graphqlOperation(queries.searchCollections, {
       order: "ASC",
       filter: {
-        collection_category: {
+        project: {
           eq: "podcasts"
         }
       }
@@ -492,7 +492,7 @@ export const getArchiveByIdentifier = async (identifier) => {
     variables: {
       identifier: identifier,
       filter: {
-        item_category: { eq: REP_TYPE }
+        project: { eq: REP_TYPE }
       },
       limit: 1
     }
@@ -513,7 +513,7 @@ export const getCollectionByIdentifier = async (identifier) => {
     variables: {
       identifier: identifier,
       filter: {
-        collection_category: { eq: REP_TYPE }
+        project: { eq: REP_TYPE }
       },
       limit: 1
     }
@@ -597,7 +597,7 @@ export const getCollectionFromCustomKey = async (customKey) => {
     order: "ASC",
     limit: 1,
     filter: {
-      collection_category: {
+      project: {
         eq: process.env.REACT_APP_REP_TYPE.toLowerCase()
       },
       visibility: { eq: true },

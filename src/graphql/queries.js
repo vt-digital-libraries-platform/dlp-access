@@ -33,6 +33,7 @@ export const searchObjects = /* GraphQL */ `
         modified_date
         parent_collection
         parent_collection_identifier
+        project
         provenance
         relation
         rights_holder
@@ -135,6 +136,7 @@ export const fulltextCollections = /* GraphQL */ `
         ownerinfo
         parent_collection
         parent_collection_identifier
+        project
         provenance
         relation
         rights_holder
@@ -214,6 +216,7 @@ export const fulltextArchives = /* GraphQL */ `
         other_identifier
         parent_collection
         parent_collection_identifier
+        project
         provenance
         publisher
         references
@@ -286,6 +289,7 @@ export const getArchive = /* GraphQL */ `
       other_identifier
       parent_collection
       parent_collection_identifier
+      project
       provenance
       publisher
       references
@@ -359,6 +363,7 @@ export const listArchives = /* GraphQL */ `
         other_identifier
         parent_collection
         parent_collection_identifier
+        project
         provenance
         publisher
         references
@@ -443,6 +448,7 @@ export const archiveByIdentifier = /* GraphQL */ `
         other_identifier
         parent_collection
         parent_collection_identifier
+        project
         provenance
         publisher
         references
@@ -529,6 +535,7 @@ export const searchArchives = /* GraphQL */ `
         other_identifier
         parent_collection
         parent_collection_identifier
+        project
         provenance
         publisher
         references
@@ -581,6 +588,7 @@ export const getCollection = /* GraphQL */ `
       ownerinfo
       parent_collection
       parent_collection_identifier
+      project
       provenance
       relation
       rights_holder
@@ -599,6 +607,7 @@ export const getCollection = /* GraphQL */ `
         id
         map_object
         modified_date
+        project
         createdAt
         updatedAt
         __typename
@@ -643,6 +652,7 @@ export const listCollections = /* GraphQL */ `
         ownerinfo
         parent_collection
         parent_collection_identifier
+        project
         provenance
         relation
         rights_holder
@@ -701,6 +711,7 @@ export const collectionByIdentifier = /* GraphQL */ `
         ownerinfo
         parent_collection
         parent_collection_identifier
+        project
         provenance
         relation
         rights_holder
@@ -761,6 +772,7 @@ export const searchCollections = /* GraphQL */ `
         ownerinfo
         parent_collection
         parent_collection_identifier
+        project
         provenance
         relation
         rights_holder
@@ -792,6 +804,7 @@ export const getCollectionmap = /* GraphQL */ `
       id
       map_object
       modified_date
+      project
       createdAt
       updatedAt
       __typename
@@ -812,6 +825,7 @@ export const listCollectionmaps = /* GraphQL */ `
         id
         map_object
         modified_date
+        project
         createdAt
         updatedAt
         __typename
@@ -838,6 +852,7 @@ export const getPageContent = /* GraphQL */ `
         id
         lang
         miradorOptions
+        project
         searchPage
         siteColor
         siteId
@@ -849,6 +864,7 @@ export const getPageContent = /* GraphQL */ `
         updatedAt
         __typename
       }
+      project
       createdAt
       updatedAt
       pageContentPageContentSiteIdId
@@ -867,6 +883,7 @@ export const listPageContents = /* GraphQL */ `
         page_content_category
         id
         content
+        project
         createdAt
         updatedAt
         pageContentPageContentSiteIdId
@@ -885,6 +902,7 @@ export const getEmbargo = /* GraphQL */ `
       start_date
       end_date
       note
+      project
       record_type
       createdAt
       updatedAt
@@ -905,6 +923,7 @@ export const listEmbargos = /* GraphQL */ `
         start_date
         end_date
         note
+        project
         record_type
         createdAt
         updatedAt
@@ -990,6 +1009,7 @@ export const getSite = /* GraphQL */ `
       id
       lang
       miradorOptions
+      project
       searchPage
       siteColor
       siteId
@@ -1021,6 +1041,7 @@ export const listSites = /* GraphQL */ `
         id
         lang
         miradorOptions
+        project
         searchPage
         siteColor
         siteId
@@ -1063,6 +1084,7 @@ export const siteBySiteId = /* GraphQL */ `
         id
         lang
         miradorOptions
+        project
         searchPage
         siteColor
         siteId
@@ -1085,6 +1107,7 @@ export const getHistory = /* GraphQL */ `
       event
       groups
       id
+      project
       siteID
       userEmail
       createdAt
@@ -1104,6 +1127,7 @@ export const listHistories = /* GraphQL */ `
         event
         groups
         id
+        project
         siteID
         userEmail
         createdAt

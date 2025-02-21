@@ -28,6 +28,7 @@ export const available_attributes = {
     "license",
     "medium",
     "other_identifier",
+    "project",
     "provenance",
     "publisher",
     "references",
@@ -52,6 +53,7 @@ export const available_attributes = {
     "identifier",
     "is_part_of",
     "language",
+    "project",
     "provenance",
     "relation",
     "rights_holder",
@@ -106,6 +108,7 @@ export const archive_singleFields = [
   "end_date",
   "identifier",
   "manifest_url",
+  "project",
   "start_date",
   "title",
   "thumbnail_path"
@@ -132,6 +135,7 @@ export const collection_singleFields = [
   "identifier",
   "ownerinfo_email",
   "ownerinfo_name",
+  "project",
   "start_date",
   "title",
   "thumbnail_path"
@@ -139,7 +143,6 @@ export const collection_singleFields = [
 
 export const csv_metadataFields = {
   archive: [
-    "item_category",
     "parent_collection",
     "create_date",
     "modified_date",
@@ -171,6 +174,7 @@ export const csv_metadataFields = {
     "license",
     "medium",
     "other_identifier",
+    "project",
     "provenance",
     "publisher",
     "references",
@@ -188,7 +192,6 @@ export const csv_metadataFields = {
     "visibility"
   ],
   collection: [
-    "collection_category",
     "parent_collection",
     "create_date",
     "modified_date",
@@ -204,6 +207,7 @@ export const csv_metadataFields = {
     "identifier",
     "is_part_of",
     "language",
+    "project",
     "provenance",
     "relation",
     "rights_holder",

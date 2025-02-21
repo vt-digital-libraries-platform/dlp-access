@@ -45,6 +45,7 @@ export const onCreateArchive = /* GraphQL */ `
       other_identifier
       parent_collection
       parent_collection_identifier
+      project
       provenance
       publisher
       references
@@ -113,6 +114,7 @@ export const onUpdateArchive = /* GraphQL */ `
       other_identifier
       parent_collection
       parent_collection_identifier
+      project
       provenance
       publisher
       references
@@ -181,6 +183,7 @@ export const onDeleteArchive = /* GraphQL */ `
       other_identifier
       parent_collection
       parent_collection_identifier
+      project
       provenance
       publisher
       references
@@ -231,6 +234,7 @@ export const onCreateCollection = /* GraphQL */ `
       ownerinfo
       parent_collection
       parent_collection_identifier
+      project
       provenance
       relation
       rights_holder
@@ -249,6 +253,7 @@ export const onCreateCollection = /* GraphQL */ `
         id
         map_object
         modified_date
+        project
         createdAt
         updatedAt
         __typename
@@ -290,6 +295,7 @@ export const onUpdateCollection = /* GraphQL */ `
       ownerinfo
       parent_collection
       parent_collection_identifier
+      project
       provenance
       relation
       rights_holder
@@ -308,6 +314,7 @@ export const onUpdateCollection = /* GraphQL */ `
         id
         map_object
         modified_date
+        project
         createdAt
         updatedAt
         __typename
@@ -349,6 +356,7 @@ export const onDeleteCollection = /* GraphQL */ `
       ownerinfo
       parent_collection
       parent_collection_identifier
+      project
       provenance
       relation
       rights_holder
@@ -367,6 +375,7 @@ export const onDeleteCollection = /* GraphQL */ `
         id
         map_object
         modified_date
+        project
         createdAt
         updatedAt
         __typename
@@ -393,6 +402,7 @@ export const onCreateCollectionmap = /* GraphQL */ `
       id
       map_object
       modified_date
+      project
       createdAt
       updatedAt
       __typename
@@ -410,6 +420,7 @@ export const onUpdateCollectionmap = /* GraphQL */ `
       id
       map_object
       modified_date
+      project
       createdAt
       updatedAt
       __typename
@@ -427,6 +438,7 @@ export const onDeleteCollectionmap = /* GraphQL */ `
       id
       map_object
       modified_date
+      project
       createdAt
       updatedAt
       __typename
@@ -452,6 +464,7 @@ export const onCreatePageContent = /* GraphQL */ `
         id
         lang
         miradorOptions
+        project
         searchPage
         siteColor
         siteId
@@ -463,6 +476,7 @@ export const onCreatePageContent = /* GraphQL */ `
         updatedAt
         __typename
       }
+      project
       createdAt
       updatedAt
       pageContentPageContentSiteIdId
@@ -489,6 +503,7 @@ export const onUpdatePageContent = /* GraphQL */ `
         id
         lang
         miradorOptions
+        project
         searchPage
         siteColor
         siteId
@@ -500,6 +515,7 @@ export const onUpdatePageContent = /* GraphQL */ `
         updatedAt
         __typename
       }
+      project
       createdAt
       updatedAt
       pageContentPageContentSiteIdId
@@ -526,6 +542,7 @@ export const onDeletePageContent = /* GraphQL */ `
         id
         lang
         miradorOptions
+        project
         searchPage
         siteColor
         siteId
@@ -537,6 +554,7 @@ export const onDeletePageContent = /* GraphQL */ `
         updatedAt
         __typename
       }
+      project
       createdAt
       updatedAt
       pageContentPageContentSiteIdId
@@ -552,6 +570,7 @@ export const onCreateEmbargo = /* GraphQL */ `
       start_date
       end_date
       note
+      project
       record_type
       createdAt
       updatedAt
@@ -567,6 +586,7 @@ export const onUpdateEmbargo = /* GraphQL */ `
       start_date
       end_date
       note
+      project
       record_type
       createdAt
       updatedAt
@@ -582,6 +602,7 @@ export const onDeleteEmbargo = /* GraphQL */ `
       start_date
       end_date
       note
+      project
       record_type
       createdAt
       updatedAt
@@ -602,6 +623,7 @@ export const onCreateSite = /* GraphQL */ `
       id
       lang
       miradorOptions
+      project
       searchPage
       siteColor
       siteId
@@ -628,6 +650,7 @@ export const onUpdateSite = /* GraphQL */ `
       id
       lang
       miradorOptions
+      project
       searchPage
       siteColor
       siteId
@@ -654,6 +677,7 @@ export const onDeleteSite = /* GraphQL */ `
       id
       lang
       miradorOptions
+      project
       searchPage
       siteColor
       siteId
@@ -673,6 +697,7 @@ export const onCreateHistory = /* GraphQL */ `
       event
       groups
       id
+      project
       siteID
       userEmail
       createdAt
@@ -687,6 +712,7 @@ export const onUpdateHistory = /* GraphQL */ `
       event
       groups
       id
+      project
       siteID
       userEmail
       createdAt
@@ -701,6 +727,7 @@ export const onDeleteHistory = /* GraphQL */ `
       event
       groups
       id
+      project
       siteID
       userEmail
       createdAt
