@@ -125,8 +125,10 @@ const modifyKey = (key) => {
   return newKey;
 };
 
-const getCitationData = (data, site) => {
-  return <Citation item={data} site={site} />;
+const getCitationData = (data, site, parentCollection) => {
+  return (
+    <Citation item={data} site={site} parentCollection={parentCollection} />
+  );
 };
 
 const getCopyrightData = (data) => {
@@ -169,7 +171,8 @@ export default function CollapsibleCard({
   marker,
   data,
   site,
-  defaultExpand
+  defaultExpand,
+  parentCollection
 }) {
   const [expanded, setExpanded] = React.useState(defaultExpand);
 
@@ -293,7 +296,7 @@ export default function CollapsibleCard({
     );
   };
 
-  const getContent = (marker, data, site) => {
+  const getContent = (marker, data, site, parentCollection) => {
     switch (marker) {
       case "location":
         return getLocationData(data);
@@ -305,7 +308,7 @@ export default function CollapsibleCard({
         return getCopyrightData(data);
 
       case "citation":
-        return getCitationData(data, site);
+        return getCitationData(data, site, parentCollection);
 
       default:
         return null;
@@ -346,7 +349,7 @@ export default function CollapsibleCard({
       </div>
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent className="card-content">
-          {getContent(marker, data, site)}
+          {getContent(marker, data, site, parentCollection)}
         </CardContent>
       </Collapse>
     </Card>
