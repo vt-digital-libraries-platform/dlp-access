@@ -34,7 +34,6 @@ declare global {
     is_format_of: string[] | null;
     is_part_of: string[] | null;
     is_version_of: string[] | null;
-    item_category: string;
     language: string[] | null;
     license: string[] | null;
     manifest_file_characterization: string | null;
@@ -43,6 +42,7 @@ declare global {
     modified_date: string | null;
     other_identifier: string[] | null;
     parent_collection: string[] | null;
+    project: string;
     provenance: string[] | null;
     publisher: string[] | null;
     references: string[] | null;
@@ -64,13 +64,13 @@ declare global {
   }
 
   interface Collectionmap {
-    collectionmap_category: string;
     collection_id: string;
     create_date: string | null;
     id: string;
     map_object: string;
     modified_date: string | null;
     collection: string | null;
+    project: string;
   }
 
   interface MapObject {
@@ -81,7 +81,6 @@ declare global {
   }
   interface Collection {
     bibliographic_citation: string[] | null;
-    collection_category: string;
     collectionmap_id: string | null;
     collectionOptions: string | null;
     create_date: string | null;
@@ -99,6 +98,7 @@ declare global {
     modified_date: string | null;
     ownerinfo: string;
     parent_collection: string[] | null;
+    project: string;
     provenance: string[] | null;
     relation: string[] | null;
     rights_holder: string[] | null;
@@ -118,10 +118,10 @@ declare global {
     webFeed?: string;
   }
   interface PageContent {
-    page_content_category: string;
     id: string;
     content: string;
     pageContentSiteId: string;
+    project: string;
   }
   interface Site {
     analyticsID: string | null;

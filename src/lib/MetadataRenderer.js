@@ -170,7 +170,7 @@ export function breadcrumbTitle(title) {
 }
 
 export function getCategory(item) {
-  return item.collection_category ? "collection" : "archive";
+  return item.__typename.toLowerCase();
 }
 
 export function arkLinkFormatted(customKey) {
@@ -254,10 +254,7 @@ function textFormat(item, attr, languages, collectionCustomKey, site) {
   if (item[attr] === null) {
     return null;
   }
-  let category = "archive";
-  if (item.collection_category) {
-    category = "collection";
-  }
+  let category = item.__typename.toLowerCase();
   if (Array.isArray(item[attr]) && attr !== "description") {
     return (
       <div className="archive-item-tags multi">

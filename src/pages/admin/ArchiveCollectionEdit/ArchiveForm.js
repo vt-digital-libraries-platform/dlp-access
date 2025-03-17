@@ -175,7 +175,7 @@ const ArchiveForm = React.memo((props) => {
         const REP_TYPE = process.env.REACT_APP_REP_TYPE.toLowerCase();
         const allColl = await getAllCollections({
           filter: {
-            collection_category: { eq: REP_TYPE }
+            project: { eq: REP_TYPE }
           }
         });
         setAllCollections(allColl);
@@ -286,7 +286,7 @@ const ArchiveForm = React.memo((props) => {
       archive.identifier = noid;
       archive.heirarchy_path = selectedCollection.heirarchy_path;
       archive.custom_key = customKey;
-      archive.item_category = siteContext.site.groups[0];
+      archive.project = siteContext.site.groups[0];
       archive.parent_collection = selectedCollection.id;
       archive.collectionArchivesId = selectedCollection.id;
     } else {

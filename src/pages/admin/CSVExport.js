@@ -13,7 +13,7 @@ const GetCollections = `query searchCollections(
 ) {
   searchCollections(
     filter: {
-      collection_category: {
+      project: {
         eq: $filter
       }
     },
@@ -71,7 +71,7 @@ function CSVExport() {
     return results;
   };
 
-  const getItems = async filter => {
+  const getItems = async (filter) => {
     let searchResults = [];
     let nextToken = null;
     do {
@@ -95,7 +95,7 @@ function CSVExport() {
         const collections = await API.graphql(
           graphqlOperation(queries.searchCollections, {
             filter: {
-              collection_category: {
+              project: {
                 eq: REP_TYPE
               }
             },
@@ -110,17 +110,17 @@ function CSVExport() {
     load();
   }, []);
 
-  const handleCheck = id => {
+  const handleCheck = (id) => {
     let arr = [];
     if (searches.length > 0 && searches.includes(id)) {
-      arr = searches.filter(el => el !== id);
+      arr = searches.filter((el) => el !== id);
       setSearches(arr);
     } else {
       if (id === "allItems" || id === "allCollections") {
         setSearches([id]);
       } else {
         arr = searches.filter(
-          el => el !== "allItems" && el !== "allCollections"
+          (el) => el !== "allItems" && el !== "allCollections"
         );
         arr.push(id);
         setSearches(arr);
@@ -129,7 +129,7 @@ function CSVExport() {
   };
 
   const getLinks = () => {
-    const links = allCollections.map(col => {
+    const links = allCollections.map((col) => {
       if (col.parent_collection === null) {
         return (
           <div key={col.identifier}>
@@ -151,20 +151,20 @@ function CSVExport() {
   const getCSV = () => {
     let filter = null;
     if (searches.includes("allCollections")) {
-      getCollections().then(resp => {
+      getCollections().then((resp) => {
         setCsvData(resp);
         setVisibleLink(true);
       });
     } else if (searches.includes("allItems")) {
       filter = {
-        item_category: { eq: REP_TYPE }
+        project: { eq: REP_TYPE }
       };
-      getItems(filter).then(resp => {
+      getItems(filter).then((resp) => {
         setCsvData(resp);
         setVisibleLink(true);
       });
     } else {
-      let searchIds = searches.map(id => {
+      let searchIds = searches.map((id) => {
         let obj = {};
         obj.heirarchy_path = { eq: id };
         return obj;
@@ -172,7 +172,7 @@ function CSVExport() {
       filter = {
         or: searchIds
       };
-      getItems(filter).then(resp => {
+      getItems(filter).then((resp) => {
         setCsvData(resp);
         setVisibleLink(true);
       });

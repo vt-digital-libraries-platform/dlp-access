@@ -214,7 +214,7 @@ const CollectionForm = React.memo((props) => {
     return {
       id: mapId,
       collection_id: collection.id,
-      collectionmap_category: collection.collection_category,
+      project: collection.project,
       map_object: JSON.stringify(mapObject)
     };
   };
@@ -263,7 +263,7 @@ const CollectionForm = React.memo((props) => {
       collection.identifier = noid;
       collection.heirarchy_path = [id.toString()];
       collection.custom_key = customKey;
-      collection.collection_category = siteContext.site.groups[0];
+      collection.project = siteContext.site.groups[0];
     }
 
     if (validEmbargo(collection)) {
