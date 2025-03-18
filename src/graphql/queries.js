@@ -988,6 +988,68 @@ export const listEmbargos = /* GraphQL */ `
     }
   }
 `;
+export const embargosByStart_date = /* GraphQL */ `
+  query EmbargosByStart_date(
+    $start_date: AWSDate!
+    $sortDirection: ModelSortDirection
+    $filter: ModelEmbargoFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    embargosByStart_date(
+      start_date: $start_date
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        identifier
+        start_date
+        end_date
+        note
+        record_type
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const embargosByEnd_date = /* GraphQL */ `
+  query EmbargosByEnd_date(
+    $end_date: AWSDate!
+    $sortDirection: ModelSortDirection
+    $filter: ModelEmbargoFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    embargosByEnd_date(
+      end_date: $end_date
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        identifier
+        start_date
+        end_date
+        note
+        record_type
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
 export const getSite = /* GraphQL */ `
   query GetSite($id: ID!) {
     getSite(id: $id) {
