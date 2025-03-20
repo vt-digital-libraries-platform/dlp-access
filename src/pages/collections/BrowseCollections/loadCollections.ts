@@ -10,14 +10,21 @@ type Args = {
   tokns: string[];
 };
 
-export const loadCollections = async ({ pg, filtr, sort, limt, tokns, scrollUp }: Args) => {
+export const loadCollections = async ({
+  pg,
+  filtr,
+  sort,
+  limt,
+  tokns,
+  scrollUp
+}: Args) => {
   let page = pg;
   let limit = limt;
   let filter = filtr;
   let nextTokens = tokns;
-  let collections:any = null;
-  let totalPages:number = 1;
-  let total:number = 0;
+  let collections: any = null;
+  let totalPages: number = 1;
+  let total: number = 0;
 
   const currentToken = nextTokens[page] || null;
 
@@ -34,16 +41,17 @@ export const loadCollections = async ({ pg, filtr, sort, limt, tokns, scrollUp }
       nextToken: currentToken
     };
     const searchResults = await fetchSearchResults(this, options);
-    const setNextTokens = (cur:any) => {
+    const setNextTokens = (cur: any) => {
       const tokens = [...cur];
       tokens[page + 1] = searchResults.nextToken;
       return tokens;
     };
-
-    collections = searchResults.items;
-    total = searchResults.total;
-    nextTokens = setNextTokens(nextTokens)
-    totalPages = Math.ceil(searchResults.total / limit);
+    if (searchResults && "items" in searchResults) {
+      collections = searchResults.items;
+      total = searchResults.total;
+      nextTokens = setNextTokens(nextTokens);
+      totalPages = Math.ceil(searchResults.total / limit);
+    }
 
     if (typeof scrollUp === "function") {
       scrollUp(new Event("click"));

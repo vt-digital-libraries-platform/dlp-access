@@ -13,20 +13,21 @@
     },
     "categories": {
       "api": {
-        "collectionarchives": {}
+        "vtdlp": {}
+      },
+      "storage": {
+        "Collectionmap": {}
       },
       "auth": {
         "iawav2658176f3": {},
         "userPoolGroups": {}
       },
       "function": {
+        "S3Triggerf2aaed76": {},
         "iawav2658176f3PostConfirmation": {
           "deploymentBucketName": "amplify-previewdlpdev-dev-100419-deployment",
           "s3Key": "amplify-builds/iawav2658176f3PostConfirmation-634844337947316a6c56-build.zip"
         }
-      },
-      "storage": {
-        "Collectionmap": {}
       }
     }
   },
@@ -43,20 +44,24 @@
       "AmplifyAppId": "d1n265krqy0ld3"
     },
     "categories": {
+      "api": {
+        "vtdlp": {},
+        "collectionarchives": {}
+      },
+      "storage": {
+        "envassets": {}
+      },
       "auth": {
+        "iawav2658176f3": {},
+        "userPoolGroups": {},
         "vtdlpdeve943a1f8": {}
       },
-      "api": {
-        "vtdlp": {}
-      },
       "function": {
+        "iawav2658176f3PostConfirmation": {},
         "S3Triggerf2aaed76": {
           "deploymentBucketName": "amplify-vtdlpdev-vtdlpdev-55aa4-deployment",
           "s3Key": "amplify-builds/S3Triggerf2aaed76-682b41416b432b534867-build.zip"
         }
-      },
-      "storage": {
-        "envassets": {}
       }
     }
   },
