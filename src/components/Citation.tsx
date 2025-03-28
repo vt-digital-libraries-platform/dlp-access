@@ -15,13 +15,17 @@ interface Props {
 const Citation = ({ item, site, parentCollection }: Props) => {
   const [copiedCitation, setCopiedCitation] = useState(false);
   const [copiedBibTeX, setCopiedBibTeX] = useState(false);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const citationCopyTimerRef = useRef<NodeJS.Timeout | null>(null);
+  const bibTeXCopyTimerRef = useRef<NodeJS.Timeout | null>(null);
   const copyCooldown = 1000;
 
   useEffect(() => {
     return () => {
-      if (timerRef.current) {
-        clearTimeout(timerRef.current);
+      if (citationCopyTimerRef.current) {
+        clearTimeout(citationCopyTimerRef.current);
+      }
+      if (bibTeXCopyTimerRef.current) {
+        clearTimeout(bibTeXCopyTimerRef.current);
       }
     };
   }, []);
@@ -128,7 +132,7 @@ const Citation = ({ item, site, parentCollection }: Props) => {
       navigator.clipboard.writeText(generateCitationText()).then(
         () => {
           setCopiedCitation(true);
-          timerRef.current = setTimeout(
+          citationCopyTimerRef.current = setTimeout(
             () => setCopiedCitation(false),
             copyCooldown
           );
@@ -145,7 +149,7 @@ const Citation = ({ item, site, parentCollection }: Props) => {
       navigator.clipboard.writeText(bibTeXCitation).then(
         () => {
           setCopiedBibTeX(true);
-          timerRef.current = setTimeout(
+          bibTeXCopyTimerRef.current = setTimeout(
             () => setCopiedBibTeX(false),
             copyCooldown
           );
