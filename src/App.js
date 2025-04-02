@@ -105,7 +105,16 @@ class App extends Component {
   }
 
   render() {
-    const theme = createTheme();
+    const theme = createTheme({
+      palette: {
+        primary: {
+          main: "#c64600"
+        },
+        secondary: {
+          main: "#861f41"
+        }
+      }
+    });
     if (!this.state.isLoading && this.state.site && theme) {
       this.setStyles();
       const customRoutes = buildRoutes(this.state.site);

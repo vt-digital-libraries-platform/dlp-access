@@ -1,6 +1,12 @@
 import { faCopy } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Tooltip } from "@mui/material";
+import Box from "@mui/material/Box";
+import Tab from "@mui/material/Tab";
+import TabContext from "@mui/lab/TabContext";
+import TabList from "@mui/lab/TabList";
+import TabPanel from "@mui/lab/TabPanel";
+
 import { useEffect, useRef, useState } from "react";
 
 import "../css/Citation.scss";
@@ -13,11 +19,16 @@ interface Props {
 }
 
 const Citation = ({ item, site, parentCollection }: Props) => {
+  const [tabValue, setTabValue] = useState("citation");
   const [copiedCitation, setCopiedCitation] = useState(false);
   const [copiedBibTeX, setCopiedBibTeX] = useState(false);
   const citationCopyTimerRef = useRef<NodeJS.Timeout | null>(null);
   const bibTeXCopyTimerRef = useRef<NodeJS.Timeout | null>(null);
   const copyCooldown = 1000;
+
+  const handleTabChange = (_: React.SyntheticEvent, newValue: string) => {
+    setTabValue(newValue);
+  };
 
   useEffect(() => {
     return () => {
@@ -111,7 +122,7 @@ const Citation = ({ item, site, parentCollection }: Props) => {
   const getCitation = () => {
     return {
       creator: getCreator(),
-      title: `${item.title || "Untitled"}. `,
+      title: `${item.title || "Untitled"}`,
       dlpInstance: getDLPInstance() + ", ",
       sponsor:
         "Virginia Polytechnic Institute and State University, University Libraries. ",
@@ -122,9 +133,9 @@ const Citation = ({ item, site, parentCollection }: Props) => {
 
   const generateCitationText = () => {
     const citation = getCitation();
-    return `${citation.creator || ""}.${citation.title}${citation.dlpInstance}${
-      citation.sponsor
-    }${citation.permalink} accessed ${citation.accessDate}`;
+    return `${citation.creator ? citation.creator + "." : ""}${citation.title}${
+      citation.dlpInstance
+    }${citation.sponsor}${citation.permalink} accessed ${citation.accessDate}`;
   };
 
   const onCopyCitation = () => {
@@ -160,79 +171,112 @@ const Citation = ({ item, site, parentCollection }: Props) => {
       );
     }
   };
-
+  const citationObj = getCitation();
   return (
-    <div aria-label="Item Citation" className="citation-section">
-      <div className="citation">
-        <div aria-label="Citation Suggest Text" className="suggest-text">
-          Paste this entry into your <code> .bib </code> file to cite it in
-          LaTeX using <code> \cite{"{...}"}</code>:
-        </div>
-        <div aria-label="Citation Text" className="citation-text">
+    <div className="citation">
+      <TabContext value={tabValue}>
+        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+          <TabList indicatorColor="secondary" onChange={handleTabChange}>
+            <Tab
+              label="Citation"
+              value="citation"
+              className="citation-tab"
+              disableRipple
+            />
+            <Tab
+              label="BibTeX"
+              value="bibtex"
+              className="citation-tab"
+              disableRipple
+            />
+          </TabList>
+        </Box>
+
+        <TabPanel value="citation" className="citation-tab-content">
+          <div className="copy-button-container">
+            <p className="heading">Citation Preview</p>
+
+            <Tooltip
+              title="Copied!"
+              arrow
+              open={copiedCitation === true}
+              slotProps={{
+                popper: {
+                  modifiers: [
+                    {
+                      name: "offset",
+                      options: {
+                        offset: [0, -6]
+                      }
+                    }
+                  ]
+                }
+              }}
+            >
+              <button
+                type="button"
+                className="btn btn-secondary citation-copy-button"
+                onClick={onCopyCitation}
+                disabled={copiedCitation}
+              >
+                <FontAwesomeIcon icon={faCopy} className="mr-1" />
+                <span>Copy Citation</span>
+              </button>
+            </Tooltip>
+          </div>
+
+          <div className="citation-text">
+            {citationObj.creator && <span>{citationObj.creator}</span>}
+            <span className="title">{citationObj.title}</span>
+            <span>{citationObj.dlpInstance}</span>
+            <span>{citationObj.sponsor}</span>
+            <span>
+              <a href={citationObj.permalink || "#"} className="mr-1">
+                {citationObj.permalink || "N/A"}
+              </a>
+            </span>
+            <span>{`accessed ${citationObj.accessDate}`}</span>
+          </div>
+        </TabPanel>
+
+        <TabPanel value="bibtex" className="citation-tab-content">
+          <div className="copy-button-container">
+            <p className="heading">BibTeX Preview</p>
+
+            <Tooltip
+              title="Copied!"
+              arrow
+              open={copiedBibTeX === true}
+              slotProps={{
+                popper: {
+                  modifiers: [
+                    {
+                      name: "offset",
+                      options: {
+                        offset: [0, -6]
+                      }
+                    }
+                  ]
+                }
+              }}
+            >
+              <button
+                type="button"
+                className="btn btn-secondary citation-copy-button"
+                onClick={onCopyBibTeXCitation}
+                disabled={copiedBibTeX}
+              >
+                <FontAwesomeIcon icon={faCopy} className="mr-1" />
+                <span>Copy Citation</span>
+              </button>
+            </Tooltip>
+          </div>
+
           <pre>
             <code>{bibTeXCitation}</code>
           </pre>
-        </div>
-        <div className="copy-button-container">
-          <Tooltip
-            title="Copied!"
-            arrow
-            open={copiedBibTeX === true}
-            slotProps={{
-              popper: {
-                modifiers: [
-                  {
-                    name: "offset",
-                    options: {
-                      offset: [0, -6]
-                    }
-                  }
-                ]
-              }
-            }}
-          >
-            <button
-              aria-label="Copy citation to clipboard"
-              type="button"
-              className="btn btn-secondary citation-copy-button"
-              onClick={onCopyBibTeXCitation}
-              disabled={copiedBibTeX}
-            >
-              <FontAwesomeIcon icon={faCopy} size="1x" className="mr-1" />
-              <span>Copy BibTeX</span>
-            </button>
-          </Tooltip>
-
-          <Tooltip
-            title="Copied!"
-            arrow
-            open={copiedCitation === true}
-            slotProps={{
-              popper: {
-                modifiers: [
-                  {
-                    name: "offset",
-                    options: {
-                      offset: [0, -6]
-                    }
-                  }
-                ]
-              }
-            }}
-          >
-            <button
-              aria-label="Copy citation to clipboard"
-              type="button"
-              className="btn btn-secondary citation-copy-button"
-              onClick={onCopyCitation}
-              disabled={copiedCitation}
-            >
-              <FontAwesomeIcon icon={faCopy} size="1x" className="mr-1" />
-              <span>Copy Citation</span>
-            </button>
-          </Tooltip>
-        </div>
-      </div>
+        </TabPanel>
+      </TabContext>
     </div>
   );
 };
