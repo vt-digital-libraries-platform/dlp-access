@@ -208,7 +208,11 @@ const Citation = ({ item, site, parentCollection }: Props) => {
                 onClick={onCopyCitation}
                 disabled={copiedCitation}
               >
-                <FontAwesomeIcon icon={faCopy} className="mr-1" />
+                <FontAwesomeIcon
+                  icon={faCopy}
+                  className="mr-1"
+                  aria-hidden={true}
+                />
                 <span>Copy Citation</span>
               </button>
             </Tooltip>
@@ -255,7 +259,11 @@ const Citation = ({ item, site, parentCollection }: Props) => {
                 onClick={onCopyBibTeXCitation}
                 disabled={copiedBibTeX}
               >
-                <FontAwesomeIcon icon={faCopy} className="mr-1" />
+                <FontAwesomeIcon
+                  icon={faCopy}
+                  className="mr-1"
+                  aria-hidden={true}
+                />
                 <span>Copy Citation</span>
               </button>
             </Tooltip>
