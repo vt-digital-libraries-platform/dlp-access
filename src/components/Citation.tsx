@@ -183,7 +183,9 @@ const Citation = ({ item, site, parentCollection }: Props) => {
 
         <TabPanel value="citation" className="citation-tab-content">
           <div className="copy-button-container">
-            <p className="heading">Citation Preview</p>
+            <p id="citation-preview-heading" className="heading">
+              Citation Preview
+            </p>
 
             <Tooltip
               title="Copied!"
@@ -218,7 +220,10 @@ const Citation = ({ item, site, parentCollection }: Props) => {
             </Tooltip>
           </div>
 
-          <div className="citation-text">
+          <div
+            className="citation-text"
+            aria-labelledby="citation-preview-heading"
+          >
             {citationObj.creator && <span>{citationObj.creator}</span>}
             <span className="title">{citationObj.title}</span>
             <span>{citationObj.dlpInstance}</span>
@@ -234,7 +239,9 @@ const Citation = ({ item, site, parentCollection }: Props) => {
 
         <TabPanel value="bibtex" className="citation-tab-content">
           <div className="copy-button-container">
-            <p className="heading">BibTeX Preview</p>
+            <p id="bibtex-preview-heading" className="heading">
+              BibTeX Preview
+            </p>
 
             <Tooltip
               title="Copied!"
@@ -270,7 +277,9 @@ const Citation = ({ item, site, parentCollection }: Props) => {
           </div>
 
           <pre>
-            <code>{bibTeXCitation}</code>
+            <code aria-labelledby="bibtex-preview-heading">
+              {bibTeXCitation}
+            </code>
           </pre>
         </TabPanel>
       </TabContext>
