@@ -188,7 +188,7 @@ const Citation = ({ item, site, parentCollection }: Props) => {
             </p>
 
             <Tooltip
-              title="Copied!"
+              title={copiedCitation ? "Copied!" : ""}
               arrow
               open={copiedCitation === true}
               slotProps={{
@@ -244,7 +244,7 @@ const Citation = ({ item, site, parentCollection }: Props) => {
             </p>
 
             <Tooltip
-              title="Copied!"
+              title={copiedBibTeX ? "Copied!" : ""}
               arrow
               open={copiedBibTeX === true}
               slotProps={{
