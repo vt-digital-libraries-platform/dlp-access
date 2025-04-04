@@ -175,7 +175,7 @@ const Citation = ({ item, site, parentCollection }: Props) => {
     <div className="citation">
       <TabContext value={tabValue}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <TabList onChange={handleTabChange} aria-label="citation tabs">
+          <TabList onChange={handleTabChange}>
             <Tab label="Citation" value="citation" className="citation-tab" />
             <Tab label="BibTeX" value="bibtex" className="citation-tab" />
           </TabList>
