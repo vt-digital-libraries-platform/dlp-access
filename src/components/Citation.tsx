@@ -14,7 +14,6 @@ import "../css/Citation.scss";
 interface Props {
   item: Archive;
   site: Site;
-  collectionTitle: string;
   parentCollection: Collection;
 }
 
@@ -176,19 +175,9 @@ const Citation = ({ item, site, parentCollection }: Props) => {
     <div className="citation">
       <TabContext value={tabValue}>
         <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <TabList indicatorColor="secondary" onChange={handleTabChange}>
-            <Tab
-              label="Citation"
-              value="citation"
-              className="citation-tab"
-              disableRipple
-            />
-            <Tab
-              label="BibTeX"
-              value="bibtex"
-              className="citation-tab"
-              disableRipple
-            />
+          <TabList onChange={handleTabChange} aria-label="citation tabs">
+            <Tab label="Citation" value="citation" className="citation-tab" />
+            <Tab label="BibTeX" value="bibtex" className="citation-tab" />
           </TabList>
         </Box>
 
