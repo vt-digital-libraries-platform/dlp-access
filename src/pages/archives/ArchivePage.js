@@ -38,8 +38,8 @@ class ArchivePage extends Component {
     super(props);
     this.state = {
       item: null,
+      parentCollection: null,
       collectionCustomKey: "",
-      collectionTitle: "",
       page: 0,
       category: "archive",
       searchField: "all",
@@ -87,7 +87,7 @@ class ArchivePage extends Component {
       this.setState({
         item: item,
         collectionCustomKey: collectionCustomKey,
-        collectionTitle: topLevelParentCollection.title,
+        parentCollection: topLevelParentCollection,
         info: archiveSchema
       });
     } catch (error) {
@@ -204,7 +204,6 @@ class ArchivePage extends Component {
   buildArchiveSchema(item) {
     let info = {};
     info["audio"] = item.manifest_url;
-    info["collectionTitle"] = this.state.collectionTitle;
     let collectionURL = window.location.href.replace("archive", "collection");
     let collectionNoid = this.state.collectionCustomKey.replace(
       "ark:/53696/",
@@ -440,6 +439,7 @@ class ArchivePage extends Component {
                     data={this.state.item}
                     site={this.props.site}
                     defaultExpand={false}
+                    parentCollection={this.state.parentCollection}
                   />
                   <CollapsibleCard
                     title="Location"
