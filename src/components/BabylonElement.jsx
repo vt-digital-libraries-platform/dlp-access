@@ -39,7 +39,6 @@ const BabylonElement = (props) => {
     const scene = new BABYLON.Scene(engine);
     initEnvironment(scene, AXES_LENGTH, AXES_LENGTH);
 
-    // scene.clearColor = new BABYLON.Color4(0,0,0,1);
     const model = await loadModel(scene, modelURL);
     const modelDimensions = model.ellipsoid;
     const modelMaxSize = Math.max(
@@ -49,6 +48,7 @@ const BabylonElement = (props) => {
     );
 
     model.position = new BABYLON.Vector3(0, modelDimensions._y, 0);
+
     const camera = new BABYLON.ArcRotateCamera(
       "camera",
       0,
@@ -114,13 +114,12 @@ const BabylonElement = (props) => {
   const createGround = (scene, width, height) => {
     const ground = BABYLON.MeshBuilder.CreateGround(
       "ground",
-      { width: width, height: height },
+      { width: width, height: height, subdivisions: 1, updatable: true },
       scene
     );
     const groundMaterial = createGroundMaterial(scene);
 
     ground.material = groundMaterial;
-
     ground.alwaysSelectAsActiveMesh = true;
     ground.isPickable = false;
   };
