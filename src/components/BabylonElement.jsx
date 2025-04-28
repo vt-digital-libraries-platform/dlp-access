@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { registerBuiltInLoaders } from "@babylonjs/loaders/dynamic";
 import * as BABYLON from "@babylonjs/core";
-import { GridMaterial } from "@babylonjs/materials/";
 import "../css/_3dViewer.scss";
 
 const BabylonElement = (props) => {
@@ -36,26 +35,9 @@ const BabylonElement = (props) => {
   };
 
   const createScene = async (canvas, engine, modelURL) => {
-    const AXES_LENGTH = 10;
+    const AXES_LENGTH = 4;
     const scene = new BABYLON.Scene(engine);
-    scene.environmentTexture = BABYLON.CubeTexture.CreateFromPrefilteredData(
-      props.env,
-      scene
-    );
-    const ground = BABYLON.MeshBuilder.CreateGround(
-      "ground",
-      { width: AXES_LENGTH, height: AXES_LENGTH, updatable: false },
-      scene
-    );
-    const grid = new GridMaterial("grid", scene);
-    grid.backFaceCulling = false;
-    grid.mainColor = BABYLON.Color3.White();
-    grid.lineColor = BABYLON.Color3.White();
-    grid.opacity = 0.25;
-
-    ground.material = grid;
-    ground.alwaysSelectAsActiveMesh = true;
-    ground.isPickable = false;
+    initEnvironment(scene, AXES_LENGTH, AXES_LENGTH);
 
     // scene.clearColor = new BABYLON.Color4(0,0,0,1);
     const model = await loadModel(scene, modelURL);
@@ -81,6 +63,7 @@ const BabylonElement = (props) => {
     camera.setTarget(
       new BABYLON.Vector3(0, modelDimensions._y, modelMaxSize * 2)
     );
+    camera.speed = 0.25;
     camera.wheelPrecision = 100;
     camera.lowerRadiusLimit = modelMaxSize;
     camera.upperRadiusLimit = modelMaxSize * 10;
@@ -91,6 +74,66 @@ const BabylonElement = (props) => {
       camera.setTarget(model.position);
       scene.render();
     });
+  };
+
+  const initEnvironment = (scene, width, height) => {
+    createEnvironmentLight(scene);
+    createSkybox(scene);
+    createGround(scene, width, height);
+  };
+
+  const createEnvironmentLight = (scene) => {
+    scene.environmentTexture = BABYLON.CubeTexture.CreateFromPrefilteredData(
+      props.env,
+      scene
+    );
+  };
+
+  const createSkybox = (scene) => {
+    const skybox = BABYLON.MeshBuilder.CreateBox(
+      "skyBox",
+      { size: 100.0 },
+      scene
+    );
+    const skyboxMaterial = new BABYLON.StandardMaterial("skyBox", scene);
+    skyboxMaterial.backFaceCulling = false;
+    skyboxMaterial.disableLighting = true;
+    skybox.material = skyboxMaterial;
+    skybox.infiniteDistance = true;
+    skyboxMaterial.disableLighting = true;
+    const envTexture = new BABYLON.CubeTexture(
+      "https://d21nnzi4oh5qvs.cloudfront.net/federated/3d/gltf/environments/dark/env",
+      scene
+    );
+
+    skyboxMaterial.reflectionTexture = envTexture;
+    skyboxMaterial.reflectionTexture.coordinatesMode =
+      BABYLON.Texture.SKYBOX_MODE;
+  };
+
+  const createGround = (scene, width, height) => {
+    const ground = BABYLON.MeshBuilder.CreateGround(
+      "ground",
+      { width: width, height: height },
+      scene
+    );
+    const groundMaterial = createGroundMaterial(scene);
+
+    ground.material = groundMaterial;
+
+    ground.alwaysSelectAsActiveMesh = true;
+    ground.isPickable = false;
+  };
+
+  const createGroundMaterial = (scene) => {
+    const pbr = new BABYLON.PBRMaterial("pbr", scene);
+    pbr.roughness = 1;
+    pbr.albedoTexture = new BABYLON.Texture(
+      "https://d21nnzi4oh5qvs.cloudfront.net/federated/3d/gltf/textures/groundShadow.jpg",
+      scene
+    );
+
+    return pbr;
   };
 
   const createCanvas = (canvasWrapper) => {
