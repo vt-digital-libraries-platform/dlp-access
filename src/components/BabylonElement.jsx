@@ -101,10 +101,13 @@ const BabylonElement = (props) => {
     skybox.material = skyboxMaterial;
     skybox.infiniteDistance = true;
     skyboxMaterial.disableLighting = true;
+    const shoulder = "ark:/53696/";
+    const customKey = props.customKey.replace(shoulder, "");
     const envTexture = new BABYLON.CubeTexture(
-      "https://d21nnzi4oh5qvs.cloudfront.net/federated/3d/gltf/environments/dark/env",
+      `https://d21nnzi4oh5qvs.cloudfront.net/federated/3d/gltf/environments/dark/${customKey}/env`,
       scene
     );
+    // s3://ingest-dev.img.cloud.lib.vt.edu/federated/3d/gltf/environments/dark/53c36427/env_nx.jpg
 
     skyboxMaterial.reflectionTexture = envTexture;
     skyboxMaterial.reflectionTexture.coordinatesMode =

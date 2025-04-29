@@ -244,6 +244,7 @@ class ArchivePage extends Component {
           <BabylonElement
             model={options.assets.gltf_config}
             env={options.assets.env_config}
+            customKey={item.custom_key}
           />
         </div>
       );
