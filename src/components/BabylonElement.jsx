@@ -37,7 +37,6 @@ const BabylonElement = (props) => {
   const createScene = async (canvas, engine, modelURL) => {
     const GROUND_DIAMETER = 40;
     const scene = new BABYLON.Scene(engine);
-    initEnvironment(scene, GROUND_DIAMETER);
 
     const model = await loadModel(scene, modelURL);
     const modelDimensions = model.ellipsoid;
@@ -46,8 +45,10 @@ const BabylonElement = (props) => {
       modelDimensions._y,
       modelDimensions._z
     );
-
     model.position = new BABYLON.Vector3(0, modelDimensions._y, 0);
+
+    // Create the environment around the subject
+    initEnvironment(scene, GROUND_DIAMETER, modelDimensions._y / 2);
 
     const camera = new BABYLON.ArcRotateCamera(
       "camera",
@@ -76,10 +77,11 @@ const BabylonElement = (props) => {
     });
   };
 
-  const initEnvironment = (scene, groundScaleFactor) => {
+  const initEnvironment = (scene, groundScaleFactor, lightY) => {
     createEnvironmentLight(scene);
     createSkybox(scene);
     createGroundObject(scene, groundScaleFactor);
+    lightGroundObject(scene, lightY);
   };
 
   const createEnvironmentLight = (scene) => {
@@ -122,6 +124,17 @@ const BabylonElement = (props) => {
       scaleFactor,
       scaleFactor
     );
+  };
+
+  const lightGroundObject = (scene, height) => {
+    const groundLight = new BABYLON.HemisphericLight(
+      "groundLight",
+      new BABYLON.Vector3(0, 0, 0),
+      scene
+    );
+    groundLight.position = new BABYLON.Vector3(0, height, 0);
+    groundLight.intensity = 0.5;
+    groundLight.diffuse = new BABYLON.Color3(1, 1, 1);
   };
 
   const createCanvas = (canvasWrapper) => {
