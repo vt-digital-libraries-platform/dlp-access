@@ -35,9 +35,9 @@ const BabylonElement = (props) => {
   };
 
   const createScene = async (canvas, engine, modelURL) => {
-    const AXES_LENGTH = 4;
+    const GROUND_DIAMETER = 40;
     const scene = new BABYLON.Scene(engine);
-    initEnvironment(scene, AXES_LENGTH, AXES_LENGTH);
+    initEnvironment(scene, GROUND_DIAMETER);
 
     const model = await loadModel(scene, modelURL);
     const modelDimensions = model.ellipsoid;
@@ -76,10 +76,10 @@ const BabylonElement = (props) => {
     });
   };
 
-  const initEnvironment = (scene, width, height) => {
+  const initEnvironment = (scene, groundScaleFactor) => {
     createEnvironmentLight(scene);
     createSkybox(scene);
-    createGround(scene, width, height);
+    createGroundObject(scene, groundScaleFactor);
   };
 
   const createEnvironmentLight = (scene) => {
@@ -101,41 +101,27 @@ const BabylonElement = (props) => {
     skybox.material = skyboxMaterial;
     skybox.infiniteDistance = true;
     skyboxMaterial.disableLighting = true;
-    const shoulder = "ark:/53696/";
-    const customKey = props.customKey.replace(shoulder, "");
     const envTexture = new BABYLON.CubeTexture(
-      `https://d21nnzi4oh5qvs.cloudfront.net/federated/3d/gltf/environments/dark/${customKey}/env`,
+      "https://s3.us-east-1.amazonaws.com/ingest-dev.img.cloud.lib.vt.edu/federated/3d/gltf/environments/dark/env",
       scene
     );
-    // s3://ingest-dev.img.cloud.lib.vt.edu/federated/3d/gltf/environments/dark/53c36427/env_nx.jpg
 
     skyboxMaterial.reflectionTexture = envTexture;
     skyboxMaterial.reflectionTexture.coordinatesMode =
       BABYLON.Texture.SKYBOX_MODE;
   };
 
-  const createGround = (scene, width, height) => {
-    const ground = BABYLON.MeshBuilder.CreateGround(
-      "ground",
-      { width: width, height: height, subdivisions: 1, updatable: true },
-      scene
-    );
-    const groundMaterial = createGroundMaterial(scene);
-
-    ground.material = groundMaterial;
-    ground.alwaysSelectAsActiveMesh = true;
-    ground.isPickable = false;
-  };
-
-  const createGroundMaterial = (scene) => {
-    const pbr = new BABYLON.PBRMaterial("pbr", scene);
-    pbr.roughness = 1;
-    pbr.albedoTexture = new BABYLON.Texture(
-      "https://d21nnzi4oh5qvs.cloudfront.net/federated/3d/gltf/textures/groundShadow.jpg",
-      scene
+  const createGroundObject = async (scene, scaleFactor) => {
+    const groundModel = await loadModel(
+      scene,
+      "https://d21nnzi4oh5qvs.cloudfront.net/federated/3d/gltf/environments/dark/groundTexturePBR.glb"
     );
 
-    return pbr;
+    groundModel.scaling = new BABYLON.Vector3(
+      scaleFactor,
+      scaleFactor,
+      scaleFactor
+    );
   };
 
   const createCanvas = (canvasWrapper) => {
