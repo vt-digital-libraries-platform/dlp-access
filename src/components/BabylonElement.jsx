@@ -40,7 +40,6 @@ const BabylonElement = (props) => {
 
     const model = await loadModel(scene, modelURL);
     const modelDimensions = model.ellipsoid;
-    console.log("Model Dimensions:", modelDimensions);
     const modelMaxSize = Math.max(
       modelDimensions._x,
       modelDimensions._y,
@@ -134,7 +133,7 @@ const BabylonElement = (props) => {
       scene
     );
     groundLight.position = new BABYLON.Vector3(0, height, 0);
-    groundLight.intensity = 0.5;
+    groundLight.intensity = 0.75;
     groundLight.diffuse = new BABYLON.Color3(1, 1, 1);
   };
 
