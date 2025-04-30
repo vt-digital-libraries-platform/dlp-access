@@ -40,6 +40,7 @@ const BabylonElement = (props) => {
 
     const model = await loadModel(scene, modelURL);
     const modelDimensions = model.ellipsoid;
+    console.log("Model Dimensions:", modelDimensions);
     const modelMaxSize = Math.max(
       modelDimensions._x,
       modelDimensions._y,
@@ -48,7 +49,7 @@ const BabylonElement = (props) => {
     model.position = new BABYLON.Vector3(0, modelDimensions._y, 0);
 
     // Create the environment around the subject
-    initEnvironment(scene, GROUND_DIAMETER, modelDimensions._y / 2);
+    initEnvironment(scene, GROUND_DIAMETER, modelDimensions._y * 4);
 
     const camera = new BABYLON.ArcRotateCamera(
       "camera",
