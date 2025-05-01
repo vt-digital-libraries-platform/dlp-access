@@ -35,7 +35,7 @@ const BabylonElement = (props) => {
   };
 
   const createScene = async (canvas, engine, modelURL) => {
-    const GROUND_DIAMETER = 40;
+    const GROUND_DIAMETER = 100;
     const scene = new BABYLON.Scene(engine);
 
     const model = await loadModel(scene, modelURL);
@@ -45,10 +45,10 @@ const BabylonElement = (props) => {
       modelDimensions._y,
       modelDimensions._z
     );
-    model.position = new BABYLON.Vector3(0, modelDimensions._y, 0);
+    model.position = new BABYLON.Vector3(0, modelDimensions._y / 4, 0);
 
     // Create the environment around the subject
-    initEnvironment(scene, GROUND_DIAMETER, modelDimensions._y * 4);
+    initEnvironment(scene, GROUND_DIAMETER, modelDimensions._y / 2);
 
     const camera = new BABYLON.ArcRotateCamera(
       "camera",
@@ -67,7 +67,7 @@ const BabylonElement = (props) => {
     camera.speed = 0.25;
     camera.wheelPrecision = 100;
     camera.lowerRadiusLimit = modelMaxSize;
-    camera.upperRadiusLimit = modelMaxSize * 10;
+    camera.upperRadiusLimit = modelMaxSize * 4;
     camera.attachControl(canvas, true);
     camera.minZ = 0.1;
 
@@ -81,7 +81,7 @@ const BabylonElement = (props) => {
     createEnvironmentLight(scene);
     createSkybox(scene);
     createGroundObject(scene, groundScaleFactor);
-    lightGroundObject(scene, lightY);
+    // lightGroundObject(scene, lightY);
   };
 
   const createEnvironmentLight = (scene) => {
@@ -116,7 +116,7 @@ const BabylonElement = (props) => {
   const createGroundObject = async (scene, scaleFactor) => {
     const groundModel = await loadModel(
       scene,
-      "https://d21nnzi4oh5qvs.cloudfront.net/federated/3d/gltf/environments/dark/groundTexturePBR.glb"
+      "https://d21nnzi4oh5qvs.cloudfront.net/federated/3d/gltf/environments/dark/3DPlatform.glb"
     );
 
     groundModel.scaling = new BABYLON.Vector3(
@@ -133,7 +133,7 @@ const BabylonElement = (props) => {
       scene
     );
     groundLight.position = new BABYLON.Vector3(0, height, 0);
-    groundLight.intensity = 0.75;
+    groundLight.intensity = 1;
     groundLight.diffuse = new BABYLON.Color3(1, 1, 1);
   };
 
