@@ -48,7 +48,7 @@ const BabylonElement = (props) => {
     model.position = new BABYLON.Vector3(0, modelDimensions._y / 4, 0);
 
     // Create the environment around the subject
-    initEnvironment(scene, GROUND_DIAMETER, modelDimensions._y / 2);
+    initEnvironment(scene, GROUND_DIAMETER, modelDimensions._y / 4);
 
     const camera = new BABYLON.ArcRotateCamera(
       "camera",
@@ -81,7 +81,7 @@ const BabylonElement = (props) => {
     createEnvironmentLight(scene);
     createSkybox(scene);
     createGroundObject(scene, groundScaleFactor);
-    // lightGroundObject(scene, lightY);
+    lightGroundObject(scene, lightY);
   };
 
   const createEnvironmentLight = (scene) => {
