@@ -38,6 +38,9 @@ const BabylonElement = (props) => {
     const GROUND_DIAMETER = 100;
     const scene = new BABYLON.Scene(engine);
 
+    // Create the environment around the subject
+    addEnvironment(scene);
+
     const model = await loadModel(scene, modelURL);
     const modelDimensions = model.ellipsoid;
     const modelMaxSize = Math.max(
@@ -45,10 +48,10 @@ const BabylonElement = (props) => {
       modelDimensions._y,
       modelDimensions._z
     );
-    model.position = new BABYLON.Vector3(0, modelDimensions._y / 4, 0);
+    const objectHoverHeight = modelDimensions._y / 4;
+    model.position = new BABYLON.Vector3(0, objectHoverHeight, 0);
 
-    // Create the environment around the subject
-    initEnvironment(scene, GROUND_DIAMETER, modelDimensions._y / 4);
+    createGround(scene, GROUND_DIAMETER, objectHoverHeight);
 
     const camera = new BABYLON.ArcRotateCamera(
       "camera",
@@ -77,11 +80,9 @@ const BabylonElement = (props) => {
     });
   };
 
-  const initEnvironment = (scene, groundScaleFactor, lightY) => {
+  const addEnvironment = (scene) => {
     createEnvironmentLight(scene);
     createSkybox(scene);
-    createGroundObject(scene, groundScaleFactor);
-    lightGroundObject(scene, lightY);
   };
 
   const createEnvironmentLight = (scene) => {
@@ -111,6 +112,11 @@ const BabylonElement = (props) => {
     skyboxMaterial.reflectionTexture = envTexture;
     skyboxMaterial.reflectionTexture.coordinatesMode =
       BABYLON.Texture.SKYBOX_MODE;
+  };
+
+  const createGround = (scene, diameter, height) => {
+    createGroundObject(scene, diameter);
+    lightGroundObject(scene, height);
   };
 
   const createGroundObject = async (scene, scaleFactor) => {
