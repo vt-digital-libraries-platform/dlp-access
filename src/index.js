@@ -5,6 +5,7 @@ import "./css/index.scss";
 import "./css/colors.scss";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+import { AuthProvider } from "react-oidc-context";
 
 import { Amplify } from "aws-amplify";
 import config from "./aws-exports";
@@ -12,15 +13,25 @@ import config from "./aws-exports";
 import "bootstrap/dist/css/bootstrap.css";
 import "semantic-ui-css/semantic.min.css";
 
-console.clear();
+
+const cognitoAuthConfig = {
+  authority: "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_RiqhEO7td",
+  client_id: "93t9bisu9cs7k79trhq5lb1ug",
+  redirect_uri: "http://localhost:3000/sso-test",
+  response_type: "code",
+  scope: "email"
+};
+
 Amplify.configure(config);
 
 const container = document.getElementById("root");
 const root = ReactDOMClient.createRoot(container);
-
+console.log(cognitoAuthConfig);
 root.render(
   <BrowserRouter>
-    <App />
+    <AuthProvider {...cognitoAuthConfig}>
+      <App />
+    </AuthProvider>
   </BrowserRouter>
 );
 
