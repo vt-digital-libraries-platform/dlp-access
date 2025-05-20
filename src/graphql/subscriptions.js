@@ -23,6 +23,7 @@ export const onCreateArchive = /* GraphQL */ `
       explicit
       extent
       format
+      format_physical
       has_format
       has_part
       has_version
@@ -128,6 +129,7 @@ export const onUpdateArchive = /* GraphQL */ `
       explicit
       extent
       format
+      format_physical
       has_format
       has_part
       has_version
@@ -233,6 +235,7 @@ export const onDeleteArchive = /* GraphQL */ `
       explicit
       extent
       format
+      format_physical
       has_format
       has_part
       has_version

@@ -17,6 +17,7 @@ import LoadingScreen from "./components/LoadingScreen";
 import { buildRoutes } from "./lib/CustomPageRoutes";
 import HomePage from "./pages/HomePage";
 import SiteAdmin from "./pages/admin/SiteAdmin";
+import SSO from "./pages/admin/SSO";
 import PodcastDeposit from "./pages/admin/PodcastDeposit";
 
 import { BrowseCollections } from "./pages/collections/BrowseCollections";
@@ -187,6 +188,11 @@ class App extends Component {
                     element={
                       <SiteAdmin siteChanged={this.siteChanged.bind(this)} />
                     }
+                  />
+                  <Route
+                    path="/sso-test"
+                    exact
+                    element={<SSO siteChanged={this.siteChanged.bind(this)} />}
                   />
                   <Route
                     path="/podcastDeposit"

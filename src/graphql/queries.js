@@ -68,6 +68,7 @@ export const searchObjects = /* GraphQL */ `
           explicit
           extent
           format
+          format_physical
           has_format
           has_part
           has_version
@@ -191,6 +192,7 @@ export const fulltextArchives = /* GraphQL */ `
         explicit
         extent
         format
+        format_physical
         has_format
         has_part
         has_version
@@ -262,6 +264,7 @@ export const getArchive = /* GraphQL */ `
       explicit
       extent
       format
+      format_physical
       has_format
       has_part
       has_version
@@ -372,6 +375,7 @@ export const listArchives = /* GraphQL */ `
         explicit
         extent
         format
+        format_physical
         has_format
         has_part
         has_version
@@ -455,6 +459,7 @@ export const archiveByIdentifier = /* GraphQL */ `
         explicit
         extent
         format
+        format_physical
         has_format
         has_part
         has_version
@@ -540,6 +545,7 @@ export const searchArchives = /* GraphQL */ `
         explicit
         extent
         format
+        format_physical
         has_format
         has_part
         has_version
@@ -972,6 +978,68 @@ export const listEmbargos = /* GraphQL */ `
     $nextToken: String
   ) {
     listEmbargos(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        identifier
+        start_date
+        end_date
+        note
+        record_type
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const embargosByStart_date = /* GraphQL */ `
+  query EmbargosByStart_date(
+    $start_date: AWSDate!
+    $sortDirection: ModelSortDirection
+    $filter: ModelEmbargoFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    embargosByStart_date(
+      start_date: $start_date
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        identifier
+        start_date
+        end_date
+        note
+        record_type
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const embargosByEnd_date = /* GraphQL */ `
+  query EmbargosByEnd_date(
+    $end_date: AWSDate!
+    $sortDirection: ModelSortDirection
+    $filter: ModelEmbargoFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    embargosByEnd_date(
+      end_date: $end_date
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
       items {
         id
         identifier
