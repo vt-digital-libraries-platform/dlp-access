@@ -15,7 +15,7 @@ import "semantic-ui-css/semantic.min.css";
 
 const cognitoAuthConfig = {
   authority: "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_RiqhEO7td",
-  client_id: "93t9bisu9cs7k79trhq5lb1ug",
+  client_id: "28dlg69m97oi8hprus3pd8hqi4",
   redirect_uri: "http://localhost:3000/sso-test",
   response_type: "code",
   scope: "email"
