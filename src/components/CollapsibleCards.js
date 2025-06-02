@@ -53,6 +53,7 @@ const multi_value_headers = [
   "download_link",
   "extent",
   "format",
+  "format_physical",
   "has_format",
   "has_part",
   "has_version",
@@ -180,7 +181,13 @@ export default function CollapsibleCard({
     setExpanded(!expanded);
   };
 
-  let facetSearchItems = ["format", "medium", "type", "tags"];
+  let facetSearchItems = [
+    "format",
+    "format_physical",
+    "medium",
+    "type",
+    "tags"
+  ];
 
   const renderContent = (key, value, index) => {
     if (typeof value === "string" && value.startsWith("http")) {
