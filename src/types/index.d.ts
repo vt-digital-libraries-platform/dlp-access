@@ -24,6 +24,7 @@ declare global {
     explicit: boolean | null;
     extent: string[] | null;
     format: string[] | null;
+    format_physical: string[] | null;
     has_format: string[] | null;
     has_part: string[] | null;
     has_version: string[] | null;
