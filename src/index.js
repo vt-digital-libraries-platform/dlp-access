@@ -14,11 +14,11 @@ import "bootstrap/dist/css/bootstrap.css";
 import "semantic-ui-css/semantic.min.css";
 
 const cognitoAuthConfig = {
-  authority: "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_RiqhEO7td",
-  client_id: "28dlg69m97oi8hprus3pd8hqi4",
-  redirect_uri: "https://sso-test.dev.dlp.cloud.lib.vt.edu/sso-test",
+  authority: "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_KRH3ck3xU",
+  client_id: "4fmjlhec1s36qc48j79i8gjti6",
+  redirect_uri: "https://sso-test.dev.dlp.cloud.lib.vt.edu",
   response_type: "code",
-  scope: "email"
+  scope: "email openid"
 };
 
 Amplify.configure(config);
