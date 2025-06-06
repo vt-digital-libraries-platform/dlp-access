@@ -70,7 +70,7 @@ const BabylonElement = (props) => {
     camera.speed = 0.25;
     camera.wheelPrecision = 100;
     camera.lowerRadiusLimit = modelMaxSize;
-    camera.upperRadiusLimit = modelMaxSize * 4;
+    camera.upperRadiusLimit = modelMaxSize * 3;
     camera.attachControl(canvas, true);
     camera.minZ = 0.1;
 
@@ -116,7 +116,7 @@ const BabylonElement = (props) => {
 
   const createGround = (scene, diameter, height) => {
     createGroundObject(scene, diameter);
-    lightGroundObject(scene, height);
+    // lightGroundObject(scene, height);
   };
 
   const createGroundObject = async (scene, scaleFactor) => {
