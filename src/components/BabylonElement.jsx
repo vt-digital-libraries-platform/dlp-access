@@ -34,7 +34,36 @@ const BabylonElement = (props) => {
     });
   };
 
-  const createScene = async (canvas, engine, modelURL) => {
+  const scaleModel = (
+    model,
+    modelDimensions,
+    modelMaxSize,
+    scaleFactor = null
+  ) => {
+    console.log(modelDimensions);
+
+    if (modelMaxSize > 1) {
+      console.log("scaling model");
+      model.scaling = new BABYLON.Vector3(
+        modelMaxSize / modelDimensions._x,
+        modelMaxSize / modelDimensions._y,
+        modelMaxSize / modelDimensions._z
+      );
+      model.bakeCurrentTransformIntoVertices();
+    }
+    if (scaleFactor) {
+      console.log("scaling model with scale factor");
+      model.scaling = new BABYLON.Vector3(
+        scaleFactor,
+        scaleFactor,
+        scaleFactor
+      );
+      model.bakeCurrentTransformIntoVertices();
+    }
+    console.log(model.ellipsoid);
+  };
+
+  const createScene = async (canvas, engine, modelURL, scaleFactor = null) => {
     const GROUND_DIAMETER = 100;
     const scene = new BABYLON.Scene(engine);
 
@@ -48,6 +77,8 @@ const BabylonElement = (props) => {
       modelDimensions._y,
       modelDimensions._z
     );
+    scaleModel(model, modelDimensions, modelMaxSize, scaleFactor);
+
     const objectHoverHeight = modelDimensions._y / 4;
     model.position = new BABYLON.Vector3(0, objectHoverHeight, 0);
 
@@ -174,7 +205,7 @@ const BabylonElement = (props) => {
     const canvas = createCanvas(canvasWrapper);
     const engine = new BABYLON.Engine(canvas, true);
 
-    createScene(canvas, engine, props.model);
+    createScene(canvas, engine, props.model, props.scaleFactor);
 
     addListeners(canvas, engine);
 
