@@ -40,10 +40,7 @@ const BabylonElement = (props) => {
     modelMaxSize,
     scaleFactor = null
   ) => {
-    console.log(modelDimensions);
-
     if (modelMaxSize > 1) {
-      console.log("scaling model");
       model.scaling = new BABYLON.Vector3(
         modelMaxSize / modelDimensions._x,
         modelMaxSize / modelDimensions._y,
@@ -52,7 +49,6 @@ const BabylonElement = (props) => {
       model.bakeCurrentTransformIntoVertices();
     }
     if (scaleFactor) {
-      console.log("scaling model with scale factor");
       model.scaling = new BABYLON.Vector3(
         scaleFactor,
         scaleFactor,
@@ -60,7 +56,6 @@ const BabylonElement = (props) => {
       );
       model.bakeCurrentTransformIntoVertices();
     }
-    console.log(model.ellipsoid);
   };
 
   const createScene = async (canvas, engine, modelURL, scaleFactor = null) => {
@@ -195,7 +190,11 @@ const BabylonElement = (props) => {
       scene
     );
     const model = response.meshes[0];
-
+    for (const mesh of response.meshes) {
+      if (mesh.material) {
+        mesh.material.transparencyMode = BABYLON.Material.MATERIAL_OPAQUE;
+      }
+    }
     return model;
   };
 
