@@ -135,6 +135,7 @@ class App extends Component {
                 <NavBar site={this.state.site} />
               </div>
               <div id="content-wrapper">
+                <h1>LEE RULES!!!</h1>
                 <Routes>
                   {customRoutes}
                   <Route
