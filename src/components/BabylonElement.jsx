@@ -142,7 +142,6 @@ const BabylonElement = (props) => {
 
   const createGround = (scene, diameter, height) => {
     createGroundObject(scene, diameter);
-    // lightGroundObject(scene, height);
   };
 
   const createGroundObject = async (scene, scaleFactor) => {
