@@ -45,7 +45,6 @@ export const onCreateArchive = /* GraphQL */ `
       other_identifier
       parent_collection
       parent_collection_identifier
-      category
       provenance
       publisher
       references
@@ -63,9 +62,46 @@ export const onCreateArchive = /* GraphQL */ `
       title
       type
       visibility
+      collection {
+        bibliographic_citation
+        collection_category
+        collectionOptions
+        create_date
+        creator
+        custom_key
+        description
+        display_date
+        end_date
+        explicit_content
+        heirarchy_path
+        id
+        identifier
+        is_part_of
+        language
+        location
+        modified_date
+        ownerinfo
+        parent_collection
+        parent_collection_identifier
+        provenance
+        relation
+        rights_holder
+        rights
+        source
+        spatial
+        start_date
+        subject
+        thumbnail_path
+        title
+        visibility
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       collectionArchivesId
+      archiveCollectionId
       __typename
     }
   }
@@ -114,7 +150,6 @@ export const onUpdateArchive = /* GraphQL */ `
       other_identifier
       parent_collection
       parent_collection_identifier
-      category
       provenance
       publisher
       references
@@ -132,9 +167,46 @@ export const onUpdateArchive = /* GraphQL */ `
       title
       type
       visibility
+      collection {
+        bibliographic_citation
+        collection_category
+        collectionOptions
+        create_date
+        creator
+        custom_key
+        description
+        display_date
+        end_date
+        explicit_content
+        heirarchy_path
+        id
+        identifier
+        is_part_of
+        language
+        location
+        modified_date
+        ownerinfo
+        parent_collection
+        parent_collection_identifier
+        provenance
+        relation
+        rights_holder
+        rights
+        source
+        spatial
+        start_date
+        subject
+        thumbnail_path
+        title
+        visibility
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       collectionArchivesId
+      archiveCollectionId
       __typename
     }
   }
@@ -183,7 +255,6 @@ export const onDeleteArchive = /* GraphQL */ `
       other_identifier
       parent_collection
       parent_collection_identifier
-      category
       provenance
       publisher
       references
@@ -201,9 +272,46 @@ export const onDeleteArchive = /* GraphQL */ `
       title
       type
       visibility
+      collection {
+        bibliographic_citation
+        collection_category
+        collectionOptions
+        create_date
+        creator
+        custom_key
+        description
+        display_date
+        end_date
+        explicit_content
+        heirarchy_path
+        id
+        identifier
+        is_part_of
+        language
+        location
+        modified_date
+        ownerinfo
+        parent_collection
+        parent_collection_identifier
+        provenance
+        relation
+        rights_holder
+        rights
+        source
+        spatial
+        start_date
+        subject
+        thumbnail_path
+        title
+        visibility
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       collectionArchivesId
+      archiveCollectionId
       __typename
     }
   }
@@ -215,7 +323,6 @@ export const onCreateCollection = /* GraphQL */ `
     onCreateCollection(filter: $filter) {
       bibliographic_citation
       collection_category
-      collectionmap_id
       collectionOptions
       create_date
       creator
@@ -234,7 +341,6 @@ export const onCreateCollection = /* GraphQL */ `
       ownerinfo
       parent_collection
       parent_collection_identifier
-      category
       provenance
       relation
       rights_holder
@@ -246,25 +352,12 @@ export const onCreateCollection = /* GraphQL */ `
       thumbnail_path
       title
       visibility
-      collectionmap {
-        collectionmap_category
-        collection_id
-        create_date
-        id
-        map_object
-        modified_date
-        category
-        createdAt
-        updatedAt
-        __typename
-      }
       archives {
         nextToken
         __typename
       }
       createdAt
       updatedAt
-      collectionCollectionmapId
       __typename
     }
   }
@@ -276,7 +369,6 @@ export const onUpdateCollection = /* GraphQL */ `
     onUpdateCollection(filter: $filter) {
       bibliographic_citation
       collection_category
-      collectionmap_id
       collectionOptions
       create_date
       creator
@@ -295,7 +387,6 @@ export const onUpdateCollection = /* GraphQL */ `
       ownerinfo
       parent_collection
       parent_collection_identifier
-      category
       provenance
       relation
       rights_holder
@@ -307,25 +398,12 @@ export const onUpdateCollection = /* GraphQL */ `
       thumbnail_path
       title
       visibility
-      collectionmap {
-        collectionmap_category
-        collection_id
-        create_date
-        id
-        map_object
-        modified_date
-        category
-        createdAt
-        updatedAt
-        __typename
-      }
       archives {
         nextToken
         __typename
       }
       createdAt
       updatedAt
-      collectionCollectionmapId
       __typename
     }
   }
@@ -337,7 +415,6 @@ export const onDeleteCollection = /* GraphQL */ `
     onDeleteCollection(filter: $filter) {
       bibliographic_citation
       collection_category
-      collectionmap_id
       collectionOptions
       create_date
       creator
@@ -356,7 +433,6 @@ export const onDeleteCollection = /* GraphQL */ `
       ownerinfo
       parent_collection
       parent_collection_identifier
-      category
       provenance
       relation
       rights_holder
@@ -368,77 +444,10 @@ export const onDeleteCollection = /* GraphQL */ `
       thumbnail_path
       title
       visibility
-      collectionmap {
-        collectionmap_category
-        collection_id
-        create_date
-        id
-        map_object
-        modified_date
-        category
-        createdAt
-        updatedAt
-        __typename
-      }
       archives {
         nextToken
         __typename
       }
-      createdAt
-      updatedAt
-      collectionCollectionmapId
-      __typename
-    }
-  }
-`;
-export const onCreateCollectionmap = /* GraphQL */ `
-  subscription OnCreateCollectionmap(
-    $filter: ModelSubscriptionCollectionmapFilterInput
-  ) {
-    onCreateCollectionmap(filter: $filter) {
-      collectionmap_category
-      collection_id
-      create_date
-      id
-      map_object
-      modified_date
-      category
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const onUpdateCollectionmap = /* GraphQL */ `
-  subscription OnUpdateCollectionmap(
-    $filter: ModelSubscriptionCollectionmapFilterInput
-  ) {
-    onUpdateCollectionmap(filter: $filter) {
-      collectionmap_category
-      collection_id
-      create_date
-      id
-      map_object
-      modified_date
-      category
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const onDeleteCollectionmap = /* GraphQL */ `
-  subscription OnDeleteCollectionmap(
-    $filter: ModelSubscriptionCollectionmapFilterInput
-  ) {
-    onDeleteCollectionmap(filter: $filter) {
-      collectionmap_category
-      collection_id
-      create_date
-      id
-      map_object
-      modified_date
-      category
       createdAt
       updatedAt
       __typename
@@ -464,7 +473,6 @@ export const onCreatePageContent = /* GraphQL */ `
         id
         lang
         miradorOptions
-        category
         searchPage
         siteColor
         siteId
@@ -476,7 +484,6 @@ export const onCreatePageContent = /* GraphQL */ `
         updatedAt
         __typename
       }
-      category
       createdAt
       updatedAt
       pageContentPageContentSiteIdId
@@ -503,7 +510,6 @@ export const onUpdatePageContent = /* GraphQL */ `
         id
         lang
         miradorOptions
-        category
         searchPage
         siteColor
         siteId
@@ -515,7 +521,6 @@ export const onUpdatePageContent = /* GraphQL */ `
         updatedAt
         __typename
       }
-      category
       createdAt
       updatedAt
       pageContentPageContentSiteIdId
@@ -542,7 +547,6 @@ export const onDeletePageContent = /* GraphQL */ `
         id
         lang
         miradorOptions
-        category
         searchPage
         siteColor
         siteId
@@ -554,58 +558,9 @@ export const onDeletePageContent = /* GraphQL */ `
         updatedAt
         __typename
       }
-      category
       createdAt
       updatedAt
       pageContentPageContentSiteIdId
-      __typename
-    }
-  }
-`;
-export const onCreateEmbargo = /* GraphQL */ `
-  subscription OnCreateEmbargo($filter: ModelSubscriptionEmbargoFilterInput) {
-    onCreateEmbargo(filter: $filter) {
-      id
-      identifier
-      start_date
-      end_date
-      note
-      category
-      record_type
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const onUpdateEmbargo = /* GraphQL */ `
-  subscription OnUpdateEmbargo($filter: ModelSubscriptionEmbargoFilterInput) {
-    onUpdateEmbargo(filter: $filter) {
-      id
-      identifier
-      start_date
-      end_date
-      note
-      category
-      record_type
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const onDeleteEmbargo = /* GraphQL */ `
-  subscription OnDeleteEmbargo($filter: ModelSubscriptionEmbargoFilterInput) {
-    onDeleteEmbargo(filter: $filter) {
-      id
-      identifier
-      start_date
-      end_date
-      note
-      category
-      record_type
-      createdAt
-      updatedAt
       __typename
     }
   }
@@ -623,7 +578,6 @@ export const onCreateSite = /* GraphQL */ `
       id
       lang
       miradorOptions
-      category
       searchPage
       siteColor
       siteId
@@ -650,7 +604,6 @@ export const onUpdateSite = /* GraphQL */ `
       id
       lang
       miradorOptions
-      category
       searchPage
       siteColor
       siteId
@@ -677,7 +630,6 @@ export const onDeleteSite = /* GraphQL */ `
       id
       lang
       miradorOptions
-      category
       searchPage
       siteColor
       siteId
@@ -697,7 +649,6 @@ export const onCreateHistory = /* GraphQL */ `
       event
       groups
       id
-      category
       siteID
       userEmail
       createdAt
@@ -712,7 +663,6 @@ export const onUpdateHistory = /* GraphQL */ `
       event
       groups
       id
-      category
       siteID
       userEmail
       createdAt
@@ -727,7 +677,6 @@ export const onDeleteHistory = /* GraphQL */ `
       event
       groups
       id
-      category
       siteID
       userEmail
       createdAt

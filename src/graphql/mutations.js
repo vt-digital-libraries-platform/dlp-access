@@ -48,7 +48,6 @@ export const createArchive = /* GraphQL */ `
       other_identifier
       parent_collection
       parent_collection_identifier
-      category
       provenance
       publisher
       references
@@ -66,9 +65,46 @@ export const createArchive = /* GraphQL */ `
       title
       type
       visibility
+      collection {
+        bibliographic_citation
+        collection_category
+        collectionOptions
+        create_date
+        creator
+        custom_key
+        description
+        display_date
+        end_date
+        explicit_content
+        heirarchy_path
+        id
+        identifier
+        is_part_of
+        language
+        location
+        modified_date
+        ownerinfo
+        parent_collection
+        parent_collection_identifier
+        provenance
+        relation
+        rights_holder
+        rights
+        source
+        spatial
+        start_date
+        subject
+        thumbnail_path
+        title
+        visibility
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       collectionArchivesId
+      archiveCollectionId
       __typename
     }
   }
@@ -120,7 +156,6 @@ export const updateArchive = /* GraphQL */ `
       other_identifier
       parent_collection
       parent_collection_identifier
-      category
       provenance
       publisher
       references
@@ -138,9 +173,46 @@ export const updateArchive = /* GraphQL */ `
       title
       type
       visibility
+      collection {
+        bibliographic_citation
+        collection_category
+        collectionOptions
+        create_date
+        creator
+        custom_key
+        description
+        display_date
+        end_date
+        explicit_content
+        heirarchy_path
+        id
+        identifier
+        is_part_of
+        language
+        location
+        modified_date
+        ownerinfo
+        parent_collection
+        parent_collection_identifier
+        provenance
+        relation
+        rights_holder
+        rights
+        source
+        spatial
+        start_date
+        subject
+        thumbnail_path
+        title
+        visibility
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       collectionArchivesId
+      archiveCollectionId
       __typename
     }
   }
@@ -192,7 +264,6 @@ export const deleteArchive = /* GraphQL */ `
       other_identifier
       parent_collection
       parent_collection_identifier
-      category
       provenance
       publisher
       references
@@ -210,9 +281,46 @@ export const deleteArchive = /* GraphQL */ `
       title
       type
       visibility
+      collection {
+        bibliographic_citation
+        collection_category
+        collectionOptions
+        create_date
+        creator
+        custom_key
+        description
+        display_date
+        end_date
+        explicit_content
+        heirarchy_path
+        id
+        identifier
+        is_part_of
+        language
+        location
+        modified_date
+        ownerinfo
+        parent_collection
+        parent_collection_identifier
+        provenance
+        relation
+        rights_holder
+        rights
+        source
+        spatial
+        start_date
+        subject
+        thumbnail_path
+        title
+        visibility
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       collectionArchivesId
+      archiveCollectionId
       __typename
     }
   }
@@ -225,7 +333,6 @@ export const createCollection = /* GraphQL */ `
     createCollection(input: $input, condition: $condition) {
       bibliographic_citation
       collection_category
-      collectionmap_id
       collectionOptions
       create_date
       creator
@@ -244,7 +351,6 @@ export const createCollection = /* GraphQL */ `
       ownerinfo
       parent_collection
       parent_collection_identifier
-      category
       provenance
       relation
       rights_holder
@@ -256,25 +362,12 @@ export const createCollection = /* GraphQL */ `
       thumbnail_path
       title
       visibility
-      collectionmap {
-        collectionmap_category
-        collection_id
-        create_date
-        id
-        map_object
-        modified_date
-        category
-        createdAt
-        updatedAt
-        __typename
-      }
       archives {
         nextToken
         __typename
       }
       createdAt
       updatedAt
-      collectionCollectionmapId
       __typename
     }
   }
@@ -287,7 +380,6 @@ export const updateCollection = /* GraphQL */ `
     updateCollection(input: $input, condition: $condition) {
       bibliographic_citation
       collection_category
-      collectionmap_id
       collectionOptions
       create_date
       creator
@@ -306,7 +398,6 @@ export const updateCollection = /* GraphQL */ `
       ownerinfo
       parent_collection
       parent_collection_identifier
-      category
       provenance
       relation
       rights_holder
@@ -318,25 +409,12 @@ export const updateCollection = /* GraphQL */ `
       thumbnail_path
       title
       visibility
-      collectionmap {
-        collectionmap_category
-        collection_id
-        create_date
-        id
-        map_object
-        modified_date
-        category
-        createdAt
-        updatedAt
-        __typename
-      }
       archives {
         nextToken
         __typename
       }
       createdAt
       updatedAt
-      collectionCollectionmapId
       __typename
     }
   }
@@ -349,7 +427,6 @@ export const deleteCollection = /* GraphQL */ `
     deleteCollection(input: $input, condition: $condition) {
       bibliographic_citation
       collection_category
-      collectionmap_id
       collectionOptions
       create_date
       creator
@@ -368,7 +445,6 @@ export const deleteCollection = /* GraphQL */ `
       ownerinfo
       parent_collection
       parent_collection_identifier
-      category
       provenance
       relation
       rights_holder
@@ -380,80 +456,10 @@ export const deleteCollection = /* GraphQL */ `
       thumbnail_path
       title
       visibility
-      collectionmap {
-        collectionmap_category
-        collection_id
-        create_date
-        id
-        map_object
-        modified_date
-        category
-        createdAt
-        updatedAt
-        __typename
-      }
       archives {
         nextToken
         __typename
       }
-      createdAt
-      updatedAt
-      collectionCollectionmapId
-      __typename
-    }
-  }
-`;
-export const createCollectionmap = /* GraphQL */ `
-  mutation CreateCollectionmap(
-    $input: CreateCollectionmapInput!
-    $condition: ModelCollectionmapConditionInput
-  ) {
-    createCollectionmap(input: $input, condition: $condition) {
-      collectionmap_category
-      collection_id
-      create_date
-      id
-      map_object
-      modified_date
-      category
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const updateCollectionmap = /* GraphQL */ `
-  mutation UpdateCollectionmap(
-    $input: UpdateCollectionmapInput!
-    $condition: ModelCollectionmapConditionInput
-  ) {
-    updateCollectionmap(input: $input, condition: $condition) {
-      collectionmap_category
-      collection_id
-      create_date
-      id
-      map_object
-      modified_date
-      category
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const deleteCollectionmap = /* GraphQL */ `
-  mutation DeleteCollectionmap(
-    $input: DeleteCollectionmapInput!
-    $condition: ModelCollectionmapConditionInput
-  ) {
-    deleteCollectionmap(input: $input, condition: $condition) {
-      collectionmap_category
-      collection_id
-      create_date
-      id
-      map_object
-      modified_date
-      category
       createdAt
       updatedAt
       __typename
@@ -480,7 +486,6 @@ export const createPageContent = /* GraphQL */ `
         id
         lang
         miradorOptions
-        category
         searchPage
         siteColor
         siteId
@@ -492,7 +497,6 @@ export const createPageContent = /* GraphQL */ `
         updatedAt
         __typename
       }
-      category
       createdAt
       updatedAt
       pageContentPageContentSiteIdId
@@ -520,7 +524,6 @@ export const updatePageContent = /* GraphQL */ `
         id
         lang
         miradorOptions
-        category
         searchPage
         siteColor
         siteId
@@ -532,7 +535,6 @@ export const updatePageContent = /* GraphQL */ `
         updatedAt
         __typename
       }
-      category
       createdAt
       updatedAt
       pageContentPageContentSiteIdId
@@ -560,7 +562,6 @@ export const deletePageContent = /* GraphQL */ `
         id
         lang
         miradorOptions
-        category
         searchPage
         siteColor
         siteId
@@ -572,67 +573,9 @@ export const deletePageContent = /* GraphQL */ `
         updatedAt
         __typename
       }
-      category
       createdAt
       updatedAt
       pageContentPageContentSiteIdId
-      __typename
-    }
-  }
-`;
-export const createEmbargo = /* GraphQL */ `
-  mutation CreateEmbargo(
-    $input: CreateEmbargoInput!
-    $condition: ModelEmbargoConditionInput
-  ) {
-    createEmbargo(input: $input, condition: $condition) {
-      id
-      identifier
-      start_date
-      end_date
-      note
-      category
-      record_type
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const updateEmbargo = /* GraphQL */ `
-  mutation UpdateEmbargo(
-    $input: UpdateEmbargoInput!
-    $condition: ModelEmbargoConditionInput
-  ) {
-    updateEmbargo(input: $input, condition: $condition) {
-      id
-      identifier
-      start_date
-      end_date
-      note
-      category
-      record_type
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const deleteEmbargo = /* GraphQL */ `
-  mutation DeleteEmbargo(
-    $input: DeleteEmbargoInput!
-    $condition: ModelEmbargoConditionInput
-  ) {
-    deleteEmbargo(input: $input, condition: $condition) {
-      id
-      identifier
-      start_date
-      end_date
-      note
-      category
-      record_type
-      createdAt
-      updatedAt
       __typename
     }
   }
@@ -653,7 +596,6 @@ export const createSite = /* GraphQL */ `
       id
       lang
       miradorOptions
-      category
       searchPage
       siteColor
       siteId
@@ -683,7 +625,6 @@ export const updateSite = /* GraphQL */ `
       id
       lang
       miradorOptions
-      category
       searchPage
       siteColor
       siteId
@@ -713,7 +654,6 @@ export const deleteSite = /* GraphQL */ `
       id
       lang
       miradorOptions
-      category
       searchPage
       siteColor
       siteId
@@ -736,7 +676,6 @@ export const createHistory = /* GraphQL */ `
       event
       groups
       id
-      category
       siteID
       userEmail
       createdAt
@@ -754,7 +693,6 @@ export const updateHistory = /* GraphQL */ `
       event
       groups
       id
-      category
       siteID
       userEmail
       createdAt
@@ -772,7 +710,6 @@ export const deleteHistory = /* GraphQL */ `
       event
       groups
       id
-      category
       siteID
       userEmail
       createdAt

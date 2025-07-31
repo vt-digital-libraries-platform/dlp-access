@@ -33,7 +33,6 @@ export const searchObjects = /* GraphQL */ `
         modified_date
         parent_collection
         parent_collection_identifier
-        category
         provenance
         relation
         rights_holder
@@ -48,13 +47,11 @@ export const searchObjects = /* GraphQL */ `
 
         ... on Collection {
           collection_category
-          collectionmap_id
           collectionOptions
           explicit_content
           ownerinfo
           createdAt
           updatedAt
-          collectionCollectionmapId
         }
         ... on Archive {
           age
@@ -91,6 +88,7 @@ export const searchObjects = /* GraphQL */ `
           createdAt
           updatedAt
           collectionArchivesId
+          archiveCollectionId
         }
       }
       nextToken
@@ -117,7 +115,6 @@ export const fulltextCollections = /* GraphQL */ `
       items {
         bibliographic_citation
         collection_category
-        collectionmap_id
         collectionOptions
         create_date
         creator
@@ -136,7 +133,6 @@ export const fulltextCollections = /* GraphQL */ `
         ownerinfo
         parent_collection
         parent_collection_identifier
-        category
         provenance
         relation
         rights_holder
@@ -150,7 +146,6 @@ export const fulltextCollections = /* GraphQL */ `
         visibility
         createdAt
         updatedAt
-        collectionCollectionmapId
         __typename
       }
       nextToken
@@ -216,7 +211,6 @@ export const fulltextArchives = /* GraphQL */ `
         other_identifier
         parent_collection
         parent_collection_identifier
-        category
         provenance
         publisher
         references
@@ -237,6 +231,7 @@ export const fulltextArchives = /* GraphQL */ `
         createdAt
         updatedAt
         collectionArchivesId
+        archiveCollectionId
         __typename
       }
       nextToken
@@ -289,7 +284,6 @@ export const getArchive = /* GraphQL */ `
       other_identifier
       parent_collection
       parent_collection_identifier
-      category
       provenance
       publisher
       references
@@ -307,9 +301,46 @@ export const getArchive = /* GraphQL */ `
       title
       type
       visibility
+      collection {
+        bibliographic_citation
+        collection_category
+        collectionOptions
+        create_date
+        creator
+        custom_key
+        description
+        display_date
+        end_date
+        explicit_content
+        heirarchy_path
+        id
+        identifier
+        is_part_of
+        language
+        location
+        modified_date
+        ownerinfo
+        parent_collection
+        parent_collection_identifier
+        provenance
+        relation
+        rights_holder
+        rights
+        source
+        spatial
+        start_date
+        subject
+        thumbnail_path
+        title
+        visibility
+        createdAt
+        updatedAt
+        __typename
+      }
       createdAt
       updatedAt
       collectionArchivesId
+      archiveCollectionId
       __typename
     }
   }
@@ -363,7 +394,6 @@ export const listArchives = /* GraphQL */ `
         other_identifier
         parent_collection
         parent_collection_identifier
-        category
         provenance
         publisher
         references
@@ -384,6 +414,7 @@ export const listArchives = /* GraphQL */ `
         createdAt
         updatedAt
         collectionArchivesId
+        archiveCollectionId
         __typename
       }
       nextToken
@@ -448,7 +479,6 @@ export const archiveByIdentifier = /* GraphQL */ `
         other_identifier
         parent_collection
         parent_collection_identifier
-        category
         provenance
         publisher
         references
@@ -469,6 +499,7 @@ export const archiveByIdentifier = /* GraphQL */ `
         createdAt
         updatedAt
         collectionArchivesId
+        archiveCollectionId
         __typename
       }
       nextToken
@@ -535,7 +566,6 @@ export const searchArchives = /* GraphQL */ `
         other_identifier
         parent_collection
         parent_collection_identifier
-        category
         provenance
         publisher
         references
@@ -556,6 +586,7 @@ export const searchArchives = /* GraphQL */ `
         createdAt
         updatedAt
         collectionArchivesId
+        archiveCollectionId
         __typename
       }
       nextToken
@@ -569,7 +600,6 @@ export const getCollection = /* GraphQL */ `
     getCollection(id: $id) {
       bibliographic_citation
       collection_category
-      collectionmap_id
       collectionOptions
       create_date
       creator
@@ -588,7 +618,6 @@ export const getCollection = /* GraphQL */ `
       ownerinfo
       parent_collection
       parent_collection_identifier
-      category
       provenance
       relation
       rights_holder
@@ -600,25 +629,12 @@ export const getCollection = /* GraphQL */ `
       thumbnail_path
       title
       visibility
-      collectionmap {
-        collectionmap_category
-        collection_id
-        create_date
-        id
-        map_object
-        modified_date
-        category
-        createdAt
-        updatedAt
-        __typename
-      }
       archives {
         nextToken
         __typename
       }
       createdAt
       updatedAt
-      collectionCollectionmapId
       __typename
     }
   }
@@ -633,7 +649,6 @@ export const listCollections = /* GraphQL */ `
       items {
         bibliographic_citation
         collection_category
-        collectionmap_id
         collectionOptions
         create_date
         creator
@@ -652,7 +667,6 @@ export const listCollections = /* GraphQL */ `
         ownerinfo
         parent_collection
         parent_collection_identifier
-        category
         provenance
         relation
         rights_holder
@@ -666,7 +680,6 @@ export const listCollections = /* GraphQL */ `
         visibility
         createdAt
         updatedAt
-        collectionCollectionmapId
         __typename
       }
       nextToken
@@ -692,7 +705,6 @@ export const collectionByIdentifier = /* GraphQL */ `
       items {
         bibliographic_citation
         collection_category
-        collectionmap_id
         collectionOptions
         create_date
         creator
@@ -711,7 +723,6 @@ export const collectionByIdentifier = /* GraphQL */ `
         ownerinfo
         parent_collection
         parent_collection_identifier
-        category
         provenance
         relation
         rights_holder
@@ -725,7 +736,6 @@ export const collectionByIdentifier = /* GraphQL */ `
         visibility
         createdAt
         updatedAt
-        collectionCollectionmapId
         __typename
       }
       nextToken
@@ -753,7 +763,6 @@ export const searchCollections = /* GraphQL */ `
       items {
         bibliographic_citation
         collection_category
-        collectionmap_id
         collectionOptions
         create_date
         creator
@@ -772,7 +781,6 @@ export const searchCollections = /* GraphQL */ `
         ownerinfo
         parent_collection
         parent_collection_identifier
-        category
         provenance
         relation
         rights_holder
@@ -786,51 +794,10 @@ export const searchCollections = /* GraphQL */ `
         visibility
         createdAt
         updatedAt
-        collectionCollectionmapId
         __typename
       }
       nextToken
       total
-      __typename
-    }
-  }
-`;
-export const getCollectionmap = /* GraphQL */ `
-  query GetCollectionmap($id: ID!) {
-    getCollectionmap(id: $id) {
-      collectionmap_category
-      collection_id
-      create_date
-      id
-      map_object
-      modified_date
-      category
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const listCollectionmaps = /* GraphQL */ `
-  query ListCollectionmaps(
-    $filter: ModelCollectionmapFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listCollectionmaps(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        collectionmap_category
-        collection_id
-        create_date
-        id
-        map_object
-        modified_date
-        category
-        createdAt
-        updatedAt
-        __typename
-      }
-      nextToken
       __typename
     }
   }
@@ -852,7 +819,6 @@ export const getPageContent = /* GraphQL */ `
         id
         lang
         miradorOptions
-        category
         searchPage
         siteColor
         siteId
@@ -864,7 +830,6 @@ export const getPageContent = /* GraphQL */ `
         updatedAt
         __typename
       }
-      category
       createdAt
       updatedAt
       pageContentPageContentSiteIdId
@@ -883,112 +848,9 @@ export const listPageContents = /* GraphQL */ `
         page_content_category
         id
         content
-        category
         createdAt
         updatedAt
         pageContentPageContentSiteIdId
-        __typename
-      }
-      nextToken
-      __typename
-    }
-  }
-`;
-export const getEmbargo = /* GraphQL */ `
-  query GetEmbargo($id: ID!) {
-    getEmbargo(id: $id) {
-      id
-      identifier
-      start_date
-      end_date
-      note
-      category
-      record_type
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const listEmbargos = /* GraphQL */ `
-  query ListEmbargos(
-    $filter: ModelEmbargoFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listEmbargos(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        identifier
-        start_date
-        end_date
-        note
-        category
-        record_type
-        createdAt
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
-  }
-`;
-export const embargosByStart_date = /* GraphQL */ `
-  query EmbargosByStart_date(
-    $start_date: AWSDate!
-    $sortDirection: ModelSortDirection
-    $filter: ModelEmbargoFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    embargosByStart_date(
-      start_date: $start_date
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        identifier
-        start_date
-        end_date
-        note
-        record_type
-        createdAt
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
-  }
-`;
-export const embargosByEnd_date = /* GraphQL */ `
-  query EmbargosByEnd_date(
-    $end_date: AWSDate!
-    $sortDirection: ModelSortDirection
-    $filter: ModelEmbargoFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    embargosByEnd_date(
-      end_date: $end_date
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        identifier
-        start_date
-        end_date
-        note
-        record_type
-        createdAt
-        updatedAt
         __typename
       }
       nextToken
@@ -1009,7 +871,6 @@ export const getSite = /* GraphQL */ `
       id
       lang
       miradorOptions
-      category
       searchPage
       siteColor
       siteId
@@ -1041,7 +902,6 @@ export const listSites = /* GraphQL */ `
         id
         lang
         miradorOptions
-        category
         searchPage
         siteColor
         siteId
@@ -1084,7 +944,6 @@ export const siteBySiteId = /* GraphQL */ `
         id
         lang
         miradorOptions
-        category
         searchPage
         siteColor
         siteId
@@ -1107,7 +966,6 @@ export const getHistory = /* GraphQL */ `
       event
       groups
       id
-      category
       siteID
       userEmail
       createdAt
@@ -1127,7 +985,6 @@ export const listHistories = /* GraphQL */ `
         event
         groups
         id
-        category
         siteID
         userEmail
         createdAt
