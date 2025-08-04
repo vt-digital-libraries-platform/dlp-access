@@ -34,7 +34,6 @@ export const onCreateArchive = /* GraphQL */ `
       is_format_of
       is_part_of
       is_version_of
-      item_category
       language
       license
       location
@@ -43,28 +42,8 @@ export const onCreateArchive = /* GraphQL */ `
       medium
       modified_date
       other_identifier
-      parent_collection
-      parent_collection_identifier
-      provenance
-      publisher
-      references
-      relation
-      repository
-      rights_holder
-      rights
-      source
-      spatial
-      start_date
-      subject
-      tags
-      temporal
-      thumbnail_path
-      title
-      type
-      visibility
-      collection {
+      parent_collection {
         bibliographic_citation
-        collection_category
         collectionOptions
         create_date
         creator
@@ -81,12 +60,12 @@ export const onCreateArchive = /* GraphQL */ `
         location
         modified_date
         ownerinfo
-        parent_collection
         parent_collection_identifier
         provenance
         relation
         rights_holder
         rights
+        site_category
         source
         spatial
         start_date
@@ -98,10 +77,28 @@ export const onCreateArchive = /* GraphQL */ `
         updatedAt
         __typename
       }
+      parent_collection_identifier
+      provenance
+      publisher
+      references
+      relation
+      repository
+      rights_holder
+      rights
+      site_category
+      source
+      spatial
+      start_date
+      subject
+      tags
+      temporal
+      thumbnail_path
+      title
+      type
+      visibility
       createdAt
       updatedAt
       collectionArchivesId
-      archiveCollectionId
       __typename
     }
   }
@@ -139,7 +136,6 @@ export const onUpdateArchive = /* GraphQL */ `
       is_format_of
       is_part_of
       is_version_of
-      item_category
       language
       license
       location
@@ -148,28 +144,8 @@ export const onUpdateArchive = /* GraphQL */ `
       medium
       modified_date
       other_identifier
-      parent_collection
-      parent_collection_identifier
-      provenance
-      publisher
-      references
-      relation
-      repository
-      rights_holder
-      rights
-      source
-      spatial
-      start_date
-      subject
-      tags
-      temporal
-      thumbnail_path
-      title
-      type
-      visibility
-      collection {
+      parent_collection {
         bibliographic_citation
-        collection_category
         collectionOptions
         create_date
         creator
@@ -186,12 +162,12 @@ export const onUpdateArchive = /* GraphQL */ `
         location
         modified_date
         ownerinfo
-        parent_collection
         parent_collection_identifier
         provenance
         relation
         rights_holder
         rights
+        site_category
         source
         spatial
         start_date
@@ -203,10 +179,28 @@ export const onUpdateArchive = /* GraphQL */ `
         updatedAt
         __typename
       }
+      parent_collection_identifier
+      provenance
+      publisher
+      references
+      relation
+      repository
+      rights_holder
+      rights
+      site_category
+      source
+      spatial
+      start_date
+      subject
+      tags
+      temporal
+      thumbnail_path
+      title
+      type
+      visibility
       createdAt
       updatedAt
       collectionArchivesId
-      archiveCollectionId
       __typename
     }
   }
@@ -244,7 +238,6 @@ export const onDeleteArchive = /* GraphQL */ `
       is_format_of
       is_part_of
       is_version_of
-      item_category
       language
       license
       location
@@ -253,28 +246,8 @@ export const onDeleteArchive = /* GraphQL */ `
       medium
       modified_date
       other_identifier
-      parent_collection
-      parent_collection_identifier
-      provenance
-      publisher
-      references
-      relation
-      repository
-      rights_holder
-      rights
-      source
-      spatial
-      start_date
-      subject
-      tags
-      temporal
-      thumbnail_path
-      title
-      type
-      visibility
-      collection {
+      parent_collection {
         bibliographic_citation
-        collection_category
         collectionOptions
         create_date
         creator
@@ -291,12 +264,12 @@ export const onDeleteArchive = /* GraphQL */ `
         location
         modified_date
         ownerinfo
-        parent_collection
         parent_collection_identifier
         provenance
         relation
         rights_holder
         rights
+        site_category
         source
         spatial
         start_date
@@ -308,10 +281,28 @@ export const onDeleteArchive = /* GraphQL */ `
         updatedAt
         __typename
       }
+      parent_collection_identifier
+      provenance
+      publisher
+      references
+      relation
+      repository
+      rights_holder
+      rights
+      site_category
+      source
+      spatial
+      start_date
+      subject
+      tags
+      temporal
+      thumbnail_path
+      title
+      type
+      visibility
       createdAt
       updatedAt
       collectionArchivesId
-      archiveCollectionId
       __typename
     }
   }
@@ -321,8 +312,11 @@ export const onCreateCollection = /* GraphQL */ `
     $filter: ModelSubscriptionCollectionFilterInput
   ) {
     onCreateCollection(filter: $filter) {
+      archives {
+        nextToken
+        __typename
+      }
       bibliographic_citation
-      collection_category
       collectionOptions
       create_date
       creator
@@ -339,12 +333,47 @@ export const onCreateCollection = /* GraphQL */ `
       location
       modified_date
       ownerinfo
-      parent_collection
+      parent_collection {
+        bibliographic_citation
+        collectionOptions
+        create_date
+        creator
+        custom_key
+        description
+        display_date
+        end_date
+        explicit_content
+        heirarchy_path
+        id
+        identifier
+        is_part_of
+        language
+        location
+        modified_date
+        ownerinfo
+        parent_collection_identifier
+        provenance
+        relation
+        rights_holder
+        rights
+        site_category
+        source
+        spatial
+        start_date
+        subject
+        thumbnail_path
+        title
+        visibility
+        createdAt
+        updatedAt
+        __typename
+      }
       parent_collection_identifier
       provenance
       relation
       rights_holder
       rights
+      site_category
       source
       spatial
       start_date
@@ -352,10 +381,6 @@ export const onCreateCollection = /* GraphQL */ `
       thumbnail_path
       title
       visibility
-      archives {
-        nextToken
-        __typename
-      }
       createdAt
       updatedAt
       __typename
@@ -367,8 +392,11 @@ export const onUpdateCollection = /* GraphQL */ `
     $filter: ModelSubscriptionCollectionFilterInput
   ) {
     onUpdateCollection(filter: $filter) {
+      archives {
+        nextToken
+        __typename
+      }
       bibliographic_citation
-      collection_category
       collectionOptions
       create_date
       creator
@@ -385,12 +413,47 @@ export const onUpdateCollection = /* GraphQL */ `
       location
       modified_date
       ownerinfo
-      parent_collection
+      parent_collection {
+        bibliographic_citation
+        collectionOptions
+        create_date
+        creator
+        custom_key
+        description
+        display_date
+        end_date
+        explicit_content
+        heirarchy_path
+        id
+        identifier
+        is_part_of
+        language
+        location
+        modified_date
+        ownerinfo
+        parent_collection_identifier
+        provenance
+        relation
+        rights_holder
+        rights
+        site_category
+        source
+        spatial
+        start_date
+        subject
+        thumbnail_path
+        title
+        visibility
+        createdAt
+        updatedAt
+        __typename
+      }
       parent_collection_identifier
       provenance
       relation
       rights_holder
       rights
+      site_category
       source
       spatial
       start_date
@@ -398,10 +461,6 @@ export const onUpdateCollection = /* GraphQL */ `
       thumbnail_path
       title
       visibility
-      archives {
-        nextToken
-        __typename
-      }
       createdAt
       updatedAt
       __typename
@@ -413,8 +472,11 @@ export const onDeleteCollection = /* GraphQL */ `
     $filter: ModelSubscriptionCollectionFilterInput
   ) {
     onDeleteCollection(filter: $filter) {
+      archives {
+        nextToken
+        __typename
+      }
       bibliographic_citation
-      collection_category
       collectionOptions
       create_date
       creator
@@ -431,12 +493,47 @@ export const onDeleteCollection = /* GraphQL */ `
       location
       modified_date
       ownerinfo
-      parent_collection
+      parent_collection {
+        bibliographic_citation
+        collectionOptions
+        create_date
+        creator
+        custom_key
+        description
+        display_date
+        end_date
+        explicit_content
+        heirarchy_path
+        id
+        identifier
+        is_part_of
+        language
+        location
+        modified_date
+        ownerinfo
+        parent_collection_identifier
+        provenance
+        relation
+        rights_holder
+        rights
+        site_category
+        source
+        spatial
+        start_date
+        subject
+        thumbnail_path
+        title
+        visibility
+        createdAt
+        updatedAt
+        __typename
+      }
       parent_collection_identifier
       provenance
       relation
       rights_holder
       rights
+      site_category
       source
       spatial
       start_date
@@ -444,10 +541,6 @@ export const onDeleteCollection = /* GraphQL */ `
       thumbnail_path
       title
       visibility
-      archives {
-        nextToken
-        __typename
-      }
       createdAt
       updatedAt
       __typename

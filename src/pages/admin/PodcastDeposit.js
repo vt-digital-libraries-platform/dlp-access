@@ -196,7 +196,7 @@ class PodcastDeposit extends Component {
     let audio = new Audio();
     audio.addEventListener(
       "loadedmetadata",
-      function() {
+      function () {
         fileDetails.duration = new Date(audio.duration * 1000)
           .toISOString()
           .substr(11, 8);
@@ -210,7 +210,7 @@ class PodcastDeposit extends Component {
     audio.src = window.URL.createObjectURL(file);
   }
 
-  updateInputValue = event => {
+  updateInputValue = (event) => {
     const { name, type } = event.target;
     let value = type === "checkbox" ? event.target.checked : event.target.value;
 
@@ -297,13 +297,13 @@ class PodcastDeposit extends Component {
       language: ["en"],
       custom_key: customKey,
       parent_collection: [selectedCollection.id],
-      item_category: "podcasts",
+      site_category: "podcasts",
       type: ["podcast"],
       visibility: !!this.state.formState.visibility,
       thumbnail_path: this.state.formState.thumbnail_path,
       manifest_url: this.state.formState.manifest_url,
-      manifest_file_characterization: this.state.formState
-        .manifest_file_characterization,
+      manifest_file_characterization:
+        this.state.formState.manifest_file_characterization,
       heirarchy_path: selectedCollection.heirarchy_path,
       create_date: modifiedPubDate,
       modified_date: modifiedPubDate,
@@ -354,7 +354,7 @@ class PodcastDeposit extends Component {
     this.setState({ viewState: value });
   };
 
-  validateURL = event => {
+  validateURL = (event) => {
     const { value } = event.target;
     const re = new RegExp(
       "^(https?:\\/\\/)?" +
@@ -386,7 +386,7 @@ class PodcastDeposit extends Component {
                 name: "selectedCollectionID",
                 value: this.state.formState.selectedCollectionID || "",
                 onChange: this.updateInputValue,
-                entries: this.state.collections.map(collection => {
+                entries: this.state.collections.map((collection) => {
                   return { id: collection.id, text: collection.title };
                 })
               },
@@ -533,7 +533,7 @@ class PodcastDeposit extends Component {
         <div className="view-section">
           <div>
             <h3>Podcast entry successfully created</h3>
-            {Object.keys(this.state.archive).map(key => (
+            {Object.keys(this.state.archive).map((key) => (
               <div key={key}>
                 <span id={`${key}_key`}>{key}:</span>{" "}
                 <span id={`${key}_value`}>

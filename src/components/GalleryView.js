@@ -73,7 +73,7 @@ const GalleryView = (props) => {
               "html"
             )}
           </p>
-          {props.item.item_category !== "iawa" &&
+          {props.item.site_category !== "iawa" &&
             props.item?.format?.length && (
               <div className="format-section right-half">
                 <span className="label-left">{`Format${

@@ -31,12 +31,12 @@ export const searchObjects = /* GraphQL */ `
         language
         location
         modified_date
-        parent_collection
         parent_collection_identifier
         provenance
         relation
         rights_holder
         rights
+        site_category
         source
         spatial
         start_date
@@ -46,7 +46,6 @@ export const searchObjects = /* GraphQL */ `
         visibility
 
         ... on Collection {
-          collection_category
           collectionOptions
           explicit_content
           ownerinfo
@@ -73,7 +72,6 @@ export const searchObjects = /* GraphQL */ `
           has_version
           is_format_of
           is_version_of
-          item_category
           license
           manifest_file_characterization
           manifest_url
@@ -88,7 +86,6 @@ export const searchObjects = /* GraphQL */ `
           createdAt
           updatedAt
           collectionArchivesId
-          archiveCollectionId
         }
       }
       nextToken
@@ -114,7 +111,6 @@ export const fulltextCollections = /* GraphQL */ `
     ) {
       items {
         bibliographic_citation
-        collection_category
         collectionOptions
         create_date
         creator
@@ -131,12 +127,12 @@ export const fulltextCollections = /* GraphQL */ `
         location
         modified_date
         ownerinfo
-        parent_collection
         parent_collection_identifier
         provenance
         relation
         rights_holder
         rights
+        site_category
         source
         spatial
         start_date
@@ -200,7 +196,6 @@ export const fulltextArchives = /* GraphQL */ `
         is_format_of
         is_part_of
         is_version_of
-        item_category
         language
         license
         location
@@ -209,7 +204,6 @@ export const fulltextArchives = /* GraphQL */ `
         medium
         modified_date
         other_identifier
-        parent_collection
         parent_collection_identifier
         provenance
         publisher
@@ -218,6 +212,7 @@ export const fulltextArchives = /* GraphQL */ `
         repository
         rights_holder
         rights
+        site_category
         source
         spatial
         start_date
@@ -231,7 +226,6 @@ export const fulltextArchives = /* GraphQL */ `
         createdAt
         updatedAt
         collectionArchivesId
-        archiveCollectionId
         __typename
       }
       nextToken
@@ -273,7 +267,6 @@ export const getArchive = /* GraphQL */ `
       is_format_of
       is_part_of
       is_version_of
-      item_category
       language
       license
       location
@@ -282,28 +275,8 @@ export const getArchive = /* GraphQL */ `
       medium
       modified_date
       other_identifier
-      parent_collection
-      parent_collection_identifier
-      provenance
-      publisher
-      references
-      relation
-      repository
-      rights_holder
-      rights
-      source
-      spatial
-      start_date
-      subject
-      tags
-      temporal
-      thumbnail_path
-      title
-      type
-      visibility
-      collection {
+      parent_collection {
         bibliographic_citation
-        collection_category
         collectionOptions
         create_date
         creator
@@ -320,12 +293,12 @@ export const getArchive = /* GraphQL */ `
         location
         modified_date
         ownerinfo
-        parent_collection
         parent_collection_identifier
         provenance
         relation
         rights_holder
         rights
+        site_category
         source
         spatial
         start_date
@@ -337,10 +310,28 @@ export const getArchive = /* GraphQL */ `
         updatedAt
         __typename
       }
+      parent_collection_identifier
+      provenance
+      publisher
+      references
+      relation
+      repository
+      rights_holder
+      rights
+      site_category
+      source
+      spatial
+      start_date
+      subject
+      tags
+      temporal
+      thumbnail_path
+      title
+      type
+      visibility
       createdAt
       updatedAt
       collectionArchivesId
-      archiveCollectionId
       __typename
     }
   }
@@ -383,7 +374,6 @@ export const listArchives = /* GraphQL */ `
         is_format_of
         is_part_of
         is_version_of
-        item_category
         language
         license
         location
@@ -392,7 +382,6 @@ export const listArchives = /* GraphQL */ `
         medium
         modified_date
         other_identifier
-        parent_collection
         parent_collection_identifier
         provenance
         publisher
@@ -401,6 +390,7 @@ export const listArchives = /* GraphQL */ `
         repository
         rights_holder
         rights
+        site_category
         source
         spatial
         start_date
@@ -414,7 +404,6 @@ export const listArchives = /* GraphQL */ `
         createdAt
         updatedAt
         collectionArchivesId
-        archiveCollectionId
         __typename
       }
       nextToken
@@ -468,7 +457,6 @@ export const archiveByIdentifier = /* GraphQL */ `
         is_format_of
         is_part_of
         is_version_of
-        item_category
         language
         license
         location
@@ -477,7 +465,6 @@ export const archiveByIdentifier = /* GraphQL */ `
         medium
         modified_date
         other_identifier
-        parent_collection
         parent_collection_identifier
         provenance
         publisher
@@ -486,6 +473,7 @@ export const archiveByIdentifier = /* GraphQL */ `
         repository
         rights_holder
         rights
+        site_category
         source
         spatial
         start_date
@@ -499,7 +487,6 @@ export const archiveByIdentifier = /* GraphQL */ `
         createdAt
         updatedAt
         collectionArchivesId
-        archiveCollectionId
         __typename
       }
       nextToken
@@ -555,7 +542,6 @@ export const searchArchives = /* GraphQL */ `
         is_format_of
         is_part_of
         is_version_of
-        item_category
         language
         license
         location
@@ -564,7 +550,6 @@ export const searchArchives = /* GraphQL */ `
         medium
         modified_date
         other_identifier
-        parent_collection
         parent_collection_identifier
         provenance
         publisher
@@ -573,6 +558,7 @@ export const searchArchives = /* GraphQL */ `
         repository
         rights_holder
         rights
+        site_category
         source
         spatial
         start_date
@@ -586,7 +572,6 @@ export const searchArchives = /* GraphQL */ `
         createdAt
         updatedAt
         collectionArchivesId
-        archiveCollectionId
         __typename
       }
       nextToken
@@ -598,8 +583,11 @@ export const searchArchives = /* GraphQL */ `
 export const getCollection = /* GraphQL */ `
   query GetCollection($id: ID!) {
     getCollection(id: $id) {
+      archives {
+        nextToken
+        __typename
+      }
       bibliographic_citation
-      collection_category
       collectionOptions
       create_date
       creator
@@ -616,39 +604,8 @@ export const getCollection = /* GraphQL */ `
       location
       modified_date
       ownerinfo
-      parent_collection
-      parent_collection_identifier
-      provenance
-      relation
-      rights_holder
-      rights
-      source
-      spatial
-      start_date
-      subject
-      thumbnail_path
-      title
-      visibility
-      archives {
-        nextToken
-        __typename
-      }
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const listCollections = /* GraphQL */ `
-  query ListCollections(
-    $filter: ModelCollectionFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listCollections(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
+      parent_collection {
         bibliographic_citation
-        collection_category
         collectionOptions
         create_date
         creator
@@ -665,12 +622,73 @@ export const listCollections = /* GraphQL */ `
         location
         modified_date
         ownerinfo
-        parent_collection
         parent_collection_identifier
         provenance
         relation
         rights_holder
         rights
+        site_category
+        source
+        spatial
+        start_date
+        subject
+        thumbnail_path
+        title
+        visibility
+        createdAt
+        updatedAt
+        __typename
+      }
+      parent_collection_identifier
+      provenance
+      relation
+      rights_holder
+      rights
+      site_category
+      source
+      spatial
+      start_date
+      subject
+      thumbnail_path
+      title
+      visibility
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listCollections = /* GraphQL */ `
+  query ListCollections(
+    $filter: ModelCollectionFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listCollections(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        bibliographic_citation
+        collectionOptions
+        create_date
+        creator
+        custom_key
+        description
+        display_date
+        end_date
+        explicit_content
+        heirarchy_path
+        id
+        identifier
+        is_part_of
+        language
+        location
+        modified_date
+        ownerinfo
+        parent_collection_identifier
+        provenance
+        relation
+        rights_holder
+        rights
+        site_category
         source
         spatial
         start_date
@@ -704,7 +722,6 @@ export const collectionByIdentifier = /* GraphQL */ `
     ) {
       items {
         bibliographic_citation
-        collection_category
         collectionOptions
         create_date
         creator
@@ -721,12 +738,12 @@ export const collectionByIdentifier = /* GraphQL */ `
         location
         modified_date
         ownerinfo
-        parent_collection
         parent_collection_identifier
         provenance
         relation
         rights_holder
         rights
+        site_category
         source
         spatial
         start_date
@@ -762,7 +779,6 @@ export const searchCollections = /* GraphQL */ `
     ) {
       items {
         bibliographic_citation
-        collection_category
         collectionOptions
         create_date
         creator
@@ -779,12 +795,12 @@ export const searchCollections = /* GraphQL */ `
         location
         modified_date
         ownerinfo
-        parent_collection
         parent_collection_identifier
         provenance
         relation
         rights_holder
         rights
+        site_category
         source
         spatial
         start_date

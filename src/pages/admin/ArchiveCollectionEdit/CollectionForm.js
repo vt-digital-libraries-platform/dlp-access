@@ -318,14 +318,14 @@ const CollectionForm = React.memo((props) => {
     if (newCollection) {
       mutation = mutations.createCollection;
 
-      const collectionMap = createCollectionMap(collection);
+      // const collectionMap = createCollectionMap(collection);
 
-      await API.graphql({
-        query: mutations.createCollectionmap,
-        variables: { input: collectionMap },
-        authMode: "AMAZON_COGNITO_USER_POOLS"
-      });
-      collectionInfo.collectionmap_id = collectionMap.id;
+      // await API.graphql({
+      //   query: mutations.createCollectionmap,
+      //   variables: { input: collectionMap },
+      //   authMode: "AMAZON_COGNITO_USER_POOLS"
+      // });
+      // collectionInfo.collectionmap_id = collectionMap.id;
     }
 
     await API.graphql({
@@ -336,34 +336,33 @@ const CollectionForm = React.memo((props) => {
 
     const newTitle = titleChanged(collection.title);
     if (newTitle) {
-      const response = await API.graphql(
-        graphqlOperation(queries.getCollectionmap, {
-          id: fullCollection.collectionmap_id
-        })
-      );
-      let updatedMap = null;
-      let map_object_string = null;
-      let collectionmap_object = null;
-      try {
-        updatedMap = response.data.getCollectionmap;
-        map_object_string = updatedMap.map_object;
-        collectionmap_object = JSON.parse(map_object_string);
-        collectionmap_object.name = collection.title;
-        updatedMap.map_object = JSON.stringify(collectionmap_object);
-        delete updatedMap.createdAt;
-        delete updatedMap.updatedAt;
-        delete updatedMap.collection;
-      } catch (error) {
-        console.error("error fetching collectionmap");
-      }
-
-      if (updatedMap && collectionmap_object) {
-        await API.graphql({
-          query: mutations.updateCollectionmap,
-          variables: { input: updatedMap },
-          authMode: "AMAZON_COGNITO_USER_POOLS"
-        });
-      }
+      // const response = await API.graphql(
+      //   graphqlOperation(queries.getCollectionmap, {
+      //     id: fullCollection.collectionmap_id
+      //   })
+      // );
+      // let updatedMap = null;
+      // let map_object_string = null;
+      // let collectionmap_object = null;
+      // try {
+      //   updatedMap = response.data.getCollectionmap;
+      //   map_object_string = updatedMap.map_object;
+      //   collectionmap_object = JSON.parse(map_object_string);
+      //   collectionmap_object.name = collection.title;
+      //   updatedMap.map_object = JSON.stringify(collectionmap_object);
+      //   delete updatedMap.createdAt;
+      //   delete updatedMap.updatedAt;
+      //   delete updatedMap.collection;
+      // } catch (error) {
+      //   console.error("error fetching collectionmap");
+      // }
+      // if (updatedMap && collectionmap_object) {
+      //   await API.graphql({
+      //     query: mutations.updateCollectionmap,
+      //     variables: { input: updatedMap },
+      //     authMode: "AMAZON_COGNITO_USER_POOLS"
+      //   });
+      // }
     }
 
     const addedData = addedDiff(oldCollection, collection);

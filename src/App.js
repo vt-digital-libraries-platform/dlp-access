@@ -102,6 +102,7 @@ class App extends Component {
   componentDidMount() {
     this.configureStorage();
     this.loadSite();
+    console.clear();
   }
 
   render() {

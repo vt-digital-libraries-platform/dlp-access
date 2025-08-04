@@ -66,7 +66,7 @@ class ArchivePage extends Component {
       order: "ASC",
       limit: 1,
       filter: {
-        item_category: { eq: process.env.REACT_APP_REP_TYPE.toLowerCase() },
+        site_category: { eq: process.env.REACT_APP_REP_TYPE.toLowerCase() },
         visibility: { eq: true },
         custom_key: {
           eq: `ark:/53696/${this.props.customKey}`

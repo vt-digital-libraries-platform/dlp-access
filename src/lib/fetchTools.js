@@ -217,23 +217,23 @@ export const fetchSearchResults = async (
 ) => {
   const REP_TYPE = process.env.REACT_APP_REP_TYPE.toLowerCase();
   let archiveFilter = {
-    project: { eq: REP_TYPE },
+    site_category: { eq: REP_TYPE },
     visibility: { eq: true }
   };
   let collectionFilter = {
-    project: { eq: REP_TYPE },
+    site_category: { eq: REP_TYPE },
     visibility: { eq: true },
     parent_collection: { exists: false }
   };
   let objectFilter = {
     or: [
       {
-        project: { eq: REP_TYPE },
+        site_category: { eq: REP_TYPE },
         visibility: { eq: true },
         parent_collection: { exists: false }
       },
       {
-        project: { eq: REP_TYPE },
+        site_category: { eq: REP_TYPE },
         visibility: { eq: true }
       }
     ]
@@ -405,7 +405,7 @@ export const getPodcastCollections = async () => {
     graphqlOperation(queries.searchCollections, {
       order: "ASC",
       filter: {
-        project: {
+        site_category: {
           eq: "podcasts"
         }
       }
@@ -492,7 +492,7 @@ export const getArchiveByIdentifier = async (identifier) => {
     variables: {
       identifier: identifier,
       filter: {
-        project: { eq: REP_TYPE }
+        site_category: { eq: REP_TYPE }
       },
       limit: 1
     }
@@ -513,14 +513,11 @@ export const getCollectionByIdentifier = async (identifier) => {
     variables: {
       identifier: identifier,
       filter: {
-        project: { eq: REP_TYPE }
+        site_category: { eq: REP_TYPE }
       },
       limit: 1
     }
   });
-  console.log(REP_TYPE);
-  console.log(identifier);
-  console.log(apiData);
   const {
     data: {
       collectionByIdentifier: { items }
@@ -579,16 +576,16 @@ export const getCollectionItems = async (
 };
 
 export const getCollectionMap = async (mapIdentifier) => {
-  try {
-    const response = await API.graphql(
-      graphqlOperation(queries.getCollectionmap, {
-        id: mapIdentifier
-      })
-    );
-    return response.data.getCollectionmap.map_object;
-  } catch (error) {
-    console.error("Error fetching collection tree map");
-  }
+  // try {
+  //   const response = await API.graphql(
+  //     graphqlOperation(queries.getCollectionmap, {
+  //       id: mapIdentifier
+  //     })
+  //   );
+  //   return response.data.getCollectionmap.map_object;
+  // } catch (error) {
+  //   console.error("Error fetching collection tree map");
+  // }
   return null;
 };
 
@@ -597,7 +594,7 @@ export const getCollectionFromCustomKey = async (customKey) => {
     order: "ASC",
     limit: 1,
     filter: {
-      project: {
+      site_category: {
         eq: process.env.REACT_APP_REP_TYPE.toLowerCase()
       },
       visibility: { eq: true },
