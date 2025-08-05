@@ -9,7 +9,7 @@ export const useGetCollection = (customKey: string) => {
   const [collectionCustomKey, setCollectionCustomKey] = useState("");
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState<string[] | null>(null);
-  const [thumbnail_path, setThumbnail_path] = useState("");
+  const [asset_urls, setAsset_urls] = useState("");
   const [creator, setCreator] = useState<string[] | null>(null);
   const [updatedAt, setUpdatedAt] = useState("");
   const [isError, setIsError] = useState(false);
@@ -26,7 +26,7 @@ export const useGetCollection = (customKey: string) => {
         setCollectionCustomKey(topLevelParentCollection.custom_key);
         setTitle(topLevelParentCollection.title);
         setDescription(topLevelParentCollection?.description);
-        setThumbnail_path(topLevelParentCollection?.thumbnail_path);
+        setAsset_urls(topLevelParentCollection?.asset_urls);
         setCreator(topLevelParentCollection?.creator);
         setUpdatedAt(topLevelParentCollection?.updatedAt);
       } else {
@@ -41,7 +41,7 @@ export const useGetCollection = (customKey: string) => {
     collectionCustomKey,
     title,
     description,
-    thumbnail_path,
+    asset_urls,
     creator,
     updatedAt,
     isError

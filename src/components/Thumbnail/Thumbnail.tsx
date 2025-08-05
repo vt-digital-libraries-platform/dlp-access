@@ -22,7 +22,7 @@ export const Thumbnail: FC<Props> = ({
   imgURL
 }) => {
   const image = useSignedLink(
-    imgURL || item.thumbnail_path,
+    imgURL || item.asset_urls?.thumbnail,
     "image",
     site?.siteId
   );

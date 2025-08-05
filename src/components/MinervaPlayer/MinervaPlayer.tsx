@@ -98,7 +98,7 @@ export const MinervaPlayer: FC<MinervaPlayerProps> = ({ item, site }) => {
     try {
       window.viewer = MinervaStory.build_page({
         hideWelcome: true,
-        exhibit: item.manifest_url,
+        exhibit: item.asset_urls.minerva_manifest,
         id: "minerva-browser",
         embedded: true
       });

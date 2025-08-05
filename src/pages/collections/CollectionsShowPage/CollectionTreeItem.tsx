@@ -3,7 +3,7 @@ import { FC } from "react";
 import { NavLink } from "react-router-dom";
 
 type Props = {
-  nodes: MapObject;
+  nodes: CollectionMap;
 };
 export const CollectionTreeItem: FC<Props> = ({ nodes }) => (
   <TreeItem

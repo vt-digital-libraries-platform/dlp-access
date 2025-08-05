@@ -5,13 +5,15 @@ import {
 } from "../../../lib/fetchTools";
 
 export const useLoadMap = (collection: Collection) => {
-  const [collectionMap, setCollectionMap] = useState<MapObject | null>(null);
+  const [collectionMap, setCollectionMap] = useState<CollectionMap | null>(
+    null
+  );
   const [expanded, setExpanded] = useState<string[] | undefined>([]);
 
   //Loads collection map and sorts it by name
   useEffect(() => {
-    const sortMap = (map: MapObject) => {
-      const sort = function (node: MapObject) {
+    const sortMap = (map: CollectionMap) => {
+      const sort = function (node: CollectionMap) {
         if (Array.isArray(node.children)) {
           const tempChildren = node.children.slice();
           node.children = sortChildren(tempChildren);
@@ -25,7 +27,7 @@ export const useLoadMap = (collection: Collection) => {
       return temp;
     };
 
-    const sortChildren = (children: MapObject[]) => {
+    const sortChildren = (children: CollectionMap[]) => {
       return children.sort(function (a, b) {
         let aArray = a.name.split(" ");
         let bArray = b.name.split(" ");
@@ -40,12 +42,11 @@ export const useLoadMap = (collection: Collection) => {
     };
 
     const loadMap = async () => {
-      let mapIdentifier = collection?.collectionmap_id;
-      if (!mapIdentifier) {
+      let map = collection?.collection_map;
+      if (!map) {
         const topLevelParent = await getTopLevelParentForCollection(collection);
-        mapIdentifier = topLevelParent.collectionmap_id;
+        map = topLevelParent.collection.collection_map;
       }
-      const map = await getCollectionMap(mapIdentifier);
       if (map) {
         const mapObj = JSON.parse(map);
         mapObj.label = mapObj.name;

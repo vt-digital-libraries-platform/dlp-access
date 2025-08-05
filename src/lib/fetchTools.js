@@ -553,7 +553,7 @@ export const getCollectionItems = async (
         archiveOptions
         description
         start_date
-        thumbnail_path
+        asset_urls
         custom_key
         identifier
         description

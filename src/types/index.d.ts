@@ -8,6 +8,12 @@ declare global {
   interface Archive {
     alternative: string[] | null;
     archiveOptions: string | null;
+    asset_urls: {
+      iiif_manifest: string | null;
+      minerva_manifest: string | null;
+      thumbnail: string | null;
+      morpho_thumb: string | null;
+    };
     basis_of_record: string[] | null;
     bibliographic_citation: string[] | null;
     conforms_to: string[] | null;
@@ -37,7 +43,6 @@ declare global {
     language: string[] | null;
     license: string[] | null;
     manifest_file_characterization: string | null;
-    manifest_url: string;
     medium: string[] | null;
     modified_date: string | null;
     other_identifier: string[] | null;
@@ -50,6 +55,7 @@ declare global {
     repository: string[] | null;
     rights_holder: string[] | null;
     rights: string[] | null;
+    site_category: string | null;
     source: string[] | null;
     spatial: string[] | null;
     start_date: string | null;
@@ -62,26 +68,15 @@ declare global {
     visibility: boolean;
     collection: string | null;
   }
-
-  interface Collectionmap {
-    collection_id: string;
-    create_date: string | null;
-    id: string;
-    map_object: string;
-    modified_date: string | null;
-    collection: string | null;
-    project: string;
-  }
-
-  interface MapObject {
-    id: string;
-    name: string;
-    custom_key: string;
-    children: MapObject[];
-  }
   interface Collection {
+    asset_urls: {
+      iiif_manifest: string | null;
+      thumbnail: string | null;
+      morpho_thumb: string | null;
+      webFeed: string | null;
+    };
     bibliographic_citation: string[] | null;
-    collectionmap_id: string | null;
+    collection_map: string | null;
     collectionOptions: string | null;
     create_date: string | null;
     creator: string[] | null;
@@ -103,15 +98,21 @@ declare global {
     relation: string[] | null;
     rights_holder: string[] | null;
     rights: string[] | null;
+    site_category: string | null;
     source: string[] | null;
     spatial: string[] | null;
     start_date: string | null;
     subject: string[] | null;
-    thumbnail_path: string | null;
     title: string;
     visibility: boolean;
-    collectionmap: Collectionmap | null;
     archives: Archive[] | null;
+  }
+  interface CollectionMap {
+    id: string;
+    custom_key: string;
+    name: string;
+    label: string | null;
+    children?: CollectionMap[];
   }
   interface CollectionOptions {
     podcast_links?: string[];

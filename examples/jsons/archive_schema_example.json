@@ -15,6 +15,10 @@
   "sourceLink": "this is a string",
   "sourceText": "this is a string"
  },
+   "asset_urls": {
+      "iiif_manifest": "this is a string",
+      "thumbnail": "this is a string"
+   },
  "basis_of_record": ["this is a string"],
  "bibliographic_citation": ["this is a string"],
  "collection": "this is a string",
@@ -56,13 +60,6 @@
   "en"
  ],
  "license": ["this is a string"],
- "manifest_file_characterization": {
-  "duration": "this is a string",
-  "name": "this is a string",
-  "size": 11100485,
-  "type": "this is a string"
- },
- "manifest_url": "this is a string",
  "medium": [
   "this is a string"
  ],
@@ -100,7 +97,7 @@
   "this is a string"
  ],
  "temporal": ["this is a string"],
- "thumbnail_path": "this is a string",
+
  "title": "this is a string",
  "type": [
    "this is a string"

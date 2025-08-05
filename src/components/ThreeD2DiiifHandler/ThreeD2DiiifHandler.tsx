@@ -11,8 +11,11 @@ type Props = {
   item: {
     archiveOptions: string;
     location: [number, number];
-    manifest_url: string;
-    thumbnail_path: string;
+    asset_urls: {
+      iiif_manifest?: string;
+      thumbnail?: string;
+      morpho_thumb?: string;
+    };
     title: string;
   };
   frameWidth: number;
@@ -73,11 +76,11 @@ export const ThreeD2DiiifHandler: FC<Props> = ({ item, site }) => {
   }, [item, threeD]);
 
   const getThreeDThumb = () => {
-    return options?.assets?.morpho_thumb || item.thumbnail_path;
+    return options?.assets?.morpho_thumb || item.asset_urls?.thumbnail;
   };
 
   const getIIIFThumb = () => {
-    return item.thumbnail_path;
+    return item.asset_urls?.thumbnail;
   };
 
   const twoDThumbClickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -119,7 +122,7 @@ export const ThreeD2DiiifHandler: FC<Props> = ({ item, site }) => {
               </div>
             )}
           </div>
-          {item.manifest_url && (
+          {item.asset_urls?.iiif_manifest && (
             <div
               style={{ height: height, width: width }}
               hidden={threeD === "primary"}
@@ -199,7 +202,7 @@ export const ThreeD2DiiifHandler: FC<Props> = ({ item, site }) => {
       <div className="image-wrapper" id="image-wrapper">
         {primarySectionContent()}
       </div>
-      {item.manifest_url && (
+      {item.asset_urls?.iiif_manifest && (
         <div className="thumbnail-wrapper" id="thumbnail-wrapper">
           {secondarySectionContent()}
         </div>

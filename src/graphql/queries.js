@@ -17,6 +17,7 @@ export const searchObjects = /* GraphQL */ `
       nextToken: $nextToken
     ) {
       items {
+        asset_urls
         bibliographic_citation
         create_date
         creator
@@ -41,16 +42,18 @@ export const searchObjects = /* GraphQL */ `
         spatial
         start_date
         subject
-        thumbnail_path
         title
         visibility
 
         ... on Collection {
           collectionOptions
+          collection_map
           explicit_content
           ownerinfo
           createdAt
           updatedAt
+          collectionSub_collectionsId
+          collectionSiteId
         }
         ... on Archive {
           age
@@ -73,8 +76,6 @@ export const searchObjects = /* GraphQL */ `
           is_format_of
           is_version_of
           license
-          manifest_file_characterization
-          manifest_url
           medium
           other_identifier
           publisher
@@ -86,6 +87,7 @@ export const searchObjects = /* GraphQL */ `
           createdAt
           updatedAt
           collectionArchivesId
+          archiveSiteId
         }
       }
       nextToken
@@ -110,8 +112,10 @@ export const fulltextCollections = /* GraphQL */ `
       nextToken: $nextToken
     ) {
       items {
+        asset_urls
         bibliographic_citation
         collectionOptions
+        collection_map
         create_date
         creator
         custom_key
@@ -137,11 +141,12 @@ export const fulltextCollections = /* GraphQL */ `
         spatial
         start_date
         subject
-        thumbnail_path
         title
         visibility
         createdAt
         updatedAt
+        collectionSub_collectionsId
+        collectionSiteId
         __typename
       }
       nextToken
@@ -169,6 +174,7 @@ export const fulltextArchives = /* GraphQL */ `
         age
         alternative
         archiveOptions
+        asset_urls
         basis_of_record
         bibliographic_citation
         conforms_to
@@ -199,8 +205,6 @@ export const fulltextArchives = /* GraphQL */ `
         language
         license
         location
-        manifest_file_characterization
-        manifest_url
         medium
         modified_date
         other_identifier
@@ -219,13 +223,13 @@ export const fulltextArchives = /* GraphQL */ `
         subject
         tags
         temporal
-        thumbnail_path
         title
         type
         visibility
         createdAt
         updatedAt
         collectionArchivesId
+        archiveSiteId
         __typename
       }
       nextToken
@@ -240,6 +244,7 @@ export const getArchive = /* GraphQL */ `
       age
       alternative
       archiveOptions
+      asset_urls
       basis_of_record
       bibliographic_citation
       conforms_to
@@ -270,14 +275,14 @@ export const getArchive = /* GraphQL */ `
       language
       license
       location
-      manifest_file_characterization
-      manifest_url
       medium
       modified_date
       other_identifier
       parent_collection {
+        asset_urls
         bibliographic_citation
         collectionOptions
+        collection_map
         create_date
         creator
         custom_key
@@ -303,11 +308,12 @@ export const getArchive = /* GraphQL */ `
         spatial
         start_date
         subject
-        thumbnail_path
         title
         visibility
         createdAt
         updatedAt
+        collectionSub_collectionsId
+        collectionSiteId
         __typename
       }
       parent_collection_identifier
@@ -318,6 +324,28 @@ export const getArchive = /* GraphQL */ `
       repository
       rights_holder
       rights
+      site {
+        analyticsID
+        assetBasePath
+        browseCollections
+        contact
+        displayedAttributes
+        groups
+        homePage
+        id
+        lang
+        miradorOptions
+        searchPage
+        siteColor
+        siteId
+        siteName
+        siteOptions
+        sitePages
+        siteTitle
+        createdAt
+        updatedAt
+        __typename
+      }
       site_category
       source
       spatial
@@ -325,13 +353,13 @@ export const getArchive = /* GraphQL */ `
       subject
       tags
       temporal
-      thumbnail_path
       title
       type
       visibility
       createdAt
       updatedAt
       collectionArchivesId
+      archiveSiteId
       __typename
     }
   }
@@ -347,6 +375,7 @@ export const listArchives = /* GraphQL */ `
         age
         alternative
         archiveOptions
+        asset_urls
         basis_of_record
         bibliographic_citation
         conforms_to
@@ -377,8 +406,6 @@ export const listArchives = /* GraphQL */ `
         language
         license
         location
-        manifest_file_characterization
-        manifest_url
         medium
         modified_date
         other_identifier
@@ -397,13 +424,13 @@ export const listArchives = /* GraphQL */ `
         subject
         tags
         temporal
-        thumbnail_path
         title
         type
         visibility
         createdAt
         updatedAt
         collectionArchivesId
+        archiveSiteId
         __typename
       }
       nextToken
@@ -430,6 +457,7 @@ export const archiveByIdentifier = /* GraphQL */ `
         age
         alternative
         archiveOptions
+        asset_urls
         basis_of_record
         bibliographic_citation
         conforms_to
@@ -460,8 +488,6 @@ export const archiveByIdentifier = /* GraphQL */ `
         language
         license
         location
-        manifest_file_characterization
-        manifest_url
         medium
         modified_date
         other_identifier
@@ -480,13 +506,13 @@ export const archiveByIdentifier = /* GraphQL */ `
         subject
         tags
         temporal
-        thumbnail_path
         title
         type
         visibility
         createdAt
         updatedAt
         collectionArchivesId
+        archiveSiteId
         __typename
       }
       nextToken
@@ -515,6 +541,7 @@ export const searchArchives = /* GraphQL */ `
         age
         alternative
         archiveOptions
+        asset_urls
         basis_of_record
         bibliographic_citation
         conforms_to
@@ -545,8 +572,6 @@ export const searchArchives = /* GraphQL */ `
         language
         license
         location
-        manifest_file_characterization
-        manifest_url
         medium
         modified_date
         other_identifier
@@ -565,13 +590,13 @@ export const searchArchives = /* GraphQL */ `
         subject
         tags
         temporal
-        thumbnail_path
         title
         type
         visibility
         createdAt
         updatedAt
         collectionArchivesId
+        archiveSiteId
         __typename
       }
       nextToken
@@ -587,8 +612,10 @@ export const getCollection = /* GraphQL */ `
         nextToken
         __typename
       }
+      asset_urls
       bibliographic_citation
       collectionOptions
+      collection_map
       create_date
       creator
       custom_key
@@ -605,8 +632,10 @@ export const getCollection = /* GraphQL */ `
       modified_date
       ownerinfo
       parent_collection {
+        asset_urls
         bibliographic_citation
         collectionOptions
+        collection_map
         create_date
         creator
         custom_key
@@ -632,11 +661,12 @@ export const getCollection = /* GraphQL */ `
         spatial
         start_date
         subject
-        thumbnail_path
         title
         visibility
         createdAt
         updatedAt
+        collectionSub_collectionsId
+        collectionSiteId
         __typename
       }
       parent_collection_identifier
@@ -644,16 +674,43 @@ export const getCollection = /* GraphQL */ `
       relation
       rights_holder
       rights
+      site {
+        analyticsID
+        assetBasePath
+        browseCollections
+        contact
+        displayedAttributes
+        groups
+        homePage
+        id
+        lang
+        miradorOptions
+        searchPage
+        siteColor
+        siteId
+        siteName
+        siteOptions
+        sitePages
+        siteTitle
+        createdAt
+        updatedAt
+        __typename
+      }
       site_category
       source
       spatial
       start_date
+      sub_collections {
+        nextToken
+        __typename
+      }
       subject
-      thumbnail_path
       title
       visibility
       createdAt
       updatedAt
+      collectionSub_collectionsId
+      collectionSiteId
       __typename
     }
   }
@@ -666,8 +723,10 @@ export const listCollections = /* GraphQL */ `
   ) {
     listCollections(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
+        asset_urls
         bibliographic_citation
         collectionOptions
+        collection_map
         create_date
         creator
         custom_key
@@ -693,11 +752,12 @@ export const listCollections = /* GraphQL */ `
         spatial
         start_date
         subject
-        thumbnail_path
         title
         visibility
         createdAt
         updatedAt
+        collectionSub_collectionsId
+        collectionSiteId
         __typename
       }
       nextToken
@@ -721,8 +781,10 @@ export const collectionByIdentifier = /* GraphQL */ `
       nextToken: $nextToken
     ) {
       items {
+        asset_urls
         bibliographic_citation
         collectionOptions
+        collection_map
         create_date
         creator
         custom_key
@@ -748,11 +810,12 @@ export const collectionByIdentifier = /* GraphQL */ `
         spatial
         start_date
         subject
-        thumbnail_path
         title
         visibility
         createdAt
         updatedAt
+        collectionSub_collectionsId
+        collectionSiteId
         __typename
       }
       nextToken
@@ -778,8 +841,10 @@ export const searchCollections = /* GraphQL */ `
       aggregates: $aggregates
     ) {
       items {
+        asset_urls
         bibliographic_citation
         collectionOptions
+        collection_map
         create_date
         creator
         custom_key
@@ -805,11 +870,12 @@ export const searchCollections = /* GraphQL */ `
         spatial
         start_date
         subject
-        thumbnail_path
         title
         visibility
         createdAt
         updatedAt
+        collectionSub_collectionsId
+        collectionSiteId
         __typename
       }
       nextToken

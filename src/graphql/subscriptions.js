@@ -7,6 +7,7 @@ export const onCreateArchive = /* GraphQL */ `
       age
       alternative
       archiveOptions
+      asset_urls
       basis_of_record
       bibliographic_citation
       conforms_to
@@ -37,14 +38,14 @@ export const onCreateArchive = /* GraphQL */ `
       language
       license
       location
-      manifest_file_characterization
-      manifest_url
       medium
       modified_date
       other_identifier
       parent_collection {
+        asset_urls
         bibliographic_citation
         collectionOptions
+        collection_map
         create_date
         creator
         custom_key
@@ -70,11 +71,12 @@ export const onCreateArchive = /* GraphQL */ `
         spatial
         start_date
         subject
-        thumbnail_path
         title
         visibility
         createdAt
         updatedAt
+        collectionSub_collectionsId
+        collectionSiteId
         __typename
       }
       parent_collection_identifier
@@ -85,6 +87,28 @@ export const onCreateArchive = /* GraphQL */ `
       repository
       rights_holder
       rights
+      site {
+        analyticsID
+        assetBasePath
+        browseCollections
+        contact
+        displayedAttributes
+        groups
+        homePage
+        id
+        lang
+        miradorOptions
+        searchPage
+        siteColor
+        siteId
+        siteName
+        siteOptions
+        sitePages
+        siteTitle
+        createdAt
+        updatedAt
+        __typename
+      }
       site_category
       source
       spatial
@@ -92,13 +116,13 @@ export const onCreateArchive = /* GraphQL */ `
       subject
       tags
       temporal
-      thumbnail_path
       title
       type
       visibility
       createdAt
       updatedAt
       collectionArchivesId
+      archiveSiteId
       __typename
     }
   }
@@ -109,6 +133,7 @@ export const onUpdateArchive = /* GraphQL */ `
       age
       alternative
       archiveOptions
+      asset_urls
       basis_of_record
       bibliographic_citation
       conforms_to
@@ -139,14 +164,14 @@ export const onUpdateArchive = /* GraphQL */ `
       language
       license
       location
-      manifest_file_characterization
-      manifest_url
       medium
       modified_date
       other_identifier
       parent_collection {
+        asset_urls
         bibliographic_citation
         collectionOptions
+        collection_map
         create_date
         creator
         custom_key
@@ -172,11 +197,12 @@ export const onUpdateArchive = /* GraphQL */ `
         spatial
         start_date
         subject
-        thumbnail_path
         title
         visibility
         createdAt
         updatedAt
+        collectionSub_collectionsId
+        collectionSiteId
         __typename
       }
       parent_collection_identifier
@@ -187,6 +213,28 @@ export const onUpdateArchive = /* GraphQL */ `
       repository
       rights_holder
       rights
+      site {
+        analyticsID
+        assetBasePath
+        browseCollections
+        contact
+        displayedAttributes
+        groups
+        homePage
+        id
+        lang
+        miradorOptions
+        searchPage
+        siteColor
+        siteId
+        siteName
+        siteOptions
+        sitePages
+        siteTitle
+        createdAt
+        updatedAt
+        __typename
+      }
       site_category
       source
       spatial
@@ -194,13 +242,13 @@ export const onUpdateArchive = /* GraphQL */ `
       subject
       tags
       temporal
-      thumbnail_path
       title
       type
       visibility
       createdAt
       updatedAt
       collectionArchivesId
+      archiveSiteId
       __typename
     }
   }
@@ -211,6 +259,7 @@ export const onDeleteArchive = /* GraphQL */ `
       age
       alternative
       archiveOptions
+      asset_urls
       basis_of_record
       bibliographic_citation
       conforms_to
@@ -241,14 +290,14 @@ export const onDeleteArchive = /* GraphQL */ `
       language
       license
       location
-      manifest_file_characterization
-      manifest_url
       medium
       modified_date
       other_identifier
       parent_collection {
+        asset_urls
         bibliographic_citation
         collectionOptions
+        collection_map
         create_date
         creator
         custom_key
@@ -274,11 +323,12 @@ export const onDeleteArchive = /* GraphQL */ `
         spatial
         start_date
         subject
-        thumbnail_path
         title
         visibility
         createdAt
         updatedAt
+        collectionSub_collectionsId
+        collectionSiteId
         __typename
       }
       parent_collection_identifier
@@ -289,6 +339,28 @@ export const onDeleteArchive = /* GraphQL */ `
       repository
       rights_holder
       rights
+      site {
+        analyticsID
+        assetBasePath
+        browseCollections
+        contact
+        displayedAttributes
+        groups
+        homePage
+        id
+        lang
+        miradorOptions
+        searchPage
+        siteColor
+        siteId
+        siteName
+        siteOptions
+        sitePages
+        siteTitle
+        createdAt
+        updatedAt
+        __typename
+      }
       site_category
       source
       spatial
@@ -296,13 +368,13 @@ export const onDeleteArchive = /* GraphQL */ `
       subject
       tags
       temporal
-      thumbnail_path
       title
       type
       visibility
       createdAt
       updatedAt
       collectionArchivesId
+      archiveSiteId
       __typename
     }
   }
@@ -316,8 +388,10 @@ export const onCreateCollection = /* GraphQL */ `
         nextToken
         __typename
       }
+      asset_urls
       bibliographic_citation
       collectionOptions
+      collection_map
       create_date
       creator
       custom_key
@@ -334,8 +408,10 @@ export const onCreateCollection = /* GraphQL */ `
       modified_date
       ownerinfo
       parent_collection {
+        asset_urls
         bibliographic_citation
         collectionOptions
+        collection_map
         create_date
         creator
         custom_key
@@ -361,11 +437,12 @@ export const onCreateCollection = /* GraphQL */ `
         spatial
         start_date
         subject
-        thumbnail_path
         title
         visibility
         createdAt
         updatedAt
+        collectionSub_collectionsId
+        collectionSiteId
         __typename
       }
       parent_collection_identifier
@@ -373,16 +450,43 @@ export const onCreateCollection = /* GraphQL */ `
       relation
       rights_holder
       rights
+      site {
+        analyticsID
+        assetBasePath
+        browseCollections
+        contact
+        displayedAttributes
+        groups
+        homePage
+        id
+        lang
+        miradorOptions
+        searchPage
+        siteColor
+        siteId
+        siteName
+        siteOptions
+        sitePages
+        siteTitle
+        createdAt
+        updatedAt
+        __typename
+      }
       site_category
       source
       spatial
       start_date
+      sub_collections {
+        nextToken
+        __typename
+      }
       subject
-      thumbnail_path
       title
       visibility
       createdAt
       updatedAt
+      collectionSub_collectionsId
+      collectionSiteId
       __typename
     }
   }
@@ -396,8 +500,10 @@ export const onUpdateCollection = /* GraphQL */ `
         nextToken
         __typename
       }
+      asset_urls
       bibliographic_citation
       collectionOptions
+      collection_map
       create_date
       creator
       custom_key
@@ -414,8 +520,10 @@ export const onUpdateCollection = /* GraphQL */ `
       modified_date
       ownerinfo
       parent_collection {
+        asset_urls
         bibliographic_citation
         collectionOptions
+        collection_map
         create_date
         creator
         custom_key
@@ -441,11 +549,12 @@ export const onUpdateCollection = /* GraphQL */ `
         spatial
         start_date
         subject
-        thumbnail_path
         title
         visibility
         createdAt
         updatedAt
+        collectionSub_collectionsId
+        collectionSiteId
         __typename
       }
       parent_collection_identifier
@@ -453,16 +562,43 @@ export const onUpdateCollection = /* GraphQL */ `
       relation
       rights_holder
       rights
+      site {
+        analyticsID
+        assetBasePath
+        browseCollections
+        contact
+        displayedAttributes
+        groups
+        homePage
+        id
+        lang
+        miradorOptions
+        searchPage
+        siteColor
+        siteId
+        siteName
+        siteOptions
+        sitePages
+        siteTitle
+        createdAt
+        updatedAt
+        __typename
+      }
       site_category
       source
       spatial
       start_date
+      sub_collections {
+        nextToken
+        __typename
+      }
       subject
-      thumbnail_path
       title
       visibility
       createdAt
       updatedAt
+      collectionSub_collectionsId
+      collectionSiteId
       __typename
     }
   }
@@ -476,8 +612,10 @@ export const onDeleteCollection = /* GraphQL */ `
         nextToken
         __typename
       }
+      asset_urls
       bibliographic_citation
       collectionOptions
+      collection_map
       create_date
       creator
       custom_key
@@ -494,8 +632,10 @@ export const onDeleteCollection = /* GraphQL */ `
       modified_date
       ownerinfo
       parent_collection {
+        asset_urls
         bibliographic_citation
         collectionOptions
+        collection_map
         create_date
         creator
         custom_key
@@ -521,11 +661,12 @@ export const onDeleteCollection = /* GraphQL */ `
         spatial
         start_date
         subject
-        thumbnail_path
         title
         visibility
         createdAt
         updatedAt
+        collectionSub_collectionsId
+        collectionSiteId
         __typename
       }
       parent_collection_identifier
@@ -533,16 +674,43 @@ export const onDeleteCollection = /* GraphQL */ `
       relation
       rights_holder
       rights
+      site {
+        analyticsID
+        assetBasePath
+        browseCollections
+        contact
+        displayedAttributes
+        groups
+        homePage
+        id
+        lang
+        miradorOptions
+        searchPage
+        siteColor
+        siteId
+        siteName
+        siteOptions
+        sitePages
+        siteTitle
+        createdAt
+        updatedAt
+        __typename
+      }
       site_category
       source
       spatial
       start_date
+      sub_collections {
+        nextToken
+        __typename
+      }
       subject
-      thumbnail_path
       title
       visibility
       createdAt
       updatedAt
+      collectionSub_collectionsId
+      collectionSiteId
       __typename
     }
   }

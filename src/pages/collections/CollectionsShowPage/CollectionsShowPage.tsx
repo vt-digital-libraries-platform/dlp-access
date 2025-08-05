@@ -27,11 +27,11 @@ export const CollectionsShowPage: FC<Props> = ({ site, customKey }) => {
   const socialButtons = options?.socialMedia;
 
   const {
+    asset_urls,
     collection,
     collectionCustomKey,
     title,
     description,
-    thumbnail_path,
     creator,
     updatedAt,
     isError
@@ -98,7 +98,7 @@ export const CollectionsShowPage: FC<Props> = ({ site, customKey }) => {
           </nav>
         </div>
         <CollectionTopContent
-          collectionImg={thumbnail_path}
+          collectionImg={JSON.parse(asset_urls).thumbnail || null}
           collectionTitle={title}
           updatedAt={updatedAt}
           description={description}
@@ -120,7 +120,9 @@ export const CollectionsShowPage: FC<Props> = ({ site, customKey }) => {
             viewOption={viewOption}
             socialButtons={socialButtons}
             title={title}
-            media={thumbnail_path}
+            media={
+              collection.asset_urls ? JSON.parse(asset_urls).thumbnail : null
+            }
             hasParentCollection={!!collection.parent_collection}
           />
         ) : (
@@ -131,7 +133,7 @@ export const CollectionsShowPage: FC<Props> = ({ site, customKey }) => {
                   buttons={socialButtons}
                   url={window.location.href}
                   title={title}
-                  media={thumbnail_path}
+                  media={JSON.parse(asset_urls).thumbnail || null}
                 />
               </div>
             </div>
