@@ -26,6 +26,7 @@ export const useGetCollectionItems = (id: string) => {
         limit,
         currentToken
       );
+      console.log(response);
       setPaginationState((prevState) => {
         const newNextPageTokens = [...prevState.nextPageTokens];
         newNextPageTokens[page + 1] = response.nextToken;

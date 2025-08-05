@@ -21,11 +21,10 @@ export const Thumbnail: FC<Props> = ({
   altText,
   imgURL
 }) => {
-  const image = useSignedLink(
-    imgURL || item.asset_urls?.thumbnail,
-    "image",
-    site?.siteId
-  );
+  const thumbnail = item.asset_urls
+    ? JSON.parse(item.asset_urls).thumbnail
+    : null;
+  const image = useSignedLink(imgURL || thumbnail, "image", site?.siteId);
 
   return (
     <div className="image-container">

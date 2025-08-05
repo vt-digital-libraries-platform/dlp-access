@@ -29,7 +29,9 @@ class MiradorViewer extends Component {
       views: [{ key: "single", behaviors: ["individuals"] }],
       windows: [
         {
-          manifestId: this.props.item.manifest_url
+          manifestId: this.props.item.asset_urls
+            ? JSON.parse(this.props.item.asset_urls).iiif_manifest
+            : null
         }
       ],
       thumbnailNavigation: {
@@ -60,7 +62,7 @@ class MiradorViewer extends Component {
 
   componentDidUpdate(prevProps) {
     if (
-      this.props.item.manifest_url !== prevProps.item.manifest_url ||
+      this.props.item.asset_urls !== prevProps.item.asset_urls ||
       this.props.hidden !== prevProps.hidden
     ) {
       Mirador.viewer(this.miradorConfig());

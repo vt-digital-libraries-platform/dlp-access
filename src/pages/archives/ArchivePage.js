@@ -113,25 +113,49 @@ class ArchivePage extends Component {
     try {
       match = url.match(/\.(jpeg|jpg|gif|png)$/) != null;
     } catch (error) {
-      console.log("probs not an img");
+      return false;
     }
     return match;
   }
 
   isAudioURL(url) {
-    return url.match(/\.(mp3|ogg|wav)$/) != null;
+    let match = false;
+    try {
+      match = url.match(/\.(mp3|ogg|wav)$/) != null;
+    } catch (error) {
+      return false;
+    }
+    return match;
   }
 
   isVideoURL(url) {
-    return url.match(/\.(mp4|mov)$/) != null;
+    let match = false;
+    try {
+      match = url.match(/\.(mp4|mov)$/) != null;
+    } catch (error) {
+      return false;
+    }
+    return match;
   }
 
   isKalturaURL(url) {
-    return url.match(/(video.vt.edu\/media)/) != null;
+    let match = false;
+    try {
+      match = url.match(/(video.vt.edu\/media)/) != null;
+    } catch (error) {
+      return false;
+    }
+    return match;
   }
 
   isPdfURL(url) {
-    return url.match(/\.(pdf)$/) != null;
+    let match = false;
+    try {
+      match = url.match(/\.(pdf)$/) != null;
+    } catch (error) {
+      return false;
+    }
+    return match;
   }
 
   isMiradorURL(url, item = null) {
@@ -159,18 +183,43 @@ class ArchivePage extends Component {
   }
 
   isObjURL(url) {
-    return url.match(/\.(obj|OBJ)$/) != null;
+    let match = false;
+    try {
+      match = url.match(/\.(obj|OBJ)$/) != null;
+    } catch (error) {
+      return false;
+    }
+    return match;
   }
 
   isMtlUrl(url) {
-    return url.match(/\.(mtl)$/) != null;
+    let match = false;
+    try {
+      match = url.match(/\.(mtl)$/) != null;
+    } catch (error) {
+      return false;
+    }
+    return match;
   }
 
   isX3DUrl(url) {
-    return url.match(/\.(x3d|X3D)$/) != null;
+    let match = false;
+    try {
+      match = url.match(/\.(x3d|X3D)$/) != null;
+    } catch (error) {
+      return false;
+    }
+    return match;
   }
+
   isGLTFUrl(url) {
-    return url.match(/\.(gltf|GLTF|glb|GLB)$/) != null;
+    let match = false;
+    try {
+      match = url.match(/\.(gltf|GLTF|glb|GLB)$/) != null;
+    } catch (error) {
+      return false;
+    }
+    return match;
   }
 
   is3D_2DiiifType(item) {
@@ -203,7 +252,9 @@ class ArchivePage extends Component {
 
   buildArchiveSchema(item) {
     let info = {};
-    info["audio"] = item.manifest_url;
+    info["audio"] = item.asset_urls
+      ? JSON.parse(item.asset_urls).audio_url
+      : null;
     let collectionURL = window.location.href.replace("archive", "collection");
     let collectionNoid = this.state.collectionCustomKey.replace(
       "ark:/53696/",
@@ -225,6 +276,12 @@ class ArchivePage extends Component {
   }
 
   mediaDisplay(item) {
+    let asset_urls = null;
+    try {
+      asset_urls = JSON.parse(item.asset_urls);
+    } catch (error) {
+      console.log("no asset urls");
+    }
     let display = null;
     let width = Math.min(
       document.getElementById("content-wrapper").offsetWidth - 50,
@@ -238,7 +295,6 @@ class ArchivePage extends Component {
       } catch (error) {
         console.log("Error parsing archive options", error);
       }
-      // options.assets.env_config
       display = (
         <div className="image-wrapper" id="image-wrapper">
           <BabylonElement
@@ -260,74 +316,74 @@ class ArchivePage extends Component {
           site={this.props.site}
         />
       );
-    } else if (this.isMiradorURL(item.manifest_url, item)) {
+    } else if (this.isMiradorURL(asset_urls.iiif_manifest, item)) {
       display = <MiradorViewer item={item} site={this.props.site} />;
-    } else if (this.isMinervaURL(item.manifest_url)) {
+    } else if (this.isMinervaURL(asset_urls.minerva_manifest)) {
       display = <MinervaPlayer item={item} site={this.props.site} />;
-    } else if (this.isImgURL(item.manifest_url)) {
+    } else if (this.isImgURL(asset_urls.img_url)) {
       display = (
         <Thumbnail
           className="item-img"
           item={item}
-          imgURL={item.manifest_url}
+          imgURL={asset_urls.thumbnail}
           altText={item.title}
           site={this.props.site}
         />
       );
-    } else if (this.isAudioURL(item.manifest_url)) {
+    } else if (this.isAudioURL(asset_urls.audio_url)) {
       const transcript = item.archiveOptions
         ? JSON.parse(item.archiveOptions)
         : null;
       display = (
         <MediaElement
-          src={item.manifest_url}
+          src={asset_urls.audio_url}
           mediaType="audio"
           site={this.props.site}
-          poster={item.thumbnail_path}
+          poster={asset_urls.thumbnail}
           title={item.title}
           transcript={transcript ? transcript?.audioTranscript : null}
           isPodcast={this.state.item?.type?.find((item) => item === "podcast")}
         />
       );
-    } else if (this.isVideoURL(item.manifest_url)) {
+    } else if (this.isVideoURL(asset_urls.video_url)) {
       display = (
         <MediaElement
-          src={item.manifest_url}
+          src={asset_urls.video_url}
           mediaType="video"
           site={this.props.site}
-          poster={item.thumbnail_path}
+          poster={asset_urls.thumbnail}
         />
       );
-    } else if (this.isKalturaURL(item.manifest_url)) {
-      display = <KalturaPlayer manifest_url={item.manifest_url} />;
-    } else if (this.isPdfURL(item.manifest_url)) {
+    } else if (this.isKalturaURL(asset_urls.kaltura_url)) {
+      display = <KalturaPlayer manifest_url={asset_urls.kaltura_url} />;
+    } else if (this.isPdfURL(asset_urls.pdf_url)) {
       display = (
-        <PDFViewer manifest_url={item.manifest_url} title={item.title} />
+        <PDFViewer manifest_url={asset_urls.pdf_url} title={item.title} />
       );
-    } else if (this.isObjURL(item.manifest_url)) {
-      const texPath = item.manifest_url.substring(
+    } else if (this.isObjURL(asset_urls.obj_url)) {
+      const texPath = asset_urls.obj_url.substring(
         0,
-        item.manifest_url.lastIndexOf("/") + 1
+        asset_urls.obj_url.lastIndexOf("/") + 1
       );
       display = (
         <div className="obj-wrapper" style={{ width: `${width}px` }}>
-          <OBJModel src={item.manifest_url} texPath={texPath} />
+          <OBJModel src={asset_urls.obj_url} texPath={texPath} />
         </div>
       );
-    } else if (this.isMtlUrl(item.manifest_url)) {
+    } else if (this.isMtlUrl(asset_urls.mtl_url)) {
       display = (
         <div className="obj-wrapper" style={{ width: `${width}px` }}>
-          <MtlElement mtl={item.manifest_url} />
+          <MtlElement mtl={asset_urls.mtl_url} />
         </div>
       );
-    } else if (this.isX3DUrl(item.manifest_url)) {
+    } else if (this.isX3DUrl(asset_urls.x3d_url)) {
       display = (
         <div
           className="obj-wrapper"
           style={{ width: `${width}px`, height: "100px" }}
         >
           <X3DElement
-            url={item.manifest_url}
+            url={asset_urls.x3d_url}
             frameSize={width}
             frameHeight={100}
           />

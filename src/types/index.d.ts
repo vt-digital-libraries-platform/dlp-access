@@ -8,12 +8,7 @@ declare global {
   interface Archive {
     alternative: string[] | null;
     archiveOptions: string | null;
-    asset_urls: {
-      iiif_manifest: string | null;
-      minerva_manifest: string | null;
-      thumbnail: string | null;
-      morpho_thumb: string | null;
-    };
+    asset_urls: string | null;
     basis_of_record: string[] | null;
     bibliographic_citation: string[] | null;
     conforms_to: string[] | null;
@@ -69,12 +64,7 @@ declare global {
     collection: string | null;
   }
   interface Collection {
-    asset_urls: {
-      iiif_manifest: string | null;
-      thumbnail: string | null;
-      morpho_thumb: string | null;
-      webFeed: string | null;
-    };
+    asset_urls: string | null;
     bibliographic_citation: string[] | null;
     collection_map: string | null;
     collectionOptions: string | null;
@@ -107,6 +97,7 @@ declare global {
     visibility: boolean;
     archives: Archive[] | null;
   }
+
   interface CollectionMap {
     id: string;
     custom_key: string;
@@ -117,6 +108,22 @@ declare global {
   interface CollectionOptions {
     podcast_links?: string[];
     webFeed?: string;
+  }
+  interface AssetUrls {
+    iiif_manifest?: string | null;
+    minerva_manifest?: string | null;
+    thumbnail?: string | null;
+    morpho_thumb?: string | null;
+    kaltura_url?: string | null;
+    img_url?: string | null;
+    pdf_url?: string | null;
+    obj_url?: string | null;
+    mtl_url?: string | null;
+    x3d_url?: string | null;
+    gltf_url?: string | null;
+    glb_url?: string | null;
+    audio_url?: string | null;
+    video_url?: string | null;
   }
   interface PageContent {
     id: string;
