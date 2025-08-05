@@ -20,7 +20,7 @@ const initialFormState = {
   title: "",
   description: "",
   thumbnail_path: "",
-  manifest_url: "",
+  asset_url: "",
   source_link: "",
   source_text: "",
   season_number: "",
@@ -33,7 +33,7 @@ const initialFormState = {
 
 const requiredFields = [
   "title",
-  "manifest_url",
+  "asset_url",
   "selectedCollectionID",
   "season_number",
   "episode_number",
@@ -82,7 +82,7 @@ class PodcastDeposit extends Component {
         title: item.title || "",
         description: item.description || "",
         thumbnail_path: item.thumbnail_path || "",
-        manifest_url: item.manifest_url || "",
+        asset_url: JSON.parse(item.asset_urls).audio_url || "",
         source_link: sourceDetails.link || item.archiveOptions.sourceLink || "",
         source_text: sourceDetails.text || item.archiveOptions.sourceText || "",
         season_number: seasonDetails.season || "",
@@ -167,7 +167,7 @@ class PodcastDeposit extends Component {
   getFolderByName(name) {
     let folder = "";
     switch (name) {
-      case "manifest_url":
+      case "asset_url":
         folder = "audio";
         break;
       case "audioTranscript":
@@ -301,7 +301,7 @@ class PodcastDeposit extends Component {
       type: ["podcast"],
       visibility: !!this.state.formState.visibility,
       thumbnail_path: this.state.formState.thumbnail_path,
-      manifest_url: this.state.formState.manifest_url,
+      asset_url: JSON.parse(this.state.formState).audio_url,
       manifest_file_characterization:
         this.state.formState.manifest_file_characterization,
       heirarchy_path: selectedCollection.heirarchy_path,
@@ -479,13 +479,13 @@ class PodcastDeposit extends Component {
             <h3>Episode files</h3>
             {input(
               {
-                required: this.isRequiredField("manifest_url"),
+                required: this.isRequiredField("asset_url"),
                 label: "Episode audio file",
-                id: "manifest_url_upload",
-                name: "manifest_url",
+                id: "asset_url_upload",
+                name: "asset_url",
                 placeholder: "Audio file",
                 context: this,
-                value: this.state.formState.manifest_url,
+                value: JSON.parse(this.state.formState).audio_url,
                 setSrc: this.updateInputValue,
                 setFileCharacterization: this.setFileCharacterization,
                 fileType: "audio"

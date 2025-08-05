@@ -107,7 +107,7 @@ export const archive_multiFields = [
 export const archive_singleFields = [
   "end_date",
   "identifier",
-  "manifest_url",
+  "asset_url",
   "project",
   "start_date",
   "title",

@@ -74,7 +74,9 @@
     "x3dom": "^1.8.2"
   },
   "overrides": {
-    "react-refresh": "0.14.0"
+    "react-refresh": "0.14.0",
+    "form-data": ">=4.0.4",
+    "axios": ">=1.8.2"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [

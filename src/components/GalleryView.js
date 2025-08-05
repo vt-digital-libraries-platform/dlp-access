@@ -21,22 +21,8 @@ const GalleryView = (props) => {
         );
       });
     }
-    // if(!formats.length) {
-    //   formats = formatsByManifestURL(item.manifest_url)
-    // }
-    return formats;
-  };
 
-  const formatsByManifestURL = (manifestURL) => {
-    let format = null;
-    if (manifestURL) {
-      if (manifestURL.endsWith("manifest.json")) {
-        format = <p className="card-text">2D Image (tiled)</p>;
-      } else if (manifestURL.endsWith(".pdf")) {
-        format = <p className="card-text">document/pdf</p>;
-      }
-    }
-    return format;
+    return formats;
   };
 
   const getPageCount = () => {

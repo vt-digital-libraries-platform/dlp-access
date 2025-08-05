@@ -2,11 +2,11 @@ import { FC } from "react";
 import "../../css/Viewer.scss";
 
 type Props = {
-  manifest_url: string;
+  asset_url: string;
 };
 
-export const KalturaPlayer: FC<Props> = ({ manifest_url }) => {
-  const entry_id = manifest_url.replace("https://video.vt.edu/media/", "");
+export const KalturaPlayer: FC<Props> = ({ asset_url }) => {
+  const entry_id = asset_url.replace("https://video.vt.edu/media/", "");
 
   return (
     <div

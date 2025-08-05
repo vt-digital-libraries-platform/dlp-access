@@ -6,13 +6,13 @@ class PDFViewer extends Component {
     return (
       <object
         id="pdf-object"
-        data={this.props.manifest_url}
+        data={this.props.asset_url}
         type="application/pdf"
         width="100%"
         height="1000"
       >
         <p>
-          Download <a href={this.props.manifest_url}>PDF</a>
+          Download <a href={this.props.asset_url}>PDF</a>
         </p>
       </object>
     );

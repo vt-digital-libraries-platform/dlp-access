@@ -355,11 +355,9 @@ class ArchivePage extends Component {
         />
       );
     } else if (this.isKalturaURL(asset_urls.kaltura_url)) {
-      display = <KalturaPlayer manifest_url={asset_urls.kaltura_url} />;
+      display = <KalturaPlayer asset_url={asset_urls.kaltura_url} />;
     } else if (this.isPdfURL(asset_urls.pdf_url)) {
-      display = (
-        <PDFViewer manifest_url={asset_urls.pdf_url} title={item.title} />
-      );
+      display = <PDFViewer asset_url={asset_urls.pdf_url} title={item.title} />;
     } else if (this.isObjURL(asset_urls.obj_url)) {
       const texPath = asset_urls.obj_url.substring(
         0,
