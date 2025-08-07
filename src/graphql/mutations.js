@@ -24,6 +24,9 @@ export const createArchive = /* GraphQL */ `
       description
       display_date
       download_link
+      embargo_start_date
+      embargo_end_date
+      embargo_note
       end_date
       explicit
       extent
@@ -54,6 +57,9 @@ export const createArchive = /* GraphQL */ `
         custom_key
         description
         display_date
+        embargo_start_date
+        embargo_end_date
+        embargo_note
         end_date
         explicit_content
         heirarchy_path
@@ -153,6 +159,9 @@ export const updateArchive = /* GraphQL */ `
       description
       display_date
       download_link
+      embargo_start_date
+      embargo_end_date
+      embargo_note
       end_date
       explicit
       extent
@@ -183,6 +192,9 @@ export const updateArchive = /* GraphQL */ `
         custom_key
         description
         display_date
+        embargo_start_date
+        embargo_end_date
+        embargo_note
         end_date
         explicit_content
         heirarchy_path
@@ -282,6 +294,9 @@ export const deleteArchive = /* GraphQL */ `
       description
       display_date
       download_link
+      embargo_start_date
+      embargo_end_date
+      embargo_note
       end_date
       explicit
       extent
@@ -312,6 +327,9 @@ export const deleteArchive = /* GraphQL */ `
         custom_key
         description
         display_date
+        embargo_start_date
+        embargo_end_date
+        embargo_note
         end_date
         explicit_content
         heirarchy_path
@@ -407,6 +425,9 @@ export const createCollection = /* GraphQL */ `
       custom_key
       description
       display_date
+      embargo_start_date
+      embargo_end_date
+      embargo_note
       end_date
       explicit_content
       heirarchy_path
@@ -427,6 +448,9 @@ export const createCollection = /* GraphQL */ `
         custom_key
         description
         display_date
+        embargo_start_date
+        embargo_end_date
+        embargo_note
         end_date
         explicit_content
         heirarchy_path
@@ -520,6 +544,9 @@ export const updateCollection = /* GraphQL */ `
       custom_key
       description
       display_date
+      embargo_start_date
+      embargo_end_date
+      embargo_note
       end_date
       explicit_content
       heirarchy_path
@@ -540,6 +567,9 @@ export const updateCollection = /* GraphQL */ `
         custom_key
         description
         display_date
+        embargo_start_date
+        embargo_end_date
+        embargo_note
         end_date
         explicit_content
         heirarchy_path
@@ -633,6 +663,9 @@ export const deleteCollection = /* GraphQL */ `
       custom_key
       description
       display_date
+      embargo_start_date
+      embargo_end_date
+      embargo_note
       end_date
       explicit_content
       heirarchy_path
@@ -653,6 +686,9 @@ export const deleteCollection = /* GraphQL */ `
         custom_key
         description
         display_date
+        embargo_start_date
+        embargo_end_date
+        embargo_note
         end_date
         explicit_content
         heirarchy_path

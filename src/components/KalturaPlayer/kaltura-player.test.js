@@ -5,7 +5,7 @@ import { KalturaPlayer } from "./KalturaPlayer";
 describe("Kaltura player component", () => {
   it("displays Kaltura player", () => {
     render(
-      <KalturaPlayer manifest_url={"https://video.vt.edu/media/1_qvxfd4bn"} />
+      <KalturaPlayer asset_url={"https://video.vt.edu/media/1_qvxfd4bn"} />
     );
     const player = screen.getByTitle("Kaltura Player");
     expect(player).toBeInTheDocument();

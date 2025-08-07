@@ -79,10 +79,11 @@ const ArchiveForm = React.memo((props) => {
         const parent = await fetchCollection(collectionId);
         setParentCollection(parent);
 
-        if (item.manifest_url) {
+        const audio_url = item?.asset_urls?.audio_url;
+        if (audio_url) {
           if (
-            item.manifest_url.match(/\.(mp3|ogg|wav)$/) ||
-            item.manifest_url.match(/\.(mp4|mov)$/)
+            audio_url.match(/\.(mp3|ogg|wav)$/) ||
+            audio_url.match(/\.(mp4|mov)$/)
           ) {
             editableFields.push("audioTranscript");
           }
@@ -484,7 +485,7 @@ const ArchiveForm = React.memo((props) => {
     if (attribute === "collection") {
       element = collectionSelector(attribute);
     } else if (
-      attribute === "thumbnail_path" ||
+      attribute === "thumbnail_url" ||
       attribute === "audioTranscript"
     ) {
       element = (
@@ -493,7 +494,7 @@ const ArchiveForm = React.memo((props) => {
           value={archive[`${attribute}`]}
           site={siteContext.site}
           label={
-            attribute === "thumbnail_path"
+            attribute === "thumbnail_url"
               ? "Thumbnail image"
               : "HTML Audio Transcript"
           }
@@ -502,7 +503,7 @@ const ArchiveForm = React.memo((props) => {
           placeholder="Enter source url"
           setSrc={setSrc}
           siteID={siteContext.site.id}
-          fileType={attribute === "thumbnail_path" ? "image" : "text"}
+          fileType={attribute === "thumbnail_url" ? "image" : "text"}
           field={attribute}
         />
       );

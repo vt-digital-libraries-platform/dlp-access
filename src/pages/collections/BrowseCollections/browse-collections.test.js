@@ -12,8 +12,9 @@ describe("BrowseCollections component", () => {
   const multipleItems = Array(10)
     .fill(singleItem[0])
     .map((item, index) => {
+      const asset_urls = item.asset_urls;
       return {
-        thumbnail_path: `${item.thumbnail_path}/${index}`,
+        thumbnail_url: `${asset_urls.thumbnail_url}/${index}`,
         title: `${item.title} ${index}`,
         custom_key: `${item.custom_key}/${index}`,
         description: [`${item.description[0]} ${index}`],
@@ -24,7 +25,7 @@ describe("BrowseCollections component", () => {
     const scrollUp = jest.fn();
     jest
       .spyOn(FunctionalFileGetter, "getFile")
-      .mockResolvedValue(mock_collection.thumbnail_path);
+      .mockResolvedValue(mock_collection.thumbnail_url);
     jest.spyOn(FetchTools, "fetchSearchResults").mockResolvedValue({
       items: items,
       nextToken: nextToken,

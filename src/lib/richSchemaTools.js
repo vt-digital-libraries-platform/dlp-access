@@ -8,9 +8,10 @@ export function findCollectionType(siteId) {
 
 export function buildCollectionSchema(item) {
   let info = {};
+  const asset_urls = JSON.parse(item.asset_urls);
   info["creator"] = item.creator;
   info["description"] = item.description;
-  info["thumbnail_path"] = item.thumbnail_path;
+  info["thumbnail_url"] = asset_urls["thumbnail_url"];
   info["title"] = item.title;
   info["url"] = window.location.href;
   if (item.collectionOptions) {
@@ -61,7 +62,7 @@ function buildPodcastSeriesSchema(info) {
   const scriptContent = `{
       "@context": "https://schema.org/",
       "@type": "PodcastSeries",
-      "image": "${info["thumbnail_path"]}",
+      "image": "${info["thumbnail_url"]}",
       "url": "${info["url"]}",
       "name": "${info["title"]}",
       "description": "${info["description"]}",

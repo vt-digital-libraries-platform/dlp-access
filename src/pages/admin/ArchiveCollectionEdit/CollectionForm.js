@@ -266,21 +266,6 @@ const CollectionForm = React.memo((props) => {
       collection.project = siteContext.site.groups[0];
     }
 
-    if (validEmbargo(collection)) {
-      await createEmbargoRecord(
-        collection,
-        fullCollection,
-        embargo,
-        "collection"
-      );
-    } else {
-      resultMessage =
-        "Embargo not applied to this object. If you wish to apply an embargo you must supply a start date OR end date. If you do not wish to apply an embargo you can safely ignore this message.";
-    }
-    delete collection.embargo_start_date;
-    delete collection.embargo_end_date;
-    delete collection.embargo_note;
-
     let webFeed = null;
     if (siteContext.site.siteId === "podcasts") {
       const custom_key = newCollection
@@ -307,25 +292,23 @@ const CollectionForm = React.memo((props) => {
       delete collection[key];
     }
 
-    collection.collectionCollectionmapId = fullCollection.collectionmap_id;
+    collection.collection_map = fullCollection.collection_map;
+
+    collection.asset_urls = {
+      thumbnail_url: collection.thumbnail_url
+    };
+    delete collection.thumbnail_url;
 
     const collectionInfo = {
       id: collectionId,
       ...collection
     };
-    console.log(JSON.stringify(collectionInfo));
+
     let mutation = mutations.updateCollection;
     if (newCollection) {
       mutation = mutations.createCollection;
 
-      // const collectionMap = createCollectionMap(collection);
-
-      // await API.graphql({
-      //   query: mutations.createCollectionmap,
-      //   variables: { input: collectionMap },
-      //   authMode: "AMAZON_COGNITO_USER_POOLS"
-      // });
-      // collectionInfo.collectionmap_id = collectionMap.id;
+      collection.collection_map = createCollectionMap(collection);
     }
 
     await API.graphql({
@@ -333,37 +316,6 @@ const CollectionForm = React.memo((props) => {
       variables: { input: collectionInfo },
       authMode: "AMAZON_COGNITO_USER_POOLS"
     });
-
-    const newTitle = titleChanged(collection.title);
-    if (newTitle) {
-      // const response = await API.graphql(
-      //   graphqlOperation(queries.getCollectionmap, {
-      //     id: fullCollection.collectionmap_id
-      //   })
-      // );
-      // let updatedMap = null;
-      // let map_object_string = null;
-      // let collectionmap_object = null;
-      // try {
-      //   updatedMap = response.data.getCollectionmap;
-      //   map_object_string = updatedMap.map_object;
-      //   collectionmap_object = JSON.parse(map_object_string);
-      //   collectionmap_object.name = collection.title;
-      //   updatedMap.map_object = JSON.stringify(collectionmap_object);
-      //   delete updatedMap.createdAt;
-      //   delete updatedMap.updatedAt;
-      //   delete updatedMap.collection;
-      // } catch (error) {
-      //   console.error("error fetching collectionmap");
-      // }
-      // if (updatedMap && collectionmap_object) {
-      //   await API.graphql({
-      //     query: mutations.updateCollectionmap,
-      //     variables: { input: updatedMap },
-      //     authMode: "AMAZON_COGNITO_USER_POOLS"
-      //   });
-      // }
-    }
 
     const addedData = addedDiff(oldCollection, collection);
     const newData = updatedDiff(oldCollection, collection);
@@ -470,7 +422,7 @@ const CollectionForm = React.memo((props) => {
   const setThumbnailSrc = (event) => {
     const fileUrl = getFileUrl(event.target.name, event.target.value);
     event.target.value = fileUrl;
-    changeValueHandler(event, "thumbnail_path");
+    changeValueHandler(event, "thumbnail_url");
   };
 
   const formElement = (attribute, index) => {
@@ -495,15 +447,15 @@ const CollectionForm = React.memo((props) => {
           onChangeValue={changeValueHandler}
         />
       );
-    } else if (attribute === "thumbnail_path") {
+    } else if (attribute === "thumbnail_url") {
       element = (
         <FileUploadField
-          key={`thumbnail_path_upload_${index}`}
-          value={collection["thumbnail_path"]}
+          key={`thumbnail_url_upload_${index}`}
+          value={collection.thumbnail_url}
           site={siteContext.site}
           label="Thumbnail image"
-          input_id={`thumbnail_path_upload_${index}`}
-          name={`thumbnail_path_upload_${index}`}
+          input_id={`thumbnail_url_upload_${index}`}
+          name={`thumbnail_url_upload_${index}`}
           placeholder="Enter thumbnail source"
           setSrc={setThumbnailSrc}
           siteID={siteContext.site.id}
@@ -525,7 +477,7 @@ const CollectionForm = React.memo((props) => {
             label={toTitleCase(attribute.replace(/_/g, " "))}
             isMulti={multiFields.includes(attribute)}
             isBoolean={booleanFields.includes(attribute)}
-            values={collection[attribute]}
+            values={collection.attribute}
             onChangeValue={changeValueHandler}
             onRemoveValue={deleteMetadataHandler}
             onAddValue={addMetadataHandler}

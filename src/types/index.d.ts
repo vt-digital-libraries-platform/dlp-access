@@ -57,7 +57,6 @@ declare global {
     subject: string[] | null;
     tags: string[] | null;
     temporal: string[] | null;
-    thumbnail_path: string | null;
     title: string;
     type: string[] | null;
     visibility: boolean;
@@ -112,16 +111,13 @@ declare global {
   interface AssetUrls {
     iiif_manifest?: string | null;
     minerva_manifest?: string | null;
-    thumbnail?: string | null;
-    morpho_thumb?: string | null;
+    thumbnail_url?: string | null;
     kaltura_url?: string | null;
     img_url?: string | null;
     pdf_url?: string | null;
-    obj_url?: string | null;
-    mtl_url?: string | null;
-    x3d_url?: string | null;
-    gltf_url?: string | null;
-    glb_url?: string | null;
+    threeD_url?: string | null;
+    threeD_config_url?: string | null;
+    threeD_env_url?: string | null;
     audio_url?: string | null;
     video_url?: string | null;
   }

@@ -26,7 +26,11 @@ describe("CollectionsShowPage component", () => {
     });
     jest
       .spyOn(FunctionalFileGetter, "getFile")
-      .mockResolvedValue(mock_collection.thumbnail_path);
+      .mockResolvedValue(
+        mock_collection.asset_urls
+          ? JSON.parse(mock_collection.asset_urls).thumbnail_url
+          : ""
+      );
     jest.spyOn(FetchTools, "getCollectionMap").mockResolvedValue(
       JSON.stringify({
         id: "testid123",

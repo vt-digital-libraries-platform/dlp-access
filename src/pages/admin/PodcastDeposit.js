@@ -19,7 +19,7 @@ const initialFormState = {
   selectedCollectionID: null,
   title: "",
   description: "",
-  thumbnail_path: "",
+  thumbnail_url: "",
   asset_url: "",
   source_link: "",
   source_text: "",
@@ -73,6 +73,7 @@ class PodcastDeposit extends Component {
     }
     let itemState = {};
     if (item) {
+      const asset_urls = JSON.parse(item.asset_urls);
       const sourceDetails = this.getSourceLinkDetails(item);
       const seasonDetails = this.getSeasonDetails(item);
       itemState = {
@@ -81,7 +82,7 @@ class PodcastDeposit extends Component {
           : null,
         title: item.title || "",
         description: item.description || "",
-        thumbnail_path: item.thumbnail_path || "",
+        thumbnail_url: asset_urls.thumbnail_url || "",
         asset_url: JSON.parse(item.asset_urls).audio_url || "",
         source_link: sourceDetails.link || item.archiveOptions.sourceLink || "",
         source_text: sourceDetails.text || item.archiveOptions.sourceText || "",
@@ -173,7 +174,7 @@ class PodcastDeposit extends Component {
       case "audioTranscript":
         folder = "text";
         break;
-      case "thumbnail_path":
+      case "thumbnail_url":
         folder = "image";
         break;
       default:
@@ -300,8 +301,10 @@ class PodcastDeposit extends Component {
       site_category: "podcasts",
       type: ["podcast"],
       visibility: !!this.state.formState.visibility,
-      thumbnail_path: this.state.formState.thumbnail_path,
-      asset_url: JSON.parse(this.state.formState).audio_url,
+      asset_urls: {
+        thumbnail_url: this.state.formState.thumbnail_url,
+        audio_url: this.state.formState.audio_url
+      },
       manifest_file_characterization:
         this.state.formState.manifest_file_characterization,
       heirarchy_path: selectedCollection.heirarchy_path,
@@ -506,8 +509,8 @@ class PodcastDeposit extends Component {
             {input(
               {
                 label: "Episode image (optional)",
-                id: "thumbnail_path_upload",
-                name: "thumbnail_path",
+                id: "thumbnail_url_upload",
+                name: "thumbnail_url",
                 placeholder: "Episode image",
                 setSrc: this.updateInputValue,
                 fileType: "image"

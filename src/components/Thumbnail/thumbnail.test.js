@@ -15,7 +15,7 @@ describe("Thumbnail component", () => {
         category={category}
         className="card-img-top"
         item={{
-          thumbnail_path: imgUrl,
+          thumbnail_url: imgUrl,
           title: "Title"
         }}
         site={{

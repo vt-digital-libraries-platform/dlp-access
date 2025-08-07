@@ -7,9 +7,11 @@ import { MemoryRouter } from "react-router-dom";
 import { mock_archive } from "src/fixtures/mock_archive";
 import { mock_site } from "src/fixtures/mock_site";
 import { mock_collection } from "src/fixtures/mock_collection";
+import { mock } from "node:test";
 
 describe("CollectionItems component", () => {
   const singleItem = mock_archive;
+  const asset_urls = JSON.parse(mock_archive.asset_urls);
   const setup = (
     items = [singleItem],
     total = 1,
@@ -18,7 +20,7 @@ describe("CollectionItems component", () => {
   ) => {
     jest
       .spyOn(FunctionalFileGetter, "getFile")
-      .mockResolvedValue(mock_archive.thumbnail_path);
+      .mockResolvedValue(asset_urls.thumbnail_url);
     jest.spyOn(FetchTools, "getCollectionItems").mockResolvedValue({
       items: items,
       nextToken: null,

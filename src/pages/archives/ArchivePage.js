@@ -227,8 +227,8 @@ class ArchivePage extends Component {
       const options = JSON.parse(item.archiveOptions);
       return (
         item.format.indexOf("model/x3d") !== -1 &&
-        !!options.assets.x3d_config &&
-        !!options.assets.x3d_src_img
+        !!options.assets.threeD_config_url &&
+        !!options.assets.threeD_url
       );
     } catch (error) {
       return false;
@@ -242,8 +242,8 @@ class ArchivePage extends Component {
       const type = options.assets.media_type;
       match =
         type === "3d-model/gltf" &&
-        !!options.assets.gltf_config &&
-        !!options.assets.env_config;
+        !!options.assets.threeD_url &&
+        !!options.assets.threeD_env_url;
     } catch (error) {
       return false;
     }
@@ -358,30 +358,30 @@ class ArchivePage extends Component {
       display = <KalturaPlayer asset_url={asset_urls.kaltura_url} />;
     } else if (this.isPdfURL(asset_urls.pdf_url)) {
       display = <PDFViewer asset_url={asset_urls.pdf_url} title={item.title} />;
-    } else if (this.isObjURL(asset_urls.obj_url)) {
-      const texPath = asset_urls.obj_url.substring(
+    } else if (this.isObjURL(asset_urls.threeD_url)) {
+      const texPath = asset_urls.threeD_url.substring(
         0,
-        asset_urls.obj_url.lastIndexOf("/") + 1
+        asset_urls.threeD_url.lastIndexOf("/") + 1
       );
       display = (
         <div className="obj-wrapper" style={{ width: `${width}px` }}>
-          <OBJModel src={asset_urls.obj_url} texPath={texPath} />
+          <OBJModel src={asset_urls.threeD_url} texPath={texPath} />
         </div>
       );
-    } else if (this.isMtlUrl(asset_urls.mtl_url)) {
+    } else if (this.isMtlUrl(asset_urls.threeD_url)) {
       display = (
         <div className="obj-wrapper" style={{ width: `${width}px` }}>
-          <MtlElement mtl={asset_urls.mtl_url} />
+          <MtlElement mtl={asset_urls.threeD_url} />
         </div>
       );
-    } else if (this.isX3DUrl(asset_urls.x3d_url)) {
+    } else if (this.isX3DUrl(asset_urls.threeD_url)) {
       display = (
         <div
           className="obj-wrapper"
           style={{ width: `${width}px`, height: "100px" }}
         >
           <X3DElement
-            url={asset_urls.x3d_url}
+            url={asset_urls.threeD_url}
             frameSize={width}
             frameHeight={100}
           />

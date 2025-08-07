@@ -7,6 +7,7 @@ import { mock_collection } from "../../../../fixtures/mock_collection";
 
 describe("CollectionsTopContent component", () => {
   const collectionOptions = JSON.parse(mock_collection.collectionOptions);
+  const asset_urls = JSON.parse(mock_collection.asset_urls);
   const site = mock_site;
   const setup = (view = "default") => {
     if (view === "podcasts") {
@@ -17,10 +18,10 @@ describe("CollectionsTopContent component", () => {
     }
     jest
       .spyOn(FunctionalFileGetter, "getFile")
-      .mockResolvedValueOnce(mock_collection.thumbnail_path);
+      .mockResolvedValueOnce(asset_urls.thumbnail_url);
     render(
       <CollectionTopContent
-        collectionImg={mock_collection.thumbnail_path}
+        collectionImg={asset_urls.thumbnail_url}
         site={site}
         collectionTitle={mock_collection.title}
         creator={mock_collection.creator}
@@ -35,15 +36,15 @@ describe("CollectionsTopContent component", () => {
     setup();
     expect(await screen.findByRole("img")).toHaveAttribute(
       "src",
-      mock_collection.thumbnail_path
+      mock_collection.asset_urls
+        ? JSON.parse(mock_collection.asset_urls).thumbnail_url
+        : ""
     );
     expect(
       screen.getByRole("heading", { name: "Test Collection" })
     ).toBeInTheDocument();
     expect(screen.getByText(/Created by: Test Creator/i)).toBeInTheDocument();
-    expect(
-      screen.getByText(/Last updated:/i)
-    ).toBeInTheDocument();
+    expect(screen.getByText(/Last updated:/i)).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: "Description" })
     ).toBeInTheDocument();

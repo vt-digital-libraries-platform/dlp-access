@@ -24,6 +24,9 @@ export const searchObjects = /* GraphQL */ `
         custom_key
         description
         display_date
+        embargo_start_date
+        embargo_end_date
+        embargo_note
         end_date
         heirarchy_path
         id
@@ -121,6 +124,9 @@ export const fulltextCollections = /* GraphQL */ `
         custom_key
         description
         display_date
+        embargo_start_date
+        embargo_end_date
+        embargo_note
         end_date
         explicit_content
         heirarchy_path
@@ -188,6 +194,9 @@ export const fulltextArchives = /* GraphQL */ `
         description
         display_date
         download_link
+        embargo_start_date
+        embargo_end_date
+        embargo_note
         end_date
         explicit
         extent
@@ -258,6 +267,9 @@ export const getArchive = /* GraphQL */ `
       description
       display_date
       download_link
+      embargo_start_date
+      embargo_end_date
+      embargo_note
       end_date
       explicit
       extent
@@ -288,6 +300,9 @@ export const getArchive = /* GraphQL */ `
         custom_key
         description
         display_date
+        embargo_start_date
+        embargo_end_date
+        embargo_note
         end_date
         explicit_content
         heirarchy_path
@@ -389,6 +404,9 @@ export const listArchives = /* GraphQL */ `
         description
         display_date
         download_link
+        embargo_start_date
+        embargo_end_date
+        embargo_note
         end_date
         explicit
         extent
@@ -471,6 +489,9 @@ export const archiveByIdentifier = /* GraphQL */ `
         description
         display_date
         download_link
+        embargo_start_date
+        embargo_end_date
+        embargo_note
         end_date
         explicit
         extent
@@ -555,6 +576,9 @@ export const searchArchives = /* GraphQL */ `
         description
         display_date
         download_link
+        embargo_start_date
+        embargo_end_date
+        embargo_note
         end_date
         explicit
         extent
@@ -621,6 +645,9 @@ export const getCollection = /* GraphQL */ `
       custom_key
       description
       display_date
+      embargo_start_date
+      embargo_end_date
+      embargo_note
       end_date
       explicit_content
       heirarchy_path
@@ -641,6 +668,9 @@ export const getCollection = /* GraphQL */ `
         custom_key
         description
         display_date
+        embargo_start_date
+        embargo_end_date
+        embargo_note
         end_date
         explicit_content
         heirarchy_path
@@ -732,6 +762,9 @@ export const listCollections = /* GraphQL */ `
         custom_key
         description
         display_date
+        embargo_start_date
+        embargo_end_date
+        embargo_note
         end_date
         explicit_content
         heirarchy_path
@@ -790,6 +823,9 @@ export const collectionByIdentifier = /* GraphQL */ `
         custom_key
         description
         display_date
+        embargo_start_date
+        embargo_end_date
+        embargo_note
         end_date
         explicit_content
         heirarchy_path
@@ -850,6 +886,9 @@ export const searchCollections = /* GraphQL */ `
         custom_key
         description
         display_date
+        embargo_start_date
+        embargo_end_date
+        embargo_note
         end_date
         explicit_content
         heirarchy_path

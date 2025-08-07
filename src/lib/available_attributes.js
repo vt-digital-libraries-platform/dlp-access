@@ -111,7 +111,7 @@ export const archive_singleFields = [
   "project",
   "start_date",
   "title",
-  "thumbnail_path"
+  "thumbnail_url"
 ];
 
 export const collection_multiFields = [
@@ -138,7 +138,7 @@ export const collection_singleFields = [
   "project",
   "start_date",
   "title",
-  "thumbnail_path"
+  "thumbnail_url"
 ];
 
 export const csv_metadataFields = {
@@ -146,7 +146,7 @@ export const csv_metadataFields = {
     "parent_collection",
     "create_date",
     "modified_date",
-    "thumbnail_path",
+    "thumbnail_url",
     "custom_key",
     "alternative",
     "basis_of_record",
@@ -195,7 +195,7 @@ export const csv_metadataFields = {
     "parent_collection",
     "create_date",
     "modified_date",
-    "thumbnail_path",
+    "thumbnail_url",
     "custom_key",
     "ownerinfo",
     "bibliographic_citation",
