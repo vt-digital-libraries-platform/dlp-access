@@ -15,5 +15,5 @@ export const mock_collection = {
     podcast_links: ["https://amazon.com"],
     webFeed: "/public/sitecontent/text/podcasts/rss/9mrrrrrh.rss"
   }),
-  parent_collection: null
+  parent_collection_identifier: null
 };

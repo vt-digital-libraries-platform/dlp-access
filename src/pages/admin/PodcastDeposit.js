@@ -77,9 +77,7 @@ class PodcastDeposit extends Component {
       const sourceDetails = this.getSourceLinkDetails(item);
       const seasonDetails = this.getSeasonDetails(item);
       itemState = {
-        selectedCollectionID: item.parent_collection
-          ? item.parent_collection[0]
-          : null,
+        selectedCollectionID: item.collectionArchivesId,
         title: item.title || "",
         description: item.description || "",
         thumbnail_url: asset_urls.thumbnail_url || "",
@@ -297,7 +295,7 @@ class PodcastDeposit extends Component {
       ),
       language: ["en"],
       custom_key: customKey,
-      parent_collection: [selectedCollection.id],
+      collectionArchivesId: [selectedCollection.id],
       site_category: "podcasts",
       type: ["podcast"],
       visibility: !!this.state.formState.visibility,

@@ -47,47 +47,6 @@ export const createArchive = /* GraphQL */ `
       medium
       modified_date
       other_identifier
-      parent_collection {
-        asset_urls
-        bibliographic_citation
-        collectionOptions
-        collection_map
-        create_date
-        creator
-        custom_key
-        description
-        display_date
-        embargo_start_date
-        embargo_end_date
-        embargo_note
-        end_date
-        explicit_content
-        heirarchy_path
-        id
-        identifier
-        is_part_of
-        language
-        location
-        modified_date
-        ownerinfo
-        parent_collection_identifier
-        provenance
-        relation
-        rights_holder
-        rights
-        site_category
-        source
-        spatial
-        start_date
-        subject
-        title
-        visibility
-        createdAt
-        updatedAt
-        collectionSub_collectionsId
-        collectionSiteId
-        __typename
-      }
       parent_collection_identifier
       provenance
       publisher
@@ -96,28 +55,6 @@ export const createArchive = /* GraphQL */ `
       repository
       rights_holder
       rights
-      site {
-        analyticsID
-        assetBasePath
-        browseCollections
-        contact
-        displayedAttributes
-        groups
-        homePage
-        id
-        lang
-        miradorOptions
-        searchPage
-        siteColor
-        siteId
-        siteName
-        siteOptions
-        sitePages
-        siteTitle
-        createdAt
-        updatedAt
-        __typename
-      }
       site_category
       source
       spatial
@@ -131,7 +68,6 @@ export const createArchive = /* GraphQL */ `
       createdAt
       updatedAt
       collectionArchivesId
-      archiveSiteId
       __typename
     }
   }
@@ -182,47 +118,6 @@ export const updateArchive = /* GraphQL */ `
       medium
       modified_date
       other_identifier
-      parent_collection {
-        asset_urls
-        bibliographic_citation
-        collectionOptions
-        collection_map
-        create_date
-        creator
-        custom_key
-        description
-        display_date
-        embargo_start_date
-        embargo_end_date
-        embargo_note
-        end_date
-        explicit_content
-        heirarchy_path
-        id
-        identifier
-        is_part_of
-        language
-        location
-        modified_date
-        ownerinfo
-        parent_collection_identifier
-        provenance
-        relation
-        rights_holder
-        rights
-        site_category
-        source
-        spatial
-        start_date
-        subject
-        title
-        visibility
-        createdAt
-        updatedAt
-        collectionSub_collectionsId
-        collectionSiteId
-        __typename
-      }
       parent_collection_identifier
       provenance
       publisher
@@ -231,28 +126,6 @@ export const updateArchive = /* GraphQL */ `
       repository
       rights_holder
       rights
-      site {
-        analyticsID
-        assetBasePath
-        browseCollections
-        contact
-        displayedAttributes
-        groups
-        homePage
-        id
-        lang
-        miradorOptions
-        searchPage
-        siteColor
-        siteId
-        siteName
-        siteOptions
-        sitePages
-        siteTitle
-        createdAt
-        updatedAt
-        __typename
-      }
       site_category
       source
       spatial
@@ -266,7 +139,6 @@ export const updateArchive = /* GraphQL */ `
       createdAt
       updatedAt
       collectionArchivesId
-      archiveSiteId
       __typename
     }
   }
@@ -317,47 +189,6 @@ export const deleteArchive = /* GraphQL */ `
       medium
       modified_date
       other_identifier
-      parent_collection {
-        asset_urls
-        bibliographic_citation
-        collectionOptions
-        collection_map
-        create_date
-        creator
-        custom_key
-        description
-        display_date
-        embargo_start_date
-        embargo_end_date
-        embargo_note
-        end_date
-        explicit_content
-        heirarchy_path
-        id
-        identifier
-        is_part_of
-        language
-        location
-        modified_date
-        ownerinfo
-        parent_collection_identifier
-        provenance
-        relation
-        rights_holder
-        rights
-        site_category
-        source
-        spatial
-        start_date
-        subject
-        title
-        visibility
-        createdAt
-        updatedAt
-        collectionSub_collectionsId
-        collectionSiteId
-        __typename
-      }
       parent_collection_identifier
       provenance
       publisher
@@ -366,28 +197,6 @@ export const deleteArchive = /* GraphQL */ `
       repository
       rights_holder
       rights
-      site {
-        analyticsID
-        assetBasePath
-        browseCollections
-        contact
-        displayedAttributes
-        groups
-        homePage
-        id
-        lang
-        miradorOptions
-        searchPage
-        siteColor
-        siteId
-        siteName
-        siteOptions
-        sitePages
-        siteTitle
-        createdAt
-        updatedAt
-        __typename
-      }
       site_category
       source
       spatial
@@ -401,7 +210,6 @@ export const deleteArchive = /* GraphQL */ `
       createdAt
       updatedAt
       collectionArchivesId
-      archiveSiteId
       __typename
     }
   }
@@ -438,74 +246,11 @@ export const createCollection = /* GraphQL */ `
       location
       modified_date
       ownerinfo
-      parent_collection {
-        asset_urls
-        bibliographic_citation
-        collectionOptions
-        collection_map
-        create_date
-        creator
-        custom_key
-        description
-        display_date
-        embargo_start_date
-        embargo_end_date
-        embargo_note
-        end_date
-        explicit_content
-        heirarchy_path
-        id
-        identifier
-        is_part_of
-        language
-        location
-        modified_date
-        ownerinfo
-        parent_collection_identifier
-        provenance
-        relation
-        rights_holder
-        rights
-        site_category
-        source
-        spatial
-        start_date
-        subject
-        title
-        visibility
-        createdAt
-        updatedAt
-        collectionSub_collectionsId
-        collectionSiteId
-        __typename
-      }
       parent_collection_identifier
       provenance
       relation
       rights_holder
       rights
-      site {
-        analyticsID
-        assetBasePath
-        browseCollections
-        contact
-        displayedAttributes
-        groups
-        homePage
-        id
-        lang
-        miradorOptions
-        searchPage
-        siteColor
-        siteId
-        siteName
-        siteOptions
-        sitePages
-        siteTitle
-        createdAt
-        updatedAt
-        __typename
-      }
       site_category
       source
       spatial
@@ -520,7 +265,6 @@ export const createCollection = /* GraphQL */ `
       createdAt
       updatedAt
       collectionSub_collectionsId
-      collectionSiteId
       __typename
     }
   }
@@ -557,74 +301,11 @@ export const updateCollection = /* GraphQL */ `
       location
       modified_date
       ownerinfo
-      parent_collection {
-        asset_urls
-        bibliographic_citation
-        collectionOptions
-        collection_map
-        create_date
-        creator
-        custom_key
-        description
-        display_date
-        embargo_start_date
-        embargo_end_date
-        embargo_note
-        end_date
-        explicit_content
-        heirarchy_path
-        id
-        identifier
-        is_part_of
-        language
-        location
-        modified_date
-        ownerinfo
-        parent_collection_identifier
-        provenance
-        relation
-        rights_holder
-        rights
-        site_category
-        source
-        spatial
-        start_date
-        subject
-        title
-        visibility
-        createdAt
-        updatedAt
-        collectionSub_collectionsId
-        collectionSiteId
-        __typename
-      }
       parent_collection_identifier
       provenance
       relation
       rights_holder
       rights
-      site {
-        analyticsID
-        assetBasePath
-        browseCollections
-        contact
-        displayedAttributes
-        groups
-        homePage
-        id
-        lang
-        miradorOptions
-        searchPage
-        siteColor
-        siteId
-        siteName
-        siteOptions
-        sitePages
-        siteTitle
-        createdAt
-        updatedAt
-        __typename
-      }
       site_category
       source
       spatial
@@ -639,7 +320,6 @@ export const updateCollection = /* GraphQL */ `
       createdAt
       updatedAt
       collectionSub_collectionsId
-      collectionSiteId
       __typename
     }
   }
@@ -676,74 +356,11 @@ export const deleteCollection = /* GraphQL */ `
       location
       modified_date
       ownerinfo
-      parent_collection {
-        asset_urls
-        bibliographic_citation
-        collectionOptions
-        collection_map
-        create_date
-        creator
-        custom_key
-        description
-        display_date
-        embargo_start_date
-        embargo_end_date
-        embargo_note
-        end_date
-        explicit_content
-        heirarchy_path
-        id
-        identifier
-        is_part_of
-        language
-        location
-        modified_date
-        ownerinfo
-        parent_collection_identifier
-        provenance
-        relation
-        rights_holder
-        rights
-        site_category
-        source
-        spatial
-        start_date
-        subject
-        title
-        visibility
-        createdAt
-        updatedAt
-        collectionSub_collectionsId
-        collectionSiteId
-        __typename
-      }
       parent_collection_identifier
       provenance
       relation
       rights_holder
       rights
-      site {
-        analyticsID
-        assetBasePath
-        browseCollections
-        contact
-        displayedAttributes
-        groups
-        homePage
-        id
-        lang
-        miradorOptions
-        searchPage
-        siteColor
-        siteId
-        siteName
-        siteOptions
-        sitePages
-        siteTitle
-        createdAt
-        updatedAt
-        __typename
-      }
       site_category
       source
       spatial
@@ -758,7 +375,6 @@ export const deleteCollection = /* GraphQL */ `
       createdAt
       updatedAt
       collectionSub_collectionsId
-      collectionSiteId
       __typename
     }
   }

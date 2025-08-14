@@ -170,6 +170,7 @@ export function breadcrumbTitle(title) {
 }
 
 export function getCategory(item) {
+  console.log(item);
   return item.__typename.toLowerCase();
 }
 

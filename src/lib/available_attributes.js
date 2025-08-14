@@ -143,7 +143,7 @@ export const collection_singleFields = [
 
 export const csv_metadataFields = {
   archive: [
-    "parent_collection",
+    "parent_collection_identifier",
     "create_date",
     "modified_date",
     "thumbnail_url",
@@ -192,7 +192,7 @@ export const csv_metadataFields = {
     "visibility"
   ],
   collection: [
-    "parent_collection",
+    "parent_collection_identifier",
     "create_date",
     "modified_date",
     "thumbnail_url",

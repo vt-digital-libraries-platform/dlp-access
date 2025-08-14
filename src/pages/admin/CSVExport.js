@@ -130,7 +130,7 @@ function CSVExport() {
 
   const getLinks = () => {
     const links = allCollections.map((col) => {
-      if (col.parent_collection === null) {
+      if (col.parent_collection_identifier === null) {
         return (
           <div key={col.identifier}>
             <Checkbox

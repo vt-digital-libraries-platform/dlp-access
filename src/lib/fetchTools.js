@@ -223,14 +223,14 @@ export const fetchSearchResults = async (
   let collectionFilter = {
     site_category: { eq: REP_TYPE },
     visibility: { eq: true },
-    parent_collection: { exists: false }
+    parent_collection_identifier: { exists: false }
   };
   let objectFilter = {
     or: [
       {
         site_category: { eq: REP_TYPE },
         visibility: { eq: true },
-        parent_collection: { exists: false }
+        parent_collection_identifier: { exists: false }
       },
       {
         site_category: { eq: REP_TYPE },

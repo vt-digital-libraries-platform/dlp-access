@@ -118,7 +118,7 @@ const CollectionForm = React.memo((props) => {
         setOldCollection(editableCollection);
         setCollection(editableCollection);
         setCollectionId(item_id);
-        setTopLevelCollection(!item.parent_collection);
+        setTopLevelCollection(!item.parent_collection_identifier);
       } else {
         setError(`No item found for identifier: ${identifier}`);
       }

@@ -74,8 +74,7 @@ const ArchiveForm = React.memo((props) => {
         item = await getArchiveByIdentifier(identifier);
         setFullArchive(item);
         setError(null);
-
-        const collectionId = item.parent_collection[0];
+        const collectionId = item.collectionArchivesId;
         const parent = await fetchCollection(collectionId);
         setParentCollection(parent);
 
@@ -288,7 +287,6 @@ const ArchiveForm = React.memo((props) => {
       archive.heirarchy_path = selectedCollection.heirarchy_path;
       archive.custom_key = customKey;
       archive.project = siteContext.site.groups[0];
-      archive.parent_collection = selectedCollection.id;
       archive.collectionArchivesId = selectedCollection.id;
     } else {
       archive.collectionArchivesId = parentCollection.id;

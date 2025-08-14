@@ -68,7 +68,7 @@ export const CollectionsShowPage: FC<Props> = ({ site, customKey }) => {
           collection={collection}
           metadataTitle={metadataTitle()}
           collectionCustomKey={collectionCustomKey}
-          hasParentCollection={!!collection.parent_collection}
+          hasParentCollection={!!collection.parent_collection_identifier}
           viewOption={viewOption}
         />
       </div>
@@ -123,7 +123,7 @@ export const CollectionsShowPage: FC<Props> = ({ site, customKey }) => {
             media={
               collection.asset_urls ? JSON.parse(asset_urls).thumbnail : null
             }
-            hasParentCollection={!!collection.parent_collection}
+            hasParentCollection={!!collection.parent_collection_identifier}
           />
         ) : (
           <>
