@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { registerBuiltInLoaders } from "@babylonjs/loaders/dynamic";
 import * as BABYLON from "@babylonjs/core";
-import { GridMaterial } from "@babylonjs/materials/";
 import "../css/_3dViewer.scss";
 
 const BabylonElement = (props) => {
@@ -35,29 +34,37 @@ const BabylonElement = (props) => {
     });
   };
 
-  const createScene = async (canvas, engine, modelURL) => {
-    const AXES_LENGTH = 10;
+  const scaleModel = (
+    model,
+    modelDimensions,
+    modelMaxSize,
+    scaleFactor = null
+  ) => {
+    if (modelMaxSize > 1) {
+      model.scaling = new BABYLON.Vector3(
+        modelMaxSize / modelDimensions._x,
+        modelMaxSize / modelDimensions._y,
+        modelMaxSize / modelDimensions._z
+      );
+      model.bakeCurrentTransformIntoVertices();
+    }
+    if (scaleFactor) {
+      model.scaling = new BABYLON.Vector3(
+        scaleFactor,
+        scaleFactor,
+        scaleFactor
+      );
+      model.bakeCurrentTransformIntoVertices();
+    }
+  };
+
+  const createScene = async (canvas, engine, modelURL, scaleFactor = null) => {
+    const GROUND_DIAMETER = 100;
     const scene = new BABYLON.Scene(engine);
-    scene.environmentTexture = BABYLON.CubeTexture.CreateFromPrefilteredData(
-      props.env,
-      scene
-    );
-    const ground = BABYLON.MeshBuilder.CreateGround(
-      "ground",
-      { width: AXES_LENGTH, height: AXES_LENGTH, updatable: false },
-      scene
-    );
-    const grid = new GridMaterial("grid", scene);
-    grid.backFaceCulling = false;
-    grid.mainColor = BABYLON.Color3.White();
-    grid.lineColor = BABYLON.Color3.White();
-    grid.opacity = 0.25;
 
-    ground.material = grid;
-    ground.alwaysSelectAsActiveMesh = true;
-    ground.isPickable = false;
+    // Create the environment around the subject
+    addEnvironment(scene);
 
-    // scene.clearColor = new BABYLON.Color4(0,0,0,1);
     const model = await loadModel(scene, modelURL);
     const modelDimensions = model.ellipsoid;
     const modelMaxSize = Math.max(
@@ -65,8 +72,13 @@ const BabylonElement = (props) => {
       modelDimensions._y,
       modelDimensions._z
     );
+    scaleModel(model, modelDimensions, modelMaxSize, scaleFactor);
 
-    model.position = new BABYLON.Vector3(0, modelDimensions._y, 0);
+    const objectHoverHeight = modelDimensions._y / 4;
+    model.position = new BABYLON.Vector3(0, objectHoverHeight, 0);
+
+    createGround(scene, GROUND_DIAMETER, objectHoverHeight);
+
     const camera = new BABYLON.ArcRotateCamera(
       "camera",
       0,
@@ -81,9 +93,10 @@ const BabylonElement = (props) => {
     camera.setTarget(
       new BABYLON.Vector3(0, modelDimensions._y, modelMaxSize * 2)
     );
+    camera.speed = 0.25;
     camera.wheelPrecision = 100;
     camera.lowerRadiusLimit = modelMaxSize;
-    camera.upperRadiusLimit = modelMaxSize * 10;
+    camera.upperRadiusLimit = modelMaxSize * 3;
     camera.attachControl(canvas, true);
     camera.minZ = 0.1;
 
@@ -91,6 +104,68 @@ const BabylonElement = (props) => {
       camera.setTarget(model.position);
       scene.render();
     });
+  };
+
+  const addEnvironment = (scene) => {
+    createEnvironmentLight(scene);
+    createSkybox(scene);
+  };
+
+  const createEnvironmentLight = (scene) => {
+    scene.environmentTexture = BABYLON.CubeTexture.CreateFromPrefilteredData(
+      props.env,
+      scene
+    );
+  };
+
+  const createSkybox = (scene) => {
+    const skybox = BABYLON.MeshBuilder.CreateBox(
+      "skyBox",
+      { size: 100.0 },
+      scene
+    );
+    const skyboxMaterial = new BABYLON.StandardMaterial("skyBox", scene);
+    skyboxMaterial.backFaceCulling = false;
+    skyboxMaterial.disableLighting = true;
+    skybox.material = skyboxMaterial;
+    skybox.infiniteDistance = true;
+    skyboxMaterial.disableLighting = true;
+    const envTexture = new BABYLON.CubeTexture(
+      "https://s3.us-east-1.amazonaws.com/ingest-dev.img.cloud.lib.vt.edu/federated/3d/gltf/environments/dark/env",
+      scene
+    );
+
+    skyboxMaterial.reflectionTexture = envTexture;
+    skyboxMaterial.reflectionTexture.coordinatesMode =
+      BABYLON.Texture.SKYBOX_MODE;
+  };
+
+  const createGround = (scene, diameter, height) => {
+    createGroundObject(scene, diameter);
+  };
+
+  const createGroundObject = async (scene, scaleFactor) => {
+    const groundModel = await loadModel(
+      scene,
+      "https://d21nnzi4oh5qvs.cloudfront.net/federated/3d/gltf/environments/dark/3DPlatform.glb"
+    );
+
+    groundModel.scaling = new BABYLON.Vector3(
+      scaleFactor,
+      scaleFactor,
+      scaleFactor
+    );
+  };
+
+  const lightGroundObject = (scene, height) => {
+    const groundLight = new BABYLON.HemisphericLight(
+      "groundLight",
+      new BABYLON.Vector3(0, 0, 0),
+      scene
+    );
+    groundLight.position = new BABYLON.Vector3(0, height, 0);
+    groundLight.intensity = 1;
+    groundLight.diffuse = new BABYLON.Color3(1, 1, 1);
   };
 
   const createCanvas = (canvasWrapper) => {
@@ -114,7 +189,11 @@ const BabylonElement = (props) => {
       scene
     );
     const model = response.meshes[0];
-
+    for (const mesh of response.meshes) {
+      if (mesh.material) {
+        mesh.material.transparencyMode = BABYLON.Material.MATERIAL_OPAQUE;
+      }
+    }
     return model;
   };
 
@@ -124,7 +203,7 @@ const BabylonElement = (props) => {
     const canvas = createCanvas(canvasWrapper);
     const engine = new BABYLON.Engine(canvas, true);
 
-    createScene(canvas, engine, props.model);
+    createScene(canvas, engine, props.model, props.scaleFactor);
 
     addListeners(canvas, engine);
 
