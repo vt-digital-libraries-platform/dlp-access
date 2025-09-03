@@ -114,15 +114,17 @@ declare global {
   interface AssetUrls {
     iiif_manifest?: string | null;
     minerva_manifest?: string | null;
-    thumbnail_url?: string | null;
-    kaltura_url?: string | null;
-    img_url?: string | null;
-    pdf_url?: string | null;
-    threeD_url?: string | null;
-    threeD_config_url?: string | null;
-    threeD_env_url?: string | null;
-    audio_url?: string | null;
-    video_url?: string | null;
+    thumbnail?: string | null;
+    kaltura?: string | null;
+    img?: string | null;
+    pdf?: string | null;
+    x3d_config?: string | null;
+    x3d_src_img?: string | null;
+    gltf_obj?: string | null;
+    threeD_env?: string | null;
+    threeD_skybox?: string | null;
+    audio?: string | null;
+    video?: string | null;
   }
   interface PageContent {
     id: string;
