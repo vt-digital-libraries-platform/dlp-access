@@ -34,27 +34,9 @@ const BabylonElement = (props) => {
     });
   };
 
-  const scaleModel = (
-    model,
-    modelDimensions,
-    modelMaxSize,
-    scaleFactor = null
-  ) => {
-    if (modelMaxSize > 1) {
-      model.scaling = new BABYLON.Vector3(
-        modelMaxSize / modelDimensions._x,
-        modelMaxSize / modelDimensions._y,
-        modelMaxSize / modelDimensions._z
-      );
-      model.bakeCurrentTransformIntoVertices();
-    }
-    if (scaleFactor) {
-      model.scaling = new BABYLON.Vector3(
-        scaleFactor,
-        scaleFactor,
-        scaleFactor
-      );
-      model.bakeCurrentTransformIntoVertices();
+  const scaleModel = (model, scaleFactor = null) => {
+    for (const mesh of model.getChildMeshes()) {
+      mesh.scaling.scaleInPlace(scaleFactor || 1);
     }
   };
 
@@ -72,27 +54,23 @@ const BabylonElement = (props) => {
       modelDimensions._y,
       modelDimensions._z
     );
-    scaleModel(model, modelDimensions, modelMaxSize, scaleFactor);
+    scaleModel(model, scaleFactor);
 
-    const objectHoverHeight = modelDimensions._y / 4;
+    const objectHoverHeight = modelDimensions._y / 3;
     model.position = new BABYLON.Vector3(0, objectHoverHeight, 0);
 
-    createGround(scene, GROUND_DIAMETER, objectHoverHeight);
+    const groundModel = createGround(scene, GROUND_DIAMETER, objectHoverHeight);
+    groundModel.position = new BABYLON.Vector3(0, 0, 0);
 
     const camera = new BABYLON.ArcRotateCamera(
       "camera",
-      0,
-      modelDimensions._y,
-      modelMaxSize * 2,
-      new BABYLON.Vector3(0, modelDimensions._y, 0),
+      1.5,
+      1.5,
+      3,
+      new BABYLON.Vector3(0, modelDimensions._y / 2, 0),
       scene
     );
-    camera.setPosition(
-      new BABYLON.Vector3(0, modelDimensions._y, modelMaxSize * 2)
-    );
-    camera.setTarget(
-      new BABYLON.Vector3(0, modelDimensions._y, modelMaxSize * 2)
-    );
+
     camera.speed = 0.25;
     camera.wheelPrecision = 100;
     camera.lowerRadiusLimit = modelMaxSize;
@@ -101,7 +79,7 @@ const BabylonElement = (props) => {
     camera.minZ = 0.1;
 
     engine.runRenderLoop(function () {
-      camera.setTarget(model.position);
+      console.log("camera", camera.position);
       scene.render();
     });
   };
@@ -141,7 +119,7 @@ const BabylonElement = (props) => {
   };
 
   const createGround = (scene, diameter, height) => {
-    createGroundObject(scene, diameter);
+    return createGroundObject(scene, diameter);
   };
 
   const createGroundObject = async (scene, scaleFactor) => {
@@ -150,11 +128,10 @@ const BabylonElement = (props) => {
       "https://d21nnzi4oh5qvs.cloudfront.net/federated/3d/gltf/environments/dark/3DPlatform.glb"
     );
 
-    groundModel.scaling = new BABYLON.Vector3(
-      scaleFactor,
-      scaleFactor,
-      scaleFactor
-    );
+    for (const mesh of groundModel.getChildMeshes()) {
+      mesh.scaling.scaleInPlace(scaleFactor || 1);
+    }
+    return groundModel;
   };
 
   const lightGroundObject = (scene, height) => {
