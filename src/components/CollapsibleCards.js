@@ -39,6 +39,7 @@ const single_value_headers = [
 ];
 
 const multi_value_headers = [
+  "age",
   "alternative",
   "basis_of_record",
   "belongs_to",
@@ -237,7 +238,6 @@ export default function CollapsibleCard({
       "location",
       "visibility"
     ];
-
     return (
       <table style={{ width: "100%", borderCollapse: "collapse" }}>
         <tbody>

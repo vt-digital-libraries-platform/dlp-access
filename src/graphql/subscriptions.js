@@ -4,6 +4,7 @@
 export const onCreateArchive = /* GraphQL */ `
   subscription OnCreateArchive($filter: ModelSubscriptionArchiveFilterInput) {
     onCreateArchive(filter: $filter) {
+      age
       alternative
       archiveOptions
       basis_of_record
@@ -110,6 +111,7 @@ export const onCreateArchive = /* GraphQL */ `
 export const onUpdateArchive = /* GraphQL */ `
   subscription OnUpdateArchive($filter: ModelSubscriptionArchiveFilterInput) {
     onUpdateArchive(filter: $filter) {
+      age
       alternative
       archiveOptions
       basis_of_record
@@ -216,6 +218,7 @@ export const onUpdateArchive = /* GraphQL */ `
 export const onDeleteArchive = /* GraphQL */ `
   subscription OnDeleteArchive($filter: ModelSubscriptionArchiveFilterInput) {
     onDeleteArchive(filter: $filter) {
+      age
       alternative
       archiveOptions
       basis_of_record

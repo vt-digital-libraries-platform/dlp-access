@@ -79,7 +79,6 @@ const BabylonElement = (props) => {
     camera.minZ = 0.1;
 
     engine.runRenderLoop(function () {
-      console.log("camera", camera.position);
       scene.render();
     });
   };

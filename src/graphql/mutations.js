@@ -7,6 +7,7 @@ export const createArchive = /* GraphQL */ `
     $condition: ModelArchiveConditionInput
   ) {
     createArchive(input: $input, condition: $condition) {
+      age
       alternative
       archiveOptions
       basis_of_record
@@ -116,6 +117,7 @@ export const updateArchive = /* GraphQL */ `
     $condition: ModelArchiveConditionInput
   ) {
     updateArchive(input: $input, condition: $condition) {
+      age
       alternative
       archiveOptions
       basis_of_record
@@ -225,6 +227,7 @@ export const deleteArchive = /* GraphQL */ `
     $condition: ModelArchiveConditionInput
   ) {
     deleteArchive(input: $input, condition: $condition) {
+      age
       alternative
       archiveOptions
       basis_of_record

@@ -56,6 +56,7 @@ export const searchObjects = /* GraphQL */ `
           collectionCollectionmapId
         }
         ... on Archive {
+          age
           alternative
           archiveOptions
           basis_of_record
@@ -173,6 +174,7 @@ export const fulltextArchives = /* GraphQL */ `
       nextToken: $nextToken
     ) {
       items {
+        age
         alternative
         archiveOptions
         basis_of_record
@@ -245,6 +247,7 @@ export const fulltextArchives = /* GraphQL */ `
 export const getArchive = /* GraphQL */ `
   query GetArchive($id: ID!) {
     getArchive(id: $id) {
+      age
       alternative
       archiveOptions
       basis_of_record
@@ -356,6 +359,7 @@ export const listArchives = /* GraphQL */ `
   ) {
     listArchives(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
+        age
         alternative
         archiveOptions
         basis_of_record
@@ -440,6 +444,7 @@ export const archiveByIdentifier = /* GraphQL */ `
       nextToken: $nextToken
     ) {
       items {
+        age
         alternative
         archiveOptions
         basis_of_record
@@ -526,6 +531,7 @@ export const searchArchives = /* GraphQL */ `
       aggregates: $aggregates
     ) {
       items {
+        age
         alternative
         archiveOptions
         basis_of_record
