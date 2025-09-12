@@ -40,7 +40,13 @@ const BabylonElement = (props) => {
     }
   };
 
-  const createScene = async (canvas, engine, modelURL, scaleFactor = null) => {
+  const createScene = async (
+    canvas,
+    engine,
+    modelURL,
+    scaleFactor = null,
+    rotation = null
+  ) => {
     const GROUND_DIAMETER = 100;
     const scene = new BABYLON.Scene(engine);
 
@@ -64,8 +70,8 @@ const BabylonElement = (props) => {
 
     const camera = new BABYLON.ArcRotateCamera(
       "camera",
-      1.5,
-      1.5,
+      rotation?.horizontal || 1.5,
+      rotation?.vertical || 1.5,
       3,
       new BABYLON.Vector3(0, modelDimensions._y / 2, 0),
       scene
@@ -179,7 +185,7 @@ const BabylonElement = (props) => {
     const canvas = createCanvas(canvasWrapper);
     const engine = new BABYLON.Engine(canvas, true);
 
-    createScene(canvas, engine, props.model, props.scaleFactor);
+    createScene(canvas, engine, props.model, props.scaleFactor, props.rotation);
 
     addListeners(canvas, engine);
 

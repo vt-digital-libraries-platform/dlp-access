@@ -236,7 +236,7 @@ class ArchivePage extends Component {
       try {
         options = JSON.parse(item.archiveOptions);
       } catch (error) {
-        display = null;
+        console.log("Error parsing archive options", error);
       }
       // options.assets.env_config
       display = (
@@ -245,6 +245,7 @@ class ArchivePage extends Component {
             model={options.assets.gltf_config}
             env={options.assets.env_config}
             scaleFactor={options.assets.scale_factor}
+            rotation={options.assets.rotation}
             customKey={item.custom_key}
           />
         </div>
