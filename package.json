@@ -70,6 +70,7 @@
     "semantic-ui-react": "^2.1.4",
     "slick-carousel": "^1.8.1",
     "typescript": "^5.0.3",
+    "universalviewer": "^4.2.1",
     "uuid": "^9.0.0",
     "x3dom": "^1.8.2"
   },

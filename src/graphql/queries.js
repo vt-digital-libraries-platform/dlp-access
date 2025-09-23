@@ -534,6 +534,7 @@ export const searchArchives = /* GraphQL */ `
         age
         alternative
         archiveOptions
+        asset_urls
         basis_of_record
         bibliographic_citation
         conforms_to
