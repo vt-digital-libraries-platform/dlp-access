@@ -19018,8 +19018,221 @@
           "possibleTypes": null
         },
         {
+          "kind": "UNION",
+          "name": "SearchableAggregateGenericResult",
+          "description": null,
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": [
+            {
+              "kind": "OBJECT",
+              "name": "SearchableAggregateScalarResult",
+              "ofType": null
+            },
+            {
+              "kind": "OBJECT",
+              "name": "SearchableAggregateBucketResult",
+              "ofType": null
+            }
+          ]
+        },
+        {
+          "kind": "OBJECT",
+          "name": "SearchableAggregateScalarResult",
+          "description": null,
+          "fields": [
+            {
+              "name": "value",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Float",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "SCALAR",
+          "name": "Float",
+          "description": "Built-in Float",
+          "fields": null,
+          "inputFields": null,
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "SearchableAggregateBucketResult",
+          "description": null,
+          "fields": [
+            {
+              "name": "buckets",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "OBJECT",
+                  "name": "SearchableAggregateBucketResultItem",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "OBJECT",
+          "name": "SearchableAggregateBucketResultItem",
+          "description": null,
+          "fields": [
+            {
+              "name": "key",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
+            {
+              "name": "doc_count",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            }
+          ],
+          "inputFields": null,
+          "interfaces": [],
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
           "kind": "INPUT_OBJECT",
-          "name": "ModelSubscriptionFloatInput",
+          "name": "SearchableFloatFilterInput",
+          "description": null,
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "ne",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "gt",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "lt",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "gte",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "lte",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "eq",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Float",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "range",
+              "description": null,
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Float",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "ModelFloatInput",
           "description": null,
           "fields": null,
           "inputFields": [
@@ -19098,125 +19311,22 @@
               "defaultValue": null
             },
             {
-              "name": "in",
-              "description": null,
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "notIn",
-              "description": null,
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
-                  "ofType": null
-                }
-              },
-              "defaultValue": null
-            }
-          ],
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "SCALAR",
-          "name": "Float",
-          "description": "Built-in Float",
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "INPUT_OBJECT",
-          "name": "SearchableIntFilterInput",
-          "description": null,
-          "fields": null,
-          "inputFields": [
-            {
-              "name": "ne",
+              "name": "attributeExists",
               "description": null,
               "type": {
                 "kind": "SCALAR",
-                "name": "Int",
+                "name": "Boolean",
                 "ofType": null
               },
               "defaultValue": null
             },
             {
-              "name": "gt",
+              "name": "attributeType",
               "description": null,
               "type": {
-                "kind": "SCALAR",
-                "name": "Int",
+                "kind": "ENUM",
+                "name": "ModelAttributeTypes",
                 "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "lt",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "gte",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "lte",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "eq",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "Int",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "range",
-              "description": null,
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
               },
               "defaultValue": null
             }
@@ -19332,7 +19442,7 @@
         },
         {
           "kind": "INPUT_OBJECT",
-          "name": "ModelFloatInput",
+          "name": "ModelSubscriptionFloatInput",
           "description": null,
           "fields": null,
           "inputFields": [
@@ -19411,62 +19521,10 @@
               "defaultValue": null
             },
             {
-              "name": "attributeExists",
+              "name": "in",
               "description": null,
               "type": {
-                "kind": "SCALAR",
-                "name": "Boolean",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "attributeType",
-              "description": null,
-              "type": {
-                "kind": "ENUM",
-                "name": "ModelAttributeTypes",
-                "ofType": null
-              },
-              "defaultValue": null
-            }
-          ],
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "UNION",
-          "name": "SearchableAggregateGenericResult",
-          "description": null,
-          "fields": null,
-          "inputFields": null,
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": [
-            {
-              "kind": "OBJECT",
-              "name": "SearchableAggregateScalarResult",
-              "ofType": null
-            },
-            {
-              "kind": "OBJECT",
-              "name": "SearchableAggregateBucketResult",
-              "ofType": null
-            }
-          ]
-        },
-        {
-          "kind": "OBJECT",
-          "name": "SearchableAggregateScalarResult",
-          "description": null,
-          "fields": [
-            {
-              "name": "value",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
+                "kind": "LIST",
                 "name": null,
                 "ofType": {
                   "kind": "SCALAR",
@@ -19474,49 +19532,119 @@
                   "ofType": null
                 }
               },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "SearchableAggregateBucketResult",
-          "description": null,
-          "fields": [
+              "defaultValue": null
+            },
             {
-              "name": "buckets",
+              "name": "notIn",
               "description": null,
-              "args": [],
               "type": {
                 "kind": "LIST",
                 "name": null,
                 "ofType": {
-                  "kind": "OBJECT",
-                  "name": "SearchableAggregateBucketResultItem",
+                  "kind": "SCALAR",
+                  "name": "Float",
                   "ofType": null
                 }
               },
-              "isDeprecated": false,
-              "deprecationReason": null
+              "defaultValue": null
             }
           ],
-          "inputFields": null,
-          "interfaces": [],
+          "interfaces": null,
+          "enumValues": null,
+          "possibleTypes": null
+        },
+        {
+          "kind": "INPUT_OBJECT",
+          "name": "SearchableIntFilterInput",
+          "description": null,
+          "fields": null,
+          "inputFields": [
+            {
+              "name": "ne",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "gt",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "lt",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "gte",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "lte",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "eq",
+              "description": null,
+              "type": {
+                "kind": "SCALAR",
+                "name": "Int",
+                "ofType": null
+              },
+              "defaultValue": null
+            },
+            {
+              "name": "range",
+              "description": null,
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "Int",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ],
+          "interfaces": null,
           "enumValues": null,
           "possibleTypes": null
         },
         {
           "kind": "OBJECT",
-          "name": "SearchableAggregateBucketResultItem",
+          "name": "SearchableAggregateResult",
           "description": null,
           "fields": [
             {
-              "name": "key",
+              "name": "name",
               "description": null,
               "args": [],
               "type": {
@@ -19532,17 +19660,13 @@
               "deprecationReason": null
             },
             {
-              "name": "doc_count",
+              "name": "result",
               "description": null,
               "args": [],
               "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Int",
-                  "ofType": null
-                }
+                "kind": "UNION",
+                "name": "SearchableAggregateGenericResult",
+                "ofType": null
               },
               "isDeprecated": false,
               "deprecationReason": null
@@ -19656,130 +19780,6 @@
                 "ofType": {
                   "kind": "SCALAR",
                   "name": "Int",
-                  "ofType": null
-                }
-              },
-              "defaultValue": null
-            }
-          ],
-          "interfaces": null,
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "OBJECT",
-          "name": "SearchableAggregateResult",
-          "description": null,
-          "fields": [
-            {
-              "name": "name",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "NON_NULL",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            },
-            {
-              "name": "result",
-              "description": null,
-              "args": [],
-              "type": {
-                "kind": "UNION",
-                "name": "SearchableAggregateGenericResult",
-                "ofType": null
-              },
-              "isDeprecated": false,
-              "deprecationReason": null
-            }
-          ],
-          "inputFields": null,
-          "interfaces": [],
-          "enumValues": null,
-          "possibleTypes": null
-        },
-        {
-          "kind": "INPUT_OBJECT",
-          "name": "SearchableFloatFilterInput",
-          "description": null,
-          "fields": null,
-          "inputFields": [
-            {
-              "name": "ne",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "gt",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "lt",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "gte",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "lte",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "eq",
-              "description": null,
-              "type": {
-                "kind": "SCALAR",
-                "name": "Float",
-                "ofType": null
-              },
-              "defaultValue": null
-            },
-            {
-              "name": "range",
-              "description": null,
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "Float",
                   "ofType": null
                 }
               },
@@ -20662,6 +20662,87 @@
           "onField": true
         },
         {
+          "name": "aws_api_key",
+          "description": "Tells the service this field/object has access authorized by an API key.",
+          "locations": ["OBJECT", "FIELD_DEFINITION"],
+          "args": [],
+          "onOperation": false,
+          "onFragment": false,
+          "onField": false
+        },
+        {
+          "name": "aws_publish",
+          "description": "Tells the service which subscriptions will be published to when this mutation is called. This directive is deprecated use @aws_susbscribe directive instead.",
+          "locations": ["FIELD_DEFINITION"],
+          "args": [
+            {
+              "name": "subscriptions",
+              "description": "List of subscriptions which will be published to when this mutation is called.",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ],
+          "onOperation": false,
+          "onFragment": false,
+          "onField": false
+        },
+        {
+          "name": "aws_auth",
+          "description": "Directs the schema to enforce authorization on a field",
+          "locations": ["FIELD_DEFINITION"],
+          "args": [
+            {
+              "name": "cognito_groups",
+              "description": "List of cognito user pool groups which have access on this field",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ],
+          "onOperation": false,
+          "onFragment": false,
+          "onField": false
+        },
+        {
+          "name": "aws_subscribe",
+          "description": "Tells the service which mutation triggers this subscription.",
+          "locations": ["FIELD_DEFINITION"],
+          "args": [
+            {
+              "name": "mutations",
+              "description": "List of mutations which will trigger this subscription when they are called.",
+              "type": {
+                "kind": "LIST",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "defaultValue": null
+            }
+          ],
+          "onOperation": false,
+          "onFragment": false,
+          "onField": false
+        },
+        {
           "name": "aws_cognito_user_pools",
           "description": "Tells the service this field/object has access authorized by a Cognito User Pools token.",
           "locations": ["OBJECT", "FIELD_DEFINITION"],
@@ -20706,25 +20787,10 @@
           "onField": false
         },
         {
-          "name": "aws_auth",
-          "description": "Directs the schema to enforce authorization on a field",
-          "locations": ["FIELD_DEFINITION"],
-          "args": [
-            {
-              "name": "cognito_groups",
-              "description": "List of cognito user pool groups which have access on this field",
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              },
-              "defaultValue": null
-            }
-          ],
+          "name": "aws_oidc",
+          "description": "Tells the service this field/object has access authorized by an OIDC token.",
+          "locations": ["OBJECT", "FIELD_DEFINITION"],
+          "args": [],
           "onOperation": false,
           "onFragment": false,
           "onField": false
@@ -20732,72 +20798,6 @@
         {
           "name": "aws_iam",
           "description": "Tells the service this field/object has access authorized by sigv4 signing.",
-          "locations": ["OBJECT", "FIELD_DEFINITION"],
-          "args": [],
-          "onOperation": false,
-          "onFragment": false,
-          "onField": false
-        },
-        {
-          "name": "aws_subscribe",
-          "description": "Tells the service which mutation triggers this subscription.",
-          "locations": ["FIELD_DEFINITION"],
-          "args": [
-            {
-              "name": "mutations",
-              "description": "List of mutations which will trigger this subscription when they are called.",
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              },
-              "defaultValue": null
-            }
-          ],
-          "onOperation": false,
-          "onFragment": false,
-          "onField": false
-        },
-        {
-          "name": "aws_publish",
-          "description": "Tells the service which subscriptions will be published to when this mutation is called. This directive is deprecated use @aws_susbscribe directive instead.",
-          "locations": ["FIELD_DEFINITION"],
-          "args": [
-            {
-              "name": "subscriptions",
-              "description": "List of subscriptions which will be published to when this mutation is called.",
-              "type": {
-                "kind": "LIST",
-                "name": null,
-                "ofType": {
-                  "kind": "SCALAR",
-                  "name": "String",
-                  "ofType": null
-                }
-              },
-              "defaultValue": null
-            }
-          ],
-          "onOperation": false,
-          "onFragment": false,
-          "onField": false
-        },
-        {
-          "name": "aws_api_key",
-          "description": "Tells the service this field/object has access authorized by an API key.",
-          "locations": ["OBJECT", "FIELD_DEFINITION"],
-          "args": [],
-          "onOperation": false,
-          "onFragment": false,
-          "onField": false
-        },
-        {
-          "name": "aws_oidc",
-          "description": "Tells the service this field/object has access authorized by an OIDC token.",
           "locations": ["OBJECT", "FIELD_DEFINITION"],
           "args": [],
           "onOperation": false,

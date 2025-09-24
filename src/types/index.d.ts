@@ -8,6 +8,7 @@ declare global {
   interface Archive {
     alternative: string[] | null;
     archiveOptions: string | null;
+    asset_urls: string | null;
     basis_of_record: string[] | null;
     bibliographic_citation: string[] | null;
     conforms_to: string[] | null;

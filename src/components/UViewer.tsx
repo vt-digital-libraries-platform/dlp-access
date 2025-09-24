@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-import "../../public/css/uv/uv.css";
 
 interface Props {
   manifestUrl: string;
