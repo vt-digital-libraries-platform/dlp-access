@@ -1,37 +1,32 @@
-import React, { Component } from "react";
-import { Helmet } from "react-helmet";
 import { API, graphqlOperation } from "aws-amplify";
-import PDFViewer from "../../components/PDFViewer";
-import { KalturaPlayer } from "../../components/KalturaPlayer";
-import { MinervaPlayer } from "../../components/MinervaPlayer";
-import MiradorViewer from "../../components/MiradorViewer";
+import { Component } from "react";
 import { OBJModel } from "react-3d-viewer";
-import { ThreeD2DiiifHandler } from "../../components/ThreeD2DiiifHandler";
-import { MediaElement } from "../../components/MediaElement";
-import SearchBar from "../../components/SearchBar";
+import ReactGA from "react-ga4";
+import { Helmet } from "react-helmet";
+import BabylonElement from "src/components/BabylonElement";
+import UViewer from "src/components/UViewer";
 import Breadcrumbs from "../../components/Breadcrumbs.js";
+import CollapsibleCard from "../../components/CollapsibleCards";
+import { KalturaPlayer } from "../../components/KalturaPlayer";
+import { MediaElement } from "../../components/MediaElement";
+import { MinervaPlayer } from "../../components/MinervaPlayer";
+import MtlElement from "../../components/MtlElement";
+import PDFViewer from "../../components/PDFViewer";
+import RelatedItems from "../../components/RelatedItems";
+import SearchBar from "../../components/SearchBar";
 import SiteTitle from "../../components/SiteTitle";
-import {
-  RenderItemsDetailed,
-  addNewlineInDesc
-} from "../../lib/MetadataRenderer";
+import { ThreeD2DiiifHandler } from "../../components/ThreeD2DiiifHandler";
+import { Thumbnail } from "../../components/Thumbnail";
+import X3DElement from "../../components/X3DElement";
+import "../../css/ArchivePage.scss";
+import { searchArchives } from "../../graphql/queries";
+import { addNewlineInDesc } from "../../lib/MetadataRenderer";
 import {
   fetchLanguages,
   getTopLevelParentForCollection
 } from "../../lib/fetchTools";
 import { buildRichSchema } from "../../lib/richSchemaTools";
-import { searchArchives } from "../../graphql/queries";
-import RelatedItems from "../../components/RelatedItems";
-import { Thumbnail } from "../../components/Thumbnail";
-import MtlElement from "../../components/MtlElement";
-import X3DElement from "../../components/X3DElement";
-import SocialButtons from "../../components/SocialButtons";
-import ReactGA from "react-ga4";
-import CollapsibleCard from "../../components/CollapsibleCards";
-
-import "../../css/ArchivePage.scss";
 import { NotFound } from "../NotFound";
-import BabylonElement from "src/components/BabylonElement";
 
 class ArchivePage extends Component {
   constructor(props) {
@@ -260,7 +255,9 @@ class ArchivePage extends Component {
         />
       );
     } else if (this.isMiradorURL(item.manifest_url, item)) {
-      display = <MiradorViewer item={item} site={this.props.site} />;
+      // display = <MiradorViewer item={item} site={this.props.site} />;
+      // replaced with UV:
+      display = <UViewer manifestUrl={item.manifest_url} />;
     } else if (this.isMinervaURL(item.manifest_url)) {
       display = <MinervaPlayer item={item} site={this.props.site} />;
     } else if (this.isImgURL(item.manifest_url)) {

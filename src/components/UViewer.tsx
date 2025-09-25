@@ -1,4 +1,5 @@
 import { useEffect, useRef } from "react";
+import "universalviewer/dist/esm/index.css";
 
 interface Props {
   manifestUrl: string;
@@ -9,7 +10,6 @@ interface Props {
 
 const UViewer = ({ manifestUrl, maxPxHeight, config, className }: Props) => {
   const uvContainerRef = useRef<HTMLDivElement | null>(null);
-  const uvInstanceRef = useRef(null);
 
   useEffect(() => {
     const initViewer = async () => {
@@ -17,19 +17,23 @@ const UViewer = ({ manifestUrl, maxPxHeight, config, className }: Props) => {
       if (!uvContainerRef.current) return;
       const data = {
         manifest: manifestUrl,
+        embedded: true,
         ...(config ? { config } : {})
       };
-      uvInstanceRef.current = init(uvContainerRef.current, data);
+      const uv = init(uvContainerRef.current, data);
+      // uv.on("configure", ({ cb }: any) =>
+      //   cb({ options: { rightPanelEnabled: false } })
+      // );
     };
     initViewer();
   }, [manifestUrl, config]);
   return (
     <div
-      className={className}
+      className={`uv ${className}`}
       ref={uvContainerRef}
       style={{
         width: "100%",
-        height: maxPxHeight ? `${maxPxHeight}px` : "100vh"
+        height: maxPxHeight ? `${maxPxHeight}px` : "87vh"
       }}
     />
   );
