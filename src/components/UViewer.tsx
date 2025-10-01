@@ -24,6 +24,9 @@ const UViewer = ({ manifestUrl, maxPxHeight, config, className }: Props) => {
       // uv.on("configure", ({ cb }: any) =>
       //   cb({ options: { rightPanelEnabled: false } })
       // );
+      return () => {
+        uv.dispose();
+      };
     };
     initViewer();
   }, [manifestUrl, config]);
