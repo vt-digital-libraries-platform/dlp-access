@@ -23,7 +23,32 @@ const UViewer = ({ manifestUrl, maxPxHeight, config, className }: Props) => {
     };
     const uv = (window as any).UV.init(uvContainerRef.current, data);
     uv.on("configure", ({ cb }: any) =>
-      cb({ options: { rightPanelEnabled: false } })
+      cb({
+        options: {
+          rightPanelEnabled: false
+        },
+        modules: {
+          openSeadragonCenterPanel: {
+            options: {
+              animationTime: 1,
+              autoHideControls: true,
+              requiredStatementEnabled: true,
+              blendTime: 0,
+              constrainDuringPan: false,
+              controlsFadeAfterInactive: 1500,
+              controlsFadeDelay: 250,
+              controlsFadeLength: 250,
+              defaultZoomLevel: 0,
+              immediateRender: false,
+              maxZoomPixelRatio: 1.25,
+              pageGap: 50,
+              showHomeControl: false,
+              trimAttributionCount: 150,
+              visibilityRatio: 0.5
+            }
+          }
+        }
+      })
     );
     return () => {
       try {
