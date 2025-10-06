@@ -1,0 +1,78 @@
+{
+  "@context": "http://iiif.io/api/presentation/3/context.json",
+  "@id": "https://d21nnzi4oh5qvs.cloudfront.net/federated/universal_viewer_test/UVTEST002/manifest.json",
+  "@type": "sc:Manifest",
+  "label": {
+    "en": [
+      "REAL LEADERSHIP FOR RURAL AMERICA"
+    ]
+  },
+  "metadata": [
+    {
+      "label": { "en": ["Date"] },
+      "value": { "en": ["2007-10-16"] }
+    },
+    {
+      "label": { "en": ["Description"] },
+      "value": {
+        "en": ["PDF Test record."]
+      }
+    },
+    {
+      "label": { "en": ["Pages"] },
+      "value": { "en": ["15"] }
+    },
+    {
+      "label": { "en": ["Subject"] },
+      "value": { "en": ["Policy", "Rural development", "United States"] }
+    },
+    {
+      "label": { "en": ["Language"] },
+      "value": { "en": ["English"] }
+    },
+    {
+      "label": { "en": ["Format (MIME)"] },
+      "value": { "en": ["application/pdf"] }
+    }
+  ],
+  "thumbnail": {
+    "@id": "https://d21nnzi4oh5qvs.cloudfront.net/federated/universal_viewer_test/UVTEST002/Ms2021-048_74_usb_001_thumbnail.jpg",
+    "@type": "dctypes:Image"
+  },
+  "items": [
+    {
+      "id": "https://d21nnzi4oh5qvs.cloudfront.net/iiif/manifest/UVTEST002/canvas/1",
+      "type": "Canvas",
+      "label": { "en": ["PDF"] },
+      "width": 1000,
+      "height": 1414,
+      "items": [
+        {
+          "id": "https://d21nnzi4oh5qvs.cloudfront.net/iiif/manifest/UVTEST002/page/1",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://d21nnzi4oh5qvs.cloudfront.net/iiif/manifest/UVTEST002/anno/painting",
+              "type": "Annotation",
+              "motivation": "painting",
+              "target": "https://d21nnzi4oh5qvs.cloudfront.net/iiif/manifest/UVTEST002/canvas/1",
+              "body": {
+                "id": "https://d21nnzi4oh5qvs.cloudfront.net/federated/universal_viewer_test/UVTEST002/Ms2021-048_74_usb_001.pdf",
+                "type": "Text",
+                "format": "application/pdf"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "rendering": [
+    {
+      "id": "https://d21nnzi4oh5qvs.cloudfront.net/federated/universal_viewer_test/UVTEST002/Ms2021-048_74_usb_001.pdf",
+      "type": "Text",
+      "label": { "en": ["Download PDF"] },
+      "format": "application/pdf"
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "@context": "http://iiif.io/api/presentation/2/context.json",
+  "@id": "https://d21nnzi4oh5qvs.cloudfront.net/federated/universal_viewer_test/UVTEST001/manifest.json",
+  "@type": "sc:Manifest",
+  "label": "Boucher Recieves Award",
+  "description": "Boucher was awarded Legislator of the Year by the Congressional Fire Services Institute (CFSI)",
+  "thumbnail": {
+    "@id": "https://d21nnzi4oh5qvs.cloudfront.net/federated/universal_viewer_test/tiles/UVTEST001-1/full/250,/0/default.jpg",
+    "@type": "dctypes:Image",
+    "service": {
+      "@context": "http://iiif.io/api/image/2/context.json",
+      "@id": "https://d21nnzi4oh5qvs.cloudfront.net/federated/universal_viewer_test/tiles/UVTEST001-1",
+      "profile": "http://iiif.io/api/image/2/level0.json",
+      "protocol": "http://iiif.io/api/image",
+      "width": 250,
+      "height": 179,
+      "sizes": [{ "width": 250, "height": 179 }]
+    }
+  },
+  "viewingDirection": "left-to-right",
+  "viewingHint": "individuals",
+  "sequences": [
+    {
+      "@id": "https://d21nnzi4oh5qvs.cloudfront.net/federated/universal_viewer_test/UVTEST001/sequence/default.json",
+      "@type": "sc:Sequence",
+      "canvases": [
+        {
+          "@type": "sc:Canvas",
+          "@id": "https://d21nnzi4oh5qvs.cloudfront.net/federated/universal_viewer_test/UVTEST001/canvas/p1.json",
+          "label": "Page 1",
+          "width": 2758,
+          "height": 1973,
+          "thumbnail": {
+            "@id": "https://d21nnzi4oh5qvs.cloudfront.net/federated/universal_viewer_test/tiles/UVTEST001-1/full/250,/0/default.jpg",
+            "@type": "dctypes:Image",
+            "service": {
+              "@context": "http://iiif.io/api/image/2/context.json",
+              "@id": "https://d21nnzi4oh5qvs.cloudfront.net/federated/universal_viewer_test/tiles/UVTEST001-1",
+              "profile": "http://iiif.io/api/image/2/level0.json",
+              "protocol": "http://iiif.io/api/image",
+              "width": 250,
+              "height": 179,
+              "sizes": [{ "width": 250, "height": 179 }]
+            }
+          },
+          "images": [
+            {
+              "@type": "oa:Annotation",
+              "@id": "https://d21nnzi4oh5qvs.cloudfront.net/federated/universal_viewer_test/UVTEST001/annotation/p1.json",
+              "motivation": "sc:painting",
+              "resource": {
+                "@id": "https://d21nnzi4oh5qvs.cloudfront.net/federated/universal_viewer_test/tiles/UVTEST001-1/full/full/0/default.jpg",
+                "@type": "dcterms:Image",
+                "format": "image/jpeg",
+                "service": {
+                  "@context": "http://iiif.io/api/image/2/context.json",
+                  "@id": "https://d21nnzi4oh5qvs.cloudfront.net/federated/universal_viewer_test/tiles/UVTEST001-1",
+                  "profile": "http://iiif.io/api/image/2/level0.json"
+                },
+                "width": 2758,
+                "height": 1973
+              },
+              "on": "https://d21nnzi4oh5qvs.cloudfront.net/federated/universal_viewer_test/UVTEST001/canvas/p1.json"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

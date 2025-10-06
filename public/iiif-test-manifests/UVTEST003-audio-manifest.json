@@ -1,0 +1,87 @@
+{
+  "@context": "http://iiif.io/api/presentation/3/context.json",
+  "@id": "https://d21nnzi4oh5qvs.cloudfront.net/federated/universal_viewer_test/UVTEST003/manifest.json",
+  "type": "Manifest",
+  "label": {
+    "en": ["Oral History Interview: Frederick “Rick” Boucher"]
+  },
+  "metadata": [
+    {
+      "label": { "en": ["Description"] },
+      "value": {
+        "en": ["Audio Test record."]
+      }
+    },
+    {
+      "label": { "en": ["Narrator"] },
+      "value": { "en": ["Frederick “Rick” Boucher"] }
+    },
+    { "label": { "en": ["Interviewer"] }, "value": { "en": ["Ren Harman"] } },
+    {
+      "label": { "en": ["Language"] },
+      "value": { "en": ["English"] }
+    },
+    {
+      "label": { "en": ["Subject"] },
+      "value": {
+        "en": [
+          "Virginia politics",
+          "Oil and gas regulation; Coal and Gas Act",
+          "Uranium mining moratorium"
+        ]
+      }
+    },
+    {
+      "label": { "en": ["Format (MIME)"] },
+      "value": {
+        "en": ["audio/mpeg (recording)"]
+      }
+    },
+    { "label": { "en": ["Date"] }, "value": { "en": ["2023-10-25"] } }
+  ],
+  "thumbnail": {
+    "@id": "https://d21nnzi4oh5qvs.cloudfront.net/federated/Ms2021-048/tiles/Ms2021-048_75_002_110-1/full/174,/0/default.jpg",
+    "@type": "dctypes:Image"
+  },
+  "items": [
+    {
+      "id": "https://d21nnzi4oh5qvs.cloudfront.net/iiif/manifest/UVTEST003/canvas",
+      "type": "Canvas",
+      "duration": 4638,
+      "items": [
+        {
+          "id": "https://d21nnzi4oh5qvs.cloudfront.net/iiif/manifest/UVTEST003/canvas/1",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://d21nnzi4oh5qvs.cloudfront.net/iiif/manifest/UVTEST003/canvas/1/annotation",
+              "type": "Annotation",
+              "motivation": "painting",
+              "body": {
+                "id": "https://d21nnzi4oh5qvs.cloudfront.net/federated/universal_viewer_test/UVTEST003/Ms2021-048_RickBoucher-2.mp3",
+                "type": "Sound",
+                "format": "audio/mp3",
+                "duration": 4638
+              },
+              "target": "https://d21nnzi4oh5qvs.cloudfront.net/iiif/manifest/UVTEST003/canvas"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "rendering": [
+    {
+      "id": "https://d21nnzi4oh5qvs.cloudfront.net/federated/universal_viewer_test/UVTEST003/Ms2021-048_RickBoucher-2.mp3",
+      "type": "Text",
+      "label": { "en": ["Download mp3"] },
+      "format": "audio/mp3"
+    },
+    {
+      "id": "https://d21nnzi4oh5qvs.cloudfront.net/federated/universal_viewer_test/UVTEST003/Ms2021-048_Boucher_Rick-2_2023_10_25_fd.docx",
+      "type": "Text",
+      "label": { "en": ["Download transcript"] },
+      "format": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+    }
+  ]
+}
