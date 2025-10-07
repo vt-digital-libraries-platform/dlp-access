@@ -1,0 +1,129 @@
+{
+  "@context": "http://iiif.io/api/presentation/3/context.json",
+  "@id": "https://d21nnzi4oh5qvs.cloudfront.net/federated/universal_viewer_test/UVTEST005/manifest.json",
+  "type": "Manifest",
+  "label": {
+    "en": ["Oral History Interview: Frederick “Rick” Boucher"]
+  },
+  "metadata": [
+    {
+      "label": { "en": ["Description"] },
+      "value": {
+        "en": ["Audio Test record."]
+      }
+    },
+    {
+      "label": { "en": ["Narrator"] },
+      "value": { "en": ["Frederick “Rick” Boucher"] }
+    },
+    { "label": { "en": ["Interviewer"] }, "value": { "en": ["Ren Harman"] } },
+    {
+      "label": { "en": ["Language"] },
+      "value": { "en": ["English"] }
+    },
+    {
+      "label": { "en": ["Subject"] },
+      "value": {
+        "en": [
+          "Virginia politics",
+          "Oil and gas regulation; Coal and Gas Act",
+          "Uranium mining moratorium"
+        ]
+      }
+    },
+    {
+      "label": { "en": ["Format (MIME)"] },
+      "value": {
+        "en": ["audio/mpeg (recording)"]
+      }
+    },
+    { "label": { "en": ["Date"] }, "value": { "en": ["2023-10-25"] } }
+  ],
+  "rendering": [
+    {
+      "id": "https://d21nnzi4oh5qvs.cloudfront.net/federated/universal_viewer_test/UVTEST005/Ms2021-048_RickBoucher-2.mp3",
+      "type": "Text",
+      "label": { "en": ["MP3"] },
+      "format": "audio/mp3"
+    },
+    {
+      "id": "https://d21nnzi4oh5qvs.cloudfront.net/federated/universal_viewer_test/UVTEST005/Ms2021-048-RickBoucher-test-transcription.srt",
+      "type": "Text",
+      "label": { "en": ["SRT transcript"] },
+      "format": "application/x-subrip"
+    },
+    {
+      "id": "https://s3.us-east-1.amazonaws.com/ingest-dev.img.cloud.lib.vt.edu/federated/universal_viewer_test/UVTEST005/Ms2021-048-RickBoucher-test-transcription.vtt",
+      "type": "Text",
+      "label": { "en": ["VTT transcript"] },
+      "format": "text/vtt"
+    }
+  ],
+  "thumbnail": {
+    "@id": "https://d21nnzi4oh5qvs.cloudfront.net/federated/Ms2021-048/tiles/Ms2021-048_75_002_110-1/full/174,/0/default.jpg",
+    "@type": "dctypes:Image"
+  },
+  "items": [
+    {
+      "id": "https://d21nnzi4oh5qvs.cloudfront.net/iiif/manifest/UVTEST005/canvas/1",
+      "type": "Canvas",
+      "duration": 4638,
+      "items": [
+        {
+          "id": "https://d21nnzi4oh5qvs.cloudfront.net/iiif/manifest/UVTEST005/canvas/1/page",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://d21nnzi4oh5qvs.cloudfront.net/iiif/manifest/UVTEST005/canvas/1/page/annotation",
+              "type": "Annotation",
+              "motivation": "painting",
+              "body": {
+                "id": "https://d21nnzi4oh5qvs.cloudfront.net/federated/universal_viewer_test/UVTEST005/Ms2021-048_RickBoucher-2.mp3",
+                "type": "Sound",
+                "format": "audio/mp3",
+                "duration": 4638
+              },
+              "target": "https://d21nnzi4oh5qvs.cloudfront.net/iiif/manifest/UVTEST005/canvas/1"
+            }
+          ]
+        }
+      ],
+      "annotations": [
+        {
+          "id": "https://d21nnzi4oh5qvs.cloudfront.net/iiif/manifest/UVTEST005/canvas/1/page/2",
+          "type": "AnnotationPage",
+          "items": [
+            {
+              "id": "https://d21nnzi4oh5qvs.cloudfront.net/iiif/manifest/UVTEST005/canvas/1/annotation/webvtt",
+              "type": "Annotation",
+              "motivation": "supplementing",
+              "body": {
+                "id": "https://s3.us-east-1.amazonaws.com/ingest-dev.img.cloud.lib.vt.edu/federated/universal_viewer_test/UVTEST005/Ms2021-048-RickBoucher-test-transcription.vtt",
+                "type": "Text",
+                "format": "text/vtt",
+                "label": {
+                  "en": ["WebVTT Transcript (machine-generated)"]
+                }
+              },
+              "target": "https://d21nnzi4oh5qvs.cloudfront.net/iiif/manifest/UVTEST005/canvas/1"
+            },
+            {
+              "id": "https://d21nnzi4oh5qvs.cloudfront.net/iiif/manifest/UVTEST005/canvas/1/annotation/srt",
+              "type": "Annotation",
+              "motivation": "supplementing",
+              "body": {
+                "id": "https://d21nnzi4oh5qvs.cloudfront.net/federated/universal_viewer_test/UVTEST005/Ms2021-048-RickBoucher-test-transcription.srt",
+                "type": "Text",
+                "format": "application/x-subrip",
+                "label": {
+                  "en": ["SRT Transcript (machine-generated)"]
+                }
+              },
+              "target": "https://d21nnzi4oh5qvs.cloudfront.net/iiif/manifest/UVTEST005/canvas/1"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
