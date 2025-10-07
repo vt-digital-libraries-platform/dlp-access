@@ -26,7 +26,7 @@ Amplify.configure(config);
 
 const container = document.getElementById("root");
 const root = ReactDOMClient.createRoot(container);
-console.log(cognitoAuthConfig);
+
 root.render(
   <BrowserRouter>
     <AuthProvider {...cognitoAuthConfig}>
