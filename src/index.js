@@ -17,7 +17,7 @@ import "semantic-ui-css/semantic.min.css";
 const cognitoAuthConfig = {
   authority: "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_wy1lPpMYt",
   client_id: "54bpum4j5m2l69cisr6k6grj66",
-  redirect_uri: "https://oidc-test.d1n265krqy0ld3.amplifyapp.com/sso-test",
+  redirect_uri: "https://oidc-test.d1n265krqy0ld3.amplifyapp.com/sso-test/",
   response_type: "code",
   scope: "openid"
 };
