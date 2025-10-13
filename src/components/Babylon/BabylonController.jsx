@@ -87,7 +87,7 @@ class BabylonController {
     });
   }
 
-  createUniversalCamera() {
+  createUniversalCamera(position, rotation) {
     const camera = new BABYLON.UniversalCamera(
       "UniversalCamera",
       new BABYLON.Vector3(0, 0.75, 0.5),
@@ -115,7 +115,7 @@ class BabylonController {
     return camera;
   }
 
-  createArcRotateCamera() {
+  createArcRotateCamera(position, rotation) {
     const camera = new BABYLON.ArcRotateCamera(
       "arcCamera",
       this.options.rotation?.horizontal || Math.PI / 2,
@@ -146,11 +146,13 @@ class BabylonController {
     }
   }
 
-  switchCamera(newCamera, currentCamera = null) {
+  switchCamera(newCamera, currentCamera) {
+    console.clear();
+    console.log(this.scene.activeCamera.position);
     if (currentCamera) {
       this.scene.activeCamera.detachControl(this.canvas);
-      newCamera.position = currentCamera.position;
-      newCamera.rotation = currentCamera.rotation;
+      newCamera.position = this.scene.activeCamera.position;
+      newCamera.rotation = this.scene.activeCamera.rotation;
     }
     this.scene.activeCamera = newCamera;
     this.attachControl(newCamera);
