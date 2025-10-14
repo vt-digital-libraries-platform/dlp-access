@@ -261,6 +261,8 @@ class BabylonController {
     canvas.style.width = "100%";
     canvas.style.height = "100%";
     canvas.id = "three-d-canvas";
+    canvas.setAttribute("aria-label", this.options?.title || "3d model");
+    canvas.setAttribute("aria-roleDescription", "3d model");
     canvasWrapper.innerHTML = "";
     canvasWrapper.appendChild(canvas);
 

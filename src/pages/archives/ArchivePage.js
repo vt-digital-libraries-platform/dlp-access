@@ -247,6 +247,7 @@ class ArchivePage extends Component {
             scaleFactor={options.assets.scale_factor}
             rotation={options.assets.rotation}
             customKey={item.custom_key}
+            title={item.title}
           />
         </div>
       );
