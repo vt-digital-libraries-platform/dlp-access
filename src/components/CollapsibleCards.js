@@ -15,6 +15,7 @@ import { LeafletThumb } from "./LeafletThumb";
 import Citation from "../components/Citation";
 
 import "../css/CollapsibleCards.scss";
+import { htmlParsedValue } from "src/lib/MetadataRenderer";
 
 const ExpandMore = styled((props) => {
   const { expand, ...other } = props;
@@ -191,7 +192,9 @@ export default function CollapsibleCard({
   ];
 
   const renderContent = (key, value, index) => {
-    if (typeof value === "string" && value.startsWith("http")) {
+    if (typeof value === "string" && value.includes("<a href=")) {
+      return <div key={index}>{htmlParsedValue(value)}</div>;
+    } else if (typeof value === "string" && value.startsWith("http")) {
       return (
         <div key={index}>
           <a href={value} target="_blank" rel="noopener noreferrer">
