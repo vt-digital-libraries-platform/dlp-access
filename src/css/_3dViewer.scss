@@ -1,16 +1,87 @@
 div#canvas-wrapper {
   width: 100%;
   height: 750px;
-  border: 1px solid var(--dark-gray);
+}
+
+button.hokie-maroon {
+  background-color: var(--hokieMaroon);
+  color: white;
+  border: none;
+  padding: 10px 20px;
   border-radius: 5px;
+  cursor: pointer;
 }
+button.hokie-maroon:hover {
+  background-color: var(--hokieMaroonHover);
+  color: white;
+}
+
 div#controls {
-  margin-top: 10px;
+  // border: 1px solid var(--dark-gray);
+  // border-radius: 5px;
+  margin-top: 5px;
+  padding: 10px;
+  input[type="radio"],
+  input[type="checkbox"] {
+    margin-right: 4px;
+  }
+  input#universal {
+    margin-left: 10px;
+  }
+  button#reset {
+    float: right;
+  }
+  #controls-top-row {
+    display: none;
+  }
 }
+
 canvas#three_d_canvas {
   outline: none;
 }
 
 :focus-visible {
   outline: none;
+}
+
+#loader {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#loaded {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+#loadingContainer {
+  width: 30%;
+  height: 0.5rem;
+  background: white;
+  border-radius: 6px;
+  margin: 0.5rem;
+}
+
+#loadingBar {
+  height: 100%;
+  background: green;
+  border-radius: 6px;
 }

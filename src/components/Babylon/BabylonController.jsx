@@ -1,12 +1,13 @@
 import { registerBuiltInLoaders } from "@babylonjs/loaders/dynamic";
 import * as BABYLON from "@babylonjs/core";
+import LoadingScreen from "./LoadingScreen";
 
 class BabylonController {
   constructor(options) {
     registerBuiltInLoaders();
     this.options = options;
-    const canvasWrapper = document.getElementById("canvas-wrapper");
-    this.canvas = this.createCanvas(canvasWrapper);
+    this.canvasWrapper = document.getElementById("canvas-wrapper");
+    this.canvas = this.createCanvas(this.canvasWrapper);
     this.engine = new BABYLON.Engine(this.canvas, true);
     this.model = null;
     this.scene = null;
@@ -15,6 +16,10 @@ class BabylonController {
     this.ArcRotateCamera = null;
     this.UniversalCamera = null;
     this.currentCamera = null;
+    this.loadingScreen = null;
+    this.loader = null;
+    this.loadingBar = null;
+    this.percentLoaded = null;
 
     this.createScene(
       this.options.model,
@@ -48,6 +53,9 @@ class BabylonController {
   }
 
   async createScene() {
+    this.loadingScreen = this.createLoadingScreen();
+    this.engine.loadingScreen = this.loadingScreen;
+    this.engine.loadingScreen.displayLoadingUI();
     const GROUND_DIAMETER = 100;
     this.scene = new BABYLON.Scene(this.engine);
 
@@ -82,6 +90,7 @@ class BabylonController {
     this.attachControl(this.ArcRotateCamera);
     this.scene.activeCamera = this.ArcRotateCamera;
 
+    this.engine.hideLoadingUI();
     this.engine.runRenderLoop(() => {
       this.scene.render();
     });
@@ -90,10 +99,10 @@ class BabylonController {
   createUniversalCamera(position, rotation) {
     const camera = new BABYLON.UniversalCamera(
       "UniversalCamera",
-      new BABYLON.Vector3(0, 0.75, 0.5),
+      position || new BABYLON.Vector3(0, 0.75, 0.5),
       this.scene
     );
-    camera.rotation = new BABYLON.Vector3(Math.PI / 2, 0, 0);
+    camera.rotation = rotation || new BABYLON.Vector3(Math.PI / 2, 0, 0);
 
     camera.speed = 0.1;
     camera.wheelPrecision = 100;
@@ -115,15 +124,18 @@ class BabylonController {
     return camera;
   }
 
-  createArcRotateCamera(position, rotation) {
+  createArcRotateCamera(position, rotation, radius) {
     const camera = new BABYLON.ArcRotateCamera(
       "arcCamera",
-      this.options.rotation?.horizontal || Math.PI / 2,
-      this.options.rotation?.vertical || Math.PI / 2,
-      3,
+      rotation?.horizontal || this.options.rotation?.horizontal || Math.PI / 2,
+      rotation?.vertical || this.options.rotation?.vertical || Math.PI / 2,
+      radius || 3,
       new BABYLON.Vector3(0, this.modelDimensions._y / 2, 0),
       this.scene
     );
+    if (position) {
+      camera.setPosition(position);
+    }
 
     camera.speed = 0.25;
     camera.wheelPrecision = 100;
@@ -138,6 +150,26 @@ class BabylonController {
     return camera;
   }
 
+  toggleAutoRotate() {
+    if (this.scene.activeCamera.useAutoRotationBehavior) {
+      this.scene.activeCamera.useAutoRotationBehavior = false;
+    } else {
+      this.scene.activeCamera.useAutoRotationBehavior = true;
+    }
+  }
+
+  getActiveCamera() {
+    return this.scene.activeCamera;
+  }
+
+  getAutoRotate() {
+    return this.scene.activeCamera.useAutoRotationBehavior;
+  }
+
+  resetView() {
+    console.log("Resetting view");
+  }
+
   switchCameraByName(cameraName) {
     if (cameraName === "arcRotate") {
       this.switchCamera(this.ArcRotateCamera, this.currentCamera);
@@ -147,8 +179,6 @@ class BabylonController {
   }
 
   switchCamera(newCamera, currentCamera) {
-    console.clear();
-    console.log(this.scene.activeCamera.position);
     if (currentCamera) {
       this.scene.activeCamera.detachControl(this.canvas);
       newCamera.position = this.scene.activeCamera.position;
@@ -205,7 +235,8 @@ class BabylonController {
 
   async createGroundObject(scaleFactor) {
     const groundModel = await this.loadModel(
-      "https://d21nnzi4oh5qvs.cloudfront.net/federated/3d/gltf/environments/dark/3DPlatform.glb"
+      "https://d21nnzi4oh5qvs.cloudfront.net/federated/3d/gltf/environments/dark/3DPlatform.glb",
+      false
     );
 
     for (const mesh of groundModel.getChildMeshes()) {
@@ -236,7 +267,7 @@ class BabylonController {
     return canvas;
   }
 
-  async loadModel(url) {
+  async loadModel(url, updateLoadingStatus = true) {
     const filename = url.split("/").pop();
     const path = url.replace(filename, "");
     let response,
@@ -246,7 +277,13 @@ class BabylonController {
         null,
         path,
         filename,
-        this.scene
+        this.scene,
+        (evt) => {
+          if (updateLoadingStatus && this.loadingScreen) {
+            const loadStatus = ((evt.loaded * 100) / evt.total).toFixed();
+            this.loadingScreen.updateLoadStatus(loadStatus);
+          }
+        }
       );
     } catch (error) {
       console.error("Error loading model:", error);
@@ -262,6 +299,51 @@ class BabylonController {
       }
     }
     return model;
+  }
+
+  createLoadingScreen() {
+    // <div id="loader">
+    //   <p>Loading</p>
+
+    //   <div id="loadingContainer">
+    //     <div id="loadingBar"></div>
+    //   </div>
+
+    //   <p id="percentLoaded">25%</p>
+    // </div>
+
+    this.loader = document.createElement("div");
+    this.loader.id = "loader";
+
+    const vtdlpImg = document.createElement("img");
+    vtdlpImg.src = "/images/fallback_thumbnail.jpg";
+    vtdlpImg.alt = "VT University Libraries Logo";
+    this.loader.appendChild(vtdlpImg);
+
+    const loadingText = document.createElement("p");
+    loadingText.innerText = "Loading assets...";
+    this.loader.appendChild(loadingText);
+
+    const loadingContainer = document.createElement("div");
+    loadingContainer.id = "loadingContainer";
+    this.loadingBar = document.createElement("div");
+    this.loadingBar.id = "loadingBar";
+    loadingContainer.appendChild(this.loadingBar);
+    this.loader.appendChild(loadingContainer);
+
+    this.percentLoaded = document.createElement("span");
+    this.percentLoaded.id = "percentLoaded";
+    this.loader.appendChild(this.percentLoaded);
+
+    this.canvasWrapper.appendChild(this.loader);
+
+    const loadingScreen = new LoadingScreen(
+      "",
+      this.loadingBar,
+      this.percentLoaded,
+      this.loader
+    );
+    return loadingScreen;
   }
 }
 
