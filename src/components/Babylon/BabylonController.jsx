@@ -139,7 +139,7 @@ class BabylonController {
 
     camera.speed = 0.25;
     camera.wheelPrecision = 100;
-    camera.lowerRadiusLimit = 0.25;
+    camera.lowerRadiusLimit = 0.5;
     camera.upperRadiusLimit = 3;
     camera.minZ = 0.1;
     camera.useAutoRotationBehavior = true;
