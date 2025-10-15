@@ -25,13 +25,13 @@ import RelatedItems from "../../components/RelatedItems";
 import { Thumbnail } from "../../components/Thumbnail";
 import MtlElement from "../../components/MtlElement";
 import X3DElement from "../../components/X3DElement";
-import SocialButtons from "../../components/SocialButtons";
 import ReactGA from "react-ga4";
 import CollapsibleCard from "../../components/CollapsibleCards";
 
 import "../../css/ArchivePage.scss";
 import { NotFound } from "../NotFound";
-import BabylonElement from "src/components/BabylonElement";
+import BabylonElement from "src/components/Babylon/BabylonElement";
+import BabylonController from "src/components/Babylon/BabylonController";
 
 class ArchivePage extends Component {
   constructor(props) {
@@ -247,6 +247,7 @@ class ArchivePage extends Component {
             scaleFactor={options.assets.scale_factor}
             rotation={options.assets.rotation}
             customKey={item.custom_key}
+            title={item.title}
           />
         </div>
       );

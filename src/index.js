@@ -12,6 +12,7 @@ import config from "./aws-exports";
 import "bootstrap/dist/css/bootstrap.css";
 import "semantic-ui-css/semantic.min.css";
 
+console.clear();
 Amplify.configure(config);
 
 const container = document.getElementById("root");
