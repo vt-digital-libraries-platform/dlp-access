@@ -38,7 +38,7 @@ const BabylonElement = (props) => {
                 handleCameraChange(e);
               }}
             />
-            <label for="arcRotate">ArcRotate Camera</label>
+            <label htmlFor="arcRotate">ArcRotate Camera</label>
           </span>
 
           <span className="camera-radio">

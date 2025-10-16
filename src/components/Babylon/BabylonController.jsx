@@ -1,5 +1,6 @@
 import { registerBuiltInLoaders } from "@babylonjs/loaders/dynamic";
 import * as BABYLON from "@babylonjs/core";
+import * as GUI from "@babylonjs/gui";
 import LoadingScreen from "./LoadingScreen";
 
 class BabylonController {
@@ -53,6 +54,8 @@ class BabylonController {
   }
 
   async createScene() {
+    this.engine.setHardwareScalingLevel(1 / window.devicePixelRatio);
+
     this.loadingScreen = this.createLoadingScreen();
     this.engine.loadingScreen = this.loadingScreen;
     this.engine.loadingScreen.displayLoadingUI();
@@ -61,6 +64,10 @@ class BabylonController {
 
     // Create the environment around the subject
     this.addEnvironment();
+
+    // load and position ground
+    const groundModel = this.createGround(GROUND_DIAMETER);
+    groundModel.position = new BABYLON.Vector3(0, 0, 0);
 
     // load the subject model
     this.model = await this.loadModel(this.options.model);
@@ -80,20 +87,75 @@ class BabylonController {
     const objectHoverHeight = this.modelDimensions._y / 3;
     this.model.position = new BABYLON.Vector3(0, objectHoverHeight, 0);
 
-    // load and position ground
-    const groundModel = this.createGround(GROUND_DIAMETER, objectHoverHeight);
-    groundModel.position = new BABYLON.Vector3(0, 0, 0);
-
+    // cameras
     this.ArcRotateCamera = this.createArcRotateCamera();
     this.UniversalCamera = this.createUniversalCamera();
 
     this.attachControl(this.ArcRotateCamera);
     this.scene.activeCamera = this.ArcRotateCamera;
 
+    console.log(this.options);
+    // addOns from config
+    if (this.options?._3dConfig?.addOns?.length > 0) {
+      this.handleAddOns(this.options._3dConfig.addOns);
+    }
     this.engine.hideLoadingUI();
     this.engine.runRenderLoop(() => {
       this.scene.render();
     });
+  }
+
+  handleAddOns(addOns) {
+    for (const addOn of addOns) {
+      this.handleAddOn(addOn);
+    }
+  }
+
+  handleAddOn(addOn) {
+    switch (addOn.type) {
+      case "flash_card":
+        this.createFlashCard(addOn);
+        break;
+      default:
+        console.warn(`Unknown add-on type: ${addOn.type}`);
+    }
+  }
+
+  createFlashCard(cardData) {
+    const advancedTexture = GUI.AdvancedDynamicTexture.CreateFullscreenUI(
+      "UI",
+      true,
+      this.scene
+    );
+
+    const card = GUI.Button.CreateSimpleButton("flash_card", cardData.front);
+    card.width = "400px";
+    card.height = "125px";
+    card.paddingTopInPixels = 20;
+    card.paddingBottomInPixels = 20;
+    card.paddingLeftInPixels = 20;
+    card.paddingRightInPixels = 20;
+    card.fontSize = "30px";
+    card.horizontalAlignment = GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
+    card.verticalAlignment = GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
+    card.color = "white";
+    card.background = "#861f41";
+
+    card.onPointerUpObservable.add(() => {
+      this.flipCard(card, cardData);
+    });
+    advancedTexture.addControl(card);
+  }
+
+  flipCard(card, cardData) {
+    if (card.textBlock.text === cardData.front) {
+      card.textBlock.text = cardData.back;
+      window.setTimeout(() => {
+        card.textBlock.text = cardData.front;
+      }, 5000);
+    } else {
+      card.text = cardData.front;
+    }
   }
 
   createUniversalCamera(position, rotation) {
@@ -238,9 +300,10 @@ class BabylonController {
       "https://d21nnzi4oh5qvs.cloudfront.net/federated/3d/gltf/environments/dark/3DPlatform.glb",
       false
     );
-
-    for (const mesh of groundModel.getChildMeshes()) {
-      mesh.scaling.scaleInPlace(scaleFactor || 1);
+    if (groundModel) {
+      for (const mesh of groundModel.getChildMeshes()) {
+        mesh.scaling.scaleInPlace(scaleFactor || 1);
+      }
     }
     return groundModel;
   }

@@ -248,6 +248,7 @@ class ArchivePage extends Component {
             rotation={options.assets.rotation}
             customKey={item.custom_key}
             title={item.title}
+            _3dConfig={options?.config?._3d}
           />
         </div>
       );
