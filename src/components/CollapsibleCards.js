@@ -40,7 +40,6 @@ const single_value_headers = [
 ];
 
 const multi_value_headers = [
-  "age",
   "alternative",
   "basis_of_record",
   "belongs_to",
