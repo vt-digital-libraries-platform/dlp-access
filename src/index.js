@@ -13,13 +13,12 @@ import config from "./aws-exports";
 import "bootstrap/dist/css/bootstrap.css";
 import "semantic-ui-css/semantic.min.css";
 
-
 const cognitoAuthConfig = {
   authority: "https://cognito-idp.us-east-1.amazonaws.com/us-east-1_wy1lPpMYt",
   client_id: "54bpum4j5m2l69cisr6k6grj66",
   redirect_uri: "https://oidc-client.dev.dlp.cloud.lib.vt.edu/sso-test/",
   response_type: "code",
-  scope: "openid"
+  scope: "openid, email"
 };
 
 Amplify.configure(config);
