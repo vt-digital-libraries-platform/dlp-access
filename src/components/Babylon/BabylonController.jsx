@@ -154,7 +154,7 @@ class BabylonController {
         card.textBlock.text = cardData.front;
       }, 5000);
     } else {
-      card.text = cardData.front;
+      card.textBlock.text = cardData.front;
     }
   }
 
