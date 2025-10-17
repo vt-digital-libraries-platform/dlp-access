@@ -94,7 +94,6 @@ class BabylonController {
     this.attachControl(this.ArcRotateCamera);
     this.scene.activeCamera = this.ArcRotateCamera;
 
-    console.log(this.options);
     // addOns from config
     if (this.options?._3dConfig?.addOns?.length > 0) {
       this.handleAddOns(this.options._3dConfig.addOns);
@@ -128,7 +127,11 @@ class BabylonController {
       this.scene
     );
 
-    const card = GUI.Button.CreateSimpleButton("flash_card", cardData.front);
+    const cardFront = this.getTextValue(
+      cardData.front.type,
+      cardData.front.value
+    );
+    const card = GUI.Button.CreateSimpleButton("flash_card", cardFront);
     card.width = "400px";
     card.height = "125px";
     card.paddingTopInPixels = 20;
@@ -147,14 +150,30 @@ class BabylonController {
     advancedTexture.addControl(card);
   }
 
+  getTextValue(type, value) {
+    let text = null;
+    if (type === "string") {
+      text = value;
+    } else if (type === "metadata") {
+      text = this.options.item[value];
+    }
+    return text;
+  }
+
   flipCard(card, cardData) {
-    if (card.textBlock.text === cardData.front) {
-      card.textBlock.text = cardData.back;
+    const cardFront = this.getTextValue(
+      cardData.front.type,
+      cardData.front.value
+    );
+    const cardBack = this.getTextValue(cardData.back.type, cardData.back.value);
+
+    if (card.textBlock.text === cardFront) {
+      card.textBlock.text = cardBack;
       window.setTimeout(() => {
-        card.textBlock.text = cardData.front;
+        card.textBlock.text = cardFront;
       }, 5000);
     } else {
-      card.textBlock.text = cardData.front;
+      card.textBlock.text = cardFront;
     }
   }
 
@@ -324,7 +343,7 @@ class BabylonController {
     canvas.style.width = "100%";
     canvas.style.height = "100%";
     canvas.id = "three-d-canvas";
-    canvas.setAttribute("aria-label", this.options?.title || "3d model");
+    canvas.setAttribute("aria-label", this.options?.item?.title || "3d model");
     canvas.setAttribute("aria-roleDescription", "3d model");
     canvasWrapper.innerHTML = "";
     canvasWrapper.appendChild(canvas);

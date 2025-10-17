@@ -51,7 +51,7 @@ const BabylonElement = (props) => {
                 handleCameraChange(e);
               }}
             />
-            <label for="universal">Universal Camera</label>
+            <label htmlFor="universal">Universal Camera</label>
           </span>
 
           <button
@@ -76,7 +76,7 @@ const BabylonElement = (props) => {
               }}
               checked={autoRotate}
             />
-            <label for="auto-rotate">Auto Rotate</label>
+            <label htmlFor="auto-rotate">Auto Rotate</label>
           </span>
         </div>
       </div>
