@@ -13,15 +13,15 @@ import LoadingScreen from "./LoadingScreen";
 </div>
 */
 class Loader {
-  constructor(
-    public engine: BABYLON.Engine,
-    public canvasWrapper: HTMLElement
-  ) {
+  private loadingScreen: LoadingScreen | null;
+  private canvasWrapper: HTMLElement;
+  constructor(canvasWrapper: HTMLElement) {
+    this.loadingScreen = null;
     this.canvasWrapper = canvasWrapper;
-    this.init(canvasWrapper);
+    this.init();
   }
 
-  init(canvasWrapper: HTMLElement | null) {
+  init() {
     const loader = document.createElement("div");
     loader.id = "loader";
 
@@ -45,16 +45,18 @@ class Loader {
     percentLoaded.id = "percentLoaded";
     loader.appendChild(percentLoaded);
 
-    canvasWrapper && canvasWrapper.appendChild(loader);
+    this.canvasWrapper && this.canvasWrapper.appendChild(loader);
 
-    const loadingScreen = new LoadingScreen(
+    this.loadingScreen = new LoadingScreen(
       "",
       loadingBar,
       percentLoaded,
       loader
     );
-    this.engine.loadingScreen = loadingScreen;
-    this.engine.loadingScreen.displayLoadingUI();
+  }
+
+  getLoadingScreen(): LoadingScreen | null {
+    return this.loadingScreen;
   }
 }
 export default Loader;

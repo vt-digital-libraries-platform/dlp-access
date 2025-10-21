@@ -1,11 +1,11 @@
 import { registerBuiltInLoaders } from "@babylonjs/loaders/dynamic";
 import * as BABYLON from "@babylonjs/core";
-import * as GUI from "@babylonjs/gui";
 import Loader from "./elements/Loader";
 import Environment from "./elements/Environment";
 import Subject from "./elements/Subject";
 import Ground from "./elements/Ground";
 import Camera from "./elements/Camera";
+import FlashCard from "./elements/addOns/FlashCard";
 
 class BabylonController {
   constructor(options) {
@@ -45,30 +45,37 @@ class BabylonController {
 
   addListeners() {
     window.addEventListener("resize", () => {
-      this.engine.resize();
+      if (this.engine) {
+        this.engine.resize();
+      }
     });
   }
 
   removeListeners() {
     window.removeEventListener("resize", () => {
-      this.engine.resize();
+      if (this.engine) {
+        this.engine.resize();
+      }
     });
   }
 
   engineDispose() {
-    this.engine.stopRenderLoop();
-    this.engine.dispose();
+    if (this.engine) {
+      this.engine.stopRenderLoop();
+      this.engine.dispose();
+    }
   }
 
   async createScene() {
     this.engine.setHardwareScalingLevel(1 / window.devicePixelRatio);
-
-    this.loadingScreen = new Loader(this.engine, this.canvasWrapper);
-
     this.scene = new BABYLON.Scene(this.engine);
 
+    this.loadingScreen = new Loader(this.canvasWrapper).getLoadingScreen();
+    this.engine.loadingScreen = this.loadingScreen;
+    this.engine.loadingScreen.displayLoadingUI();
+
     // Create the environment around the subject
-    const environment = new Environment(this.options.env, this.scene);
+    const environment = new Environment(this.scene, this.options.env);
 
     // load and position ground
     const GROUND_DIAMETER = 100;
@@ -105,13 +112,14 @@ class BabylonController {
       this.model.ellipsoid
     );
 
-    this.attachControl(this.ArcRotateCamera);
-    this.scene.activeCamera = this.ArcRotateCamera;
+    this.attachControl(this.ArcRotateCamera.active);
+    this.scene.activeCamera = this.ArcRotateCamera.active;
 
     // addOns from config
     if (this.options?._3dConfig?.addOns?.length > 0) {
       this.handleAddOns(this.options._3dConfig.addOns);
     }
+
     this.engine.hideLoadingUI();
     this.engine.runRenderLoop(() => {
       this.scene.render();
@@ -127,67 +135,10 @@ class BabylonController {
   handleAddOn(addOn) {
     switch (addOn.type) {
       case "flash_card":
-        this.createFlashCard(addOn);
+        const flashCard = new FlashCard(this.scene, this.options, addOn);
         break;
       default:
         console.warn(`Unknown add-on type: ${addOn.type}`);
-    }
-  }
-
-  createFlashCard(cardData) {
-    const advancedTexture = GUI.AdvancedDynamicTexture.CreateFullscreenUI(
-      "UI",
-      true,
-      this.scene
-    );
-
-    const cardFront = this.getTextValue(
-      cardData.front.type,
-      cardData.front.value
-    );
-    const card = GUI.Button.CreateSimpleButton("flash_card", cardFront);
-    card.width = "400px";
-    card.height = "125px";
-    card.paddingTopInPixels = 20;
-    card.paddingBottomInPixels = 20;
-    card.paddingLeftInPixels = 20;
-    card.paddingRightInPixels = 20;
-    card.fontSize = "30px";
-    card.horizontalAlignment = GUI.Control.HORIZONTAL_ALIGNMENT_RIGHT;
-    card.verticalAlignment = GUI.Control.VERTICAL_ALIGNMENT_BOTTOM;
-    card.color = "white";
-    card.background = "#861f41";
-
-    card.onPointerUpObservable.add(() => {
-      this.flipCard(card, cardData);
-    });
-    advancedTexture.addControl(card);
-  }
-
-  getTextValue(type, value) {
-    let text = null;
-    if (type === "string") {
-      text = value;
-    } else if (type === "metadata") {
-      text = this.options.item[value];
-    }
-    return text;
-  }
-
-  flipCard(card, cardData) {
-    const cardFront = this.getTextValue(
-      cardData.front.type,
-      cardData.front.value
-    );
-    const cardBack = this.getTextValue(cardData.back.type, cardData.back.value);
-
-    if (card.textBlock.text === cardFront) {
-      card.textBlock.text = cardBack;
-      window.setTimeout(() => {
-        card.textBlock.text = cardFront;
-      }, 5000);
-    } else {
-      card.textBlock.text = cardFront;
     }
   }
 
@@ -213,9 +164,9 @@ class BabylonController {
 
   switchCameraByName(cameraName) {
     if (cameraName === "arcRotate") {
-      this.switchCamera(this.ArcRotateCamera, this.currentCamera);
+      this.switchCamera(this.ArcRotateCamera.active, this.currentCamera.active);
     } else if (cameraName === "universal") {
-      this.switchCamera(this.UniversalCamera, this.currentCamera);
+      this.switchCamera(this.UniversalCamera.active, this.currentCamera.active);
     }
   }
 
