@@ -26,6 +26,11 @@ class LoadingScreen implements ILoadingScreen {
   public updateLoadStatus(status: string) {
     this.loadingBar.style.width = `${status}%`;
     this.percentLoaded.innerText = `${status}%`;
+    if (status === "100") {
+      window.setTimeout(() => {
+        this.hideLoadingUI();
+      }, 1000);
+    }
   }
 }
 export default LoadingScreen;

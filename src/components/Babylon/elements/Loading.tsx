@@ -12,7 +12,7 @@ import LoadingScreen from "./LoadingScreen";
     <p id="percentLoaded">25%</p>
 </div>
 */
-class Loader {
+class Loading {
   private loadingScreen: LoadingScreen | null;
   private canvasWrapper: HTMLElement;
   private engine: BABYLON.Engine;
@@ -63,4 +63,4 @@ class Loader {
     return this.loadingScreen;
   }
 }
-export default Loader;
+export default Loading;

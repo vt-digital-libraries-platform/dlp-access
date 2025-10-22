@@ -1,6 +1,6 @@
 import { registerBuiltInLoaders } from "@babylonjs/loaders/dynamic";
 import * as BABYLON from "@babylonjs/core";
-import Loader from "./elements/Loader";
+import Loading from "./elements/Loading";
 import Environment from "./elements/Environment";
 import Subject from "./elements/Subject";
 import Ground from "./elements/Ground";
@@ -70,9 +70,12 @@ class BabylonController {
     this.engine.setHardwareScalingLevel(1 / window.devicePixelRatio);
     this.scene = new BABYLON.Scene(this.engine);
 
-    this.loadingScreen = new Loader(this.canvasWrapper).getLoadingScreen();
-    this.engine.loadingScreen = this.loadingScreen;
-    this.engine.loadingScreen.displayLoadingUI();
+    this.loadingScreen = new Loading(
+      this.engine,
+      this.canvasWrapper
+    ).getLoadingScreen();
+    // this.engine.loadingScreen = this.loadingScreen;
+    // this.engine.loadingScreen.displayLoadingUI();
 
     // Create the environment around the subject
     const environment = new Environment(this.scene, this.options.env);
@@ -120,7 +123,7 @@ class BabylonController {
       this.handleAddOns(this.options._3dConfig.addOns);
     }
 
-    this.engine.hideLoadingUI();
+    // this.engine.hideLoadingUI();
     this.engine.runRenderLoop(() => {
       this.scene.render();
     });

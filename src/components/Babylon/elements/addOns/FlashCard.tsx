@@ -19,6 +19,7 @@ class FlashCard {
     }
   ) {
     this.card = null;
+    this.options = options;
     this.scene = scene;
     this.cardData = cardData;
 
