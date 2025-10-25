@@ -26,7 +26,7 @@ class BabylonController {
     this.loadingBar = null;
     this.percentLoaded = null;
 
-    this.initialPosition = new BABYLON.Vector3(0, 0, -10);
+    this.initialPosition = new BABYLON.Vector3(0, 0.75, 3);
     this.initialRotationVector = new BABYLON.Vector3(
       Math.PI / 2,
       Math.PI / 2,
@@ -74,8 +74,6 @@ class BabylonController {
       this.engine,
       this.canvasWrapper
     ).getLoadingScreen();
-    // this.engine.loadingScreen = this.loadingScreen;
-    // this.engine.loadingScreen.displayLoadingUI();
 
     // Create the environment around the subject
     const environment = new Environment(this.scene, this.options.env);
@@ -88,20 +86,20 @@ class BabylonController {
     this.model = new Subject(
       this.options.model,
       this.scene,
-      this.options.scaleFactor,
       this.loadingScreen
     );
+    await this.model.init();
 
-    // cameras
     this.ArcRotateCamera = new Camera(
       "arcRotate",
       this.scene,
       this.canvas,
       this.initialPosition,
+      this.model.rootMesh,
       null,
       this.initialRotation,
       this.initialRadius,
-      this.model.ellipsoid
+      this.model.rootMesh.ellipsoid
     );
 
     this.UniversalCamera = new Camera(
@@ -109,10 +107,11 @@ class BabylonController {
       this.scene,
       this.canvas,
       this.initialPosition,
+      this.model.rootMesh,
       this.initialRotationVector,
       null,
       this.initialRadius,
-      this.model.ellipsoid
+      this.model.rootMesh.ellipsoid
     );
 
     this.attachControl(this.ArcRotateCamera.active);
@@ -123,11 +122,19 @@ class BabylonController {
       this.handleAddOns(this.options._3dConfig.addOns);
     }
 
-    // this.engine.hideLoadingUI();
     this.engine.runRenderLoop(() => {
       this.scene.render();
     });
   }
+
+  // getAdjustedInitialPosition() {
+  //   const adjusted = new BABYLON.Vector3(
+  //     this.initialPosition.x,
+  //     this.initialPosition.y + this.model.getObjectHoverHeight(),
+  //     this.initialPosition.z
+  //   );
+  //   return adjusted;
+  // }
 
   handleAddOns(addOns) {
     for (const addOn of addOns) {

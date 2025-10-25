@@ -9,6 +9,7 @@ class Camera {
   private rotationVector?: BABYLON.Vector3;
   private rotation?: { horizontal: number; vertical: number };
   private radius?: number;
+  private model?: BABYLON.AbstractMesh;
   private modelDimensions?: { _x: number; _y: number; _z: number };
 
   constructor(
@@ -16,6 +17,7 @@ class Camera {
     scene: BABYLON.Scene,
     canvas: HTMLCanvasElement,
     position: BABYLON.Vector3,
+    model: BABYLON.AbstractMesh,
     rotationVector?: BABYLON.Vector3,
     rotation?: { horizontal: number; vertical: number },
     radius?: number,
@@ -28,10 +30,16 @@ class Camera {
     this.rotationVector = rotationVector;
     this.rotation = rotation;
     this.radius = radius;
+    this.model = model;
     this.modelDimensions = modelDimensions;
 
     // Create the camera based on the type
     this.active = this.createCamera();
+    if (this.model && this.model.ellipsoid) {
+      this.active.setTarget(
+        new BABYLON.Vector3(0, this.model.ellipsoid._y / 2, 0)
+      );
+    }
   }
 
   private createCamera(): BABYLON.ArcRotateCamera | BABYLON.UniversalCamera {
@@ -51,7 +59,7 @@ class Camera {
       this.rotationVector || new BABYLON.Vector3(Math.PI / 2, 0, 0);
 
     camera.speed = 0.1;
-    // camera.minZ = 0.1;
+    camera.minZ = 0.1;
     camera.checkCollisions = true;
     camera.ellipsoid = new BABYLON.Vector3(1, 1, 1);
 
@@ -85,9 +93,9 @@ class Camera {
 
     camera.speed = 0.25;
     camera.wheelPrecision = 100;
-    // camera.lowerRadiusLimit = 0.5;
+    camera.lowerRadiusLimit = 0.5;
     camera.upperRadiusLimit = 3;
-    // camera.minZ = 0.1;
+    camera.minZ = 0.1;
     camera.useAutoRotationBehavior = true;
     if (camera.autoRotationBehavior) {
       camera.autoRotationBehavior.zoomStopsAnimation = true;
