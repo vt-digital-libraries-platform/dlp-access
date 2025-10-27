@@ -33,21 +33,17 @@ class Subject {
       return;
     }
 
-    const size = this.getAbsoluteSize();
+    let size = this.getAbsoluteSize();
     const scaleFactor = this.getScaleFactor();
-    console.log("size", [
-      size.x / scaleFactor,
-      size.y / scaleFactor,
-      size.z / scaleFactor
-    ]);
-    this.scaleModel(scaleFactor);
-    this.rootMesh.checkCollisions = true;
 
     // position model
-    const aspectRatio = this.getAspectRatio();
-    this.objectHoverHeight = 0.5 - (5 * aspectRatio) / 100;
+    this.objectHoverHeight = (size.y * scaleFactor) / 2;
     this.rootMesh.position = new BABYLON.Vector3(0, this.objectHoverHeight, 0);
-    console.log("model position", this.rootMesh.position);
+
+    // scale model
+    this.scaleModel(scaleFactor);
+
+    this.rootMesh.checkCollisions = true;
   }
 
   getAspectRatio() {
@@ -58,9 +54,9 @@ class Subject {
     const size = this.getAbsoluteSize();
     const maxSize = Math.max(size.x, size.y, size.z);
     const aspectRatio = Math.max(
-      maxSize / size.x,
-      maxSize / size.y,
-      maxSize / size.z
+      maxSize * size.x,
+      maxSize * size.y,
+      maxSize * size.z
     );
 
     return aspectRatio;
@@ -68,8 +64,10 @@ class Subject {
 
   scaleModel(scaleFactor: number) {
     if (this.rootMesh) {
+      // Scale the root mesh and all its chern
+      this.rootMesh.scaling.scaleInPlace(scaleFactor);
       for (const mesh of this.rootMesh.getChildMeshes()) {
-        mesh.scaling.scaleInPlace(1 / scaleFactor || 1);
+        mesh.scaling.scaleInPlace(scaleFactor);
       }
       // @ts-ignore
       this.rootMesh.bakeCurrentTransformIntoVertices();
@@ -106,7 +104,7 @@ class Subject {
     const size = this.getAbsoluteSize();
     const maxSize = Math.max(size.x, size.y, size.z);
 
-    return maxSize;
+    return 1 / maxSize;
   }
 
   getModelDimensions(): BABYLON.Vector3 {
