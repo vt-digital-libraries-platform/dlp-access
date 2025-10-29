@@ -2,6 +2,7 @@ import { useAuth } from "react-oidc-context";
 
 const SSO = () => {
   const auth = useAuth();
+  console.log("SSO auth", auth);
   if (auth.isAuthenticated) {
     return (
       <div>
