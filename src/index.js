@@ -18,7 +18,7 @@ const cognitoAuthConfig = {
   client_id: "54bpum4j5m2l69cisr6k6grj66",
   redirect_uri: "https://oidc-client.dev.dlp.cloud.lib.vt.edu/sso-test/",
   response_type: "code",
-  scope: "email openid"
+  scope: "openid"
 };
 
 Amplify.configure(config);
