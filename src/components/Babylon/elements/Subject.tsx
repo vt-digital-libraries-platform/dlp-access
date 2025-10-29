@@ -54,9 +54,9 @@ class Subject {
     const size = this.getAbsoluteSize();
     const maxSize = Math.max(size.x, size.y, size.z);
     const aspectRatio = Math.max(
-      maxSize * size.x,
-      maxSize * size.y,
-      maxSize * size.z
+      maxSize / size.x,
+      maxSize / size.y,
+      maxSize / size.z
     );
 
     return aspectRatio;
@@ -64,8 +64,8 @@ class Subject {
 
   scaleModel(scaleFactor: number) {
     if (this.rootMesh) {
-      // Scale the root mesh and all its chern
-      this.rootMesh.scaling.scaleInPlace(scaleFactor);
+      const material = this.rootMesh.material;
+      console.log(this.rootMesh);
       for (const mesh of this.rootMesh.getChildMeshes()) {
         mesh.scaling.scaleInPlace(scaleFactor);
       }
