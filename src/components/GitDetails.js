@@ -10,11 +10,17 @@ const GitDetails = () => {
     <div className="git-detail-section">
       <p>
         This site is running commit{" "}
-        <Link to={`https://github.com/VTUL/dlp-access/commit/${gitCommit}`}>
+        <Link
+          to={`https://github.com/vt-digital-libraries-platform/dlp-access/commit/${gitCommit}`}
+        >
           {gitCommit.length > 8 ? gitCommit.substring(0, 7) : gitCommit}
         </Link>{" "}
         of the{" "}
-        <Link to={"https://github.com/VTUL/dlp-access/"}>vtdlp-access</Link>{" "}
+        <Link
+          to={"https://github.com/vt-digital-libraries-platform/dlp-access/"}
+        >
+          vtdlp-access
+        </Link>{" "}
         project
       </p>
     </div>
