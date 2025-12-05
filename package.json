@@ -6,6 +6,7 @@
     "@aws-amplify/cli-extensibility-helper": "^3.0.1",
     "@aws-amplify/ui-react": "^5.3.3",
     "@babylonjs/core": "^7.34.4",
+    "@babylonjs/gui": "^8.32.0",
     "@babylonjs/loaders": "^7.34.4",
     "@babylonjs/materials": "^7.37.0",
     "@blueprintjs/core": "^4.17.8",

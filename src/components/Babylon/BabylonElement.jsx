@@ -1,22 +1,25 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import "../../css/_3dViewer.scss";
 import BabylonController from "./BabylonController";
 
 const BabylonElement = (props) => {
-  const controller = useRef(null);
+  // const controller = useRef(null);
+  const [controller, setController] = useState(null);
   const [autoRotate, setAutoRotate] = useState(true);
 
   const handleCameraChange = (event) => {
     const selectedCamera = event.target.value;
-    controller.current.switchCameraByName(selectedCamera);
+    controller.switchCameraByName(selectedCamera);
   };
 
   useEffect(() => {
-    controller.current = new BabylonController(props);
+    setController(new BabylonController(props));
 
     return () => {
-      controller.current.removeListeners();
-      controller.current.engineDispose();
+      if (controller) {
+        controller.removeListeners();
+        controller.engineDispose();
+      }
     };
   }, [props]);
 
@@ -38,7 +41,7 @@ const BabylonElement = (props) => {
                 handleCameraChange(e);
               }}
             />
-            <label for="arcRotate">ArcRotate Camera</label>
+            <label htmlFor="arcRotate">ArcRotate Camera</label>
           </span>
 
           <span className="camera-radio">
@@ -51,14 +54,14 @@ const BabylonElement = (props) => {
                 handleCameraChange(e);
               }}
             />
-            <label for="universal">Universal Camera</label>
+            <label htmlFor="universal">Universal Camera</label>
           </span>
 
           <button
             id="reset"
             className="btn hokie-maroon align-right"
             onClick={() => {
-              controller.current.resetView();
+              controller.resetView();
             }}
           >
             Reset 3D View
@@ -71,12 +74,12 @@ const BabylonElement = (props) => {
               id="auto-rotate"
               name="auto-rotate"
               onChange={(e) => {
-                controller.current.toggleAutoRotate(e.target.checked);
+                controller.toggleAutoRotate(e.target.checked);
                 setAutoRotate(e.target.checked);
               }}
               checked={autoRotate}
             />
-            <label for="auto-rotate">Auto Rotate</label>
+            <label htmlFor="auto-rotate">Auto Rotate</label>
           </span>
         </div>
       </div>

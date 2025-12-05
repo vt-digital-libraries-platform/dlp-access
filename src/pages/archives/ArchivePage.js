@@ -238,7 +238,7 @@ class ArchivePage extends Component {
       } catch (error) {
         console.log("Error parsing archive options", error);
       }
-      // options.assets.env_config
+
       display = (
         <div className="image-wrapper" id="image-wrapper">
           <BabylonElement
@@ -246,8 +246,8 @@ class ArchivePage extends Component {
             env={options.assets.env_config}
             scaleFactor={options.assets.scale_factor}
             rotation={options.assets.rotation}
-            customKey={item.custom_key}
-            title={item.title}
+            item={item}
+            _3dConfig={options?.config?._3d}
           />
         </div>
       );
