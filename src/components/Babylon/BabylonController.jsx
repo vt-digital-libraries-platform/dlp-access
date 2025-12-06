@@ -26,20 +26,20 @@ class BabylonController {
     this.loadingBar = null;
     this.percentLoaded = null;
 
-    this.initialPosition = new BABYLON.Vector3(0, 0, -10);
+    this.initialPosition = new BABYLON.Vector3(0, 0.5, 10);
     this.initialRotationVector = new BABYLON.Vector3(
-      Math.PI / 2,
-      Math.PI / 2,
+      this.options?.rotation?.horizontal || Math.PI / 2,
+      this.options?.rotation?.vertical || Math.PI / 2,
       0
     );
-    this.initialRotation = { horizontal: Math.PI / 2, vertical: Math.PI / 2 };
+    // -Math.PI / 2
+    this.initialRotation = this.options.rotation || {
+      horizontal: Math.PI / 2,
+      vertical: Math.PI / 2
+    };
     this.initialRadius = 3;
 
-    this.createScene(
-      this.options.model,
-      this.options.scaleFactor,
-      this.options.rotation
-    );
+    this.createScene();
     this.addListeners();
   }
 

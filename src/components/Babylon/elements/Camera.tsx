@@ -6,9 +6,9 @@ class Camera {
   private type: string;
   private active: BABYLON.ArcRotateCamera | BABYLON.UniversalCamera;
   private position: BABYLON.Vector3;
-  private rotationVector?: BABYLON.Vector3;
-  private rotation?: { horizontal: number; vertical: number };
-  private radius?: number;
+  private rotationVector: BABYLON.Vector3;
+  private rotation: { horizontal: number; vertical: number };
+  private radius: number;
   private modelDimensions?: { _x: number; _y: number; _z: number };
 
   constructor(
@@ -16,9 +16,9 @@ class Camera {
     scene: BABYLON.Scene,
     canvas: HTMLCanvasElement,
     position: BABYLON.Vector3,
-    rotationVector?: BABYLON.Vector3,
-    rotation?: { horizontal: number; vertical: number },
-    radius?: number,
+    rotationVector: BABYLON.Vector3,
+    rotation: { horizontal: number; vertical: number },
+    radius: number,
     modelDimensions?: { _x: number; _y: number; _z: number }
   ) {
     this.scene = scene;
@@ -44,14 +44,13 @@ class Camera {
   private createUniversalCamera(): BABYLON.UniversalCamera {
     const camera = new BABYLON.UniversalCamera(
       "UniversalCamera",
-      this.position || new BABYLON.Vector3(0, 0.75, 0.5),
+      this.position,
       this.scene
     );
-    camera.rotation =
-      this.rotationVector || new BABYLON.Vector3(Math.PI / 2, 0, 0);
+    camera.rotation = this.rotationVector;
 
     camera.speed = 0.1;
-    // camera.minZ = 0.1;
+    camera.minZ = 0.1;
     camera.checkCollisions = true;
     camera.ellipsoid = new BABYLON.Vector3(1, 1, 1);
 
@@ -73,21 +72,18 @@ class Camera {
     const _y = this.modelDimensions ? this.modelDimensions._y : 1;
     const camera = new BABYLON.ArcRotateCamera(
       "arcCamera",
-      this.rotation?.horizontal || Math.PI / 2,
-      this.rotation?.vertical || Math.PI / 2,
-      this.radius || 3,
+      this.rotation.horizontal,
+      this.rotation.vertical,
+      this.radius,
       new BABYLON.Vector3(0, _y / 2, 0),
       this.scene
     );
-    if (this.position) {
-      camera.setPosition(this.position);
-    }
 
     camera.speed = 0.25;
     camera.wheelPrecision = 100;
-    // camera.lowerRadiusLimit = 0.5;
+    camera.lowerRadiusLimit = 1;
     camera.upperRadiusLimit = 3;
-    // camera.minZ = 0.1;
+    camera.minZ = 0.1;
     camera.useAutoRotationBehavior = true;
     if (camera.autoRotationBehavior) {
       camera.autoRotationBehavior.zoomStopsAnimation = true;
