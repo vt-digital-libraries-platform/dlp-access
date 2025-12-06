@@ -38,7 +38,7 @@ class Subject {
     this.model.checkCollisions = true;
 
     // position model
-    const objectHoverHeight = this.modelDimensions._y / 3;
+    const objectHoverHeight = this.modelDimensions._y / 2;
     this.model.position = new BABYLON.Vector3(0, objectHoverHeight, 0);
   }
 
