@@ -26,6 +26,26 @@
   text-shadow: -2px 3px 5px #000000b5;
 }
 
+// Main page heading (H1)
+.home-wrapper > h1 {
+  font-family: "gineso-condensed", sans-serif;
+  font-size: 2.5rem;
+  font-weight: 600;
+  text-align: left;
+  padding: 20px 10px 10px 10px;
+  margin: 0;
+}
+
+// Search heading (H2)
+.home-wrapper > h2 {
+  font-family: "gineso-condensed", sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: left;
+  padding: 20px 10px 10px 10px;
+  margin: 0;
+}
+
 .home-statement-wrapper {
   width: 100%;
   padding-top: 40px;
@@ -33,7 +53,7 @@
 
 .home-statement-wrapper h2 {
   font-family: "gineso-condensed", sans-serif;
-  text-align: center;
+  text-align: left;
   font-size: 2.1875rem;
 }
 
@@ -54,7 +74,6 @@
 .home-wrapper .home-search-wrapper {
   width: 100%;
   padding: 0 10px 0 10px;
-  transform: translate(0, -23px);
 }
 
 .home-nav-links {
@@ -106,6 +125,14 @@
   .home-wrapper #home-site-title-wrapper {
     font-size: 30px;
     width: 60%;
+  }
+
+  .home-wrapper > h1 {
+    padding: 20px 40px 10px 40px;
+  }
+
+  .home-wrapper > h2 {
+    padding: 20px 40px 10px 40px;
   }
 
   .home-statement-wrapper {

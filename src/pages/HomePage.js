@@ -39,10 +39,16 @@ class HomePage extends Component {
             staticImage={staticImage}
             site={this.props.site}
           />
+          <h1>
+            <span className="sr-only">Virginia Tech </span>
+            Digital Libraries Platform
+            <span className="sr-only"> Home</span>
+          </h1>
+          <HomeStatement homeStatement={homeStatement} />
+          <h2>Search</h2>
           <div className="home-search-wrapper">
             <SearchBar filters={{}} view="Gallery" field="all" q="" />
           </div>
-          <HomeStatement homeStatement={homeStatement} />
           <div className="home-nav-links">
             <a href="/search">View All Items</a>
             <a href="/collections">View All Collections</a>
