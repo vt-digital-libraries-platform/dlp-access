@@ -5,6 +5,7 @@ type Props = {
   item: {
     altText: string;
     cardTitle: string;
+    cardDetails: string;
     link: string;
     src: string;
   };
@@ -21,7 +22,7 @@ export const FeaturedItem: FC<Props> = ({
   position,
   length,
   site,
-  style,
+  style
 }) => {
   const imgSrc = useSignedLink(item.src, "image", site.siteId);
 
@@ -29,22 +30,25 @@ export const FeaturedItem: FC<Props> = ({
     return null;
   }
   return (
-    <div
-      className="col-md-6 col-lg-3"
+    <li
+      className="col-12 col-sm-6 col-md-3 list-unstyled card-padding"
       role="group"
       aria-roledescription="slide"
       aria-label={`${position} of ${length}`}
       style={style}
       key={item.src}
     >
-      <a href={item.link}>
-        <div className="card">
-          <img className="card-img-top" src={imgSrc} alt={item.altText || ""} />
-          <div className="card-body">
-            <h3 className="card-title crop-text-4">{item.cardTitle}</h3>
-          </div>
+      <a href={item.link} className="card h-100 text-decoration-none">
+        <img
+          className="card-img-top img-fluid"
+          src={imgSrc}
+          alt={item.altText || ""}
+        />
+        <div className="card-body">
+          <h3 className="card-title">{item.cardTitle}</h3>
+          <p className="card-details">{item.cardDetails || ""}</p>
         </div>
       </a>
-    </div>
+    </li>
   );
 };
