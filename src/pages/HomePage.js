@@ -42,7 +42,9 @@ class HomePage extends Component {
           <div className="container">
             <h1>
               <span className="sr-only">Virginia Tech </span>
-              {this.props.site.siteName}
+              {this.props.site.siteName === "Virginia Tech Digital Libraries"
+                ? "Digital Libraries Platform"
+                : this.props.site.siteName}
               <span className="sr-only"> Home</span>
             </h1>
             <HomeStatement homeStatement={homeStatement} />
