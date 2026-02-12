@@ -1,5 +1,4 @@
 import { FC } from "react";
-import "../../../css/FeaturedStaticImage.scss";
 import { useSignedLink } from "../../../hooks/useSignedLink";
 
 type Props = {
@@ -27,18 +26,6 @@ export const FeaturedStaticImage: FC<Props> = ({ staticImage, site }) => {
     <div className="home-featured-image-wrapper">
       <div className="home-static-image-wrapper">
         <img src={imgSrc} alt={staticImage.altText || ""} />
-      </div>
-      <div id="home-site-title-wrapper">
-        <h1
-          style={{
-            fontFamily:
-              staticImage?.titleFont || "gineso-condensed, sans-serif",
-            textTransform: staticImage?.textStyle || "uppercase",
-            fontSize: staticImage?.titleSize || "40px"
-          }}
-        >
-          {site?.siteName || ""}
-        </h1>
       </div>
     </div>
   );
