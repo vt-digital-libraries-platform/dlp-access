@@ -88,59 +88,61 @@ export const CollectionsShowPage: FC<Props> = ({ site, customKey }) => {
             }
           ]}
         ></Helmet>
-        <div className="breadcrumbs-wrapper">
-          <nav aria-label="Collection breadcrumbs">
-            <Breadcrumbs
-              category="Collections"
-              record={collection}
-              setTitleList={setTitleList}
-            />
-          </nav>
-        </div>
-        <CollectionTopContent
-          collectionImg={thumbnail_path}
-          collectionTitle={title}
-          updatedAt={updatedAt}
-          description={description}
-          creator={creator}
-          customKey={customKey}
-          collectionOptions={
-            collection.collectionOptions
-              ? JSON.parse(collection.collectionOptions)
-              : null
-          }
-          site={site}
-        />
-        {viewOption === "list" ? (
-          <CollectionsListView
+        <div className="container">
+          <div className="breadcrumbs-wrapper">
+            <nav aria-label="Collection breadcrumbs">
+              <Breadcrumbs
+                category="Collections"
+                record={collection}
+                setTitleList={setTitleList}
+              />
+            </nav>
+          </div>
+          <CollectionTopContent
+            collectionImg={thumbnail_path}
+            collectionTitle={title}
+            updatedAt={updatedAt}
+            description={description}
+            creator={creator}
+            customKey={customKey}
+            collectionOptions={
+              collection.collectionOptions
+                ? JSON.parse(collection.collectionOptions)
+                : null
+            }
             site={site}
-            collection={collection}
-            metadataTitle={metadataTitle()}
-            collectionCustomKey={collectionCustomKey}
-            viewOption={viewOption}
-            socialButtons={socialButtons}
-            title={title}
-            media={thumbnail_path}
-            hasParentCollection={!!collection.parent_collection}
           />
-        ) : (
-          <>
-            <div className="row justify-content-end">
-              <div className="social-buttons-wrapper-line col-12 col-md-8">
-                <SocialButtons
-                  buttons={socialButtons}
-                  url={window.location.href}
-                  title={title}
-                  media={thumbnail_path}
-                />
+          {viewOption === "list" ? (
+            <CollectionsListView
+              site={site}
+              collection={collection}
+              metadataTitle={metadataTitle()}
+              collectionCustomKey={collectionCustomKey}
+              viewOption={viewOption}
+              socialButtons={socialButtons}
+              title={title}
+              media={thumbnail_path}
+              hasParentCollection={!!collection.parent_collection}
+            />
+          ) : (
+            <>
+              <div className="row justify-content-end">
+                <div className="social-buttons-wrapper-line col-12 col-md-8">
+                  <SocialButtons
+                    buttons={socialButtons}
+                    url={window.location.href}
+                    title={title}
+                    media={thumbnail_path}
+                  />
+                </div>
               </div>
-            </div>
-            {options?.collectionPageSettings?.itemsPosition &&
-            parseInt(options.collectionPageSettings.itemsPosition) === 0
-              ? [items, metadata]
-              : [metadata, items]}
-          </>
-        )}
+              {options?.collectionPageSettings?.itemsPosition &&
+              parseInt(options.collectionPageSettings.itemsPosition) === 0
+                ? [items, metadata]
+                : [metadata, items]}
+            </>
+          )}
+        </div>
       </div>
     );
   } else {

@@ -103,7 +103,7 @@ class AdditionalPages extends Component {
 
   render() {
     return (
-      <div className="additional-pages-wrapper quill-styles">
+      <div className="container additional-pages-wrapper quill-styles">
         {this.getPageCopy()}
       </div>
     );

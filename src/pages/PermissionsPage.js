@@ -20,7 +20,7 @@ class PermissionsPage extends Component {
     if (data_url && useDataUrl) {
       getFileContent(data_url, "html", this);
     } else if (pageContentId) {
-      getPageContentById(pageContentId).then(resp => {
+      getPageContentById(pageContentId).then((resp) => {
         this.setState({
           copy: resp
         });
@@ -37,7 +37,7 @@ class PermissionsPage extends Component {
       console.log("no download link specified");
     }
     return (
-      <>
+      <div className="container">
         <div className="row terms-page-wrapper">
           <div className="col-12 terms-heading">
             <SiteTitle
@@ -73,7 +73,7 @@ class PermissionsPage extends Component {
             ) : null}
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }
