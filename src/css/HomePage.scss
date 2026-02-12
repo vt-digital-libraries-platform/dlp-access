@@ -1,8 +1,11 @@
 .home-static-image-wrapper img {
   width: 100%;
-  max-height: min(200px, 20vh);
+  max-height: min(200px, 15vh);
   object-fit: cover;
-  margin-top: -36px; // Patch fix to avoid changing margins on every page's H1
+  @media (min-width: 992px) {
+    max-height: min(200px, 20vh);
+    margin-top: -36px; // Patch fix to avoid changing margins on every page's H1
+  }
 }
 
 .home-wrapper {
