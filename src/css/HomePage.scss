@@ -9,51 +9,6 @@
 }
 
 .home-wrapper {
-  & h1,
-  h2 {
-    font-family: "gineso-condensed", sans-serif;
-    font-weight: 600;
-    text-align: left;
-  }
-
-  & h1 {
-    font-size: 2.5rem;
-    padding: 1rem 0 0.25rem 0;
-
-    @media (min-width: 992px) {
-      font-size: 2.75rem;
-      padding: 1.5rem 0 0.25rem 0;
-    }
-  }
-
-  & h2 {
-    font-size: 2rem;
-    padding: 0.5rem 0 0.125rem 0;
-    @media (min-width: 992px) {
-      font-size: 2.25rem;
-      padding: 0.75rem 0 0.125rem 0;
-    }
-  }
-
-  .home-statement {
-    font-size: 1rem;
-    @media (min-width: 992px) {
-      font-size: 1.25rem;
-    }
-    font-family: "Acherus", sans-serif;
-
-    & a {
-      &:visited {
-        color: var(--hokieOrange);
-      }
-      &:hover,
-      &:focus,
-      &:active {
-        color: var(---hokieOrangeHover);
-      }
-    }
-  }
-
   .home-search-wrapper {
     padding: 0.5rem 4px; // 4px L/R padding to visually adjust for the (8px) box shadow
   }

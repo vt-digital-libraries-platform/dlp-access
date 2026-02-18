@@ -8,6 +8,7 @@ import { MultimediaSection } from "./home/MultimediaSection";
 import { SiteSponsors } from "./home/SiteSponsors";
 import { CollectionHighlights } from "./home/CollectionHighlights";
 
+import "../css/Typography.scss";
 import "../css/HomePage.scss";
 
 class HomePage extends Component {
@@ -38,7 +39,7 @@ class HomePage extends Component {
           site={this.props.site}
           template="{{title}}"
         />
-        <div className="home-wrapper">
+        <div className="home-wrapper typography-wrapper">
           <FeaturedStaticImage
             staticImage={staticImage}
             site={this.props.site}
