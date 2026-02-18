@@ -66,26 +66,40 @@ class HomePage extends Component {
               <a href="/search?&category=archive">Browse All Items</a>
               <a href="/search?&category=collection">Browse All Collections</a>
             </div>
-            <h2>Featured Items</h2>
-            <FeaturedItems
-              featuredItems={featuredItems}
-              site={this.props.site}
-            />
-            <h2 className="sr-only">Multimedia</h2>{" "}
-            {/* This H2 is here as a fallback only...
-                                                        Deployed sites don't currently use this seciton*/}
-            <MultimediaSection mediaSection={mediaSection} />
-            <h2>Sponsors</h2>
-            <SiteSponsors
-              sponsors={sponsors}
-              sponsorsStyle={sponsorsStyle}
-              site={this.props.site}
-            />
-            <h2>Highlights</h2>
-            <CollectionHighlights
-              collectionHighlights={collectionHighlights}
-              site={this.props.site}
-            />
+            {featuredItems && featuredItems.length > 0 && (
+              <>
+                <h2>Featured Items</h2>
+                <FeaturedItems
+                  featuredItems={featuredItems}
+                  site={this.props.site}
+                />
+              </>
+            )}
+            {mediaSection && (
+              <>
+                <h2>Multimedia</h2>
+                <MultimediaSection mediaSection={mediaSection} />
+              </>
+            )}
+            {sponsors && sponsors.length > 0 && (
+              <>
+                <h2>Sponsors</h2>
+                <SiteSponsors
+                  sponsors={sponsors}
+                  sponsorsStyle={sponsorsStyle}
+                  site={this.props.site}
+                />
+              </>
+            )}
+            {collectionHighlights && collectionHighlights.length > 0 && (
+              <>
+                <h2>Highlights</h2>
+                <CollectionHighlights
+                  collectionHighlights={collectionHighlights}
+                  site={this.props.site}
+                />
+              </>
+            )}
           </div>
         </div>
       </>
