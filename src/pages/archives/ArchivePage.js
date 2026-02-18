@@ -387,13 +387,6 @@ class ArchivePage extends Component {
               }
             ]}
           ></Helmet>
-          <SearchBar
-            category={this.state.category}
-            view={this.state.view}
-            field={this.state.searchField}
-            setPage={this.setPage}
-            updateFormState={this.updateFormState}
-          />
 
           <div className="item-image-section">
             <div className="breadcrumbs-wrapper">
@@ -455,7 +448,9 @@ class ArchivePage extends Component {
               </div>
             </div>
           </div>
-          <RelatedItems collection={this.state.item} site={this.props.site} />
+          <div className="container">
+            <RelatedItems collection={this.state.item} site={this.props.site} />
+          </div>
         </div>
       );
     } else {

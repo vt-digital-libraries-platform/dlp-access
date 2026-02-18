@@ -155,7 +155,7 @@ class SearchResults extends Component {
 
     if (this.state.languages) {
       return (
-        <div className="search-result-wrapper">
+        <div className="container search-result-wrapper">
           <SearchBar
             filters={this.props.filters}
             view={this.props.view}
@@ -163,7 +163,7 @@ class SearchResults extends Component {
             q={this.props.q}
             setPage={this.props.setPage}
           />
-          <div className="container search-results">
+          <div className="search-results">
             <div className="row">
               <div id="sidebar" className="col-lg-3 col-sm-12">
                 <SearchFacets

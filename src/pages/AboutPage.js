@@ -23,7 +23,7 @@ class AboutPage extends Component {
     if (data_url && useDataUrl) {
       getFileContent(data_url, "html", this);
     } else if (pageContentId) {
-      getPageContentById(pageContentId).then(resp => {
+      getPageContentById(pageContentId).then((resp) => {
         this.setState({
           copy: resp
         });
@@ -35,37 +35,46 @@ class AboutPage extends Component {
     const title = "About ".concat(this.props.site.siteTitle);
 
     return (
-      <div className="row about-page-wrapper">
-        <div className="col-12 about-heading">
-          <SiteTitle siteTitle={this.props.site.siteTitle} pageTitle="About" />
-          <h1 id="about-heading">{title}</h1>
-          <Helmet
-            script={[
-              { type: "text/javascript" },
-              {
-                type: "application/ld+json",
-                innerHTML: buildHeaderSchema(
-                  "Article",
-                  "AboutPage",
-                  window.location.href,
-                  title
-                )
-              }
-            ]}
-          ></Helmet>
-        </div>
-        <div className="col-md-8" role="region" aria-labelledby="about-heading">
-          <div className="about-details quill-styles">
-            {cleanHTML(this.state.copy, "page")}
+      <div className="container">
+        <div className="row about-page-wrapper">
+          <div className="col-12 about-heading">
+            <SiteTitle
+              siteTitle={this.props.site.siteTitle}
+              pageTitle="About"
+            />
+            <h1 id="about-heading">{title}</h1>
+            <Helmet
+              script={[
+                { type: "text/javascript" },
+                {
+                  type: "application/ld+json",
+                  innerHTML: buildHeaderSchema(
+                    "Article",
+                    "AboutPage",
+                    window.location.href,
+                    title
+                  )
+                }
+              ]}
+            ></Helmet>
           </div>
-        </div>
-        <div className="col-md-4 contact-section-wrapper">
-          <ContactSection site={this.props.site} />
-          {JSON.parse(this.props.site.sitePages)["terms"] ? (
-            <a href="/permissions" className="about-terms-link">
-              Permissions
-            </a>
-          ) : null}
+          <div
+            className="col-md-8"
+            role="region"
+            aria-labelledby="about-heading"
+          >
+            <div className="about-details quill-styles">
+              {cleanHTML(this.state.copy, "page")}
+            </div>
+          </div>
+          <div className="col-md-4 contact-section-wrapper">
+            <ContactSection site={this.props.site} />
+            {JSON.parse(this.props.site.sitePages)["terms"] ? (
+              <a href="/permissions" className="about-terms-link">
+                Permissions
+              </a>
+            ) : null}
+          </div>
         </div>
       </div>
     );

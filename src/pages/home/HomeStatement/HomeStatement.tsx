@@ -16,7 +16,6 @@ export const HomeStatement: FC<Props> = ({ homeStatement }) => {
         role="region"
         aria-label="Introduction"
       >
-        {homeStatement.heading && <h2>{homeStatement.heading}</h2>}
         {homeStatement.statement && (
           <div className="home-statement">
             <p>{cleanHTML(homeStatement.statement, "html")}</p>
