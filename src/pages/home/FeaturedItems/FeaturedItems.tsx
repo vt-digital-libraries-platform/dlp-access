@@ -38,10 +38,6 @@ export const FeaturedItems: FC<Props> = ({ featuredItems, site }) => {
           setMultiplier(4);
         }
       }
-      // } else {
-      //   setEndIndex(startIndex + 2);
-      //   setMultiplier(2);
-      // }
     }
     setValues();
     window.addEventListener("resize", setValues);

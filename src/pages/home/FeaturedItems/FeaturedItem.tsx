@@ -32,9 +32,9 @@ export const FeaturedItem: FC<Props> = ({
   return (
     <li
       className="col-12 col-sm-6 col-md-3 list-unstyled card-gallery-border"
-      role="group"
-      aria-roledescription="slide"
-      aria-label={`${position} of ${length}`}
+      //role="group"
+      //aria-roledescription="slide"
+      //aria-label={`${position} of ${length} for ${item.cardTitle}`}
       style={style}
       key={item.src}
     >
@@ -45,7 +45,10 @@ export const FeaturedItem: FC<Props> = ({
       />
       <div className="card-body">
         <h3 className="card-title">
-          <a href={item.link} className="card h-100 text-decoration-none">
+          <a
+            href={item.cardTitle === "Items" ? "/search" : item.link}
+            className="card h-100 text-decoration-none"
+          >
             {item.cardTitle}
           </a>
         </h3>
