@@ -18,7 +18,7 @@ type Props = {
 
 export const CollectionHighlights: FC<Props> = ({
   collectionHighlights,
-  site,
+  site
 }) => {
   if (!collectionHighlights?.length) {
     return null;
@@ -30,9 +30,6 @@ export const CollectionHighlights: FC<Props> = ({
       aria-roledescription="Collection highlights"
       aria-label="Collection Highlights"
     >
-      <div className="collection-highlights-heading">
-        <h2>Collection Highlights</h2>
-      </div>
       <div className="row justify-content-center">
         {collectionHighlights.map((item, index) => (
           <Highlight

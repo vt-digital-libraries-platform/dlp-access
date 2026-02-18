@@ -25,8 +25,6 @@ export const SiteSponsors: FC<Props> = ({ sponsors, site, sponsorsStyle }) => {
             ? `container home-sponsors-section sponsors-${sponsorsStyle}`
             : "container home-sponsors-section"
         }
-        role="region"
-        aria-label="Sponsors"
       >
         <div className="row home-sponsors-wrapper">
           {sponsors.map((sponsor, index) => (

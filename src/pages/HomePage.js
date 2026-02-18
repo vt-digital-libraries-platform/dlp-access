@@ -46,36 +46,41 @@ class HomePage extends Component {
           <div className="container">
             <h1>
               <span className="sr-only">Virginia Tech </span>
-              {this.props.site.siteName === "Virginia Tech Digital Libraries"
+              {(this.props.site.siteName === "Virginia Tech Digital Libraries"
                 ? "Digital Libraries Platform"
-                : this.props.site.siteName}
+                : this.props.site.siteName
+              )
+                .replace("Virginia Tech", "")
+                .replace("Home", "")
+                .trim()}
               <span className="sr-only"> Home</span>
             </h1>
             <HomeStatement homeStatement={homeStatement} />
-
             <h2>Search</h2>
             <div className="home-search-wrapper">
               <SearchBar filters={{}} view="Gallery" field="all" q="" />
             </div>
-
+            <h2 className="sr-only">Browse Links</h2>
             <div className="home-nav-links">
-              <a href="/search?&category=archive">View All Items</a>
-              <a href="/search?&category=collection">View All Collections</a>
+              <a href="/search?&category=archive">Browse All Items</a>
+              <a href="/search?&category=collection">Browse All Collections</a>
             </div>
-
+            <h2>Featured Items</h2>
             <FeaturedItems
               featuredItems={featuredItems}
               site={this.props.site}
             />
-
+            <h2 className="sr-only">Multimedia</h2>{" "}
+            {/* This H2 is here as a fallback only...
+                                                        Deployed sites don't currently use this seciton*/}
             <MultimediaSection mediaSection={mediaSection} />
-
+            <h2>Sponsors</h2>
             <SiteSponsors
               sponsors={sponsors}
               sponsorsStyle={sponsorsStyle}
               site={this.props.site}
             />
-
+            <h2>Highlights</h2>
             <CollectionHighlights
               collectionHighlights={collectionHighlights}
               site={this.props.site}
