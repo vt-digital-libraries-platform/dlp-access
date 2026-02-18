@@ -31,24 +31,26 @@ export const FeaturedItem: FC<Props> = ({
   }
   return (
     <li
-      className="col-12 col-sm-6 col-md-3 list-unstyled card-padding"
+      className="col-12 col-sm-6 col-md-3 list-unstyled card-gallery-border"
       role="group"
       aria-roledescription="slide"
       aria-label={`${position} of ${length}`}
       style={style}
       key={item.src}
     >
-      <a href={item.link} className="card h-100 text-decoration-none">
-        <img
-          className="card-img-top img-fluid"
-          src={imgSrc}
-          alt={item.altText || ""}
-        />
-        <div className="card-body">
-          <h3 className="card-title">{item.cardTitle}</h3>
-          <p className="card-details">{item.cardDetails || ""}</p>
-        </div>
-      </a>
+      <img
+        className="card-img-top img-fluid"
+        src={imgSrc}
+        alt={item.altText || ""}
+      />
+      <div className="card-body">
+        <h3 className="card-title">
+          <a href={item.link} className="card h-100 text-decoration-none">
+            {item.cardTitle}
+          </a>
+        </h3>
+        <p className="card-details">{item.cardDetails || ""}</p>
+      </div>
     </li>
   );
 };
