@@ -298,6 +298,19 @@ span.creator:after {
 .mid-content-row .details-section-content-grid .collection-detail-value {
   font-family: "Acherus", sans-serif;
   font-size: 1rem;
+  a {
+    color: var(--hokieOrange) !important;
+    text-decoration: underline !important;
+
+    &:hover {
+      color: var(--hokieMaroon) !important;
+    }
+    &:focus {
+      color: var(--hokieMaroon) !important;
+      outline: 0.15em dashed var(--themeHighlightColor);
+      text-decoration: none !important;
+    }
+  }
 }
 
 .mid-content-row .collection-detail-value.identifier {

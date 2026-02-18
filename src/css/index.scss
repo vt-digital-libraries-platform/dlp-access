@@ -88,3 +88,17 @@ li.nav-item.dropdown:hover div.dropdown-menu {
     display: flex;
   }
 }
+
+p > a {
+  color: var(--hokieOrange) !important;
+  text-decoration: underline !important;
+
+  &:hover {
+    color: var(--hokieMaroon) !important;
+  }
+  &:focus {
+    color: var(--hokieMaroon) !important;
+    outline: 0.15em dashed var(--themeHighlightColor);
+    text-decoration: none !important;
+  }
+}

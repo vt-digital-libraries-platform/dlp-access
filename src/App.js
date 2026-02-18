@@ -12,7 +12,6 @@ import AnalyticsConfig from "./components/AnalyticsConfig";
 import Header from "./components/Header";
 import NavBar from "./components/NavBar";
 import Footer from "./components/Footer";
-import { GitDetails } from "./components/GitDetails";
 import LoadingScreen from "./components/LoadingScreen";
 import { buildRoutes } from "./lib/CustomPageRoutes";
 import HomePage from "./pages/HomePage";
@@ -202,7 +201,6 @@ class App extends Component {
                 </Routes>
               </div>
             </main>
-            <GitDetails />
             <Footer />
           </ThemeProvider>
         </StyledEngineProvider>

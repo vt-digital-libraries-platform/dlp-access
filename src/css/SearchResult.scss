@@ -101,6 +101,16 @@ div.search-results div.row div#content div.navbar {
       display: block;
       color: var(--hokieOrange);
       margin-bottom: 0;
+      text-decoration: underline !important;
+
+      &:hover {
+        color: var(--hokieMaroon) !important;
+      }
+      &:focus {
+        color: var(--hokieMaroon) !important;
+        outline: 0.15em dashed var(--themeHighlightColor);
+        text-decoration: none !important;
+      }
     }
   }
 }

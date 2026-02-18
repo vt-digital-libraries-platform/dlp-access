@@ -1,13 +1,13 @@
-import React, { Component } from "react";
+import { Component } from "react";
 import { Helmet } from "react-helmet";
-import SiteTitle from "../components/SiteTitle";
 import ContactSection from "../components/ContactSection";
+import SiteTitle from "../components/SiteTitle";
 import { getFileContent, getPageContentById } from "../lib/fetchTools";
-import { buildHeaderSchema } from "../lib/richSchemaTools";
 import { cleanHTML } from "../lib/MetadataRenderer";
+import { buildHeaderSchema } from "../lib/richSchemaTools";
 
-import "../css/Editor.scss";
 import "../css/AboutPage.scss";
+import "../css/Editor.scss";
 
 class AboutPage extends Component {
   constructor(props) {
@@ -31,8 +31,19 @@ class AboutPage extends Component {
     }
   }
 
+  getGitCommitHash() {
+    const fullGitCommitHash = process.env.REACT_APP_GIT_COMMIT;
+    if (!fullGitCommitHash) {
+      return null;
+    }
+    return fullGitCommitHash.length > 8
+      ? fullGitCommitHash.substring(0, 7)
+      : fullGitCommitHash;
+  }
+
   render() {
     const title = "About ".concat(this.props.site.siteTitle);
+    const gitCommitHash = this.getGitCommitHash();
 
     return (
       <div className="container">
@@ -65,6 +76,22 @@ class AboutPage extends Component {
           >
             <div className="about-details quill-styles">
               {cleanHTML(this.state.copy, "page")}
+              {gitCommitHash && (
+                <>
+                  <h2>Software Version</h2>
+                  <p>
+                    This website is running{" "}
+                    <a
+                      href={`https://github.com/vt-digital-libraries-platform/dlp-access/commit/${gitCommitHash}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      commit {gitCommitHash} of the vtdlp-access project
+                    </a>
+                    .
+                  </p>
+                </>
+              )}
             </div>
           </div>
           <div className="col-md-4 contact-section-wrapper">
