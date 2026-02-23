@@ -82,13 +82,21 @@ class X3DElement extends Component {
             </scene>
             <div className="controls">
               <div className="tooltip-wrapper">
-                <button onClick={this.zoomIn}>
+                <button
+                  onClick={this.zoomIn}
+                  type="button"
+                  aria-label="Zoom in"
+                >
                   <i className="far fa-plus-circle"></i>
                 </button>
                 <span className="viewer-tooltip">Zoom In</span>
               </div>
               <div className="tooltip-wrapper">
-                <button onClick={this.zoomOut}>
+                <button
+                  onClick={this.zoomOut}
+                  type="button"
+                  aria-label="Zoom out"
+                >
                   <i className="far fa-minus-circle"></i>
                 </button>
                 <span className="viewer-tooltip">Zoom Out</span>
