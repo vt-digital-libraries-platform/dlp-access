@@ -1,4 +1,3 @@
-import React from "react";
 import { Route } from "react-router-dom";
 import AboutPage from "../pages/AboutPage";
 import PermissionsPage from "../pages/PermissionsPage";
@@ -10,7 +9,7 @@ const pageComponents = {
   AdditionalPages: AdditionalPages
 };
 
-function route(site, key, path, PageComponent, childKey = null) {
+function route(site, key, path, title, PageComponent, childKey = null) {
   let elemKey = key;
   if (childKey) {
     elemKey += "." + childKey;
@@ -21,7 +20,12 @@ function route(site, key, path, PageComponent, childKey = null) {
       path={path}
       exact
       element={
-        <PageComponent site={site} parentKey={key} childKey={childKey} />
+        <PageComponent
+          site={site}
+          parentKey={key}
+          childKey={childKey}
+          title={title}
+        />
       }
     />
   );
@@ -31,12 +35,19 @@ export function buildRoutes(site) {
   let routes = [];
   for (const [key, obj] of Object.entries(JSON.parse(site.sitePages))) {
     const pageComponent = pageComponents[obj.component];
-    routes.push(route(site, key, obj.local_url, pageComponent));
+    routes.push(route(site, key, obj.local_url, obj.text, pageComponent));
     if (obj.children) {
       for (const [childKey, childObj] of Object.entries(obj.children)) {
         const childPageComponent = pageComponents[childObj.component];
         routes.push(
-          route(site, key, childObj.local_url, childPageComponent, childKey)
+          route(
+            site,
+            key,
+            childObj.local_url,
+            childObj.text,
+            childPageComponent,
+            childKey
+          )
         );
       }
     }

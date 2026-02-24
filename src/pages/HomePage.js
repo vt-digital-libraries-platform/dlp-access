@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { FeaturedStaticImage } from "./home/FeaturedStaticImage";
 import SearchBar from "../components/SearchBar";
 import { HomeStatement } from "./home/HomeStatement";
-import SiteTitle from "../components/SiteTitle";
+import { SiteTitle } from "../components/SiteTitle";
 import { FeaturedItems } from "./home/FeaturedItems";
 import { MultimediaSection } from "./home/MultimediaSection";
 import { SiteSponsors } from "./home/SiteSponsors";
@@ -33,7 +33,11 @@ class HomePage extends Component {
     }
     return (
       <>
-        <SiteTitle siteTitle={this.props.site.siteTitle} pageTitle="Home" />
+        <SiteTitle
+          data={{ title: "Home" }}
+          site={this.props.site}
+          template="{{title}}"
+        />
         <div className="home-wrapper">
           <FeaturedStaticImage
             staticImage={staticImage}

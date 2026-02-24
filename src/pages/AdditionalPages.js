@@ -5,6 +5,7 @@ import {
   getPageContentById
 } from "../lib/fetchTools";
 import { cleanHTML } from "../lib/MetadataRenderer";
+import { SiteTitle } from "../components/SiteTitle";
 
 import "../css/Editor.scss";
 import "../css/AdditionalPages.scss";
@@ -103,9 +104,16 @@ class AdditionalPages extends Component {
 
   render() {
     return (
-      <div className="container additional-pages-wrapper quill-styles">
-        {this.getPageCopy()}
-      </div>
+      <>
+        <SiteTitle
+          data={{ title: "Additional Pages" }}
+          site={this.props.site}
+          template="{{title}}"
+        />
+        <div className="container additional-pages-wrapper quill-styles">
+          {this.getPageCopy()}
+        </div>
+      </>
     );
   }
 }

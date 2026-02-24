@@ -410,19 +410,54 @@ export const getPodcastCollections = async () => {
   return items;
 };
 
+export const getParentCollectionForItem = async (item) => {
+  let collection = null;
+  let response = null;
+
+  try {
+    if (item.parent_collection && item.parent_collection.length > 0) {
+      response = await API.graphql(
+        graphqlOperation(queries.getCollection, {
+          id: item.parent_collection[0]
+        })
+      );
+    }
+  } catch (error) {
+    console.error(error);
+    console.error(`Error getting collection for item: ${item.id}`);
+  }
+  if (response) {
+    try {
+      collection = response.data.getCollection;
+    } catch (error) {
+      console.error(`Error getting collection for item: ${item.id}`);
+    }
+  }
+  return collection;
+};
+
 export const getTopLevelParentForCollection = async (collection) => {
   const topLevelId = collection.heirarchy_path[0];
   let retVal = null;
-  const response = await API.graphql(
-    graphqlOperation(queries.getCollection, {
-      id: topLevelId
-    })
-  );
+  let response = null;
+
+  try {
+    response = await API.graphql(
+      graphqlOperation(queries.getCollection, {
+        id: topLevelId
+      })
+    );
+  } catch (error) {
+    console.error(`Error fetching top level parent for: ${collection.id}`);
+  }
   try {
     retVal = response.data.getCollection;
   } catch (error) {
-    console.error(`Error getting top level parent for: ${collection.id}`);
+    console.error(
+      `Error parsing response, querying top level parent of: ${collection.id}`
+    );
   }
+
   return retVal;
 };
 

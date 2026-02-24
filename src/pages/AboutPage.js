@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { Helmet } from "react-helmet";
 import ContactSection from "../components/ContactSection";
-import SiteTitle from "../components/SiteTitle";
+import { SiteTitle } from "../components/SiteTitle";
 import { getFileContent, getPageContentById } from "../lib/fetchTools";
 import { cleanHTML } from "../lib/MetadataRenderer";
 import { buildHeaderSchema } from "../lib/richSchemaTools";
@@ -46,64 +46,67 @@ class AboutPage extends Component {
     const gitCommitHash = this.getGitCommitHash();
 
     return (
-      <div className="container">
-        <div className="row about-page-wrapper">
-          <div className="col-12 about-heading">
-            <SiteTitle
-              siteTitle={this.props.site.siteTitle}
-              pageTitle="About"
-            />
-            <h1 id="about-heading">{title}</h1>
-            <Helmet
-              script={[
-                { type: "text/javascript" },
-                {
-                  type: "application/ld+json",
-                  innerHTML: buildHeaderSchema(
-                    "Article",
-                    "AboutPage",
-                    window.location.href,
-                    title
-                  )
-                }
-              ]}
-            ></Helmet>
-          </div>
-          <div
-            className="col-md-8"
-            role="region"
-            aria-labelledby="about-heading"
-          >
-            <div className="about-details quill-styles">
-              {cleanHTML(this.state.copy, "page")}
-              {gitCommitHash && (
-                <>
-                  <h2>Software Version</h2>
-                  <p>
-                    This website is running{" "}
-                    <a
-                      href={`https://github.com/vt-digital-libraries-platform/dlp-access/commit/${gitCommitHash}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      commit {gitCommitHash} of the vtdlp-access project
-                    </a>
-                    .
-                  </p>
-                </>
-              )}
+      <>
+        <SiteTitle
+          data={{ title: "About" }}
+          site={this.props.site}
+          template="{{title}}"
+        />
+        <Helmet
+          script={[
+            { type: "text/javascript" },
+            {
+              type: "application/ld+json",
+              innerHTML: buildHeaderSchema(
+                "Article",
+                "AboutPage",
+                window.location.href,
+                title
+              )
+            }
+          ]}
+        ></Helmet>
+        <div className="container">
+          <div className="row about-page-wrapper">
+            <div className="col-12 about-heading">
+              <h1 id="about-heading">{title}</h1>
+            </div>
+            <div
+              className="col-md-8"
+              role="region"
+              aria-labelledby="about-heading"
+            >
+              <div className="about-details quill-styles">
+                {cleanHTML(this.state.copy, "page")}
+                {gitCommitHash && (
+                  <>
+                    <h2>Software Version</h2>
+                    <p>
+                      This website is running{" "}
+                      <a
+                        href={`https://github.com/vt-digital-libraries-platform/dlp-access/commit/${gitCommitHash}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        commit {gitCommitHash} of the vtdlp-access project
+                      </a>
+                      .
+                    </p>
+                  </>
+                )}
+              </div>
+            </div>
+            <div className="col-md-4 contact-section-wrapper">
+              <ContactSection site={this.props.site} />
+              {JSON.parse(this.props.site.sitePages)["terms"] ? (
+                <a href="/permissions" className="about-terms-link">
+                  Permissions
+                </a>
+              ) : null}
             </div>
           </div>
-          <div className="col-md-4 contact-section-wrapper">
-            <ContactSection site={this.props.site} />
-            {JSON.parse(this.props.site.sitePages)["terms"] ? (
-              <a href="/permissions" className="about-terms-link">
-                Permissions
-              </a>
-            ) : null}
-          </div>
         </div>
-      </div>
+      </>
     );
   }
 }
