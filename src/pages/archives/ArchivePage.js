@@ -10,13 +10,14 @@ import { ThreeD2DiiifHandler } from "../../components/ThreeD2DiiifHandler";
 import { MediaElement } from "../../components/MediaElement";
 import SearchBar from "../../components/SearchBar";
 import Breadcrumbs from "../../components/Breadcrumbs.js";
-import SiteTitle from "../../components/SiteTitle";
+import { getTitleTemplateForType, SiteTitle } from "../../components/SiteTitle";
 import {
   RenderItemsDetailed,
   addNewlineInDesc
 } from "../../lib/MetadataRenderer";
 import {
   fetchLanguages,
+  getParentCollectionForItem,
   getTopLevelParentForCollection
 } from "../../lib/fetchTools";
 import { buildRichSchema } from "../../lib/richSchemaTools";
@@ -78,8 +79,9 @@ class ArchivePage extends Component {
     );
     try {
       const item = response.data.searchArchives.items[0];
+      const collection = await getParentCollectionForItem(item);
       const topLevelParentCollection = await getTopLevelParentForCollection(
-        item
+        collection
       );
 
       const collectionCustomKey = topLevelParentCollection.custom_key;
@@ -87,8 +89,10 @@ class ArchivePage extends Component {
       this.setState({
         item: item,
         collectionCustomKey: collectionCustomKey,
-        parentCollection: topLevelParentCollection,
-        info: archiveSchema
+        topLevelParentCollection: topLevelParentCollection,
+        info: archiveSchema,
+        title_data: { item: { ...item }, collection: { ...collection } },
+        title_template: getTitleTemplateForType(item, collection)
       });
     } catch (error) {
       console.error(`Error fetching item: ${customKey}`);
@@ -203,7 +207,6 @@ class ArchivePage extends Component {
 
   buildArchiveSchema(item) {
     let info = {};
-    info["audio"] = item.manifest_url;
     let collectionURL = window.location.href.replace("archive", "collection");
     let collectionNoid = this.state.collectionCustomKey.replace(
       "ark:/53696/",
@@ -214,10 +217,6 @@ class ArchivePage extends Component {
       collectionURL.substring(0, collectionURL.length - 8) + collectionNoid;
     info["datePublished"] = item.create_date;
     info["description"] = item.description;
-    if (item.manifest_file_characterization) {
-      const characterization = JSON.parse(item.manifest_file_characterization);
-      info["duration"] = characterization.duration;
-    }
     info["title"] = item.title;
     info["url"] = window.location.href;
 
@@ -370,10 +369,11 @@ class ArchivePage extends Component {
         title: this.state.item.identifier
       });
       return (
-        <div className="item-page-wrapper">
+        <>
           <SiteTitle
-            siteTitle={this.props.site.siteTitle}
-            pageTitle={this.state.item.title}
+            data={this.state.title_data}
+            site={this.props.site}
+            template={this.state.title_template}
           />
           <Helmet
             script={[
@@ -387,71 +387,75 @@ class ArchivePage extends Component {
               }
             ]}
           ></Helmet>
-
-          <div className="item-image-section">
-            <div className="breadcrumbs-wrapper">
-              <nav aria-label="Collection breadcrumbs">
-                <Breadcrumbs category={"Archives"} record={this.state.item} />
-              </nav>
-            </div>
-            <div id="dataContainer" className="row">
-              <div
-                id="item-media-col"
-                className="item-media-section col-sm-12 col-md-12 col-lg-8"
-                role="region"
-                aria-label="Item media"
-              >
-                {this.mediaDisplay(this.state.item)}
+          <div className="item-page-wrapper">
+            <div className="item-image-section">
+              <div className="breadcrumbs-wrapper">
+                <nav aria-label="Collection breadcrumbs">
+                  <Breadcrumbs category={"Archives"} record={this.state.item} />
+                </nav>
               </div>
+              <div id="dataContainer" className="row">
+                <div
+                  id="item-media-col"
+                  className="item-media-section col-sm-12 col-md-12 col-lg-8"
+                  role="region"
+                  aria-label="Item media"
+                >
+                  {this.mediaDisplay(this.state.item)}
+                </div>
 
-              <div
-                id="metaDataView"
-                className="item-details-section col-sm-12 col-md-12 col-lg-4"
-              >
-                <div>
-                  <h2>{this.state.item.title}</h2>
-                  <div className="item-metadata description">
-                    {addNewlineInDesc(
-                      this?.state?.item?.description,
-                      "Description"
-                    )}
+                <div
+                  id="metaDataView"
+                  className="item-details-section col-sm-12 col-md-12 col-lg-4"
+                >
+                  <div>
+                    <h2>{this.state.item.title}</h2>
+                    <div className="item-metadata description">
+                      {addNewlineInDesc(
+                        this?.state?.item?.description,
+                        "Description"
+                      )}
+                    </div>
+                  </div>
+                  <div>
+                    <CollapsibleCard
+                      title="About"
+                      marker="about"
+                      data={this.state.item}
+                      defaultExpand={true}
+                    />
+                    <CollapsibleCard
+                      title="Copyright"
+                      marker="copyright"
+                      data={this.state.item}
+                      defaultExpand={false}
+                    />
+                    <CollapsibleCard
+                      title="Citation"
+                      marker="citation"
+                      data={this.state.item}
+                      site={this.props.site}
+                      defaultExpand={false}
+                      parentCollection={this.state.parentCollection}
+                    />
+                    <CollapsibleCard
+                      title="Location"
+                      marker="location"
+                      data={this.state.item}
+                      defaultExpand={false}
+                    />
                   </div>
                 </div>
-                <div>
-                  <CollapsibleCard
-                    title="About"
-                    marker="about"
-                    data={this.state.item}
-                    defaultExpand={true}
-                  />
-                  <CollapsibleCard
-                    title="Copyright"
-                    marker="copyright"
-                    data={this.state.item}
-                    defaultExpand={false}
-                  />
-                  <CollapsibleCard
-                    title="Citation"
-                    marker="citation"
-                    data={this.state.item}
-                    site={this.props.site}
-                    defaultExpand={false}
-                    parentCollection={this.state.parentCollection}
-                  />
-                  <CollapsibleCard
-                    title="Location"
-                    marker="location"
-                    data={this.state.item}
-                    defaultExpand={false}
-                  />
-                </div>
               </div>
             </div>
+            <div className="container">
+              <RelatedItems
+                collection={this.state.item}
+                site={this.props.site}
+              />
+            </div>
           </div>
-          <div className="container">
-            <RelatedItems collection={this.state.item} site={this.props.site} />
-          </div>
-        </div>
+        </>
       );
     } else {
       return <></>;
