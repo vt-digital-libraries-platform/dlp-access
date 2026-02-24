@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import SiteTitle from "../components/SiteTitle";
+import { SiteTitle } from "../components/SiteTitle";
 import ContactSection from "../components/ContactSection";
 import { getFileContent, getPageContentById } from "../lib/fetchTools";
 import { cleanHTML } from "../lib/MetadataRenderer";
@@ -37,43 +37,46 @@ class PermissionsPage extends Component {
       console.log("no download link specified");
     }
     return (
-      <div className="container">
-        <div className="row terms-page-wrapper">
-          <div className="col-12 terms-heading">
-            <SiteTitle
-              siteTitle={this.props.site.siteTitle}
-              pageTitle="Permissions"
-            />
-            <h1 id="permissions-heading">Permissions</h1>
-          </div>
-          <div
-            className="col-md-8"
-            role="region"
-            aria-labelledby="permissions-heading"
-          >
-            <div className="terms-details quill-styles">
-              {cleanHTML(this.state.copy, "page")}
+      <>
+        <SiteTitle
+          data={{ title: "Permissions" }}
+          site={this.props.site}
+          template="{{title}}"
+        />
+        <div className="container">
+          <div className="row terms-page-wrapper">
+            <div className="col-12 terms-heading">
+              <h1 id="permissions-heading">Permissions</h1>
+            </div>
+            <div
+              className="col-md-8"
+              role="region"
+              aria-labelledby="permissions-heading"
+            >
+              <div className="terms-details quill-styles">
+                {cleanHTML(this.state.copy, "page")}
+              </div>
+            </div>
+            <div className="col-md-4 contact-section-wrapper">
+              <ContactSection
+                siteDetails={this.props.site}
+                site={this.props.site}
+              />
+              {download ? (
+                <div role="region" aria-labelledby="terms-downloads-section">
+                  <h2
+                    className="terms-downloads-heading"
+                    id="terms-downloads-section"
+                  >
+                    Downloadable forms
+                  </h2>
+                  <a href={download}>Permission form for image reproductions</a>
+                </div>
+              ) : null}
             </div>
           </div>
-          <div className="col-md-4 contact-section-wrapper">
-            <ContactSection
-              siteDetails={this.props.site}
-              site={this.props.site}
-            />
-            {download ? (
-              <div role="region" aria-labelledby="terms-downloads-section">
-                <h2
-                  className="terms-downloads-heading"
-                  id="terms-downloads-section"
-                >
-                  Downloadable forms
-                </h2>
-                <a href={download}>Permission form for image reproductions</a>
-              </div>
-            ) : null}
-          </div>
         </div>
-      </div>
+      </>
     );
   }
 }
