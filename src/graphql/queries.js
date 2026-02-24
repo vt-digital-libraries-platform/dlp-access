@@ -17,6 +17,8 @@ export const searchObjects = /* GraphQL */ `
       nextToken: $nextToken
     ) {
       items {
+        alt_text
+        archived
         bibliographic_citation
         create_date
         creator
@@ -33,6 +35,7 @@ export const searchObjects = /* GraphQL */ `
         modified_date
         parent_collection
         parent_collection_identifier
+        partner_id
         provenance
         relation
         rights_holder
@@ -43,6 +46,7 @@ export const searchObjects = /* GraphQL */ `
         subject
         thumbnail_path
         title
+        title_template
         visibility
 
         ... on Collection {
@@ -54,6 +58,7 @@ export const searchObjects = /* GraphQL */ `
           createdAt
           updatedAt
           collectionCollectionmapId
+          collectionPartnerId
         }
         ... on Archive {
           age
@@ -68,6 +73,7 @@ export const searchObjects = /* GraphQL */ `
           download_link
           explicit
           extent
+          extracted_text
           format
           format_physical
           has_format
@@ -85,12 +91,15 @@ export const searchObjects = /* GraphQL */ `
           references
           repository
           tags
+          taxonomy
           temporal
           type
+          visual_description
           createdAt
           updatedAt
           collectionArchivesId
           archiveCollectionId
+          archivePartnerId
         }
       }
       nextToken
@@ -115,6 +124,8 @@ export const fulltextCollections = /* GraphQL */ `
       nextToken: $nextToken
     ) {
       items {
+        alt_text
+        archived
         bibliographic_citation
         collection_category
         collectionmap_id
@@ -136,6 +147,7 @@ export const fulltextCollections = /* GraphQL */ `
         ownerinfo
         parent_collection
         parent_collection_identifier
+        partner_id
         provenance
         relation
         rights_holder
@@ -146,10 +158,12 @@ export const fulltextCollections = /* GraphQL */ `
         subject
         thumbnail_path
         title
+        title_template
         visibility
         createdAt
         updatedAt
         collectionCollectionmapId
+        collectionPartnerId
         __typename
       }
       nextToken
@@ -176,6 +190,8 @@ export const fulltextArchives = /* GraphQL */ `
       items {
         age
         alternative
+        alt_text
+        archived
         archiveOptions
         basis_of_record
         bibliographic_citation
@@ -193,6 +209,7 @@ export const fulltextArchives = /* GraphQL */ `
         end_date
         explicit
         extent
+        extracted_text
         format
         format_physical
         has_format
@@ -215,6 +232,7 @@ export const fulltextArchives = /* GraphQL */ `
         other_identifier
         parent_collection
         parent_collection_identifier
+        partner_id
         provenance
         publisher
         references
@@ -227,15 +245,19 @@ export const fulltextArchives = /* GraphQL */ `
         start_date
         subject
         tags
+        taxonomy
         temporal
         thumbnail_path
         title
+        title_template
         type
         visibility
+        visual_description
         createdAt
         updatedAt
         collectionArchivesId
         archiveCollectionId
+        archivePartnerId
         __typename
       }
       nextToken
@@ -249,6 +271,8 @@ export const getArchive = /* GraphQL */ `
     getArchive(id: $id) {
       age
       alternative
+      alt_text
+      archived
       archiveOptions
       basis_of_record
       bibliographic_citation
@@ -266,6 +290,7 @@ export const getArchive = /* GraphQL */ `
       end_date
       explicit
       extent
+      extracted_text
       format
       format_physical
       has_format
@@ -288,6 +313,7 @@ export const getArchive = /* GraphQL */ `
       other_identifier
       parent_collection
       parent_collection_identifier
+      partner_id
       provenance
       publisher
       references
@@ -300,12 +326,17 @@ export const getArchive = /* GraphQL */ `
       start_date
       subject
       tags
+      taxonomy
       temporal
       thumbnail_path
       title
+      title_template
       type
       visibility
+      visual_description
       collection {
+        alt_text
+        archived
         bibliographic_citation
         collection_category
         collectionmap_id
@@ -327,6 +358,7 @@ export const getArchive = /* GraphQL */ `
         ownerinfo
         parent_collection
         parent_collection_identifier
+        partner_id
         provenance
         relation
         rights_holder
@@ -337,16 +369,32 @@ export const getArchive = /* GraphQL */ `
         subject
         thumbnail_path
         title
+        title_template
         visibility
         createdAt
         updatedAt
         collectionCollectionmapId
+        collectionPartnerId
+        __typename
+      }
+      partner {
+        custom_key
+        description
+        id
+        identifier
+        title
+        title_template
+        thumbnail_path
+        visibility
+        createdAt
+        updatedAt
         __typename
       }
       createdAt
       updatedAt
       collectionArchivesId
       archiveCollectionId
+      archivePartnerId
       __typename
     }
   }
@@ -361,6 +409,8 @@ export const listArchives = /* GraphQL */ `
       items {
         age
         alternative
+        alt_text
+        archived
         archiveOptions
         basis_of_record
         bibliographic_citation
@@ -378,6 +428,7 @@ export const listArchives = /* GraphQL */ `
         end_date
         explicit
         extent
+        extracted_text
         format
         format_physical
         has_format
@@ -400,6 +451,7 @@ export const listArchives = /* GraphQL */ `
         other_identifier
         parent_collection
         parent_collection_identifier
+        partner_id
         provenance
         publisher
         references
@@ -412,15 +464,19 @@ export const listArchives = /* GraphQL */ `
         start_date
         subject
         tags
+        taxonomy
         temporal
         thumbnail_path
         title
+        title_template
         type
         visibility
+        visual_description
         createdAt
         updatedAt
         collectionArchivesId
         archiveCollectionId
+        archivePartnerId
         __typename
       }
       nextToken
@@ -446,6 +502,8 @@ export const archiveByIdentifier = /* GraphQL */ `
       items {
         age
         alternative
+        alt_text
+        archived
         archiveOptions
         basis_of_record
         bibliographic_citation
@@ -463,6 +521,7 @@ export const archiveByIdentifier = /* GraphQL */ `
         end_date
         explicit
         extent
+        extracted_text
         format
         format_physical
         has_format
@@ -485,6 +544,7 @@ export const archiveByIdentifier = /* GraphQL */ `
         other_identifier
         parent_collection
         parent_collection_identifier
+        partner_id
         provenance
         publisher
         references
@@ -497,15 +557,19 @@ export const archiveByIdentifier = /* GraphQL */ `
         start_date
         subject
         tags
+        taxonomy
         temporal
         thumbnail_path
         title
+        title_template
         type
         visibility
+        visual_description
         createdAt
         updatedAt
         collectionArchivesId
         archiveCollectionId
+        archivePartnerId
         __typename
       }
       nextToken
@@ -533,6 +597,8 @@ export const searchArchives = /* GraphQL */ `
       items {
         age
         alternative
+        alt_text
+        archived
         archiveOptions
         basis_of_record
         bibliographic_citation
@@ -550,6 +616,7 @@ export const searchArchives = /* GraphQL */ `
         end_date
         explicit
         extent
+        extracted_text
         format
         format_physical
         has_format
@@ -572,6 +639,7 @@ export const searchArchives = /* GraphQL */ `
         other_identifier
         parent_collection
         parent_collection_identifier
+        partner_id
         provenance
         publisher
         references
@@ -584,15 +652,19 @@ export const searchArchives = /* GraphQL */ `
         start_date
         subject
         tags
+        taxonomy
         temporal
         thumbnail_path
         title
+        title_template
         type
         visibility
+        visual_description
         createdAt
         updatedAt
         collectionArchivesId
         archiveCollectionId
+        archivePartnerId
         __typename
       }
       nextToken
@@ -604,6 +676,8 @@ export const searchArchives = /* GraphQL */ `
 export const getCollection = /* GraphQL */ `
   query GetCollection($id: ID!) {
     getCollection(id: $id) {
+      alt_text
+      archived
       bibliographic_citation
       collection_category
       collectionmap_id
@@ -625,6 +699,7 @@ export const getCollection = /* GraphQL */ `
       ownerinfo
       parent_collection
       parent_collection_identifier
+      partner_id
       provenance
       relation
       rights_holder
@@ -635,7 +710,12 @@ export const getCollection = /* GraphQL */ `
       subject
       thumbnail_path
       title
+      title_template
       visibility
+      archives {
+        nextToken
+        __typename
+      }
       collectionmap {
         collectionmap_category
         collection_id
@@ -648,13 +728,23 @@ export const getCollection = /* GraphQL */ `
         collectionmapCollectionId
         __typename
       }
-      archives {
-        nextToken
+      partner {
+        custom_key
+        description
+        id
+        identifier
+        title
+        title_template
+        thumbnail_path
+        visibility
+        createdAt
+        updatedAt
         __typename
       }
       createdAt
       updatedAt
       collectionCollectionmapId
+      collectionPartnerId
       __typename
     }
   }
@@ -667,6 +757,8 @@ export const listCollections = /* GraphQL */ `
   ) {
     listCollections(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
+        alt_text
+        archived
         bibliographic_citation
         collection_category
         collectionmap_id
@@ -688,6 +780,7 @@ export const listCollections = /* GraphQL */ `
         ownerinfo
         parent_collection
         parent_collection_identifier
+        partner_id
         provenance
         relation
         rights_holder
@@ -698,10 +791,12 @@ export const listCollections = /* GraphQL */ `
         subject
         thumbnail_path
         title
+        title_template
         visibility
         createdAt
         updatedAt
         collectionCollectionmapId
+        collectionPartnerId
         __typename
       }
       nextToken
@@ -725,6 +820,8 @@ export const collectionByIdentifier = /* GraphQL */ `
       nextToken: $nextToken
     ) {
       items {
+        alt_text
+        archived
         bibliographic_citation
         collection_category
         collectionmap_id
@@ -746,6 +843,7 @@ export const collectionByIdentifier = /* GraphQL */ `
         ownerinfo
         parent_collection
         parent_collection_identifier
+        partner_id
         provenance
         relation
         rights_holder
@@ -756,10 +854,12 @@ export const collectionByIdentifier = /* GraphQL */ `
         subject
         thumbnail_path
         title
+        title_template
         visibility
         createdAt
         updatedAt
         collectionCollectionmapId
+        collectionPartnerId
         __typename
       }
       nextToken
@@ -785,6 +885,8 @@ export const searchCollections = /* GraphQL */ `
       aggregates: $aggregates
     ) {
       items {
+        alt_text
+        archived
         bibliographic_citation
         collection_category
         collectionmap_id
@@ -806,6 +908,7 @@ export const searchCollections = /* GraphQL */ `
         ownerinfo
         parent_collection
         parent_collection_identifier
+        partner_id
         provenance
         relation
         rights_holder
@@ -816,10 +919,12 @@ export const searchCollections = /* GraphQL */ `
         subject
         thumbnail_path
         title
+        title_template
         visibility
         createdAt
         updatedAt
         collectionCollectionmapId
+        collectionPartnerId
         __typename
       }
       nextToken
@@ -838,6 +943,8 @@ export const getCollectionmap = /* GraphQL */ `
       map_object
       modified_date
       collection {
+        alt_text
+        archived
         bibliographic_citation
         collection_category
         collectionmap_id
@@ -859,6 +966,7 @@ export const getCollectionmap = /* GraphQL */ `
         ownerinfo
         parent_collection
         parent_collection_identifier
+        partner_id
         provenance
         relation
         rights_holder
@@ -869,10 +977,12 @@ export const getCollectionmap = /* GraphQL */ `
         subject
         thumbnail_path
         title
+        title_template
         visibility
         createdAt
         updatedAt
         collectionCollectionmapId
+        collectionPartnerId
         __typename
       }
       createdAt
@@ -1058,6 +1168,133 @@ export const embargosByEnd_date = /* GraphQL */ `
         __typename
       }
       nextToken
+      __typename
+    }
+  }
+`;
+export const getPartner = /* GraphQL */ `
+  query GetPartner($id: ID!) {
+    getPartner(id: $id) {
+      custom_key
+      description
+      id
+      identifier
+      title
+      title_template
+      thumbnail_path
+      visibility
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listPartners = /* GraphQL */ `
+  query ListPartners(
+    $filter: ModelPartnerFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listPartners(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        custom_key
+        description
+        id
+        identifier
+        title
+        title_template
+        thumbnail_path
+        visibility
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const partnerByIdentifier = /* GraphQL */ `
+  query PartnerByIdentifier(
+    $identifier: String!
+    $sortDirection: ModelSortDirection
+    $filter: ModelPartnerFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    partnerByIdentifier(
+      identifier: $identifier
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        custom_key
+        description
+        id
+        identifier
+        title
+        title_template
+        thumbnail_path
+        visibility
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const searchPartners = /* GraphQL */ `
+  query SearchPartners(
+    $filter: SearchablePartnerFilterInput
+    $sort: [SearchablePartnerSortInput]
+    $limit: Int
+    $nextToken: String
+    $from: Int
+    $aggregates: [SearchablePartnerAggregationInput]
+  ) {
+    searchPartners(
+      filter: $filter
+      sort: $sort
+      limit: $limit
+      nextToken: $nextToken
+      from: $from
+      aggregates: $aggregates
+    ) {
+      items {
+        custom_key
+        description
+        id
+        identifier
+        title
+        title_template
+        thumbnail_path
+        visibility
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      total
+      aggregateItems {
+        name
+        result {
+          ... on SearchableAggregateScalarResult {
+            value
+          }
+          ... on SearchableAggregateBucketResult {
+            buckets {
+              key
+              doc_count
+              __typename
+            }
+          }
+        }
+        __typename
+      }
       __typename
     }
   }

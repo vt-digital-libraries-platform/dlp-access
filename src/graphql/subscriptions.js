@@ -6,6 +6,8 @@ export const onCreateArchive = /* GraphQL */ `
     onCreateArchive(filter: $filter) {
       age
       alternative
+      alt_text
+      archived
       archiveOptions
       basis_of_record
       bibliographic_citation
@@ -23,6 +25,7 @@ export const onCreateArchive = /* GraphQL */ `
       end_date
       explicit
       extent
+      extracted_text
       format
       format_physical
       has_format
@@ -45,6 +48,7 @@ export const onCreateArchive = /* GraphQL */ `
       other_identifier
       parent_collection
       parent_collection_identifier
+      partner_id
       provenance
       publisher
       references
@@ -57,12 +61,17 @@ export const onCreateArchive = /* GraphQL */ `
       start_date
       subject
       tags
+      taxonomy
       temporal
       thumbnail_path
       title
+      title_template
       type
       visibility
+      visual_description
       collection {
+        alt_text
+        archived
         bibliographic_citation
         collection_category
         collectionmap_id
@@ -84,6 +93,7 @@ export const onCreateArchive = /* GraphQL */ `
         ownerinfo
         parent_collection
         parent_collection_identifier
+        partner_id
         provenance
         relation
         rights_holder
@@ -94,16 +104,32 @@ export const onCreateArchive = /* GraphQL */ `
         subject
         thumbnail_path
         title
+        title_template
         visibility
         createdAt
         updatedAt
         collectionCollectionmapId
+        collectionPartnerId
+        __typename
+      }
+      partner {
+        custom_key
+        description
+        id
+        identifier
+        title
+        title_template
+        thumbnail_path
+        visibility
+        createdAt
+        updatedAt
         __typename
       }
       createdAt
       updatedAt
       collectionArchivesId
       archiveCollectionId
+      archivePartnerId
       __typename
     }
   }
@@ -113,6 +139,8 @@ export const onUpdateArchive = /* GraphQL */ `
     onUpdateArchive(filter: $filter) {
       age
       alternative
+      alt_text
+      archived
       archiveOptions
       basis_of_record
       bibliographic_citation
@@ -130,6 +158,7 @@ export const onUpdateArchive = /* GraphQL */ `
       end_date
       explicit
       extent
+      extracted_text
       format
       format_physical
       has_format
@@ -152,6 +181,7 @@ export const onUpdateArchive = /* GraphQL */ `
       other_identifier
       parent_collection
       parent_collection_identifier
+      partner_id
       provenance
       publisher
       references
@@ -164,12 +194,17 @@ export const onUpdateArchive = /* GraphQL */ `
       start_date
       subject
       tags
+      taxonomy
       temporal
       thumbnail_path
       title
+      title_template
       type
       visibility
+      visual_description
       collection {
+        alt_text
+        archived
         bibliographic_citation
         collection_category
         collectionmap_id
@@ -191,6 +226,7 @@ export const onUpdateArchive = /* GraphQL */ `
         ownerinfo
         parent_collection
         parent_collection_identifier
+        partner_id
         provenance
         relation
         rights_holder
@@ -201,16 +237,32 @@ export const onUpdateArchive = /* GraphQL */ `
         subject
         thumbnail_path
         title
+        title_template
         visibility
         createdAt
         updatedAt
         collectionCollectionmapId
+        collectionPartnerId
+        __typename
+      }
+      partner {
+        custom_key
+        description
+        id
+        identifier
+        title
+        title_template
+        thumbnail_path
+        visibility
+        createdAt
+        updatedAt
         __typename
       }
       createdAt
       updatedAt
       collectionArchivesId
       archiveCollectionId
+      archivePartnerId
       __typename
     }
   }
@@ -220,6 +272,8 @@ export const onDeleteArchive = /* GraphQL */ `
     onDeleteArchive(filter: $filter) {
       age
       alternative
+      alt_text
+      archived
       archiveOptions
       basis_of_record
       bibliographic_citation
@@ -237,6 +291,7 @@ export const onDeleteArchive = /* GraphQL */ `
       end_date
       explicit
       extent
+      extracted_text
       format
       format_physical
       has_format
@@ -259,6 +314,7 @@ export const onDeleteArchive = /* GraphQL */ `
       other_identifier
       parent_collection
       parent_collection_identifier
+      partner_id
       provenance
       publisher
       references
@@ -271,12 +327,17 @@ export const onDeleteArchive = /* GraphQL */ `
       start_date
       subject
       tags
+      taxonomy
       temporal
       thumbnail_path
       title
+      title_template
       type
       visibility
+      visual_description
       collection {
+        alt_text
+        archived
         bibliographic_citation
         collection_category
         collectionmap_id
@@ -298,6 +359,7 @@ export const onDeleteArchive = /* GraphQL */ `
         ownerinfo
         parent_collection
         parent_collection_identifier
+        partner_id
         provenance
         relation
         rights_holder
@@ -308,16 +370,32 @@ export const onDeleteArchive = /* GraphQL */ `
         subject
         thumbnail_path
         title
+        title_template
         visibility
         createdAt
         updatedAt
         collectionCollectionmapId
+        collectionPartnerId
+        __typename
+      }
+      partner {
+        custom_key
+        description
+        id
+        identifier
+        title
+        title_template
+        thumbnail_path
+        visibility
+        createdAt
+        updatedAt
         __typename
       }
       createdAt
       updatedAt
       collectionArchivesId
       archiveCollectionId
+      archivePartnerId
       __typename
     }
   }
@@ -327,6 +405,8 @@ export const onCreateCollection = /* GraphQL */ `
     $filter: ModelSubscriptionCollectionFilterInput
   ) {
     onCreateCollection(filter: $filter) {
+      alt_text
+      archived
       bibliographic_citation
       collection_category
       collectionmap_id
@@ -348,6 +428,7 @@ export const onCreateCollection = /* GraphQL */ `
       ownerinfo
       parent_collection
       parent_collection_identifier
+      partner_id
       provenance
       relation
       rights_holder
@@ -358,7 +439,12 @@ export const onCreateCollection = /* GraphQL */ `
       subject
       thumbnail_path
       title
+      title_template
       visibility
+      archives {
+        nextToken
+        __typename
+      }
       collectionmap {
         collectionmap_category
         collection_id
@@ -371,13 +457,23 @@ export const onCreateCollection = /* GraphQL */ `
         collectionmapCollectionId
         __typename
       }
-      archives {
-        nextToken
+      partner {
+        custom_key
+        description
+        id
+        identifier
+        title
+        title_template
+        thumbnail_path
+        visibility
+        createdAt
+        updatedAt
         __typename
       }
       createdAt
       updatedAt
       collectionCollectionmapId
+      collectionPartnerId
       __typename
     }
   }
@@ -387,6 +483,8 @@ export const onUpdateCollection = /* GraphQL */ `
     $filter: ModelSubscriptionCollectionFilterInput
   ) {
     onUpdateCollection(filter: $filter) {
+      alt_text
+      archived
       bibliographic_citation
       collection_category
       collectionmap_id
@@ -408,6 +506,7 @@ export const onUpdateCollection = /* GraphQL */ `
       ownerinfo
       parent_collection
       parent_collection_identifier
+      partner_id
       provenance
       relation
       rights_holder
@@ -418,7 +517,12 @@ export const onUpdateCollection = /* GraphQL */ `
       subject
       thumbnail_path
       title
+      title_template
       visibility
+      archives {
+        nextToken
+        __typename
+      }
       collectionmap {
         collectionmap_category
         collection_id
@@ -431,13 +535,23 @@ export const onUpdateCollection = /* GraphQL */ `
         collectionmapCollectionId
         __typename
       }
-      archives {
-        nextToken
+      partner {
+        custom_key
+        description
+        id
+        identifier
+        title
+        title_template
+        thumbnail_path
+        visibility
+        createdAt
+        updatedAt
         __typename
       }
       createdAt
       updatedAt
       collectionCollectionmapId
+      collectionPartnerId
       __typename
     }
   }
@@ -447,6 +561,8 @@ export const onDeleteCollection = /* GraphQL */ `
     $filter: ModelSubscriptionCollectionFilterInput
   ) {
     onDeleteCollection(filter: $filter) {
+      alt_text
+      archived
       bibliographic_citation
       collection_category
       collectionmap_id
@@ -468,6 +584,7 @@ export const onDeleteCollection = /* GraphQL */ `
       ownerinfo
       parent_collection
       parent_collection_identifier
+      partner_id
       provenance
       relation
       rights_holder
@@ -478,7 +595,12 @@ export const onDeleteCollection = /* GraphQL */ `
       subject
       thumbnail_path
       title
+      title_template
       visibility
+      archives {
+        nextToken
+        __typename
+      }
       collectionmap {
         collectionmap_category
         collection_id
@@ -491,13 +613,23 @@ export const onDeleteCollection = /* GraphQL */ `
         collectionmapCollectionId
         __typename
       }
-      archives {
-        nextToken
+      partner {
+        custom_key
+        description
+        id
+        identifier
+        title
+        title_template
+        thumbnail_path
+        visibility
+        createdAt
+        updatedAt
         __typename
       }
       createdAt
       updatedAt
       collectionCollectionmapId
+      collectionPartnerId
       __typename
     }
   }
@@ -514,6 +646,8 @@ export const onCreateCollectionmap = /* GraphQL */ `
       map_object
       modified_date
       collection {
+        alt_text
+        archived
         bibliographic_citation
         collection_category
         collectionmap_id
@@ -535,6 +669,7 @@ export const onCreateCollectionmap = /* GraphQL */ `
         ownerinfo
         parent_collection
         parent_collection_identifier
+        partner_id
         provenance
         relation
         rights_holder
@@ -545,10 +680,12 @@ export const onCreateCollectionmap = /* GraphQL */ `
         subject
         thumbnail_path
         title
+        title_template
         visibility
         createdAt
         updatedAt
         collectionCollectionmapId
+        collectionPartnerId
         __typename
       }
       createdAt
@@ -570,6 +707,8 @@ export const onUpdateCollectionmap = /* GraphQL */ `
       map_object
       modified_date
       collection {
+        alt_text
+        archived
         bibliographic_citation
         collection_category
         collectionmap_id
@@ -591,6 +730,7 @@ export const onUpdateCollectionmap = /* GraphQL */ `
         ownerinfo
         parent_collection
         parent_collection_identifier
+        partner_id
         provenance
         relation
         rights_holder
@@ -601,10 +741,12 @@ export const onUpdateCollectionmap = /* GraphQL */ `
         subject
         thumbnail_path
         title
+        title_template
         visibility
         createdAt
         updatedAt
         collectionCollectionmapId
+        collectionPartnerId
         __typename
       }
       createdAt
@@ -626,6 +768,8 @@ export const onDeleteCollectionmap = /* GraphQL */ `
       map_object
       modified_date
       collection {
+        alt_text
+        archived
         bibliographic_citation
         collection_category
         collectionmap_id
@@ -647,6 +791,7 @@ export const onDeleteCollectionmap = /* GraphQL */ `
         ownerinfo
         parent_collection
         parent_collection_identifier
+        partner_id
         provenance
         relation
         rights_holder
@@ -657,10 +802,12 @@ export const onDeleteCollectionmap = /* GraphQL */ `
         subject
         thumbnail_path
         title
+        title_template
         visibility
         createdAt
         updatedAt
         collectionCollectionmapId
+        collectionPartnerId
         __typename
       }
       createdAt
@@ -820,6 +967,57 @@ export const onDeleteEmbargo = /* GraphQL */ `
       end_date
       note
       record_type
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onCreatePartner = /* GraphQL */ `
+  subscription OnCreatePartner($filter: ModelSubscriptionPartnerFilterInput) {
+    onCreatePartner(filter: $filter) {
+      custom_key
+      description
+      id
+      identifier
+      title
+      title_template
+      thumbnail_path
+      visibility
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onUpdatePartner = /* GraphQL */ `
+  subscription OnUpdatePartner($filter: ModelSubscriptionPartnerFilterInput) {
+    onUpdatePartner(filter: $filter) {
+      custom_key
+      description
+      id
+      identifier
+      title
+      title_template
+      thumbnail_path
+      visibility
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onDeletePartner = /* GraphQL */ `
+  subscription OnDeletePartner($filter: ModelSubscriptionPartnerFilterInput) {
+    onDeletePartner(filter: $filter) {
+      custom_key
+      description
+      id
+      identifier
+      title
+      title_template
+      thumbnail_path
+      visibility
       createdAt
       updatedAt
       __typename
