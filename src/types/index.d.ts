@@ -7,6 +7,8 @@ declare global {
 
   interface Archive {
     alternative: string[] | null;
+    alt_text: string | null;
+    archived: boolean | null;
     archiveOptions: string | null;
     basis_of_record: string[] | null;
     bibliographic_citation: string[] | null;
@@ -23,6 +25,7 @@ declare global {
     end_date: string | null;
     explicit: boolean | null;
     extent: string[] | null;
+    extracted_text: string | null;
     format: string[] | null;
     format_physical: string[] | null;
     has_format: string[] | null;
@@ -43,6 +46,7 @@ declare global {
     modified_date: string | null;
     other_identifier: string[] | null;
     parent_collection: string[] | null;
+    partner_id: string[] | null;
     provenance: string[] | null;
     publisher: string[] | null;
     references: string[] | null;
@@ -55,11 +59,14 @@ declare global {
     start_date: string | null;
     subject: string[] | null;
     tags: string[] | null;
+    taxonomy: string[] | null;
     temporal: string[] | null;
     thumbnail_path: string | null;
     title: string;
+    title_template: string | null;
     type: string[] | null;
     visibility: boolean;
+    visual_description: string | null;
     collection: string | null;
   }
 
@@ -80,6 +87,8 @@ declare global {
     children: MapObject[];
   }
   interface Collection {
+    alt_text: string | null;
+    archived: boolean | null;
     bibliographic_citation: string[] | null;
     collection_category: string;
     collectionmap_id: string | null;
@@ -99,6 +108,7 @@ declare global {
     modified_date: string | null;
     ownerinfo: string;
     parent_collection: string[] | null;
+    partner_id: string[] | null;
     provenance: string[] | null;
     relation: string[] | null;
     rights_holder: string[] | null;
@@ -109,6 +119,7 @@ declare global {
     subject: string[] | null;
     thumbnail_path: string | null;
     title: string;
+    title_template: string | null;
     visibility: boolean;
     collectionmap: Collectionmap | null;
     archives: Archive[] | null;
