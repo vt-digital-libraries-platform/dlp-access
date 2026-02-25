@@ -1,6 +1,9 @@
 import { useState, FC } from "react";
 import { Helmet } from "react-helmet";
-import SiteTitle from "../../../components/SiteTitle";
+import {
+  getTitleTemplateForType,
+  SiteTitle
+} from "../../../components/SiteTitle";
 import { CollectionMetadataSection } from "./CollectionMetadataSection";
 import { CollectionItems } from "./CollectionItems";
 import { CollectionsListView } from "./CollectionsListView";
@@ -74,8 +77,12 @@ export const CollectionsShowPage: FC<Props> = ({ site, customKey }) => {
       </div>
     );
     return (
-      <div>
-        <SiteTitle siteTitle={site.siteTitle} pageTitle={collection.title} />
+      <>
+        <SiteTitle
+          data={{ collection: collection }}
+          site={site}
+          template={getTitleTemplateForType(null, collection)}
+        />
         <Helmet
           script={[
             { type: "text/javascript" },
@@ -143,9 +150,9 @@ export const CollectionsShowPage: FC<Props> = ({ site, customKey }) => {
             </>
           )}
         </div>
-      </div>
+      </>
     );
   } else {
-    return null;
+    return <></>;
   }
 };

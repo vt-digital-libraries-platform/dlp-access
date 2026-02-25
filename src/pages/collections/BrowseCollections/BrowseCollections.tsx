@@ -1,5 +1,5 @@
 import { FC, EventHandler, useEffect, useState } from "react";
-import SiteTitle from "../../../components/SiteTitle";
+import { SiteTitle } from "../../../components/SiteTitle";
 import ItemListView from "../../../components/ItemListView";
 import GalleryView from "../../../components/GalleryView";
 import ResultsNumberDropdown from "../../../components/ResultsNumberDropdown";
@@ -76,8 +76,12 @@ export const BrowseCollections: FC<Props> = ({ scrollUp, site }) => {
   };
 
   return (
-    <div>
-      <SiteTitle siteTitle={site.siteTitle} pageTitle="Collections" />
+    <>
+      <SiteTitle
+        data={{ title: "Browse Collections" }}
+        site={site}
+        template="{{title}}"
+      />
       <div className="collection-browse-wrapper">
         <div className="container">
           <div className="row justify-content-center">
@@ -162,6 +166,6 @@ export const BrowseCollections: FC<Props> = ({ scrollUp, site }) => {
           )}
         </div>
       </div>
-    </div>
+    </>
   );
 };
