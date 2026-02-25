@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "../../lib/WithRouter.js";
-import SiteTitle from "../../components/SiteTitle";
+import { SiteTitle } from "../../components/SiteTitle";
 import { fetchLanguages } from "../../lib/fetchTools";
 import { fetchSearchResults } from "../../lib/fetchTools";
 
@@ -193,7 +193,11 @@ class SearchLoader extends Component {
 
       return (
         <div>
-          <SiteTitle siteTitle={this.props.site.siteTitle} pageTitle="Search" />
+          <SiteTitle
+            data={{ title: "Search" }}
+            site={this.props.site}
+            template="{{title}}"
+          />
           <SearchResults
             site={this.props.site}
             items={this.state.items}
