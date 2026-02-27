@@ -9,12 +9,7 @@ import {
   getAllCollections,
   mintNOID
 } from "../../../lib/fetchTools";
-import {
-  validEmbargo,
-  loadEmbargo,
-  createEmbargoRecord,
-  toTitleCase
-} from "../../../lib/EmbargoTools";
+import { validEmbargo, toTitleCase } from "../../../lib/EmbargoTools";
 import { addedDiff, updatedDiff } from "deep-object-diff";
 import * as mutations from "../../../graphql/mutations";
 import SiteContext from "../SiteContext";
@@ -45,7 +40,7 @@ const editableFields = singleFields
 
 let resultMessage = "";
 
-const ArchiveForm = React.memo(props => {
+const ArchiveForm = React.memo((props) => {
   const { identifier, newArchive, resetForm } = props;
   const [error, setError] = useState(null);
   const [fullArchive, setFullArchive] = useState(null);
@@ -81,7 +76,7 @@ const ArchiveForm = React.memo(props => {
           }
         }
 
-        const defaultValue = key => {
+        const defaultValue = (key) => {
           let value = null;
           if (singleFields.includes(key)) {
             value = "";
@@ -93,7 +88,7 @@ const ArchiveForm = React.memo(props => {
           return value;
         };
 
-        const inOptions = key => {
+        const inOptions = (key) => {
           let retVal = null;
           if (item.archiveOptions && item.archiveOptions[key] !== null) {
             const options = JSON.parse(item.archiveOptions);
@@ -145,22 +140,6 @@ const ArchiveForm = React.memo(props => {
       } else if (newArchive) {
         setNewArchive();
       }
-      if (fullArchive) {
-        const embargoResponse = await loadEmbargo(fullArchive, setEmbargo);
-        setArchive(arch => {
-          try {
-            arch["embargo_start_date"] =
-              arch["embargo_start_date"] || embargoResponse.start_date || "";
-            arch["embargo_end_date"] =
-              arch["embargo_end_date"] || embargoResponse.end_date || "";
-            arch["embargo_note"] =
-              arch["embargo_note"] || embargoResponse.note || "";
-          } catch (error) {
-            console.log("no embargoResponse");
-          }
-          return arch;
-        });
-      }
       if (!allCollections) {
         const REP_TYPE = process.env.REACT_APP_REP_TYPE.toLowerCase();
         const allColl = await getAllCollections({
@@ -182,7 +161,7 @@ const ArchiveForm = React.memo(props => {
     allCollections
   ]);
 
-  const isRequiredField = attribute => {
+  const isRequiredField = (attribute) => {
     const requiredFields = ["title", "manifest_url"];
     return requiredFields.includes(attribute);
   };
@@ -207,14 +186,14 @@ const ArchiveForm = React.memo(props => {
     }
   };
 
-  const submitArchiveHandler = async event => {
+  const submitArchiveHandler = async (event) => {
     for (const key in archive) {
       if (isRequiredField(key) && !archive[key]) {
         setValidForm(false);
         return null;
       }
       if (Array.isArray(archive[key])) {
-        archive[key] = [...archive[key].filter(val => val !== null)];
+        archive[key] = [...archive[key].filter((val) => val !== null)];
         if (archive[key].length === 0) {
           archive[key] = null;
         }
@@ -223,8 +202,8 @@ const ArchiveForm = React.memo(props => {
     const empty = new RegExp("<p>(<br>|\\s+)</p>");
     for (const key in archive) {
       if (Array.isArray(archive[key])) {
-        archive[key].forEach(el => {
-          archive[key] = [...archive[key].filter(el => !empty.test(el))];
+        archive[key].forEach((el) => {
+          archive[key] = [...archive[key].filter((el) => !empty.test(el))];
         });
       } else {
         if (empty.test(archive[key])) {
@@ -232,15 +211,15 @@ const ArchiveForm = React.memo(props => {
         }
       }
     }
-    if (validEmbargo(archive)) {
-      await createEmbargoRecord(archive, fullArchive, embargo, "archive");
-    } else {
-      resultMessage =
-        "Embargo not applied to this object. If you wish to apply an embargo you must supply a start date OR end date. If you do not wish to apply an embargo you can safely ignore this message.";
-    }
-    delete archive.embargo_start_date;
-    delete archive.embargo_end_date;
-    delete archive.embargo_note;
+    // if (validEmbargo(archive)) {
+    //   await createEmbargoRecord(archive, fullArchive, embargo, "archive");
+    // } else {
+    //   resultMessage =
+    //     "Embargo not applied to this object. If you wish to apply an embargo you must supply a start date OR end date. If you do not wish to apply an embargo you can safely ignore this message.";
+    // }
+    // delete archive.embargo_start_date;
+    // delete archive.embargo_end_date;
+    // delete archive.embargo_note;
 
     let options = null;
     if (archive.archiveOptions) {
@@ -312,7 +291,7 @@ const ArchiveForm = React.memo(props => {
   };
 
   const deleteMetadataHandler = (field, valueIdx) => {
-    setArchive(prevArchive => {
+    setArchive((prevArchive) => {
       const values = [...prevArchive[field]];
       values.splice(valueIdx, 1);
       return {
@@ -322,8 +301,8 @@ const ArchiveForm = React.memo(props => {
     });
   };
 
-  const addMetadataHandler = field => {
-    setArchive(prevArchive => {
+  const addMetadataHandler = (field) => {
+    setArchive((prevArchive) => {
       const values = Array.isArray(prevArchive[field])
         ? [...prevArchive[field]]
         : [];
@@ -355,7 +334,7 @@ const ArchiveForm = React.memo(props => {
       fieldName = arr[0];
       index = arr[1];
     }
-    setArchive(prevArchive => {
+    setArchive((prevArchive) => {
       if (!index) {
         return {
           ...prevArchive,
@@ -383,7 +362,7 @@ const ArchiveForm = React.memo(props => {
     changeValueHandler(event, field);
   };
 
-  const onChangeCollection = async e => {
+  const onChangeCollection = async (e) => {
     let matchList = [];
     setExactMatch(false);
     for (const idx in allCollections) {
@@ -418,7 +397,7 @@ const ArchiveForm = React.memo(props => {
     let display = null;
 
     if (matches.length > 0 && !exactMatch) {
-      displayEntries = matches.map(match => {
+      displayEntries = matches.map((match) => {
         const evt = { target: { value: match } };
         return (
           <li key={match}>
@@ -435,7 +414,7 @@ const ArchiveForm = React.memo(props => {
     return display;
   };
 
-  const collectionSelector = attribute => {
+  const collectionSelector = (attribute) => {
     const value = archive.collection || "";
     return (
       <section key="collection-selector">
@@ -443,7 +422,7 @@ const ArchiveForm = React.memo(props => {
           <label>Collection (by identifier)</label>
           <Input
             name={attribute}
-            onChange={event => onChangeCollection(event, attribute)}
+            onChange={(event) => onChangeCollection(event, attribute)}
             placeholder={`Type the Collection identifer that this record belongs to`}
             value={value}
             autoComplete="off"
