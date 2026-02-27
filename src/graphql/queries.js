@@ -25,6 +25,9 @@ export const searchObjects = /* GraphQL */ `
         custom_key
         description
         display_date
+        embargo_end_date
+        embargo_note
+        embargo_start_date
         end_date
         heirarchy_path
         id
@@ -135,6 +138,9 @@ export const fulltextCollections = /* GraphQL */ `
         custom_key
         description
         display_date
+        embargo_end_date
+        embargo_note
+        embargo_start_date
         end_date
         explicit_content
         heirarchy_path
@@ -206,6 +212,9 @@ export const fulltextArchives = /* GraphQL */ `
         description
         display_date
         download_link
+        embargo_end_date
+        embargo_note
+        embargo_start_date
         end_date
         explicit
         extent
@@ -287,6 +296,9 @@ export const getArchive = /* GraphQL */ `
       description
       display_date
       download_link
+      embargo_end_date
+      embargo_note
+      embargo_start_date
       end_date
       explicit
       extent
@@ -346,6 +358,9 @@ export const getArchive = /* GraphQL */ `
         custom_key
         description
         display_date
+        embargo_end_date
+        embargo_note
+        embargo_start_date
         end_date
         explicit_content
         heirarchy_path
@@ -425,6 +440,9 @@ export const listArchives = /* GraphQL */ `
         description
         display_date
         download_link
+        embargo_end_date
+        embargo_note
+        embargo_start_date
         end_date
         explicit
         extent
@@ -518,6 +536,9 @@ export const archiveByIdentifier = /* GraphQL */ `
         description
         display_date
         download_link
+        embargo_end_date
+        embargo_note
+        embargo_start_date
         end_date
         explicit
         extent
@@ -613,6 +634,9 @@ export const searchArchives = /* GraphQL */ `
         description
         display_date
         download_link
+        embargo_end_date
+        embargo_note
+        embargo_start_date
         end_date
         explicit
         extent
@@ -687,6 +711,9 @@ export const getCollection = /* GraphQL */ `
       custom_key
       description
       display_date
+      embargo_end_date
+      embargo_note
+      embargo_start_date
       end_date
       explicit_content
       heirarchy_path
@@ -768,6 +795,9 @@ export const listCollections = /* GraphQL */ `
         custom_key
         description
         display_date
+        embargo_end_date
+        embargo_note
+        embargo_start_date
         end_date
         explicit_content
         heirarchy_path
@@ -831,6 +861,9 @@ export const collectionByIdentifier = /* GraphQL */ `
         custom_key
         description
         display_date
+        embargo_end_date
+        embargo_note
+        embargo_start_date
         end_date
         explicit_content
         heirarchy_path
@@ -896,6 +929,9 @@ export const searchCollections = /* GraphQL */ `
         custom_key
         description
         display_date
+        embargo_end_date
+        embargo_note
+        embargo_start_date
         end_date
         explicit_content
         heirarchy_path
@@ -954,6 +990,9 @@ export const getCollectionmap = /* GraphQL */ `
         custom_key
         description
         display_date
+        embargo_end_date
+        embargo_note
+        embargo_start_date
         end_date
         explicit_content
         heirarchy_path
@@ -1065,106 +1104,6 @@ export const listPageContents = /* GraphQL */ `
         createdAt
         updatedAt
         pageContentPageContentSiteIdId
-        __typename
-      }
-      nextToken
-      __typename
-    }
-  }
-`;
-export const getEmbargo = /* GraphQL */ `
-  query GetEmbargo($id: ID!) {
-    getEmbargo(id: $id) {
-      id
-      identifier
-      start_date
-      end_date
-      note
-      record_type
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const listEmbargos = /* GraphQL */ `
-  query ListEmbargos(
-    $filter: ModelEmbargoFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listEmbargos(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        identifier
-        start_date
-        end_date
-        note
-        record_type
-        createdAt
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
-  }
-`;
-export const embargosByStart_date = /* GraphQL */ `
-  query EmbargosByStart_date(
-    $start_date: AWSDate!
-    $sortDirection: ModelSortDirection
-    $filter: ModelEmbargoFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    embargosByStart_date(
-      start_date: $start_date
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        identifier
-        start_date
-        end_date
-        note
-        record_type
-        createdAt
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
-  }
-`;
-export const embargosByEnd_date = /* GraphQL */ `
-  query EmbargosByEnd_date(
-    $end_date: AWSDate!
-    $sortDirection: ModelSortDirection
-    $filter: ModelEmbargoFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    embargosByEnd_date(
-      end_date: $end_date
-      sortDirection: $sortDirection
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-    ) {
-      items {
-        id
-        identifier
-        start_date
-        end_date
-        note
-        record_type
-        createdAt
-        updatedAt
         __typename
       }
       nextToken

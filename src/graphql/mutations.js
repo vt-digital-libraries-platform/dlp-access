@@ -25,6 +25,9 @@ export const createArchive = /* GraphQL */ `
       description
       display_date
       download_link
+      embargo_end_date
+      embargo_note
+      embargo_start_date
       end_date
       explicit
       extent
@@ -84,6 +87,9 @@ export const createArchive = /* GraphQL */ `
         custom_key
         description
         display_date
+        embargo_end_date
+        embargo_note
+        embargo_start_date
         end_date
         explicit_content
         heirarchy_path
@@ -161,6 +167,9 @@ export const updateArchive = /* GraphQL */ `
       description
       display_date
       download_link
+      embargo_end_date
+      embargo_note
+      embargo_start_date
       end_date
       explicit
       extent
@@ -220,6 +229,9 @@ export const updateArchive = /* GraphQL */ `
         custom_key
         description
         display_date
+        embargo_end_date
+        embargo_note
+        embargo_start_date
         end_date
         explicit_content
         heirarchy_path
@@ -297,6 +309,9 @@ export const deleteArchive = /* GraphQL */ `
       description
       display_date
       download_link
+      embargo_end_date
+      embargo_note
+      embargo_start_date
       end_date
       explicit
       extent
@@ -356,6 +371,9 @@ export const deleteArchive = /* GraphQL */ `
         custom_key
         description
         display_date
+        embargo_end_date
+        embargo_note
+        embargo_start_date
         end_date
         explicit_content
         heirarchy_path
@@ -426,6 +444,9 @@ export const createCollection = /* GraphQL */ `
       custom_key
       description
       display_date
+      embargo_end_date
+      embargo_note
+      embargo_start_date
       end_date
       explicit_content
       heirarchy_path
@@ -505,6 +526,9 @@ export const updateCollection = /* GraphQL */ `
       custom_key
       description
       display_date
+      embargo_end_date
+      embargo_note
+      embargo_start_date
       end_date
       explicit_content
       heirarchy_path
@@ -584,6 +608,9 @@ export const deleteCollection = /* GraphQL */ `
       custom_key
       description
       display_date
+      embargo_end_date
+      embargo_note
+      embargo_start_date
       end_date
       explicit_content
       heirarchy_path
@@ -670,6 +697,9 @@ export const createCollectionmap = /* GraphQL */ `
         custom_key
         description
         display_date
+        embargo_end_date
+        embargo_note
+        embargo_start_date
         end_date
         explicit_content
         heirarchy_path
@@ -732,6 +762,9 @@ export const updateCollectionmap = /* GraphQL */ `
         custom_key
         description
         display_date
+        embargo_end_date
+        embargo_note
+        embargo_start_date
         end_date
         explicit_content
         heirarchy_path
@@ -794,6 +827,9 @@ export const deleteCollectionmap = /* GraphQL */ `
         custom_key
         description
         display_date
+        embargo_end_date
+        embargo_note
+        embargo_start_date
         end_date
         explicit_content
         heirarchy_path
@@ -942,60 +978,6 @@ export const deletePageContent = /* GraphQL */ `
       createdAt
       updatedAt
       pageContentPageContentSiteIdId
-      __typename
-    }
-  }
-`;
-export const createEmbargo = /* GraphQL */ `
-  mutation CreateEmbargo(
-    $input: CreateEmbargoInput!
-    $condition: ModelEmbargoConditionInput
-  ) {
-    createEmbargo(input: $input, condition: $condition) {
-      id
-      identifier
-      start_date
-      end_date
-      note
-      record_type
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const updateEmbargo = /* GraphQL */ `
-  mutation UpdateEmbargo(
-    $input: UpdateEmbargoInput!
-    $condition: ModelEmbargoConditionInput
-  ) {
-    updateEmbargo(input: $input, condition: $condition) {
-      id
-      identifier
-      start_date
-      end_date
-      note
-      record_type
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const deleteEmbargo = /* GraphQL */ `
-  mutation DeleteEmbargo(
-    $input: DeleteEmbargoInput!
-    $condition: ModelEmbargoConditionInput
-  ) {
-    deleteEmbargo(input: $input, condition: $condition) {
-      id
-      identifier
-      start_date
-      end_date
-      note
-      record_type
-      createdAt
-      updatedAt
       __typename
     }
   }

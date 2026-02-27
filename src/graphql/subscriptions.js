@@ -22,6 +22,9 @@ export const onCreateArchive = /* GraphQL */ `
       description
       display_date
       download_link
+      embargo_end_date
+      embargo_note
+      embargo_start_date
       end_date
       explicit
       extent
@@ -81,6 +84,9 @@ export const onCreateArchive = /* GraphQL */ `
         custom_key
         description
         display_date
+        embargo_end_date
+        embargo_note
+        embargo_start_date
         end_date
         explicit_content
         heirarchy_path
@@ -155,6 +161,9 @@ export const onUpdateArchive = /* GraphQL */ `
       description
       display_date
       download_link
+      embargo_end_date
+      embargo_note
+      embargo_start_date
       end_date
       explicit
       extent
@@ -214,6 +223,9 @@ export const onUpdateArchive = /* GraphQL */ `
         custom_key
         description
         display_date
+        embargo_end_date
+        embargo_note
+        embargo_start_date
         end_date
         explicit_content
         heirarchy_path
@@ -288,6 +300,9 @@ export const onDeleteArchive = /* GraphQL */ `
       description
       display_date
       download_link
+      embargo_end_date
+      embargo_note
+      embargo_start_date
       end_date
       explicit
       extent
@@ -347,6 +362,9 @@ export const onDeleteArchive = /* GraphQL */ `
         custom_key
         description
         display_date
+        embargo_end_date
+        embargo_note
+        embargo_start_date
         end_date
         explicit_content
         heirarchy_path
@@ -416,6 +434,9 @@ export const onCreateCollection = /* GraphQL */ `
       custom_key
       description
       display_date
+      embargo_end_date
+      embargo_note
+      embargo_start_date
       end_date
       explicit_content
       heirarchy_path
@@ -494,6 +515,9 @@ export const onUpdateCollection = /* GraphQL */ `
       custom_key
       description
       display_date
+      embargo_end_date
+      embargo_note
+      embargo_start_date
       end_date
       explicit_content
       heirarchy_path
@@ -572,6 +596,9 @@ export const onDeleteCollection = /* GraphQL */ `
       custom_key
       description
       display_date
+      embargo_end_date
+      embargo_note
+      embargo_start_date
       end_date
       explicit_content
       heirarchy_path
@@ -657,6 +684,9 @@ export const onCreateCollectionmap = /* GraphQL */ `
         custom_key
         description
         display_date
+        embargo_end_date
+        embargo_note
+        embargo_start_date
         end_date
         explicit_content
         heirarchy_path
@@ -718,6 +748,9 @@ export const onUpdateCollectionmap = /* GraphQL */ `
         custom_key
         description
         display_date
+        embargo_end_date
+        embargo_note
+        embargo_start_date
         end_date
         explicit_content
         heirarchy_path
@@ -779,6 +812,9 @@ export const onDeleteCollectionmap = /* GraphQL */ `
         custom_key
         description
         display_date
+        embargo_end_date
+        embargo_note
+        embargo_start_date
         end_date
         explicit_content
         heirarchy_path
@@ -924,51 +960,6 @@ export const onDeletePageContent = /* GraphQL */ `
       createdAt
       updatedAt
       pageContentPageContentSiteIdId
-      __typename
-    }
-  }
-`;
-export const onCreateEmbargo = /* GraphQL */ `
-  subscription OnCreateEmbargo($filter: ModelSubscriptionEmbargoFilterInput) {
-    onCreateEmbargo(filter: $filter) {
-      id
-      identifier
-      start_date
-      end_date
-      note
-      record_type
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const onUpdateEmbargo = /* GraphQL */ `
-  subscription OnUpdateEmbargo($filter: ModelSubscriptionEmbargoFilterInput) {
-    onUpdateEmbargo(filter: $filter) {
-      id
-      identifier
-      start_date
-      end_date
-      note
-      record_type
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const onDeleteEmbargo = /* GraphQL */ `
-  subscription OnDeleteEmbargo($filter: ModelSubscriptionEmbargoFilterInput) {
-    onDeleteEmbargo(filter: $filter) {
-      id
-      identifier
-      start_date
-      end_date
-      note
-      record_type
-      createdAt
-      updatedAt
       __typename
     }
   }
