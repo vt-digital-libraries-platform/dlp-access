@@ -106,7 +106,7 @@ class AdditionalPages extends Component {
     return (
       <>
         <SiteTitle
-          data={{ title: "Additional Pages" }}
+          data={{ title: this.props.title || "Additional Pages" }}
           site={this.props.site}
           template="{{title}}"
         />
