@@ -11,9 +11,8 @@ type Props = {
 };
 
 export const SiteTitle: FC<Props> = ({ data, template, site }) => {
-  const [pageTitle, setPageTitle] = useState(
-    "Digital Library Platform | University Libraries, Virginia Tech"
-  );
+  const [siteTitle, setSiteTitle] = useState("VT Digital Library Platform");
+  const [pageTitle, setPageTitle] = useState(siteTitle);
 
   /**
    * Constructs the page title for a given record based on the provided template and site information.
@@ -28,8 +27,8 @@ export const SiteTitle: FC<Props> = ({ data, template, site }) => {
     template: string | { [key: string]: string },
     site?: { siteTitle?: string }
   ) => {
-    const siteTitle = site?.siteTitle || "Digital Library Platform";
-    const mainTemplateString = `{{#if content}}{{content}} | {{/if}}${siteTitle} | University Libraries, Virginia Tech`;
+    setSiteTitle(site?.siteTitle || "VT Digital Library Platform");
+    const mainTemplateString = `{{#if content}}{{content}} | {{/if}}${siteTitle}`;
     const mainTemplate = Handlebars.compile(mainTemplateString);
     let titleTemplate: HandlebarsTemplateDelegate<any> | string | null = null;
     let content = "";
@@ -95,7 +94,13 @@ export const SiteTitle: FC<Props> = ({ data, template, site }) => {
     setPageTitle(buildPageTitle(data, template, site));
   }, [data, template, site]);
 
-  return <Helmet title={pageTitle}></Helmet>;
+  return (
+    <Helmet>
+      <title>{pageTitle}</title>
+      <meta property="og:title" content={pageTitle} />
+      <meta property="og:site_name" content={siteTitle} />
+    </Helmet>
+  );
 };
 
 /**
