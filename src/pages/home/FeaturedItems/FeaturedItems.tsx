@@ -10,6 +10,7 @@ type Props = {
     {
       altText: string;
       cardTitle: string;
+      cardDetails: string;
       link: string;
       src: string;
     }
@@ -23,6 +24,7 @@ export const FeaturedItems: FC<Props> = ({ featuredItems, site }) => {
   const [startIndex, setStartIndex] = useState(0);
   const [endIndex, setEndIndex] = useState(4);
   const [multiplier, setMultiplier] = useState(4);
+  const heading = site.siteId === "federated" ? "Browse" : "Our Featured Items";
 
   useEffect(() => {
     function setValues() {
@@ -35,9 +37,6 @@ export const FeaturedItems: FC<Props> = ({ featuredItems, site }) => {
           setEndIndex(startIndex + 4);
           setMultiplier(4);
         }
-      } else {
-        setEndIndex(startIndex + 2);
-        setMultiplier(2);
       }
     }
     setValues();
@@ -62,24 +61,13 @@ export const FeaturedItems: FC<Props> = ({ featuredItems, site }) => {
   }
 
   return (
-    <div
-      className="featured-items-wrapper"
-      role="region"
-      aria-roledescription="carousel"
-      aria-label="Our Featured Items"
-    >
-      <div className="featured-items-heading">
-        <h2>Our Featured Items</h2>
-      </div>
-      <div
-        className="row justify-content-center"
-        id="slide-row"
-        aria-live="off"
-      >
+    <div className="featured-items-wrapper">
+      <h2 className="featured-items-heading">{heading}</h2>
+      <ul className="row justify-content-center" id="slide-row">
         {featuredItems.map((item, index) => {
           return (
             <FeaturedItem
-              key={index}
+              key={item.link}
               item={item}
               position={startIndex + index + 1}
               length={featuredItems.length}
@@ -92,7 +80,7 @@ export const FeaturedItems: FC<Props> = ({ featuredItems, site }) => {
             />
           );
         })}
-      </div>
+      </ul>
       <div
         className="featured-items-indicators"
         role="group"
