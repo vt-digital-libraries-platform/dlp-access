@@ -11,7 +11,7 @@ type Props = {
 };
 
 export const SiteTitle: FC<Props> = ({ data, template, site }) => {
-  const [siteTitle, setSiteTitle] = useState("VT Digital Library Platform");
+  const [siteTitle, setSiteTitle] = useState("Virginia Tech Digital Libraries");
   const [pageTitle, setPageTitle] = useState(siteTitle);
 
   /**
@@ -27,7 +27,7 @@ export const SiteTitle: FC<Props> = ({ data, template, site }) => {
     template: string | { [key: string]: string },
     site?: { siteTitle?: string }
   ) => {
-    setSiteTitle(site?.siteTitle || "VT Digital Library Platform");
+    setSiteTitle(site?.siteTitle || "Virginia Tech Digital Libraries");
     const mainTemplateString = `{{#if content}}{{content}} | {{/if}}${siteTitle}`;
     const mainTemplate = Handlebars.compile(mainTemplateString);
     let titleTemplate: HandlebarsTemplateDelegate<any> | string | null = null;
