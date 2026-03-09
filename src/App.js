@@ -15,6 +15,7 @@ import Footer from "./components/Footer";
 import LoadingScreen from "./components/LoadingScreen";
 import { buildRoutes } from "./lib/CustomPageRoutes";
 import HomePage from "./pages/HomePage";
+import MetadataPage from "./pages/MetadataPage";
 import SiteAdmin from "./pages/admin/SiteAdmin";
 import PodcastDeposit from "./pages/admin/PodcastDeposit";
 
@@ -179,6 +180,11 @@ class App extends Component {
                         customKey={this.getCustomKeyFromURL()}
                       />
                     }
+                  />
+                  <Route
+                    path="/metadata"
+                    exact
+                    element={<MetadataPage site={this.state.site} />}
                   />
                   <Route
                     path="/siteAdmin"

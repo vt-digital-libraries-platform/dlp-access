@@ -1,0 +1,391 @@
+.metadata-page-wrapper {
+  padding: 2rem 0;
+  
+  .metadata-heading {
+    text-align: center;
+    margin-bottom: 3rem;
+    
+    h1 {
+      color: #333;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+  }
+
+  .metadata-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .metadata-intro {
+    margin-bottom: 3rem;
+    font-size: 1.25rem;
+    line-height: 1.6;
+    color: #555;
+    text-align: left;
+  }
+
+  .metadata-table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    h2 {
+      font-size: 2rem;
+      color: #2c3e50;
+      border-bottom: 3px solid var(--hokieOrange);
+      padding-bottom: 0.5rem;
+      margin-bottom: 0;
+      flex: 1;
+      min-width: 100%;
+    }
+
+    .button-group {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      align-items: center;
+      width: 100%;
+    }
+
+    .search-box-wrapper {
+      flex: 1;
+      min-width: 250px;
+
+      .field-search-input {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+        border: 2px solid #ddd;
+        border-radius: 4px;
+        transition: border-color 0.3s;
+
+        &:focus {
+          outline: none;
+          border-color: var(--hokieOrange);
+          box-shadow: 0 0 0 3px rgba(198, 70, 0, 0.1);
+        }
+
+        &::placeholder {
+          color: #999;
+        }
+      }
+    }
+
+    .download-csv-btn {
+      background-color: var(--hokieOrange);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      white-space: nowrap;
+
+      &:hover {
+        background-color: var(--hokieOrangeHover);
+      }
+
+      &:focus {
+        outline: 2px solid var(--hokieOrange);
+        outline-offset: 2px;
+      }
+
+      span {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+
+  h2 {
+    font-size: 2rem;
+    color: #2c3e50;
+    border-bottom: 3px solid var(--hokieOrange);
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  // Legend
+  .legend {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .badge-legend {
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      
+      &.required {
+        background: #dc3545;
+        color: white;
+      }
+      
+      &.optional {
+        background: #6c757d;
+        color: white;
+      }
+    }
+  }
+
+  // Table styles
+  .table-responsive.metadata-table-section {
+    overflow-x: auto;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    
+    &:focus {
+      outline: 2px solid var(--hokieOrange);
+      outline-offset: 2px;
+    }
+  }
+
+  .metadata-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: white;
+    font-size: 0.95rem;
+
+      thead {
+        background: linear-gradient(135deg, var(--hokieOrange) 0%, var(--hokieMaroon) 100%);
+        color: white;
+        
+        th {
+          padding: 1rem;
+          text-align: left;
+          font-weight: 600;
+          white-space: nowrap;
+          border-bottom: 3px solid var(--hokieOrangeHover);
+          
+          &:first-child {
+            border-top-left-radius: 8px;
+          }
+          
+          &:last-child {
+            border-top-right-radius: 8px;
+          }
+        }
+      }
+
+      tbody {
+        tr {
+          border-bottom: 1px solid #e0e0e0;
+          transition: background-color 0.2s;
+          
+          &:hover {
+            background-color: #f5f7fa;
+          }
+          
+          &.required-row {
+            background-color: #fff5f5;
+            border-left: 4px solid #dc3545;
+            
+            &:hover {
+              background-color: #ffe5e5;
+            }
+          }
+          
+          &.highlight-row {
+            background-color: #fff8e1;
+            border-left: 4px solid var(--hokieOrange);
+            animation: highlightFade 2s ease-in-out;
+          }
+          
+          &:last-child {
+            border-bottom: none;
+          }
+        }
+
+        td, th {
+          padding: 1rem;
+          vertical-align: top;
+          
+          &.column-name {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            color: #2c3e50;
+            background-color: #f8f9fa;
+            min-width: 180px;
+            text-align: left;
+            
+            .field-note {
+              font-size: 0.75rem;
+              color: #666;
+              font-style: italic;
+              margin-top: 0.25rem;
+              font-weight: normal;
+              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            }
+          }
+          
+          &.label-name {
+            font-weight: 600;
+            color: #333;
+            min-width: 150px;
+            
+            .badge {
+              display: inline-block;
+              padding: 0.25rem 0.5rem;
+              border-radius: 4px;
+              font-size: 0.75rem;
+              margin-left: 0.5rem;
+              font-weight: 600;
+              
+              &.required-badge {
+                background: #dc3545;
+                color: white;
+              }
+              
+              &.optional-badge {
+                background: #6c757d;
+                color: white;
+              }
+            }
+          }
+          
+          &.type {
+            color: #4050c6;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            min-width: 200px;
+          }
+          
+          &.description {
+            color: #555;
+            line-height: 1.6;
+            max-width: 400px;
+          }
+          
+          &.example {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            color: #a02560;
+            background-color: #f8f9fa;
+            min-width: 200px;
+            
+            code {
+              background: none;
+              padding: 0;
+              color: inherit;
+              white-space: pre-wrap;
+              word-break: break-word;
+            }
+          }
+        }
+      }
+    }
+
+  // Best practices section
+  .metadata-best-practices {
+    ul {
+      list-style: none;
+      padding: 0;
+      
+      li {
+        padding: 0.75rem 0;
+        padding-left: 2rem;
+        position: relative;
+        line-height: 1.6;
+        
+        &::before {
+          content: "✓";
+          position: absolute;
+          left: 0;
+          color: #28a745;
+          font-weight: bold;
+          font-size: 1.2rem;
+        }
+        
+        strong {
+          color: #2c3e50;
+        }
+      }
+    }
+  }
+
+  // Responsive adjustments
+  @media (max-width: 768px) {
+    .metadata-heading h1 {
+      font-size: 2rem;
+    }
+
+    .metadata-intro .lead {
+      font-size: 1.1rem;
+    }
+
+    .metadata-table-header {
+      flex-direction: column;
+      align-items: stretch;
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      .button-group {
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .search-box-wrapper {
+        min-width: 100%;
+      }
+
+      .download-csv-btn {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    .metadata-table {
+      font-size: 0.85rem;
+      
+      thead th,
+      tbody td {
+        padding: 0.75rem 0.5rem;
+      }
+      
+      tbody td {
+        &.column-name,
+        &.type,
+        &.example {
+          min-width: auto;
+        }
+      }
+    }
+    
+    .legend {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+  }
+}
+
+@keyframes highlightFade {
+  0% {
+    background-color: #fff8e1;
+  }
+  50% {
+    background-color: #ffe082;
+  }
+  100% {
+    background-color: #fff8e1;
+  }
+}

@@ -1,0 +1,212 @@
+{
+  "age": {
+    "labelName": "Age",
+    "description": "Age information (Archive specific)",
+    "example": "Adult"
+  },
+  "alternative": {
+    "labelName": "Alternative Title",
+    "description": "Alternate or variant titles",
+    "example": "Farming Traditions Interview"
+  },
+  "bibliographic_citation": {
+    "labelName": "Bibliographic Citation",
+    "description": "Preferred citation for this resource",
+    "example": "Smith, Maria. Interview, 1978. Kansas Oral History Project."
+  },
+  "collection_category": {
+    "labelName": "Collection Category",
+    "description": "Category for collection-level access control",
+    "example": "Default"
+  },
+  "contributor": {
+    "labelName": "Contributor",
+    "description": "Additional contributors to the resource",
+    "example": "Johnson, Alan (Interviewer)"
+  },
+  "creator": {
+    "labelName": "Creator",
+    "description": "Person(s) or organization(s) primarily responsible for the content",
+    "example": "Smith, Maria"
+  },
+  "date": {
+    "labelName": "Date Created",
+    "description": "Date the resource was originally created",
+    "example": "1978-06-12"
+  },
+  "description": {
+    "labelName": "Description",
+    "description": "Summary or abstract of the item",
+    "example": "Interview discussing agricultural practices in the 1970s"
+  },
+  "display_date": {
+    "labelName": "Display Date",
+    "description": "Human-readable date for display",
+    "example": "Summer 1978"
+  },
+  "end_date": {
+    "labelName": "End Date",
+    "description": "End date of the item",
+    "example": "2024-12-31"
+  },
+  "extent": {
+    "labelName": "Extent",
+    "description": "Size or duration of the resource",
+    "example": "45 minutes; 42.3 MB"
+  },
+  "format": {
+    "labelName": "Format",
+    "description": "File format or physical medium",
+    "example": "audio/wav"
+  },
+  "has_part": {
+    "labelName": "Has Part",
+    "description": "Component parts of this resource",
+    "example": "Track 1: Introduction; Track 2: Interview"
+  },
+  "identifier": {
+    "labelName": "Identifier",
+    "description": "Unique identifier assigned to the item",
+    "example": "dlp_2026_000145"
+  },
+  "is_part_of": {
+    "labelName": "Is Part Of",
+    "description": "Collection or resource this is part of",
+    "example": "Rural Heritage Collection"
+  },
+  "item_category": {
+    "labelName": "Item Category",
+    "description": "Category for item-level access control",
+    "example": "Default"
+  },
+  "language": {
+    "labelName": "Language",
+    "description": "Language of the content",
+    "example": "English"
+  },
+  "license": {
+    "labelName": "License",
+    "description": "License information for the resource",
+    "example": "CC BY-NC 4.0"
+  },
+  "location": {
+    "labelName": "Location",
+    "description": "Related items or collections",
+    "example": "Van Nuys, California || 34.186672, -118.448742"
+  },
+  "manifest_url": {
+    "labelName": "Manifest URL",
+    "description": "IIIF manifest URL for the resource",
+    "example": "https://example.org/iiif/dlp_2026_000145/manifest.json"
+  },
+  "medium": {
+    "labelName": "Medium",
+    "description": "Material or physical carrier",
+    "example": "Audiocassette"
+  },
+  "other_identifier": {
+    "labelName": "Other Identifier",
+    "description": "Alternative identifiers for this resource",
+    "example": "ark:/53696/12345; ISBN: 978-0-1234-5678-9"
+  },
+  "parent_collection": {
+    "labelName": "Parent Collection",
+    "description": "Parent collection identifier",
+    "example": "kansas_oral_histories"
+  },
+  "provenance": {
+    "labelName": "Provenance",
+    "description": "Statement of any changes in ownership and custody",
+    "example": "Donated by Smith family, 2015"
+  },
+  "publisher": {
+    "labelName": "Publisher",
+    "description": "Entity responsible for making the resource available",
+    "example": "University Digital Library"
+  },
+  "relation": {
+    "labelName": "Relation",
+    "description": "Related items or collections",
+    "example": "dlp_2026_collection_001"
+  },
+  "repository": {
+    "labelName": "Repository",
+    "description": "Institution holding the physical object",
+    "example": "Kansas Historical Society"
+  },
+  "rights": {
+    "labelName": "Rights Statement",
+    "description": "Rights and access information",
+    "example": "In Copyright – Educational Use Permitted"
+  },
+  "rights_holder": {
+    "labelName": "Rights Holder",
+    "description": "Entity holding intellectual property rights",
+    "example": "Kansas Historical Society"
+  },
+  "source": {
+    "labelName": "Source",
+    "description": "Related resource from which this is derived",
+    "example": "Original cassette tape in Special Collections"
+  },
+  "spatial": {
+    "labelName": "Geographic Coverage",
+    "description": "Geographic location associated with the item",
+    "example": "Kansas (United States)"
+  },
+  "start_date": {
+    "labelName": "Start Date",
+    "description": "Start date of the item",
+    "example": "2024-03-15"
+  },
+  "subject": {
+    "labelName": "Subject",
+    "description": "Topical keywords describing the content",
+    "example": "Agriculture; Rural Communities"
+  },
+  "tags": {
+    "labelName": "Tags",
+    "description": "Informal keywords or tags",
+    "example": "agriculture || 1970s || Kansas"
+  },
+  "temporal": {
+    "labelName": "Temporal Coverage",
+    "description": "Time period covered by the content",
+    "example": "1970-1979"
+  },
+  "thumbnail_path": {
+    "labelName": "Thumbnail Path",
+    "description": "Path to thumbnail image",
+    "example": "public/thumbnails/dlp_2026_000145_thumb.jpg"
+  },
+  "title": {
+    "labelName": "Title",
+    "description": "Official title of the resource",
+    "example": "Oral History of Local Farming Traditions"
+  },
+  "type": {
+    "labelName": "Resource Type",
+    "description": "Nature or genre of the content",
+    "example": "Sound; Oral history"
+  },
+  "visibility": {
+    "labelName": "Visibility",
+    "description": "Controls whether item is publicly viewable",
+    "example": "true / false"
+  },
+  "visualDescription": {
+    "labelName": "Visual Description",
+    "description": "Detailed visual description for accessibility - stores description for the whole item and for each page/file in the item record",
+    "example": "{\"item\": \"Black and white photograph of a rural farmstead\", \"page1\": \"Detail of barn structure\"}"
+  },
+  "alt": {
+    "labelName": "Alt Text",
+    "description": "Alternative text for screen readers - must not be empty string to avoid erroneously marking items as decorative",
+    "example": "Photograph of Kansas farmstead with barn and silo, circa 1970s"
+  },
+  "archived": {
+    "labelName": "Archived Status",
+    "description": "Whether item meets Title II accessibility requirements - defaults to true before Title II deadline, after deadline any new/updated records must have accessibility compliance",
+    "example": "true"
+  }
+}

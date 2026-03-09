@@ -49,3 +49,10 @@ amplifytools.xcconfig
 .secret-*
 **.sample
 #amplify-do-not-edit-end
+docs/
+# Generated files
+# schema.js is auto-generated from amplify/backend/api/vtdlp/schema.graphql by scripts/generate-schema-js.js
+# src/schema.graphql is a copy and should not be committed (use amplify version as source of truth)
+src/schema.js
+# Amplify CLI creates a virtual environment for Python dependencies in the amplify/backend/function/<function-name>/src directory. This virtual environment is named .venv-eb and should be ignored by Git.
+.venv-eb/
