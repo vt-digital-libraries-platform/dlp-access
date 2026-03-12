@@ -22,9 +22,10 @@ class MetadataPage extends Component {
   downloadCSV = (metadataFields) => {
     // Create CSV where each field is a column instead of a row
     const columnNames = metadataFields.map(field => field.columnName);
-    const labelNames = metadataFields.map(field => field.labelName);
+    const labelNames = metadataFields.map(field => 
+      field.required ? `${field.labelName} (Required)` : field.labelName
+    );
     const types = metadataFields.map(field => field.type);
-    const requiredValues = metadataFields.map(field => field.required ? "Yes" : "No");
     const descriptions = metadataFields.map(field => field.description);
     const examples = metadataFields.map(field => field.example);
     
@@ -33,7 +34,6 @@ class MetadataPage extends Component {
       ["Metadata Column Name", ...columnNames],
       ["Label Name", ...labelNames],
       ["Type", ...types],
-      ["Required", ...requiredValues],
       ["Description", ...descriptions],
       ["Example", ...examples]
     ];
@@ -146,23 +146,24 @@ class MetadataPage extends Component {
                           field.columnName.toLowerCase().includes(query) ||
                           field.labelName.toLowerCase().includes(query) ||
                           field.type.toLowerCase().includes(query) ||
+                          (field.required && 'required'.includes(query)) ||
                           field.description.toLowerCase().includes(query) ||
                           field.example.toLowerCase().includes(query);
                       })
                       .map((field, index) => (
-                      <tr 
-                        key={index} 
-                        className={field.required ? 'required-row' : ''}
-                      >
+                      <tr key={index}>
                         <th scope="row" className="column-name">
                           {field.columnName}
                         </th>
                         <td className="label-name">
-                          {field.labelName}
                           {field.required ? (
-                            <span className="badge required-badge">Required</span>
+                            <>
+                              {field.labelName}
+                              <br />
+                              <span className="required-indicator">(Required)</span>
+                            </>
                           ) : (
-                            <span className="badge optional-badge">Optional</span>
+                            field.labelName
                           )}
                         </td>
                         <td className="type">{field.type}</td>
