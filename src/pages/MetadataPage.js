@@ -95,15 +95,12 @@ class MetadataPage extends Component {
                 <h2 id="metadata-table-heading">Metadata Field Reference</h2>
                 <div className="button-group">
                   <div className="search-box-wrapper">
-                    <label htmlFor="field-search" className="sr-only">Search metadata fields</label>
                     <input
-                      id="field-search"
-                      type="text"
+                      type="search"
                       className="field-search-input"
-                      placeholder="Search fields (e.g., title, tags, rights)..."
+                      placeholder="Search metadata fields"
                       value={this.state.searchQuery}
                       onChange={this.handleSearchChange}
-                      aria-label="Search metadata fields by name, type, or description"
                     />
                   </div>
                   <button 
@@ -116,17 +113,9 @@ class MetadataPage extends Component {
                 </div>
               </div>
 
-              <div 
-                className="table-responsive metadata-table-section"
-                tabIndex="0"
-                role="region"
-                aria-labelledby="metadata-table-heading"
-              >
-                <table 
-                  className="metadata-table"
-                  aria-labelledby="metadata-table-heading"
-                >
-                  <caption className="sr-only">
+              <div className="table-responsive metadata-table-section">
+                <table className="metadata-table" tabIndex="0" role="table">
+                  <caption>
                     Comprehensive metadata field reference table with column names, label names, data types, descriptions, and examples
                   </caption>
                   <thead>
