@@ -1,212 +1,485 @@
 {
   "age": {
     "labelName": "Age",
+    "type": "String (Repeatable)",
+    "required": "No",
     "description": "Age information (Archive specific)",
-    "example": "Adult"
+    "example": "12 years; url: https://digital.lib.vt.edu/archive/77af7ceb"
   },
   "alternative": {
     "labelName": "Alternative Title",
+    "type": "String (Text, Repeatable)",
+    "required": "No",
     "description": "Alternate or variant titles",
-    "example": "Farming Traditions Interview"
+    "example": "Adult teeth clacker; url: https://digital.lib.vt.edu/archive/77af7ceb"
+  },
+  "archiveOptions": {
+    "labelName": "ArchiveOptions",
+    "type": "JSON",
+    "required": "No",
+    "description": "ArchiveOptions field",
+    "example": "Contact us if you have 3D objects for formatting"
+  },
+  "basis_of_record": {
+    "labelName": "Basis Of Record",
+    "type": "String (Repeatable)",
+    "required": "No",
+    "description": "Basis Of Record field",
+    "example": "PreservedSpecimen"
   },
   "bibliographic_citation": {
     "labelName": "Bibliographic Citation",
+    "type": "String (Repeatable)",
+    "required": "No",
     "description": "Preferred citation for this resource",
-    "example": "Smith, Maria. Interview, 1978. Kansas Oral History Project."
+    "example": "The Tin Horn, [Blacksburg, Va.] : Co-Ed Regiment of the VPI, 1930."
   },
-  "collection_category": {
-    "labelName": "Collection Category",
-    "description": "Category for collection-level access control",
-    "example": "Default"
+  "collection": {
+    "labelName": "Collection",
+    "type": "Collection",
+    "required": "No",
+    "description": "Collection field",
+    "example": "N/A"
+  },
+  "conforms_to": {
+    "labelName": "Conforms To",
+    "type": "String (Repeatable)",
+    "required": "No",
+    "description": "Conforms To field",
+    "example": ""
   },
   "contributor": {
     "labelName": "Contributor",
+    "type": "String (Repeatable)",
+    "required": "No",
     "description": "Additional contributors to the resource",
-    "example": "Johnson, Alan (Interviewer)"
+    "example": "Virginia-Maryland College of Veterinary Medicine"
+  },
+  "coverage": {
+    "labelName": "Coverage",
+    "type": "String (Repeatable)",
+    "required": "No",
+    "description": "Coverage field",
+    "example": "Abingdon, Washington, Virginia, United States"
+  },
+  "create_date": {
+    "labelName": "Create Date",
+    "type": "String",
+    "required": "No",
+    "description": "Create Date field",
+    "example": "System  generated date"
+  },
+  "created": {
+    "labelName": "Created",
+    "type": "String (Repeatable)",
+    "required": "No",
+    "description": "Created field",
+    "example": ""
   },
   "creator": {
     "labelName": "Creator",
+    "type": "String (Repeatable)",
+    "required": "No",
     "description": "Person(s) or organization(s) primarily responsible for the content",
-    "example": "Smith, Maria"
+    "example": "Town of Crewe. Town Office"
+  },
+  "custom_key": {
+    "labelName": "Custom Key",
+    "type": "String",
+    "required": "No",
+    "description": "Custom Key field",
+    "example": "System Created"
   },
   "date": {
     "labelName": "Date Created",
+    "type": "String (Date)",
+    "required": "No",
     "description": "Date the resource was originally created",
-    "example": "1978-06-12"
+    "example": "6/12/1978"
   },
   "description": {
     "labelName": "Description",
+    "type": "String (Repeatable)",
+    "required": "No",
     "description": "Summary or abstract of the item",
-    "example": "Interview discussing agricultural practices in the 1970s"
+    "example": "Map of A Chart of Delaware Bay and River, Map 11"
   },
   "display_date": {
     "labelName": "Display Date",
+    "type": "String (Repeatable)",
+    "required": "No",
     "description": "Human-readable date for display",
-    "example": "Summer 1978"
+    "example": "cira 1900"
+  },
+  "download_link": {
+    "labelName": "Download Link",
+    "type": "String (Repeatable)",
+    "required": "No",
+    "description": "Download Link field",
+    "example": "https://www.morphosource.org/concern/biological_specimens/000621373"
   },
   "end_date": {
     "labelName": "End Date",
+    "type": "String (Date)",
+    "required": "No",
     "description": "End date of the item",
-    "example": "2024-12-31"
+    "example": "12/31/2024"
+  },
+  "explicit": {
+    "labelName": "Explicit",
+    "type": "Boolean",
+    "required": "No",
+    "description": "Explicit field",
+    "example": ""
   },
   "extent": {
     "labelName": "Extent",
+    "type": "String (Repeatable)",
+    "required": "No",
     "description": "Size or duration of the resource",
-    "example": "45 minutes; 42.3 MB"
+    "example": "8 pages"
   },
   "format": {
     "labelName": "Format",
+    "type": "String (Repeatable)",
+    "required": "No",
     "description": "File format or physical medium",
-    "example": "audio/wav"
+    "example": "image/tiff"
+  },
+  "format_physical": {
+    "labelName": "Format Physical",
+    "type": "String (Repeatable)",
+    "required": "No",
+    "description": "Format Physical field",
+    "example": "photograph"
+  },
+  "has_format": {
+    "labelName": "Has Format",
+    "type": "String (Repeatable)",
+    "required": "No",
+    "description": "Has Format field",
+    "example": ""
   },
   "has_part": {
     "labelName": "Has Part",
+    "type": "String (Repeatable)",
+    "required": "No",
     "description": "Component parts of this resource",
-    "example": "Track 1: Introduction; Track 2: Interview"
+    "example": " "
+  },
+  "has_version": {
+    "labelName": "Has Version",
+    "type": "String (Repeatable)",
+    "required": "No",
+    "description": "Has Version field",
+    "example": ""
+  },
+  "heirarchy_path": {
+    "labelName": "Heirarchy Path",
+    "type": "String (Repeatable)",
+    "required": "No",
+    "description": "Heirarchy Path field",
+    "example": "System generated"
+  },
+  "id": {
+    "labelName": "Id",
+    "type": "String (Persistent ID)",
+    "required": "Yes",
+    "description": "Id field",
+    "example": "System generated"
   },
   "identifier": {
     "labelName": "Identifier",
+    "type": "String (Persistent ID)",
+    "required": "Yes",
     "description": "Unique identifier assigned to the item",
-    "example": "dlp_2026_000145"
+    "example": "fchs_2019_001_047"
+  },
+  "is_format_of": {
+    "labelName": "Is Format Of",
+    "type": "String (Repeatable)",
+    "required": "No",
+    "description": "Is Format Of field",
+    "example": ""
   },
   "is_part_of": {
     "labelName": "Is Part Of",
+    "type": "String (Repeatable)",
+    "required": "No",
     "description": "Collection or resource this is part of",
-    "example": "Rural Heritage Collection"
+    "example": "\"Ms1990-057, Folder 11\" || \"Pardy Residence\""
+  },
+  "is_version_of": {
+    "labelName": "Is Version Of",
+    "type": "String (Repeatable)",
+    "required": "No",
+    "description": "Is Version Of field",
+    "example": "https://hub.catalogit.app/8896/folder/16957660-1e34-11ed-938c-b3b1b0b61c9e/entry/4723ef90-1efd-11ed-8ab2-1300b398da90"
   },
   "item_category": {
     "labelName": "Item Category",
+    "type": "String",
+    "required": "Yes",
     "description": "Category for item-level access control",
     "example": "Default"
   },
   "language": {
     "labelName": "Language",
+    "type": "String (Repeatable)",
+    "required": "No",
     "description": "Language of the content",
-    "example": "English"
+    "example": "en"
   },
   "license": {
     "labelName": "License",
+    "type": "String (Repeatable)",
+    "required": "No",
     "description": "License information for the resource",
-    "example": "CC BY-NC 4.0"
+    "example": "http://creativecommons.org/publicdomain/zero/1.0/\""
   },
   "location": {
     "labelName": "Location",
+    "type": "URI / Identifier (Repeatable)",
+    "required": "No",
     "description": "Related items or collections",
-    "example": "Van Nuys, California || 34.186672, -118.448742"
+    "example": " \"34.186672\" ||\"-118.448742\""
+  },
+  "manifest_file_characterization": {
+    "labelName": "Manifest File Characterization",
+    "type": "JSON",
+    "required": "No",
+    "description": "Manifest File Characterization field",
+    "example": "System generated"
   },
   "manifest_url": {
     "labelName": "Manifest URL",
+    "type": "String",
+    "required": "No",
     "description": "IIIF manifest URL for the resource",
-    "example": "https://example.org/iiif/dlp_2026_000145/manifest.json"
+    "example": "System generated"
   },
   "medium": {
     "labelName": "Medium",
+    "type": "String (Repeatable)",
+    "required": "No",
     "description": "Material or physical carrier",
-    "example": "Audiocassette"
+    "example": "newspapers"
+  },
+  "modified_date": {
+    "labelName": "Modified Date",
+    "type": "String",
+    "required": "No",
+    "description": "Modified Date field",
+    "example": "System generated"
   },
   "other_identifier": {
     "labelName": "Other Identifier",
+    "type": "String (Repeatable)",
+    "required": "No",
     "description": "Alternative identifiers for this resource",
-    "example": "ark:/53696/12345; ISBN: 978-0-1234-5678-9"
+    "example": " \"Occurrence ID: 565cbc5e-1449-484c-9841-d5d6689ad2bc\"|| \"Record ID: 565cbc5e-1449-484c-9841-d5d6689ad2bc\" "
   },
   "parent_collection": {
     "labelName": "Parent Collection",
+    "type": "String (Repeatable)",
+    "required": "No",
     "description": "Parent collection identifier",
-    "example": "kansas_oral_histories"
+    "example": "CIDA"
+  },
+  "parent_collection_identifier": {
+    "labelName": "Parent Collection Identifier",
+    "type": "String (Repeatable)",
+    "required": "No",
+    "description": "Parent Collection Identifier field",
+    "example": "CIDA"
   },
   "provenance": {
     "labelName": "Provenance",
+    "type": "String (Repeatable)",
+    "required": "No",
     "description": "Statement of any changes in ownership and custody",
-    "example": "Donated by Smith family, 2015"
+    "example": "The Circuit Court of Floyd County"
   },
   "publisher": {
     "labelName": "Publisher",
+    "type": "String (Repeatable)",
+    "required": "No",
     "description": "Entity responsible for making the resource available",
-    "example": "University Digital Library"
+    "example": "United States Department of the Interior Geological Survey"
+  },
+  "references": {
+    "labelName": "References",
+    "type": "String (Repeatable)",
+    "required": "No",
+    "description": "References field",
+    "example": "https://ecdysis.org/collections/individual/index.php?occid=1730992"
   },
   "relation": {
     "labelName": "Relation",
+    "type": "String (Repeatable)",
+    "required": "No",
     "description": "Related items or collections",
-    "example": "dlp_2026_collection_001"
+    "example": " "
   },
   "repository": {
     "labelName": "Repository",
+    "type": "String (Repeatable)",
+    "required": "No",
     "description": "Institution holding the physical object",
-    "example": "Kansas Historical Society"
+    "example": "Floyd County Historical Society (Floyd County, Va.)"
   },
   "rights": {
     "labelName": "Rights Statement",
+    "type": "String (Repeatable)",
+    "required": "Yes",
     "description": "Rights and access information",
-    "example": "In Copyright – Educational Use Permitted"
+    "example": "\"http://rightsstatements.org/vocab/InC-NC/1.0/\" "
   },
   "rights_holder": {
     "labelName": "Rights Holder",
+    "type": "String (Repeatable)",
+    "required": "No",
     "description": "Entity holding intellectual property rights",
-    "example": "Kansas Historical Society"
+    "example": "\"Virginia Polytechnic Institute and State University. Department of Entomology\" "
   },
   "source": {
     "labelName": "Source",
+    "type": "String (Repeatable)",
+    "required": "No",
     "description": "Related resource from which this is derived",
-    "example": "Original cassette tape in Special Collections"
+    "example": "https://ead.lib.virginia.edu/vivaxtf/view?docId=oai/VT/repositories_2_resources_2309.xml"
   },
   "spatial": {
     "labelName": "Geographic Coverage",
+    "type": "String (Repeatable)",
+    "required": "No",
     "description": "Geographic location associated with the item",
-    "example": "Kansas (United States)"
+    "example": "\"Germany\""
   },
   "start_date": {
     "labelName": "Start Date",
+    "type": "String (Date)",
+    "required": "No",
     "description": "Start date of the item",
-    "example": "2024-03-15"
+    "example": "3/15/2024"
   },
   "subject": {
     "labelName": "Subject",
+    "type": "String (Repeatable)",
+    "required": "No",
     "description": "Topical keywords describing the content",
-    "example": "Agriculture; Rural Communities"
+    "example": "Court Records"
   },
   "tags": {
     "labelName": "Tags",
+    "type": "String (Repeatable)",
+    "required": "No",
     "description": "Informal keywords or tags",
-    "example": "agriculture || 1970s || Kansas"
+    "example": " \"iiif\"||\"entomology\""
   },
   "temporal": {
     "labelName": "Temporal Coverage",
+    "type": "String (Repeatable)",
+    "required": "No",
     "description": "Time period covered by the content",
-    "example": "1970-1979"
+    "example": "1900-1950"
   },
   "thumbnail_path": {
     "labelName": "Thumbnail Path",
+    "type": "String",
+    "required": "No",
     "description": "Path to thumbnail image",
-    "example": "public/thumbnails/dlp_2026_000145_thumb.jpg"
+    "example": "system generated"
   },
   "title": {
     "labelName": "Title",
+    "type": "String (Text)",
+    "required": "Yes",
     "description": "Official title of the resource",
-    "example": "Oral History of Local Farming Traditions"
+    "example": "Aerial of the Blue Ridge Parkway"
   },
   "type": {
     "labelName": "Resource Type",
+    "type": "String (Repeatable)",
+    "required": "No",
     "description": "Nature or genre of the content",
-    "example": "Sound; Oral history"
+    "example": "Still Image"
   },
   "visibility": {
     "labelName": "Visibility",
+    "type": "Boolean",
+    "required": "Yes",
     "description": "Controls whether item is publicly viewable",
     "example": "true / false"
   },
+  "archives": {
+    "labelName": "Archives (Collection)",
+    "type": "Archive (Repeatable)",
+    "required": "No",
+    "description": "Archives field (Collection-level only)",
+    "example": "System generated"
+  },
+  "collectionOptions": {
+    "labelName": "CollectionOptions (Collection)",
+    "type": "JSON",
+    "required": "No",
+    "description": "CollectionOptions field (Collection-level only)",
+    "example": "System generated"
+  },
+  "collection_category": {
+    "labelName": "Collection Category (Collection)",
+    "type": "String",
+    "required": "Yes",
+    "description": "Category for collection-level access control",
+    "example": "Default"
+  },
+  "collectionmap": {
+    "labelName": "Collectionmap (Collection)",
+    "type": "Collectionmap",
+    "required": "No",
+    "description": "Collectionmap field (Collection-level only)",
+    "example": "System generated"
+  },
+  "collectionmap_id": {
+    "labelName": "Collectionmap Id (Collection)",
+    "type": "String",
+    "required": "No",
+    "description": "Collectionmap Id field (Collection-level only)",
+    "example": "System generated"
+  },
+  "explicit_content": {
+    "labelName": "Explicit Content (Collection)",
+    "type": "Boolean",
+    "required": "No",
+    "description": "Explicit Content field (Collection-level only)",
+    "example": "System generated"
+  },
+  "ownerinfo": {
+    "labelName": "Ownerinfo (Collection)",
+    "type": "JSON",
+    "required": "No",
+    "description": "Ownerinfo field (Collection-level only)",
+    "example": "System generated"
+  },
   "visualDescription": {
     "labelName": "Visual Description",
+    "type": "JSON (Dictionary)",
+    "required": "No",
     "description": "Detailed visual description for accessibility - stores description for the whole item and for each page/file in the item record",
-    "example": "{\"item\": \"Black and white photograph of a rural farmstead\", \"page1\": \"Detail of barn structure\"}"
+    "example": "{item\": \"Black-and-white photograph showing the Blue Ridge Parkway bordered by forested and agricultural land.\""
   },
   "alt": {
     "labelName": "Alt Text",
+    "type": "String",
+    "required": "No",
     "description": "Alternative text for screen readers - must not be empty string to avoid erroneously marking items as decorative",
-    "example": "Photograph of Kansas farmstead with barn and silo, circa 1970s"
+    "example": " \"page1\": \"Detail of barn structure\"}\""
   },
   "archived": {
     "labelName": "Archived Status",
+    "type": "Boolean",
+    "required": "No",
     "description": "Whether item meets Title II accessibility requirements - defaults to true before Title II deadline, after deadline any new/updated records must have accessibility compliance",
-    "example": "true"
+    "example": "Photograph of Floyd County Historical Collection:  Aerial of the Blue Ridge Parkway"
   }
 }
