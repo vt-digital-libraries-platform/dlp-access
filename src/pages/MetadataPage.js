@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
-import SiteTitle from "../components/SiteTitle";
+import { SiteTitle } from "../components/SiteTitle";
 import { buildHeaderSchema } from "../lib/richSchemaTools";
 import { generateMetadataFields } from "../lib/schemaParser";
 
@@ -11,7 +11,7 @@ class MetadataPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      searchQuery: ''
+      searchQuery: ""
     };
   }
 
@@ -21,14 +21,14 @@ class MetadataPage extends Component {
 
   downloadCSV = (metadataFields) => {
     // Create CSV where each field is a column instead of a row
-    const columnNames = metadataFields.map(field => field.columnName);
-    const labelNames = metadataFields.map(field => 
+    const columnNames = metadataFields.map((field) => field.columnName);
+    const labelNames = metadataFields.map((field) =>
       field.required ? `${field.labelName} (Required)` : field.labelName
     );
-    const types = metadataFields.map(field => field.type);
-    const descriptions = metadataFields.map(field => field.description);
-    const examples = metadataFields.map(field => field.example);
-    
+    const types = metadataFields.map((field) => field.type);
+    const descriptions = metadataFields.map((field) => field.description);
+    const examples = metadataFields.map((field) => field.example);
+
     // Create rows with property name as first column, then all field values
     const rows = [
       ["Metadata Column Name", ...columnNames],
@@ -37,10 +37,12 @@ class MetadataPage extends Component {
       ["Description", ...descriptions],
       ["Example", ...examples]
     ];
-    
+
     // Combine rows into CSV content
-    const csvContent = rows.map(row => row.map(cell => `"${cell}"`).join(",")).join("\n");
-    
+    const csvContent = rows
+      .map((row) => row.map((cell) => `"${cell}"`).join(","))
+      .join("\n");
+
     // Create blob and download
     const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
     const url = URL.createObjectURL(blob);
@@ -55,7 +57,9 @@ class MetadataPage extends Component {
 
   render() {
     const title = "Metadata Guide";
-    const siteTitle = this.props.site ? this.props.site.siteTitle : "Digital Library";
+    const siteTitle = this.props.site
+      ? this.props.site.siteTitle
+      : "Digital Library";
 
     // Metadata field definitions dynamically generated from GraphQL schema
     const metadataFields = generateMetadataFields();
@@ -80,15 +84,24 @@ class MetadataPage extends Component {
                 }
               ]}
             >
-              <title>{title} | {siteTitle}</title>
-              <meta name="description" content="Comprehensive metadata field guide for digital collections" />
+              <title>
+                {title} | {siteTitle}
+              </title>
+              <meta
+                name="description"
+                content="Comprehensive metadata field guide for digital collections"
+              />
             </Helmet>
           </div>
 
           <div className="col-12">
             <div className="metadata-content">
               <p className="lead metadata-intro">
-                This guide provides detailed information about metadata fields used in the digital library platform. Fields marked as "Required" are mandatory. This is for basic metadata fields but for more complex metadata schemas (e.g., 3D objects) please contact digitallibraries@vt.edu.
+                This guide provides detailed information about metadata fields
+                used in the digital library platform. Fields marked as
+                "Required" are mandatory. This is for basic metadata fields but
+                for more complex metadata schemas (e.g., 3D objects) please
+                contact digitallibraries@vt.edu.
               </p>
 
               <div className="metadata-table-header">
@@ -103,7 +116,7 @@ class MetadataPage extends Component {
                       onChange={this.handleSearchChange}
                     />
                   </div>
-                  <button 
+                  <button
                     className="btn btn-primary download-csv-btn"
                     onClick={() => this.downloadCSV(metadataFields)}
                     aria-label="Download metadata field reference as CSV"
@@ -116,7 +129,8 @@ class MetadataPage extends Component {
               <div className="table-responsive metadata-table-section">
                 <table className="metadata-table" tabIndex="0" role="table">
                   <caption>
-                    Comprehensive metadata field reference table with column names, label names, data types, descriptions, and examples
+                    Comprehensive metadata field reference table with column
+                    names, label names, data types, descriptions, and examples
                   </caption>
                   <thead>
                     <tr>
@@ -129,39 +143,43 @@ class MetadataPage extends Component {
                   </thead>
                   <tbody>
                     {metadataFields
-                      .filter(field => {
+                      .filter((field) => {
                         const query = this.state.searchQuery.toLowerCase();
-                        return query === '' ||
+                        return (
+                          query === "" ||
                           field.columnName.toLowerCase().includes(query) ||
                           field.labelName.toLowerCase().includes(query) ||
                           field.type.toLowerCase().includes(query) ||
-                          (field.required && 'required'.includes(query)) ||
+                          (field.required && "required".includes(query)) ||
                           field.description.toLowerCase().includes(query) ||
-                          field.example.toLowerCase().includes(query);
+                          field.example.toLowerCase().includes(query)
+                        );
                       })
                       .map((field, index) => (
-                      <tr key={index}>
-                        <th scope="row" className="column-name">
-                          {field.columnName}
-                        </th>
-                        <td className="label-name">
-                          {field.required ? (
-                            <>
-                              {field.labelName}
-                              <br />
-                              <span className="required-indicator">(Required)</span>
-                            </>
-                          ) : (
-                            field.labelName
-                          )}
-                        </td>
-                        <td className="type">{field.type}</td>
-                        <td className="description">{field.description}</td>
-                        <td className="example">
-                          <code>{field.example}</code>
-                        </td>
-                      </tr>
-                    ))}
+                        <tr key={index}>
+                          <th scope="row" className="column-name">
+                            {field.columnName}
+                          </th>
+                          <td className="label-name">
+                            {field.required ? (
+                              <>
+                                {field.labelName}
+                                <br />
+                                <span className="required-indicator">
+                                  (Required)
+                                </span>
+                              </>
+                            ) : (
+                              field.labelName
+                            )}
+                          </td>
+                          <td className="type">{field.type}</td>
+                          <td className="description">{field.description}</td>
+                          <td className="example">
+                            <code>{field.example}</code>
+                          </td>
+                        </tr>
+                      ))}
                   </tbody>
                 </table>
               </div>

@@ -26,6 +26,8 @@
     "@types/node": "^18.15.11",
     "@types/react": "^18.0.32",
     "@types/react-dom": "^18.0.11",
+    "ajv": "^8.18.0",
+    "ajv-keywords": "^5.1.0",
     "assign-deep": "^1.0.1",
     "aws-amplify": "^5.0.23",
     "aws-amplify-react": "^5.1.9",
