@@ -40,6 +40,12 @@
   flex-direction: column !important;
 }
 
+.mirador-window-top-bar {
+  h2 {
+    visibility: hidden;
+  }
+}
+
 .mirador-osd-info {
   display: none !important;
 }
