@@ -1,6 +1,5 @@
 #multimedia-section {
   background-color: #f7f6f6;
-  height: 90vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -18,7 +17,6 @@
   align-items: center;
   text-align: center;
   padding: 0.3em 0.6em;
-  position: relative;
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
   h2 {
@@ -26,11 +24,32 @@
   }
 }
 
-#image-wrapper {
-  height: 900px;
-  width: 100%;
+#options-wrapper .fullscreen-toggle {
+  width: 1.8rem;
+  aspect-ratio: 1 / 1;
   display: flex;
   justify-content: center;
+  align-items: center;
+  border: none;
+  padding: 0.1rem;
+  background: none;
+  position: relative;
+}
+
+#options-wrapper .fullscreen-toggle:focus {
+  outline: 0.14em dashed white;
+  outline-offset: 1px;
+}
+
+#options-wrapper .toggle-icon {
+  color: white;
+  font-size: 1.2rem;
+}
+
+#image-wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   padding: 0.1em;
   background-color: white;
   overflow: hidden;
@@ -39,6 +58,20 @@
 #x3d-element-id {
   position: relative;
   justify-items: center;
+}
+
+#image-wrapper {
+  #mirador_viewer {
+    height: 100%;
+    width: 100%;
+    position: relative;
+  }
+
+  @media (min-width: 768px) {
+    #mirador_viewer {
+      height: 100%;
+    }
+  }
 }
 
 .drag-to-rotate-container {
@@ -55,55 +88,82 @@
 }
 
 #thumbnail-wrapper {
-  height: 8em;
+  height: 9rem;
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 1em;
+  align-items: center;
+  padding: 1rem;
   background-color: #f7f6f6;
 }
 
 .thumbnail-overlay {
-  position: relative;
-  display: inline-block;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
 }
 
 .thumbnail-button {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  gap: 0.24rem;
   position: relative;
-  height: 90%;
-  width: 5em;
-  margin-right: 0.1em;
+  width: 5rem;
+  aspect-ratio: 3 / 2;
   border: none;
   padding: 0;
   background: none;
   cursor: pointer;
-  outline: none;
+  user-select: none;
+}
+
+.thumbnail-button:focus {
+  color: var(--hokieMaroon) !important;
+  outline: 0.15em dashed var(--themeHighlightColor);
+  outline-offset: 2px;
+}
+
+.thumbnail-button:hover {
+  color: var(--hokieMaroon) !important;
+}
+
+.thumbnail-button[aria-current="true"]::after {
+  content: "";
+  position: relative;
+  left: 7.5%;
+  width: 85%;
+  height: 0.16rem;
+  background-color: var(--hokieMaroon);
+  border-radius: 6px;
 }
 
 .thumbnail-image {
-  display: block;
-  width: 5em;
-  height: 90%;
-}
-
-.thumbnail-text {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-  background-color: rgba(0, 0, 0, 0.3);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.2s ease;
 }
 
-.thumbnail-button:hover .thumbnail-text {
+.thumbnail-button[aria-current="true"] .thumbnail-image {
   opacity: 1;
+}
+
+.thumbnail-button:not([aria-current="true"]) .thumbnail-image {
+  opacity: 0.65;
+}
+
+.thumbnail-button:not([aria-current="true"]):hover .thumbnail-image {
+  opacity: 1;
+}
+
+.thumbnail-label {
+  font-family: "Acherus", sans-serif;
+  font-size: 0.875rem;
+  line-height: 1.2;
 }
 
 #expand-icon,
@@ -162,15 +222,6 @@
   opacity: 1;
 }
 
-.x3d-vis.primary {
-  width: 100%;
-  height: 100%;
-}
-
-.x3d-vis.hidden {
-  display: none;
-}
-
 // @media (max-width: 1024px) {
 //   #multimedia-section {
 //     max-width: 100%;
@@ -204,7 +255,7 @@
   }
 
   #thumbnail-wrapper {
-    height: 5em;
+    height: 8em;
   }
 
   .drag-to-rotate-container {
