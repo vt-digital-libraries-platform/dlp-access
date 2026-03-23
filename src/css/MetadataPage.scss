@@ -1,114 +1,106 @@
 .metadata-page-wrapper {
   padding: 2rem 0;
-  
+
+  .focusable {
+    &:focus,
+    &:focus-visible {
+      outline-color: var(--hokieMaroon);
+      outline-offset: 3px;
+      outline-style: dashed;
+      outline-width: 2px;
+    }
+  }
+
   .metadata-heading {
-    text-align: center;
-    margin-bottom: 3rem;
-    
-    h1 {
-      color: #333;
-      font-size: 2.5rem;
-      margin-bottom: 0;
+    text-align: left;
+    margin-bottom: 2rem;
+  }
+
+  .metadata-intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    justify-content: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .download-csv-btn {
+    background-color: var(--hokieOrange);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    white-space: nowrap;
+    height: fit-content;
+    width: fit-content;
+    align-self: center;
+
+    &:hover,
+    &:focus,
+    &:focus-within,
+    &:focus-visible {
+      background-color: var(--hokieOrangeHover);
+    }
+
+    span {
+      margin-right: 0.5rem;
     }
   }
 
   .metadata-content {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 1.5rem;
-  }
-
-  .metadata-intro {
-    margin-bottom: 3rem;
-    font-size: 1.25rem;
-    line-height: 1.6;
-    color: #555;
-    text-align: left;
   }
 
   .metadata-table-header {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 2rem;
     flex-wrap: wrap;
     gap: 1rem;
+  }
 
-    h2 {
-      font-size: 2rem;
-      color: #2c3e50;
-      border-bottom: 3px solid var(--hokieOrange);
-      padding-bottom: 0.5rem;
-      margin-bottom: 0;
-      flex: 1;
-      min-width: 100%;
-    }
+  .button-group {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    align-items: center;
+    width: 100%;
+  }
 
-    .button-group {
-      display: flex;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-      align-items: center;
+  .search-box-wrapper {
+    flex: 1;
+    min-width: min(95vw, 250px);
+
+    .field-search-input {
       width: 100%;
-    }
-
-    .search-box-wrapper {
-      flex: 1;
-      min-width: 250px;
-
-      .field-search-input {
-        width: 100%;
-        padding: 0.75rem 1rem;
-        font-size: 1rem;
-        border: 2px solid #ddd;
-        border-radius: 4px;
-        transition: border-color 0.3s;
-
-        &:focus {
-          outline: none;
-          border-color: var(--hokieOrange);
-          box-shadow: 0 0 0 3px rgba(198, 70, 0, 0.1);
-        }
-
-        &::placeholder {
-          color: #999;
-        }
-      }
-    }
-
-    .download-csv-btn {
-      background-color: var(--hokieOrange);
-      color: white;
-      border: none;
-      padding: 0.75rem 1.5rem;
+      padding: 0.75rem 1rem;
       font-size: 1rem;
-      font-weight: 600;
+      border: 2px solid #ddd;
       border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      white-space: nowrap;
-
-      &:hover {
-        background-color: var(--hokieOrangeHover);
-      }
+      transition: border-color 0.3s;
 
       &:focus {
-        outline: 2px solid var(--hokieOrange);
-        outline-offset: 2px;
+        outline: none;
+        border-color: var(--hokieOrange);
+        box-shadow: 0 0 0 3px rgba(198, 70, 0, 0.1);
       }
 
-      span {
-        margin-right: 0.5rem;
+      &::placeholder {
+        color: #999;
       }
     }
   }
 
   h2 {
-    font-size: 2rem;
-    color: #2c3e50;
     border-bottom: 3px solid var(--hokieOrange);
     padding-bottom: 0.5rem;
-    margin-bottom: 2rem;
+    width: 100%;
   }
 
   // Legend
@@ -120,24 +112,24 @@
     padding: 1rem;
     background: #f8f9fa;
     border-radius: 8px;
-    
+
     .legend-item {
       display: flex;
       align-items: center;
       gap: 0.5rem;
     }
-    
+
     .badge-legend {
       padding: 0.25rem 0.75rem;
       border-radius: 4px;
       font-size: 0.85rem;
       font-weight: 600;
-      
+
       &.required {
-        background: #850F21;
+        background: #850f21;
         color: white;
       }
-      
+
       &.optional {
         background: #6c757d;
         color: white;
@@ -151,11 +143,6 @@
     margin-bottom: 2rem;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    
-    &:focus {
-      outline: 2px solid var(--hokieOrange);
-      outline-offset: 2px;
-    }
   }
 
   .metadata-table {
@@ -164,169 +151,166 @@
     background: white;
     font-size: 0.95rem;
 
-      &:focus {
-        outline: 3px solid var(--hokieOrange);
-        outline-offset: 3px;
-      }
+    caption {
+      position: absolute;
+      left: -10000px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
 
-      caption {
-        position: absolute;
-        left: -10000px;
-        width: 1px;
-        height: 1px;
-        overflow: hidden;
-      }
+    thead {
+      background: #752900;
+      color: white;
 
-      thead {
-        background: #752900;
-        color: white;
-        
-        th {
-          padding: 1rem;
-          text-align: left;
-          font-weight: 600;
-          white-space: nowrap;
-          border-bottom: 3px solid var(--hokieOrangeHover);
-          
-          &:first-child {
-            border-top-left-radius: 8px;
-          }
-          
-          &:last-child {
-            border-top-right-radius: 8px;
-          }
+      th {
+        padding: 1rem;
+        text-align: left;
+        font-weight: 600;
+        white-space: nowrap;
+        border-bottom: 3px solid var(--hokieOrangeHover);
+
+        &:first-child {
+          border-top-left-radius: 8px;
+        }
+
+        &:last-child {
+          border-top-right-radius: 8px;
         }
       }
+    }
 
-      tbody {
-        tr {
-          border-bottom: 1px solid #e0e0e0;
-          transition: background-color 0.2s;
-          
+    tbody {
+      tr {
+        border-bottom: 1px solid #e0e0e0;
+        transition: background-color 0.2s;
+
+        &:hover {
+          background-color: #f5f7fa;
+        }
+
+        &.required-row {
+          background-color: #fff5f5;
+          border-left: 4px solid #850f21;
+
           &:hover {
-            background-color: #f5f7fa;
-          }
-          
-          &.required-row {
-            background-color: #fff5f5;
-            border-left: 4px solid #850F21;
-            
-            &:hover {
-              background-color: #ffe5e5;
-            }
-          }
-          
-          &.highlight-row {
-            background-color: #fff8e1;
-            border-left: 4px solid var(--hokieOrange);
-            animation: highlightFade 2s ease-in-out;
-          }
-          
-          &:last-child {
-            border-bottom: none;
+            background-color: #ffe5e5;
           }
         }
 
-        td, th {
-          padding: 1rem;
-          vertical-align: top;
-          
-          &.column-name {
-            font-family: 'Courier New', monospace;
-            font-weight: bold;
-            color: #2c3e50;
-            background-color: #f8f9fa;
-            min-width: 180px;
-            text-align: left;
-            
-            .field-note {
-              font-size: 0.75rem;
-              color: #666;
-              font-style: italic;
-              margin-top: 0.25rem;
-              font-weight: normal;
-              font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            }
+        &.highlight-row {
+          background-color: #fff8e1;
+          border-left: 4px solid var(--hokieOrange);
+          animation: highlightFade 2s ease-in-out;
+        }
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+
+      td,
+      th {
+        padding: 1rem;
+        vertical-align: top;
+
+        &.column-name {
+          font-family: "Courier New", monospace;
+          font-weight: bold;
+          color: #2c3e50;
+          background-color: #f8f9fa;
+          min-width: 180px;
+          text-align: left;
+
+          .field-note {
+            font-size: 0.75rem;
+            color: #666;
+            font-style: italic;
+            margin-top: 0.25rem;
+            font-weight: normal;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
+              sans-serif;
           }
-          
-          &.label-name {
+        }
+
+        &.label-name {
+          font-weight: 600;
+          color: #333;
+          min-width: 150px;
+
+          .required-indicator {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 500;
+            font-style: italic;
+            color: #850f21;
+            margin-top: 0.25rem;
+          }
+
+          .badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            margin-left: 0.5rem;
             font-weight: 600;
-            color: #333;
-            min-width: 150px;
-            
-            .required-indicator {
-              display: inline-block;
-              font-size: 0.8rem;
-              font-weight: 500;
-              font-style: italic;
-              color: #850F21;
-              margin-top: 0.25rem;
+
+            &.required-badge {
+              background: #850f21;
+              color: white;
             }
-            
-            .badge {
-              display: inline-block;
-              padding: 0.25rem 0.5rem;
-              border-radius: 4px;
-              font-size: 0.75rem;
-              margin-left: 0.5rem;
-              font-weight: 600;
-              
-              &.required-badge {
-                background: #850F21;
-                color: white;
-              }
-              
-              &.optional-badge {
-                background: #6c757d;
-                color: white;
-              }
+
+            &.optional-badge {
+              background: #6c757d;
+              color: white;
             }
           }
-          
-          &.type {
-            color: #2B3791;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-            min-width: 200px;
-          }
-          
-          &.description {
-            color: #000;
-            line-height: 1.6;
-            max-width: 400px;
-          }
-          
-          &.example {
-            font-family: 'Courier New', monospace;
-            font-size: 0.9rem;
-            color: #741B44;
-            background-color: #f8f9fa;
-            min-width: 200px;
-            
-            code {
-              background: none;
-              padding: 0;
-              color: inherit;
-              white-space: pre-wrap;
-              word-break: break-word;
-            }
+        }
+
+        &.type {
+          color: #2b3791;
+          font-family: "Courier New", monospace;
+          font-size: 0.9rem;
+          min-width: 200px;
+        }
+
+        &.description {
+          color: #000;
+          line-height: 1.6;
+          max-width: 400px;
+        }
+
+        &.example {
+          font-family: "Courier New", monospace;
+          font-size: 0.9rem;
+          color: #741b44;
+          background-color: #f8f9fa;
+          min-width: 200px;
+
+          code {
+            background: none;
+            padding: 0;
+            color: inherit;
+            white-space: pre-wrap;
+            word-break: break-word;
           }
         }
       }
     }
+  }
 
   // Best practices section
   .metadata-best-practices {
     ul {
       list-style: none;
       padding: 0;
-      
+
       li {
         padding: 0.75rem 0;
         padding-left: 2rem;
         position: relative;
         line-height: 1.6;
-        
+
         &::before {
           content: "✓";
           position: absolute;
@@ -335,7 +319,7 @@
           font-weight: bold;
           font-size: 1.2rem;
         }
-        
+
         strong {
           color: #2c3e50;
         }
@@ -378,12 +362,12 @@
 
     .metadata-table {
       font-size: 0.85rem;
-      
+
       thead th,
       tbody td {
         padding: 0.75rem 0.5rem;
       }
-      
+
       tbody td {
         &.column-name,
         &.type,
@@ -392,7 +376,7 @@
         }
       }
     }
-    
+
     .legend {
       flex-direction: column;
       gap: 0.75rem;
