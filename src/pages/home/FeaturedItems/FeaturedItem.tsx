@@ -9,21 +9,13 @@ type Props = {
     link: string;
     src: string;
   };
-  position: number;
-  length: number;
   site: {
     siteId: string;
   };
   style: React.CSSProperties;
 };
 
-export const FeaturedItem: FC<Props> = ({
-  item,
-  position,
-  length,
-  site,
-  style
-}) => {
+export const FeaturedItem: FC<Props> = ({ item, site, style }) => {
   const imgSrc = useSignedLink(item.src, "image", site.siteId);
 
   if (!imgSrc) {
@@ -31,28 +23,28 @@ export const FeaturedItem: FC<Props> = ({
   }
   return (
     <li
-      className="col-12 col-sm-6 col-md-3 list-unstyled card-gallery-border"
-      //role="group"
-      //aria-roledescription="slide"
-      //aria-label={`${position} of ${length} for ${item.cardTitle}`}
+      className="col-12 col-sm-6 col-md-3 list-unstyled"
       style={style}
       key={item.src}
     >
-      <img
-        className="card-img-top img-fluid"
-        src={imgSrc}
-        alt={item.altText || ""}
-      />
-      <div className="card-body">
-        <h3 className="card-title">
-          <a
-            href={item.cardTitle === "Items" ? "/search" : item.link}
-            className="card h-100 text-decoration-none"
-          >
-            {item.cardTitle}
-          </a>
-        </h3>
-        <p className="card-details">{item.cardDetails || ""}</p>
+      <div className="featured-items__card card--img-zoom">
+        <div className="card__img-wrapper">
+          <img
+            className={`img-fluid${
+              site.siteId === "federated" ? " round-img" : ""
+            }`}
+            src={imgSrc}
+            alt="" // Decorative b/c this functions as a thumbnail and descriptive text is provided in the card body
+          />
+        </div>
+        <div className="card__body">
+          <h3 className="card__title">
+            <a href={item.cardTitle === "Items" ? "/search" : item.link}>
+              {item.cardTitle}
+            </a>
+          </h3>
+          <p className="card__details">{item.cardDetails || ""}</p>
+        </div>
       </div>
     </li>
   );

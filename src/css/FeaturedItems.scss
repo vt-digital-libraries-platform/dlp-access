@@ -1,141 +1,134 @@
-.featured-items-wrapper {
-  display: flex;
-  flex-direction: column;
-  padding: 40px 40px 20px 40px;
-  width: 100%;
-}
-.featured-items-wrapper ul {
-  padding-left: 0;
-}
-.card-padding {
-  padding: 0 0;
-}
-.featured-items-wrapper .card-body {
-  padding: 5px;
-  // margin-left:20px;
-}
-.featured-items-wrapper li {
-  padding-bottom: 8px;
-}
-@media (max-width: 768px) {
-  .featured-items-wrapper li:focus-visible::after {
-    inset: -4px; /* expands dashed line evenly */
+.card--img-zoom {
+  .card__img-wrapper img {
+    transition: transform 0.5s ease;
+    transform: scale(1.05);
+
+    &.round-img {
+      transform: scale(1.15);
+    }
+  }
+
+  &:hover,
+  &:focus,
+  &:focus-within,
+  &:focus-visible {
+    .card__img-wrapper img {
+      transform: scale(1.15);
+
+      &.round-img {
+        transform: scale(1.25);
+      }
+    }
   }
 }
-/* Mobile */
-// @media (max-width: 768px) {
-//   .featured-items-wrapper {
-//     flex-direction: column;
-//     padding-bottom: 5px;
 
-//   }
-//   .card-padding {
-//     padding-bottom: 0px;
-//   }
-// }
-//.card-gallery-border:hover,
-//.card-gallery-border:focus {
-//  outline: 2px dashed #000;
-//}
-
-.featured-items-wrapper .card {
-  // margin-top: 5px;
-  margin-bottom: 5px;
+.featured-items__card {
+  position: relative; /* Establishes a new stacking context for the pseudo-element */
   border: none;
+  background-color: transparent;
+  margin-bottom: 1rem;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+
+  &:focus,
+  &:focus-within,
+  &:focus-visible {
+    outline: 2px dashed #861f41;
+    outline-offset: 3px;
+  }
+
+  a:first-child {
+    position: static;
+
+    &:link,
+    &:visited,
+    &:hover,
+    &:focus,
+    &:active {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    &:focus,
+    &:focus-visible {
+      outline: none; /* Remove the default focus outline from the link since the card itself has a focus style */
+    }
+
+    &::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 10;
+      pointer-events: auto;
+      opacity: 0;
+    }
+  }
+
+  a:not(:first-child),
+  button {
+    position: relative;
+    z-index: 20; /* These elems can be interacted with without clicking the card's pseudo-elem */
+  }
+
+  .card__img-wrapper {
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+    border-radius: 50%;
+
+    img {
+      width: 100%;
+      max-height: 40vh;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+    }
+  }
+
+  .card__body {
+    padding: 0.5rem 5px 1rem 5px;
+    text-align: center;
+    flex-grow: 1;
+    align-content: flex-start;
+  }
+
+  .card__title {
+    font-weight: 500;
+    font-size: 1.25rem;
+    text-align: inherit;
+    margin-bottom: 0.25rem;
+
+    line-clamp: 3;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .card__details {
+    font-family: "Acherus", sans-serif;
+  }
 }
 
-.featured-items-wrapper .card:hover,
-.featured-items-wrapper .card:focus {
-  //  box-shadow: 0px 0px 2px var(--dark-gray);
-  outline: 2px dashed #000;
-  //outline: 2px dashed #861f41
-  //  outline-offset: 5px;
-}
-
-.featured-items-wrapper .card-img-top {
+.featured-items {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 192px;
-  object-fit: scale-down;
+
+  ul {
+    padding-left: 0;
+
+    li {
+      align-items: stretch;
+    }
+  }
 }
 
-.featured-items-wrapper .card-body {
-  text-align: center;
-  //  height: 9rem;
-}
-
-.featured-items-wrapper .card-body .card-title {
-  font-family: "gineso-condensed", sans-serif;
-  font-size: 1.1rem;
-}
-
-.featured-items-wrapper .card-body .card-text {
-  font-family: "Acherus", sans-serif;
-}
-
-.featured-items-wrapper a,
-.featured-items-wrapper a:visited,
-.featured-items-wrapper a:hover,
-.featured-items-wrapper a:focus,
-.featured-items-wrapper a:active {
-  color: black;
-  text-decoration: none;
-}
-
-.crop-text-4 {
-  -webkit-line-clamp: 4;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-}
-
-.featured-items-heading {
-  margin-bottom: 40px;
-  padding: 10px;
-}
-
-.featured-items-heading h2 {
-  font-family: "gineso-condensed", sans-serif;
-  text-align: left;
-  font-size: 2.1875rem;
-}
-
-/* The dots/bullets/indicators */
-.featured-items-indicators {
-  text-align: center;
-  padding-top: 20px;
-  /* Adding a visibility item until we can fix the functionality of the feature items indicator*/
-  visibility: hidden;
-}
-
-.featured-items-indicators button {
-  border: none;
-  background-color: var(--light-gray);
-  margin-right: 2px;
-  padding: 2.5px 3px;
-}
-
-.featured-items-indicators button:last-child {
-  margin-right: 0;
-}
-
-.featured-items-indicators .dot {
-  cursor: pointer;
-  height: 20px;
-  width: 20px;
-  padding: 0;
-  margin: 0 2px;
-  background-color: white;
-  border: 6px solid #8b9192;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
-
-.featured-items-indicators .dot-active {
-  border-color: var(--themeHighlightColor);
-}
-
-.featured-items-indicators .dot:hover {
-  border-color: var(--themeHighlightColor);
+@media (max-width: 768px) {
+  .featured-items li:focus-visible::after {
+    inset: -4px; /* expands dashed line evenly */
+  }
 }

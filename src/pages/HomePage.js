@@ -63,12 +63,11 @@ class HomePage extends Component {
             </div>
             <h2 className="sr-only">Browse Links</h2>
             <div className="home-nav-links">
-              <a href="/search?&category=archive">Browse All Items</a>
-              <a href="/search?&category=collection">Browse All Collections</a>
+              <a href="/search?&category=archive">Browse Items</a>
+              <a href="/search?&category=collection">Browse Collections</a>
             </div>
             {featuredItems && featuredItems.length > 0 && (
               <>
-                <h2>Featured Items</h2>
                 <FeaturedItems
                   featuredItems={featuredItems}
                   site={this.props.site}
