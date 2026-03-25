@@ -22,59 +22,73 @@
   }
 }
 
-.featured-items__card {
-  position: relative; /* Establish new stacking context for pseudo-elem */
-  border: none;
-  background-color: transparent;
-  margin: 1rem 10vw;
-  @media screen and (min-width: 576px) {
-    margin: 1rem 0;
-  }
-  border-radius: 1rem;
+.featured-items-wrapper {
   display: flex;
   flex-direction: column;
+  width: 100%;
 
-  &:focus,
-  &:focus-within,
-  &:focus-visible {
-    outline: 2px dashed #861f41;
-    outline-offset: 3px;
+  ul {
+    padding-left: 0;
+
+    li {
+      align-items: stretch;
+    }
   }
 
-  a:first-child {
-    position: static;
-
-    &:link,
-    &:visited,
-    &:hover,
-    &:focus,
-    &:active {
-      color: inherit;
-      text-decoration: none;
+  .featured-items__card {
+    position: relative; /* Establish new stacking context for pseudo-elem */
+    border: none;
+    background-color: transparent;
+    margin: 1rem 10vw;
+    @media screen and (min-width: 576px) {
+      margin: 1rem 0;
     }
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
 
     &:focus,
+    &:focus-within,
     &:focus-visible {
-      outline: none; /* Card has a focus style for primary link's pseudo-elem */
+      outline: 2px dashed #861f41;
+      outline-offset: 3px;
     }
 
-    &::after {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      z-index: 10;
-      pointer-events: auto;
-      opacity: 0;
-    }
-  }
+    a:first-child {
+      position: static;
 
-  a:not(:first-child),
-  button {
-    position: relative;
-    z-index: 20; /* Can interact without clicking the card's pseudo-elem */
+      &:link,
+      &:visited,
+      &:hover,
+      &:focus,
+      &:active {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      &:focus,
+      &:focus-visible {
+        outline: none; /* Card has a focus style for primary link's pseudo-elem */
+      }
+
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 10;
+        pointer-events: auto;
+        opacity: 0;
+      }
+    }
+
+    a:not(:first-child),
+    button {
+      position: relative;
+      z-index: 20; /* Can interact without clicking the card's pseudo-elem */
+    }
   }
 
   .card__img-wrapper {
@@ -82,6 +96,7 @@
     margin-bottom: 0.5rem;
     border-radius: 50%;
     margin: auto 1rem;
+    box-shadow: -1px 0px 8px #0000004e;
 
     img {
       width: 100%;
@@ -116,25 +131,5 @@
   .card__details {
     font-family: "Acherus", sans-serif;
     text-wrap: balance;
-  }
-}
-
-.featured-items {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-
-  ul {
-    padding-left: 0;
-
-    li {
-      align-items: stretch;
-    }
-  }
-}
-
-@media (max-width: 768px) {
-  .featured-items li:focus-visible::after {
-    inset: -4px; /* expands dashed line evenly */
   }
 }

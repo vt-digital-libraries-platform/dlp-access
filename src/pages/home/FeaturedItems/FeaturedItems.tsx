@@ -30,7 +30,7 @@ export const FeaturedItems: FC<Props> = ({ featuredItems, site }) => {
   }
 
   return (
-    <div className="featured-items">
+    <div className="featured-items-wrapper">
       <h2>{heading}</h2>
       <ul className="row" id="featured-items">
         {featuredItems.map((item, index) => {
