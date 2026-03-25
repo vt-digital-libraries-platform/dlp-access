@@ -75,7 +75,11 @@ class MetadataPage extends Component {
 
     return (
       <>
-        <SiteTitle siteTitle={siteTitle} pageTitle="Metadata Guide" />
+        <SiteTitle
+          data={{ title: "Metadata Guide" }}
+          site={this.props.site}
+          template="{{title}}"
+        />
         <Helmet
           script={[
             { type: "text/javascript" },
