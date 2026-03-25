@@ -1,14 +1,29 @@
 :root {
-  --hokieMaroon: #861f41;
+  --vt-maroon: #861f41;
+  --vt-maroon-2s: #6b1934;
+  --vt-burntOrange: #e5751f;
+  --vt-hokieStone: #75787b;
+  --vt-hokieStone-1s: #696c6f;
+  --vt-hokieStone-8s: #171819;
+  --vt-white: #ffffff;
+  --vt-grey-2t: #dfdbd5;
+  --vt-smoke: #e5e1e6;
+  --vt-smoke-7t: #f2f0f2;
+  --vt-smoke-9t: #faf9fa;
+  --vt-impactOrange: #ca4f00;
+  --vt-impactOrange-1s: #b64700;
+  --vt-impactOrange-4s: #792f00;
+
+  --hokieMaroon: var(--vt-maroon);
   --hokieMaroonHover: #4c0000;
   --hokieOrange: #c64600;
   --hokieOrangeHover: #7a2b00;
-  --light-gray: #faf9fa;
-  --dark-gray: #75787b;
+  --light-gray: var(--vt-smoke-9t);
+  --dark-gray: var(--vt-hokieStone);
   --darker-gray: #555;
   --link-blue: #007bff;
-  --themeHighlightColor: #861f41;
+  --themeHighlightColor: var(--vt-maroon);
 
   --titleFontSize: 40px;
-  --sponsorsColor: "#75787b";
+  --sponsorsColor: var(--vt-hokieStone);
 }
