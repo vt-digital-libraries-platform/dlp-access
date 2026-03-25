@@ -1,83 +1,39 @@
 .searchbar-wrapper {
-  padding: 6px 0px 6px 6px;
-  background-color: white;
+  display: grid;
+  grid-template-columns: auto max(2.75rem, 15vw);
+  grid-template-areas: "txt btn";
+  gap: 0.5rem;
   box-shadow: -1px 0px 8px #0000004e;
   border-radius: 6px;
-  display: flex;
-}
 
-.searchbar-wrapper div {
-  width: 100%;
-}
-
-.searchbar-wrapper input {
-  border: none;
-  border-width: 0;
-  box-shadow: none;
-  -webkit-appearance: none;
-  width: 100%;
-  font-size: 1rem;
-}
-
-.searchbar-wrapper select {
-  border-width: 0px 1px;
-  margin-right: 0px;
-  text-align: center;
-  text-align-last: center;
-  border-color: var(--dark-gray);
-  background-color: white;
-  border-radius: 0px;
-  width: 7.55rem;
-  flex: none;
-  font-size: 1rem;
-}
-
-.searchbar-wrapper button {
-  padding: 0px;
-  border: 0px;
-  background-color: white;
-  color: var(--themeHighlightColor);
-  font-size: 1.375rem;
-}
-.searchbar-wrapper button div {
-  width: 2.938rem;
-  height: 2.25rem;
-}
-.searchbar-wrapper button:hover,
-.searchbar-wrapper button:active,
-.searchbar-wrapper button:focus {
-  color: var(--dark-gray);
-}
-.search-options-wrapper {
-  padding-top: 10px;
-}
-
-@media (min-width: 576px) {
-  .searchbar-wrapper {
-    padding: 6px 30px 6px 30px;
+  @media (min-width: 576px) {
+    grid-template-columns: auto min(5.5rem, 15vw);
   }
 
-  .searchbar-wrapper select {
-    margin-right: 30px;
+  input {
+    border-radius: 6px;
+    border-width: 0;
+    padding: 1rem min(5vw, 2rem);
+    font-size: 1rem;
+
+    @media (min-width: 576px) {
+      font-size: 1.125rem;
+    }
   }
-  .searchbar-wrapper button {
-    background-color: var(--themeHighlightColor);
-    color: white;
-  }
-  .searchbar-wrapper button div {
-    width: 4rem;
-    height: 2.25rem;
-    border-radius: 5px;
-  }
-  .searchbar-wrapper button:hover,
-  .searchbar-wrapper button:active,
-  .searchbar-wrapper button:focus {
-    color: white;
-  }
-  .searchbar-wrapper button div:hover,
-  .searchbar-wrapper button div:active,
-  .searchbar-wrapper button div:focus {
-    color: white;
-    background-color: rgba(0, 0, 0, 0.2);
+
+  button {
+    margin: 0.25rem;
+    border: 0;
+    border-radius: 10px;
+    color: var(--vt-hokieStone-1s);
+    background-color: white;
+    font-size: 1.375rem;
+
+    &:hover,
+    &:active,
+    &:focus {
+      background-color: var(--themeHighlightColor);
+      color: white;
+    }
   }
 }
