@@ -28,6 +28,8 @@
     color: var(--vt-hokieStone-1s);
     background-color: white;
     font-size: 1.375rem;
+    transition: all 0.3s ease;
+    outline-offset: 4px;
 
     &:hover,
     &:active,

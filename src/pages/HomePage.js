@@ -48,7 +48,7 @@ class HomePage extends Component {
             <h1>
               <span className="sr-only">Virginia Tech </span>
               {(this.props.site.siteName === "Virginia Tech Digital Libraries"
-                ? "Digital Libraries Platform"
+                ? "Digital Library Platform"
                 : this.props.site.siteName
               )
                 .replace("Virginia Tech", "")
@@ -63,8 +63,18 @@ class HomePage extends Component {
             </div>
             <h2 className="sr-only">Browse Links</h2>
             <div className="home-nav-links">
-              <a href="/search?&category=archive">Browse Items</a>
-              <a href="/search?&category=collection">Browse Collections</a>
+              <a
+                className="button-link--primary"
+                href="/search?&category=archive"
+              >
+                Browse Items
+              </a>
+              <a
+                className="button-link--primary"
+                href="/search?&category=collection"
+              >
+                Browse Collections
+              </a>
             </div>
             {featuredItems && featuredItems.length > 0 && (
               <>

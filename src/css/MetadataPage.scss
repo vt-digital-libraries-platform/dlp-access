@@ -11,11 +11,6 @@
     }
   }
 
-  // .metadata-heading {
-  //   text-align: left;
-  //   margin-bottom: 2rem;
-  // }
-
   .metadata-intro {
     display: flex;
     flex-direction: column;
@@ -25,25 +20,8 @@
   }
 
   .download-csv-btn {
-    background-color: var(--hokieOrange);
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-    white-space: nowrap;
-    height: fit-content;
-    width: fit-content;
-    align-self: center;
-
-    &:hover,
-    &:focus,
-    &:focus-within,
-    &:focus-visible {
-      background-color: var(--hokieOrangeHover);
-    }
+    --backgroundColor: var(--hokieOrange);
+    font-family: inherit;
 
     span {
       margin-right: 0.5rem;
@@ -98,7 +76,7 @@
     font-size: 0.95rem;
 
     thead {
-      background: #752900;
+      background: var(--vt-impactOrange-4s);
       color: white;
 
       th {

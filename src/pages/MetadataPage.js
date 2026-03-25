@@ -114,7 +114,7 @@ class MetadataPage extends Component {
                 .
               </p>
               <button
-                className="download-csv-btn focusable"
+                className="button-link--primary download-csv-btn focusable"
                 role="link"
                 onClick={() => this.downloadCSV(metadataFields)}
               >
