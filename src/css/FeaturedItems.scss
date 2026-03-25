@@ -23,14 +23,16 @@
 }
 
 .featured-items__card {
-  position: relative; /* Establishes a new stacking context for the pseudo-element */
+  position: relative; /* Establish new stacking context for pseudo-elem */
   border: none;
   background-color: transparent;
-  margin-bottom: 1rem;
+  margin: 1rem 10vw;
+  @media screen and (min-width: 576px) {
+    margin: 1rem 0;
+  }
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
-  padding: 1rem;
 
   &:focus,
   &:focus-within,
@@ -53,7 +55,7 @@
 
     &:focus,
     &:focus-visible {
-      outline: none; /* Remove the default focus outline from the link since the card itself has a focus style */
+      outline: none; /* Card has a focus style for primary link's pseudo-elem */
     }
 
     &::after {
@@ -72,17 +74,17 @@
   a:not(:first-child),
   button {
     position: relative;
-    z-index: 20; /* These elems can be interacted with without clicking the card's pseudo-elem */
+    z-index: 20; /* Can interact without clicking the card's pseudo-elem */
   }
 
   .card__img-wrapper {
     overflow: hidden;
     margin-bottom: 0.5rem;
     border-radius: 50%;
+    margin: auto 1rem;
 
     img {
       width: 100%;
-      max-height: 40vh;
       aspect-ratio: 1/1;
       object-fit: cover;
     }
@@ -97,19 +99,23 @@
 
   .card__title {
     font-weight: 500;
-    font-size: 1.25rem;
+    font-size: 1.2rem;
+    @media screen and (min-width: 1200px) {
+      font-size: 1.325rem;
+    }
     text-align: inherit;
     margin-bottom: 0.25rem;
-
-    line-clamp: 3;
+    text-wrap: balance;
+    line-clamp: 4;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
 
   .card__details {
     font-family: "Acherus", sans-serif;
+    text-wrap: balance;
   }
 }
 
