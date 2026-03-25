@@ -155,7 +155,7 @@ class SearchResults extends Component {
 
     if (this.state.languages) {
       return (
-        <div className="container search-result-wrapper">
+        <div className="search-result-wrapper">
           <SearchBar
             filters={this.props.filters}
             view={this.props.view}
