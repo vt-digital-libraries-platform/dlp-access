@@ -50,7 +50,7 @@ export const FeaturedItems: FC<Props> = ({ featuredItems, site }) => {
       </ul>
       {featuredItems.length > multiplier && (
         <button
-          className="btn"
+          className="button-link--secondary"
           aria-expanded={showMore}
           aria-controls="featured-items"
           onClick={() => setShowMore(!showMore)}

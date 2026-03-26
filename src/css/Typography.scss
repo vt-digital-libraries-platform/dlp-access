@@ -129,10 +129,11 @@
     }
   }
 
-  .button-link--primary,
-  .button-link--primary:visited {
+  [class*="button-link"],
+  [class*="button-link"]:visited {
     text-align: center;
     place-content: center;
+
     &,
     p,
     span,
@@ -140,29 +141,32 @@
       text-decoration: none;
       font-size: 1rem;
       font-weight: 500;
-      color: white;
+      font-family: inherit;
       white-space: nowrap;
+      color: var(--themeHighlightColor);
     }
+
     height: fit-content;
     width: fit-content;
     align-self: center;
     padding: 0.75rem 1.5rem;
-    border: none;
+    border: var(--themeHighlightColor) solid 1px;
     border-radius: 10px;
 
-    --backgroundColor: var(--themeHighlightColor);
-    background-color: var(--backgroundColor);
-    transition: all 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    transition: color 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+      box-shadow 0.3s cubic-bezier(0.23, 1, 0.32, 1),
+      transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
     transform: translateY(0);
 
     outline-offset: 5px;
+    background-color: white;
 
     &:hover,
     &:focus,
     &:focus-within,
     &:focus-visible {
       --boxShadowColor: hsl(
-        from var(--backgroundColor) h calc(s * 0.5) calc(l * 0.7) / 0.4
+        from var(--themeHighlightColor) h calc(s * 0.3) calc(l * 0.8) / 0.4
       );
       box-shadow: -1px 2px 2px var(--boxShadowColor),
         -2px 4px 4px var(--boxShadowColor), 1px 6px 6px var(--boxShadowColor);
@@ -170,6 +174,29 @@
       @media (prefers-reduced-motion: reduce) {
         transform: none;
       }
+    }
+  }
+
+  .button-link--primary,
+  .button-link--primary:visited {
+    &,
+    p,
+    span,
+    a {
+      color: white;
+    }
+
+    border: none;
+    background-color: var(--themeHighlightColor);
+  }
+
+  .focusable,
+  button,
+  a,
+  input {
+    &:focus-visible {
+      outline: var(--focus_outline);
+      outline-offset: var(--focus-outline__offset);
     }
   }
 }

@@ -15,6 +15,9 @@
     border-width: 0;
     padding: 1rem min(5vw, 2rem);
     font-size: 1rem;
+    &:focus-visible {
+      outline-offset: 1px;
+    }
 
     @media (min-width: 576px) {
       font-size: 1.125rem;

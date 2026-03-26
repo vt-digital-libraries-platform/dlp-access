@@ -37,9 +37,8 @@
 }
 
 #content-wrapper .breadcrumbs-wrapper a:focus {
-  outline-color: black;
-  outline-offset: 1px;
-  outline-style: solid;
+  outline: var(--focus_outline);
+  outline-offset: var(--focus-outline__offset);
 }
 
 @media (max-width: 600px) {

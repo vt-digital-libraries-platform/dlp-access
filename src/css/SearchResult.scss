@@ -120,8 +120,8 @@ div.search-results div.row div#content div.navbar {
         color: var(--hokieMaroon) !important;
       }
       &:focus {
-        color: var(--hokieMaroon) !important;
-        outline: 0.15em dashed var(--themeHighlightColor);
+        outline: var(--focus_outline);
+        outline-offset: var(--focus-outline__offset);
         text-decoration: none !important;
       }
     }

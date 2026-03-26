@@ -1,16 +1,6 @@
 .metadata-page-wrapper {
   padding: 2rem 0;
 
-  .focusable {
-    &:focus,
-    &:focus-visible {
-      outline-color: var(--hokieMaroon);
-      outline-offset: 3px;
-      outline-style: dashed;
-      outline-width: 2px;
-    }
-  }
-
   .metadata-intro {
     display: flex;
     flex-direction: column;
@@ -19,13 +9,8 @@
     margin-bottom: 2.5rem;
   }
 
-  .download-csv-btn {
-    --backgroundColor: var(--hokieOrange);
-    font-family: inherit;
-
-    span {
-      margin-right: 0.5rem;
-    }
+  .download-csv-btn span {
+    margin-right: 0.5rem;
   }
 
   .metadata-content {
