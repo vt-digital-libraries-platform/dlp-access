@@ -153,9 +153,9 @@
     border: var(--themeHighlightColor) solid 1px;
     border-radius: 10px;
 
-    transition: color 0.3s cubic-bezier(0.23, 1, 0.32, 1),
-      box-shadow 0.3s cubic-bezier(0.23, 1, 0.32, 1),
-      transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: color 0.3s var(--transition-time-function),
+      box-shadow 0.3s var(--transition-time-function),
+      transform 0.3s var(--transition-time-function);
     transform: translateY(0);
 
     outline-offset: 5px;
@@ -192,11 +192,22 @@
 
   .focusable,
   button,
-  a,
-  input {
+  a {
     &:focus-visible {
       outline: var(--focus_outline);
       outline-offset: var(--focus-outline__offset);
+    }
+  }
+
+  input {
+    border-radius: var(--input-border-radius);
+    outline: none;
+    border: 1px solid var(--vt-grey-3s);
+
+    transition: outline-color 0.3s var(--transition-time-function);
+
+    &:focus-visible {
+      outline: 2px solid var(--vt-maroon);
     }
   }
 }

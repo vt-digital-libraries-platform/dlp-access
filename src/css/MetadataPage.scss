@@ -26,19 +26,6 @@
     width: 100%;
     padding: 0.75rem 1rem;
     font-size: 1rem;
-    border: 2px solid #ddd;
-    border-radius: 4px;
-    transition: border-color 0.3s;
-
-    &:focus {
-      outline: none;
-      border-color: var(--hokieOrange);
-      box-shadow: 0 0 0 3px rgba(198, 70, 0, 0.1);
-    }
-
-    &::placeholder {
-      color: #999;
-    }
   }
 
   h2 {

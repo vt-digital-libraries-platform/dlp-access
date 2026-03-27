@@ -7,9 +7,13 @@
   --vt-hokieStone-8s: #171819;
   --vt-white: #ffffff;
   --vt-grey-2t: #dfdbd5;
+  --vt-grey-3s: #97938e; // Contrast on white: 3.05:1
+  // Contrast on vt-maroon: 3:1
+  // = WCAG AA for large text, graphical objects, and UI components
   --vt-smoke: #e5e1e6;
   --vt-smoke-7t: #f2f0f2;
   --vt-smoke-9t: #faf9fa;
+  --vt-smoke-9s: #171617;
   --vt-impactOrange: #ca4f00;
   --vt-impactOrange-1s: #b64700;
   --vt-impactOrange-4s: #792f00;
@@ -30,4 +34,13 @@
   --focus_outline: 2px dashed var(--vt-maroon);
   --focus_outline--dark: 2px dashed var(--vt-white);
   --focus-outline__offset: 3px;
+
+  --input-border-radius: 4px;
+
+  --transition-time-function: cubic-bezier(
+    0.23,
+    1,
+    0.32,
+    1
+  ); // fast in, ease middle, fast out (like a reverse ease-in-out) good for a a jump-up transform transition
 }
