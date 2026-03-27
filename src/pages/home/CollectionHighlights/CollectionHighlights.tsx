@@ -24,13 +24,8 @@ export const CollectionHighlights: FC<Props> = ({
     return null;
   }
   return (
-    <div
-      className="collection-highlights-wrapper"
-      role="region"
-      aria-roledescription="Collection highlights"
-      aria-label="Collection Highlights"
-    >
-      <div className="row justify-content-center">
+    <div className="collection-highlights-wrapper">
+      <ul className="row gx-4 gy-4 justify-content-center list-unstyled">
         {collectionHighlights.map((item, index) => (
           <Highlight
             highlight={item}
@@ -39,7 +34,7 @@ export const CollectionHighlights: FC<Props> = ({
             key={index}
           />
         ))}
-      </div>
+      </ul>
     </div>
   );
 };
