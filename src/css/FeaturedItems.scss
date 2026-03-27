@@ -11,7 +11,8 @@
   &:hover,
   &:focus,
   &:focus-within,
-  &:focus-visible {
+  &:focus-visible,
+  &:has(a:focus-visible) {
     .card__img-wrapper img {
       transform: scale(1.15);
 
@@ -47,9 +48,8 @@
     display: flex;
     flex-direction: column;
 
-    &:focus,
-    &:focus-within,
-    &:focus-visible {
+    &:focus-visible,
+    &:has(a:focus-visible) {
       outline: 2px dashed #861f41;
       outline-offset: 3px;
     }
