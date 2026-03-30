@@ -11,7 +11,10 @@ import "../css/Typography.scss";
 // \r is stripped because email parsers use \r\n as a header separator.
 const sanitizeMessage = (value) => {
   // eslint-disable-next-line no-control-regex
-  return DOMPurify.sanitize(value).replace(/[\r\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g,"");
+  return DOMPurify.sanitize(value).replace(
+    /[\r\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g,
+    ""
+  );
 };
 
 // sanitizeEmail: strips everything including \n from the email field.
@@ -19,7 +22,10 @@ const sanitizeMessage = (value) => {
 // field is either a mistake or a header injection attempt.
 const sanitizeEmail = (value) => {
   // eslint-disable-next-line no-control-regex
-  return DOMPurify.sanitize(value).replace(/[\r\n\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g,"");
+  return DOMPurify.sanitize(value).replace(
+    /[\r\n\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g,
+    ""
+  );
 };
 
 // validateEmail: stricter than the browser's built-in type="email" check.
