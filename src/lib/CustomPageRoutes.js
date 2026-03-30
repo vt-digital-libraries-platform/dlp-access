@@ -2,11 +2,13 @@ import { Route } from "react-router-dom";
 import AboutPage from "../pages/AboutPage";
 import PermissionsPage from "../pages/PermissionsPage";
 import AdditionalPages from "../pages/AdditionalPages";
+import FeedbackPage from "../pages/FeedbackPage";
 
 const pageComponents = {
   AboutPage: AboutPage,
   PermissionsPage: PermissionsPage,
-  AdditionalPages: AdditionalPages
+  AdditionalPages: AdditionalPages,
+  FeedbackPage: FeedbackPage
 };
 
 function route(site, key, path, title, PageComponent, childKey = null) {

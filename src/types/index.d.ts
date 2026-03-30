@@ -128,6 +128,19 @@ declare global {
     podcast_links?: string[];
     webFeed?: string;
   }
+  interface SiteOptions {
+    collectionPageSettings?: {
+      itemsPosition?: string;
+      viewOption?: string;
+    };
+    redirectURL?: string;
+    requiredAttributes?: {
+      archive?: string[];
+      collection?: string[];
+    };
+    socialMedia?: string[];
+    feedbackEmail?: string;
+  }
   interface PageContent {
     page_content_category: string;
     id: string;

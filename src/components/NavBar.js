@@ -9,7 +9,7 @@ class NavBar extends Component {
     const sitePages = {};
     Object.keys(sitePageItems)
       .sort()
-      .forEach(function(key) {
+      .forEach(function (key) {
         sitePages[key] = sitePageItems[key];
       });
 
@@ -113,6 +113,11 @@ class NavBar extends Component {
           <li className="nav-item">
             <NavLink className="nav-link" to="/metadata">
               METADATA GUIDE
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/feedback">
+              CONTACT US
             </NavLink>
           </li>
           {additionalListItems}
