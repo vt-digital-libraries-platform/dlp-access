@@ -115,6 +115,11 @@ class NavBar extends Component {
               METADATA GUIDE
             </NavLink>
           </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/feedback">
+              CONTACT US
+            </NavLink>
+          </li>
           {additionalListItems}
         </ul>
       </nav>
