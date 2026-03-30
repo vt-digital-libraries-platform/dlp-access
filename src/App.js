@@ -17,6 +17,7 @@ import { buildRoutes } from "./lib/CustomPageRoutes";
 import HomePage from "./pages/HomePage";
 import MetadataPage from "./pages/MetadataPage";
 import AccessibilityPage from "./pages/AccessibilityPage";
+import FeedbackPage from "./pages/FeedbackPage";
 import SiteAdmin from "./pages/admin/SiteAdmin";
 import PodcastDeposit from "./pages/admin/PodcastDeposit";
 
@@ -196,6 +197,11 @@ class App extends Component {
                     path="/metadata"
                     exact
                     element={<MetadataPage site={this.state.site} />}
+                  />
+                  <Route
+                    path="/feedback"
+                    exact
+                    element={<FeedbackPage site={this.state.site} />}
                   />
                   <Route
                     path="/siteAdmin"
