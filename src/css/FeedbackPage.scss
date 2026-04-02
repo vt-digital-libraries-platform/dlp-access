@@ -1,7 +1,3 @@
-.feedback-page-wrapper {
-  padding-top: 20px;
-}
-
 .feedback-page-wrapper a,
 .feedback-page-wrapper a:visited {
   color: var(--hokieOrange);
@@ -13,14 +9,10 @@
   color: var(--hokieOrangeHover);
 }
 
-.feedback-heading {
-  margin-bottom: 20px;
-  width: 100%;
-}
-
-.feedback-heading h1 {
+.feedback-page-wrapper h1 {
   font-family: "gineso-condensed", sans-serif;
   font-size: 2.625rem;
+  margin-bottom: 20px;
 }
 
 .feedback-content {
@@ -38,10 +30,6 @@
   border-left: 4px solid var(--hokieOrange);
 }
 
-.feedback-form {
-  max-width: 600px;
-}
-
 .feedback-type-fieldset {
   border: 1px solid #ccc;
   padding: 20px;
@@ -55,6 +43,14 @@
   font-weight: 600;
   padding: 0 10px;
   margin-bottom: 15px;
+}
+
+.feedback-type-hint {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: #b00;
+  margin-top: 2px;
 }
 
 .radio-group {
