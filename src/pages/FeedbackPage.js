@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { API } from "aws-amplify";
 import { SiteTitle } from "../components/SiteTitle";
-import ContactSection from "../components/ContactSection";
 
 import "../css/FeedbackPage.scss";
 
@@ -9,7 +8,7 @@ class FeedbackPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      feedbackType: "Accessibility Barrier",
+      feedbackType: "",
       feedbackMessage: "",
       submittedBy: "",
       isSubmitting: false,
@@ -47,6 +46,25 @@ class FeedbackPage extends Component {
       console.log("Error parsing siteOptions, using default feedback email");
     }
 
+    // Validate feedback type selected
+    if (!feedbackType) {
+      this.setState({
+        submitError: "Please select a feedback type."
+      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    // Validate email required for Accessibility Barrier
+    if (feedbackType === "Accessibility Barrier" && !submittedBy.trim()) {
+      this.setState({
+        submitError:
+          "Email is required when reporting an accessibility barrier."
+      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
     // Show loading state
     this.setState({
       isSubmitting: true,
@@ -71,7 +89,7 @@ class FeedbackPage extends Component {
         this.setState({
           isSubmitting: false,
           submitSuccess: true,
-          feedbackType: "Accessibility Barrier",
+          feedbackType: "",
           feedbackMessage: "",
           submittedBy: ""
         });
@@ -121,137 +139,137 @@ class FeedbackPage extends Component {
           site={this.props.site}
           template="{{title}}"
         />
-        <div className="container">
-          <div className="row feedback-page-wrapper">
-            <div className="col-12 feedback-heading">
-              <h1 id="feedback-heading">Feedback Form</h1>
-            </div>
-            <div
-              className="col-md-8"
-              role="region"
-              aria-labelledby="feedback-heading"
-            >
-              <div className="feedback-content">
-                {this.state.submitSuccess && (
-                  <div className="alert alert-success" role="alert">
-                    <strong>Success!</strong> Your feedback has been submitted.
-                    We'll review it shortly.
-                  </div>
-                )}
+        <div className="container feedback-page-wrapper">
+          <h1 id="feedback-heading">Feedback Form</h1>
+          <div role="region" aria-labelledby="feedback-heading">
+            <div className="feedback-content">
+              {this.state.submitSuccess && (
+                <div className="alert alert-success" role="alert">
+                  <strong>Success!</strong> Your feedback has been submitted.
+                  We'll review it shortly.
+                </div>
+              )}
 
-                {this.state.submitError && (
-                  <div className="alert alert-danger" role="alert">
-                    <strong>Error:</strong> {this.state.submitError}
-                  </div>
-                )}
+              {this.state.submitError && (
+                <div className="alert alert-danger" role="alert">
+                  <strong>Error:</strong> {this.state.submitError}
+                </div>
+              )}
 
-                <p className="feedback-instructions">
-                  Use this form to report accessibility barriers, issues, or
-                  provide general feedback about {siteName}. Your submission
-                  will be logged and emailed to our team at{" "}
-                  <a href={`mailto:${feedbackEmail}`}>{feedbackEmail}</a>.
-                </p>
+              <p className="feedback-instructions">
+                Use this form to report accessibility barriers, issues, or
+                provide general feedback about {siteName}. Your submission will
+                be logged and emailed to our team at{" "}
+                <a href={`mailto:${feedbackEmail}`}>{feedbackEmail}</a>.
+              </p>
 
-                <form onSubmit={this.handleSubmit} className="feedback-form">
-                  <fieldset className="feedback-type-fieldset">
-                    <legend>Feedback Type</legend>
-                    <div className="radio-group">
-                      <div className="radio-option">
-                        <input
-                          type="radio"
-                          id="accessibility-barrier"
-                          name="feedbackType"
-                          value="Accessibility Barrier"
-                          checked={
-                            this.state.feedbackType === "Accessibility Barrier"
-                          }
-                          onChange={this.handleFeedbackTypeChange}
-                        />
-                        <label htmlFor="accessibility-barrier">
-                          Accessibility Barrier
-                        </label>
-                      </div>
-                      <div className="radio-option">
-                        <input
-                          type="radio"
-                          id="issue"
-                          name="feedbackType"
-                          value="Issue"
-                          checked={this.state.feedbackType === "Issue"}
-                          onChange={this.handleFeedbackTypeChange}
-                        />
-                        <label htmlFor="issue">Issue</label>
-                      </div>
-                      <div className="radio-option">
-                        <input
-                          type="radio"
-                          id="general-feedback"
-                          name="feedbackType"
-                          value="General Feedback"
-                          checked={
-                            this.state.feedbackType === "General Feedback"
-                          }
-                          onChange={this.handleFeedbackTypeChange}
-                        />
-                        <label htmlFor="general-feedback">
-                          General Feedback
-                        </label>
-                      </div>
+              <form onSubmit={this.handleSubmit} className="feedback-form">
+                <fieldset className="feedback-type-fieldset">
+                  <legend>
+                    Feedback Type
+                    <span className="feedback-type-hint">
+                      Please select a feedback type
+                    </span>
+                  </legend>
+                  <div className="radio-group">
+                    <div className="radio-option">
+                      <input
+                        type="radio"
+                        id="accessibility-barrier"
+                        name="feedbackType"
+                        value="Accessibility Barrier"
+                        checked={
+                          this.state.feedbackType === "Accessibility Barrier"
+                        }
+                        onChange={this.handleFeedbackTypeChange}
+                      />
+                      <label htmlFor="accessibility-barrier">
+                        Accessibility Barrier
+                      </label>
                     </div>
-                  </fieldset>
-
-                  <div className="form-control">
-                    <label htmlFor="feedback-message">
-                      Your Message (Required)
-                    </label>
-                    <textarea
-                      id="feedback-message"
-                      name="feedbackMessage"
-                      value={this.state.feedbackMessage}
-                      onChange={this.handleMessageChange}
-                      required
-                      rows="8"
-                      placeholder="Please describe your feedback in detail..."
-                      aria-describedby="message-help"
-                      disabled={this.state.isSubmitting}
-                    />
-                    <small id="message-help" className="form-text">
-                      Please provide as much detail as possible to help us
-                      address your feedback.
-                    </small>
+                    <div className="radio-option">
+                      <input
+                        type="radio"
+                        id="issue"
+                        name="feedbackType"
+                        value="Issue"
+                        checked={this.state.feedbackType === "Issue"}
+                        onChange={this.handleFeedbackTypeChange}
+                      />
+                      <label htmlFor="issue">Issue</label>
+                    </div>
+                    <div className="radio-option">
+                      <input
+                        type="radio"
+                        id="general-feedback"
+                        name="feedbackType"
+                        value="General Feedback"
+                        checked={this.state.feedbackType === "General Feedback"}
+                        onChange={this.handleFeedbackTypeChange}
+                      />
+                      <label htmlFor="general-feedback">General Feedback</label>
+                    </div>
                   </div>
+                </fieldset>
 
-                  <div className="form-control">
-                    <label htmlFor="submitted-by">Your Email (Optional)</label>
-                    <input
-                      type="email"
-                      id="submitted-by"
-                      name="submittedBy"
-                      value={this.state.submittedBy}
-                      onChange={this.handleSubmittedByChange}
-                      placeholder="your.email@example.com"
-                      aria-describedby="email-help"
-                      disabled={this.state.isSubmitting}
-                    />
-                    <small id="email-help" className="form-text">
-                      Provide your email if you'd like us to follow up with you.
-                    </small>
-                  </div>
-
-                  <button
-                    type="submit"
-                    className="submit-button"
+                <div className="form-control">
+                  <label htmlFor="feedback-message">
+                    Your Message (Required)
+                  </label>
+                  <textarea
+                    id="feedback-message"
+                    name="feedbackMessage"
+                    value={this.state.feedbackMessage}
+                    onChange={this.handleMessageChange}
+                    required
+                    rows="8"
+                    placeholder="Please describe your feedback in detail..."
+                    aria-describedby="message-help"
                     disabled={this.state.isSubmitting}
-                  >
-                    {this.state.isSubmitting
-                      ? "Submitting..."
-                      : "Submit Feedback"}
-                  </button>
-                </form>
-              </div>
-            </div>
-            <div className="col-md-4 contact-section-wrapper">
-              <ContactSection site={this.props.site} />
+                  />
+                  <small id="message-help" className="form-text">
+                    Please provide as much detail as possible to help us address
+                    your feedback.
+                  </small>
+                </div>
+
+                <div className="form-control">
+                  <label htmlFor="submitted-by">
+                    Your Email
+                    {this.state.feedbackType === "Accessibility Barrier"
+                      ? " (Required)"
+                      : " (Optional)"}
+                  </label>
+                  <input
+                    type="email"
+                    id="submitted-by"
+                    name="submittedBy"
+                    value={this.state.submittedBy}
+                    onChange={this.handleSubmittedByChange}
+                    placeholder="your.email@example.com"
+                    aria-describedby="email-help"
+                    disabled={this.state.isSubmitting}
+                    required={
+                      this.state.feedbackType === "Accessibility Barrier"
+                    }
+                  />
+                  <small id="email-help" className="form-text">
+                    {this.state.feedbackType === "Accessibility Barrier"
+                      ? "Email is required for accessibility barriers so we can follow up with you."
+                      : "Provide your email if you'd like us to follow up with you."}
+                  </small>
+                </div>
+
+                <button
+                  type="submit"
+                  className="submit-button"
+                  disabled={this.state.isSubmitting}
+                >
+                  {this.state.isSubmitting
+                    ? "Submitting..."
+                    : "Submit Feedback"}
+                </button>
+              </form>
             </div>
           </div>
         </div>
