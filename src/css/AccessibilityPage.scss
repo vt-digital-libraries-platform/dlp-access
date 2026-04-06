@@ -1,0 +1,33 @@
+.accessibility-page-wrapper a,
+.accessibility-page-wrapper a:visited {
+  color: var(--hokieOrange);
+}
+
+.accessibility-page-wrapper a:hover,
+.accessibility-page-wrapper a:focus,
+.accessibility-page-wrapper a:active {
+  color: var(--hokieOrangeHover);
+}
+
+.accessibility-page-wrapper h1 {
+  font-family: "gineso-condensed", sans-serif;
+  font-size: 2.625rem;
+  margin-bottom: 20px;
+}
+
+.accessibility-content {
+  padding-bottom: 30px;
+}
+
+.accessibility-content p {
+  font-family: "Acherus", sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.accessibility-content h2 {
+  font-family: "gineso-condensed", sans-serif;
+  font-size: 1.75rem;
+  margin: 30px 0 15px 0;
+}

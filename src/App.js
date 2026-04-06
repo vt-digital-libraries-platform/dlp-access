@@ -16,6 +16,7 @@ import LoadingScreen from "./components/LoadingScreen";
 import { buildRoutes } from "./lib/CustomPageRoutes";
 import HomePage from "./pages/HomePage";
 import MetadataPage from "./pages/MetadataPage";
+import AccessibilityPage from "./pages/AccessibilityPage";
 import SiteAdmin from "./pages/admin/SiteAdmin";
 import PodcastDeposit from "./pages/admin/PodcastDeposit";
 
@@ -180,6 +181,11 @@ class App extends Component {
                         customKey={this.getCustomKeyFromURL()}
                       />
                     }
+                  />
+                  <Route
+                    path="/accessibility"
+                    exact
+                    element={<AccessibilityPage site={this.state.site} />}
                   />
                   <Route
                     path="/metadata"
