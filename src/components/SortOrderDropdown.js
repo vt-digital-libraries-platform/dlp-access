@@ -5,8 +5,8 @@ class SortOrderDropdown extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sortField: "title",
-      sortDirection: "asc"
+      sortField: props.sortOpt?.field || "title",
+      sortDirection: props.sortOpt?.direction || "asc"
     };
     this.sortFieldOptions = [
       {
