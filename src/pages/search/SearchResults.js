@@ -14,6 +14,7 @@ import { faFilter } from "@fortawesome/free-solid-svg-icons";
 import { labelAttr } from "../../lib/MetadataRenderer";
 import "../../css/ListPages.scss";
 import "../../css/SearchResult.scss";
+import "../../css/Select.scss";
 
 class SearchResults extends Component {
   constructor(props) {
@@ -219,7 +220,10 @@ class SearchResults extends Component {
                     />
                   </div>
                   <div className="view-options">
-                    <ResultsNumberDropdown setLimit={this.props.setLimit} />
+                    <ResultsNumberDropdown
+                      setLimit={this.props.setLimit}
+                      className="select-dropdown"
+                    />
                     <ViewBar
                       view={this.props.view}
                       updateFormState={this.props.updateFormState}
