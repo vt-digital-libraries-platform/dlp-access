@@ -34,16 +34,26 @@ export const BrowseCollections: FC<Props> = ({ scrollUp, site }) => {
     field: "title",
     direction: "asc"
   });
+  const [loadError, setLoadError] = useState<string | null>(null);
 
   const setCollectionDetails = async () => {
-    const { collections, total, totalPages, page, limit, nextTokens } =
-      await loadCollections({ pg, filtr, sort, limt, tokns, scrollUp });
-    setCollections(collections);
-    setTotal(total);
-    setTotalPages(totalPages);
-    setPg(page);
-    setLimit(limit);
-    setTokns(nextTokens);
+    try {
+      const { collections, total, totalPages, page, limit, nextTokens } =
+        await loadCollections({ pg, filtr, sort, limt, tokns, scrollUp });
+      setCollections(collections);
+      setTotal(total);
+      setTotalPages(totalPages);
+      setPg(page);
+      setLimit(limit);
+      setTokns(nextTokens);
+      setLoadError(null);
+    } catch (err: any) {
+      const message =
+        err?.errors?.[0]?.message ||
+        err?.message ||
+        "Failed to load collections. Please try again.";
+      setLoadError(message);
+    }
   };
 
   useEffect(() => {
@@ -84,6 +94,11 @@ export const BrowseCollections: FC<Props> = ({ scrollUp, site }) => {
       />
       <div className="collection-browse-wrapper">
         <div className="container">
+          {loadError && (
+            <div className="alert alert-warning" role="alert">
+              {loadError}
+            </div>
+          )}
           <div className="row justify-content-center">
             <div
               className="navbar navbar-light justify-content-between"
