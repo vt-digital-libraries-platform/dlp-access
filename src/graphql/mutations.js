@@ -868,6 +868,120 @@ export const deleteCollectionmap = /* GraphQL */ `
     }
   }
 `;
+export const createHistory = /* GraphQL */ `
+  mutation CreateHistory(
+    $input: CreateHistoryInput!
+    $condition: ModelHistoryConditionInput
+  ) {
+    createHistory(input: $input, condition: $condition) {
+      event
+      groups
+      id
+      siteID
+      userEmail
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateHistory = /* GraphQL */ `
+  mutation UpdateHistory(
+    $input: UpdateHistoryInput!
+    $condition: ModelHistoryConditionInput
+  ) {
+    updateHistory(input: $input, condition: $condition) {
+      event
+      groups
+      id
+      siteID
+      userEmail
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteHistory = /* GraphQL */ `
+  mutation DeleteHistory(
+    $input: DeleteHistoryInput!
+    $condition: ModelHistoryConditionInput
+  ) {
+    deleteHistory(input: $input, condition: $condition) {
+      event
+      groups
+      id
+      siteID
+      userEmail
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const createMetadataField = /* GraphQL */ `
+  mutation CreateMetadataField(
+    $input: CreateMetadataFieldInput!
+    $condition: ModelMetadataFieldConditionInput
+  ) {
+    createMetadataField(input: $input, condition: $condition) {
+      id
+      columnName
+      labelName
+      type
+      required
+      description
+      example
+      category
+      sortOrder
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const updateMetadataField = /* GraphQL */ `
+  mutation UpdateMetadataField(
+    $input: UpdateMetadataFieldInput!
+    $condition: ModelMetadataFieldConditionInput
+  ) {
+    updateMetadataField(input: $input, condition: $condition) {
+      id
+      columnName
+      labelName
+      type
+      required
+      description
+      example
+      category
+      sortOrder
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const deleteMetadataField = /* GraphQL */ `
+  mutation DeleteMetadataField(
+    $input: DeleteMetadataFieldInput!
+    $condition: ModelMetadataFieldConditionInput
+  ) {
+    deleteMetadataField(input: $input, condition: $condition) {
+      id
+      columnName
+      labelName
+      type
+      required
+      description
+      example
+      category
+      sortOrder
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
 export const createPageContent = /* GraphQL */ `
   mutation CreatePageContent(
     $input: CreatePageContentInput!
@@ -1123,120 +1237,6 @@ export const deleteSite = /* GraphQL */ `
       siteOptions
       sitePages
       siteTitle
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const createHistory = /* GraphQL */ `
-  mutation CreateHistory(
-    $input: CreateHistoryInput!
-    $condition: ModelHistoryConditionInput
-  ) {
-    createHistory(input: $input, condition: $condition) {
-      event
-      groups
-      id
-      siteID
-      userEmail
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const updateHistory = /* GraphQL */ `
-  mutation UpdateHistory(
-    $input: UpdateHistoryInput!
-    $condition: ModelHistoryConditionInput
-  ) {
-    updateHistory(input: $input, condition: $condition) {
-      event
-      groups
-      id
-      siteID
-      userEmail
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const deleteHistory = /* GraphQL */ `
-  mutation DeleteHistory(
-    $input: DeleteHistoryInput!
-    $condition: ModelHistoryConditionInput
-  ) {
-    deleteHistory(input: $input, condition: $condition) {
-      event
-      groups
-      id
-      siteID
-      userEmail
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const createMetadataField = /* GraphQL */ `
-  mutation CreateMetadataField(
-    $input: CreateMetadataFieldInput!
-    $condition: ModelMetadataFieldConditionInput
-  ) {
-    createMetadataField(input: $input, condition: $condition) {
-      id
-      columnName
-      labelName
-      type
-      required
-      description
-      example
-      category
-      sortOrder
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const updateMetadataField = /* GraphQL */ `
-  mutation UpdateMetadataField(
-    $input: UpdateMetadataFieldInput!
-    $condition: ModelMetadataFieldConditionInput
-  ) {
-    updateMetadataField(input: $input, condition: $condition) {
-      id
-      columnName
-      labelName
-      type
-      required
-      description
-      example
-      category
-      sortOrder
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const deleteMetadataField = /* GraphQL */ `
-  mutation DeleteMetadataField(
-    $input: DeleteMetadataFieldInput!
-    $condition: ModelMetadataFieldConditionInput
-  ) {
-    deleteMetadataField(input: $input, condition: $condition) {
-      id
-      columnName
-      labelName
-      type
-      required
-      description
-      example
-      category
-      sortOrder
       createdAt
       updatedAt
       __typename

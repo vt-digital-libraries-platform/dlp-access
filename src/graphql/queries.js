@@ -1055,6 +1055,86 @@ export const listCollectionmaps = /* GraphQL */ `
     }
   }
 `;
+export const getHistory = /* GraphQL */ `
+  query GetHistory($id: ID!) {
+    getHistory(id: $id) {
+      event
+      groups
+      id
+      siteID
+      userEmail
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listHistories = /* GraphQL */ `
+  query ListHistories(
+    $filter: ModelHistoryFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listHistories(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        event
+        groups
+        id
+        siteID
+        userEmail
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
+export const getMetadataField = /* GraphQL */ `
+  query GetMetadataField($id: ID!) {
+    getMetadataField(id: $id) {
+      id
+      columnName
+      labelName
+      type
+      required
+      description
+      example
+      category
+      sortOrder
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listMetadataFields = /* GraphQL */ `
+  query ListMetadataFields(
+    $filter: ModelMetadataFieldFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listMetadataFields(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        columnName
+        labelName
+        type
+        required
+        description
+        example
+        category
+        sortOrder
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
 export const getPageContent = /* GraphQL */ `
   query GetPageContent($id: ID!) {
     getPageContent(id: $id) {
@@ -1331,86 +1411,6 @@ export const siteBySiteId = /* GraphQL */ `
         siteOptions
         sitePages
         siteTitle
-        createdAt
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
-  }
-`;
-export const getHistory = /* GraphQL */ `
-  query GetHistory($id: ID!) {
-    getHistory(id: $id) {
-      event
-      groups
-      id
-      siteID
-      userEmail
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const listHistories = /* GraphQL */ `
-  query ListHistories(
-    $filter: ModelHistoryFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listHistories(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        event
-        groups
-        id
-        siteID
-        userEmail
-        createdAt
-        updatedAt
-        __typename
-      }
-      nextToken
-      __typename
-    }
-  }
-`;
-export const getMetadataField = /* GraphQL */ `
-  query GetMetadataField($id: ID!) {
-    getMetadataField(id: $id) {
-      id
-      columnName
-      labelName
-      type
-      required
-      description
-      example
-      category
-      sortOrder
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const listMetadataFields = /* GraphQL */ `
-  query ListMetadataFields(
-    $filter: ModelMetadataFieldFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listMetadataFields(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        columnName
-        labelName
-        type
-        required
-        description
-        example
-        category
-        sortOrder
         createdAt
         updatedAt
         __typename
