@@ -434,10 +434,21 @@ div.collection-item .item-image img {
 }
 
 .collection-items-list-wrapper .sort-btn {
-  padding: 11px !important;
-  margin: 0 !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  width: 2.5rem;
+  aspect-ratio: 1 / 1;
+  margin: 0;
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 0.9rem;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 0.24rem;
+  background-color: transparent;
 }
 
-.collection-items-list-wrapper .sort-btn .sort-btn-icon {
-  font-size: 0.98rem;
+.collection-items-list-wrapper .sort-btn:focus-visible {
+  outline: var(--focus_outline);
+  outline-offset: var(--focus-outline__offset);
 }
