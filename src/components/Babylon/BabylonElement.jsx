@@ -24,7 +24,7 @@ const BabylonElement = (props) => {
   }, [props]);
 
   return (
-    <section>
+    <section className="babylon-viewer-section">
       <div>
         <div id="canvas-wrapper"></div>
       </div>

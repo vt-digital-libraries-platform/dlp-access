@@ -1,54 +1,18 @@
-.about-page-wrapper a,
-.about-page-wrapper a:visited {
-  color: var(--hokieOrange);
-}
-.about-page-wrapper a:hover,
-.about-page-wrapper a:focus,
-.about-page-wrapper a:active {
-  color: var(---hokieOrangeHover);
-}
-
-.about-heading {
-  margin-bottom: 20px;
-  widows: 100%;
-}
-
-.about-heading h1 {
-  font-family: "gineso-condensed", sans-serif;
-  font-size: 2.625rem;
-}
-
-.about-details {
-  padding-right: 0px;
-  padding-bottom: 30px;
-}
-.about-details h2 {
-  font-family: "gineso-condensed", sans-serif;
-  margin: 20px 0 0 0;
-}
-
-.about-details p {
-  font-family: "Acherus", sans-serif;
-}
-
-.contact-section-wrapper {
-  border-top: 1px solid grey;
-  padding-top: 25px;
-  padding-bottom: 25px;
-}
-
-.contact-section-wrapper .about-terms-link {
-  font-family: "gineso-condensed", sans-serif;
-  font-size: 2rem;
-}
-
-@media (min-width: 768px) {
-  .about-details {
-    padding-right: 30px;
+.about-contact-section-wrapper {
+  & .vertical-flex {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
   }
-  .contact-section-wrapper {
-    border-left: 1px solid grey;
-    padding-left: 15px;
-    border-top: none;
+
+  & .surface-round-gray {
+    margin: 0 1rem;
+    padding: 20px 20px 40px 20px;
+    border-radius: 5px;
+    background-color: var(--vt-smoke-7t);
+
+    & a {
+      color: var(--vt-impactOrange-1s) !important;
+    }
   }
 }

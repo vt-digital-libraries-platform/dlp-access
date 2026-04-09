@@ -1,21 +1,6 @@
 .metadata-page-wrapper {
   padding: 2rem 0;
 
-  .focusable {
-    &:focus,
-    &:focus-visible {
-      outline-color: var(--hokieMaroon);
-      outline-offset: 3px;
-      outline-style: dashed;
-      outline-width: 2px;
-    }
-  }
-
-  .metadata-heading {
-    text-align: left;
-    margin-bottom: 2rem;
-  }
-
   .metadata-intro {
     display: flex;
     flex-direction: column;
@@ -24,30 +9,8 @@
     margin-bottom: 2.5rem;
   }
 
-  .download-csv-btn {
-    background-color: var(--hokieOrange);
-    color: white;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-    white-space: nowrap;
-    height: fit-content;
-    width: fit-content;
-    align-self: center;
-
-    &:hover,
-    &:focus,
-    &:focus-within,
-    &:focus-visible {
-      background-color: var(--hokieOrangeHover);
-    }
-
-    span {
-      margin-right: 0.5rem;
-    }
+  .download-csv-btn span {
+    margin-right: 0.5rem;
   }
 
   .metadata-content {
@@ -55,86 +18,19 @@
     margin: 0 auto;
   }
 
-  .metadata-table-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
+  .metadata-table-heading {
     margin-bottom: 2rem;
-    flex-wrap: wrap;
-    gap: 1rem;
   }
 
-  .button-group {
-    display: flex;
-    gap: 0.75rem;
-    flex-wrap: wrap;
-    align-items: center;
+  .field-search-input {
     width: 100%;
-  }
-
-  .search-box-wrapper {
-    flex: 1;
-    min-width: min(95vw, 250px);
-
-    .field-search-input {
-      width: 100%;
-      padding: 0.75rem 1rem;
-      font-size: 1rem;
-      border: 2px solid #ddd;
-      border-radius: 4px;
-      transition: border-color 0.3s;
-
-      &:focus {
-        outline: none;
-        border-color: var(--hokieOrange);
-        box-shadow: 0 0 0 3px rgba(198, 70, 0, 0.1);
-      }
-
-      &::placeholder {
-        color: #999;
-      }
-    }
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
   }
 
   h2 {
     border-bottom: 3px solid var(--hokieOrange);
-    padding-bottom: 0.5rem;
     width: 100%;
-  }
-
-  // Legend
-  .legend {
-    display: flex;
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-    padding: 1rem;
-    background: #f8f9fa;
-    border-radius: 8px;
-
-    .legend-item {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .badge-legend {
-      padding: 0.25rem 0.75rem;
-      border-radius: 4px;
-      font-size: 0.85rem;
-      font-weight: 600;
-
-      &.required {
-        background: #850f21;
-        color: white;
-      }
-
-      &.optional {
-        background: #6c757d;
-        color: white;
-      }
-    }
   }
 
   // Table styles
@@ -151,16 +47,8 @@
     background: white;
     font-size: 0.95rem;
 
-    caption {
-      position: absolute;
-      left: -10000px;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-    }
-
     thead {
-      background: #752900;
+      background: var(--vt-impactOrange-4s);
       color: white;
 
       th {
@@ -183,25 +71,12 @@
     tbody {
       tr {
         border-bottom: 1px solid #e0e0e0;
-        transition: background-color 0.2s;
+        outline-offset: -2px;
+        transition: background-color 0.2s ease;
 
         &:hover {
           background-color: #f5f7fa;
-        }
-
-        &.required-row {
-          background-color: #fff5f5;
-          border-left: 4px solid #850f21;
-
-          &:hover {
-            background-color: #ffe5e5;
-          }
-        }
-
-        &.highlight-row {
-          background-color: #fff8e1;
-          border-left: 4px solid var(--hokieOrange);
-          animation: highlightFade 2s ease-in-out;
+          outline: var(--hokieMaroon) dashed 2px;
         }
 
         &:last-child {
@@ -221,16 +96,6 @@
           background-color: #f8f9fa;
           min-width: 180px;
           text-align: left;
-
-          .field-note {
-            font-size: 0.75rem;
-            color: #666;
-            font-style: italic;
-            margin-top: 0.25rem;
-            font-weight: normal;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI",
-              sans-serif;
-          }
         }
 
         &.label-name {
@@ -245,25 +110,6 @@
             font-style: italic;
             color: #850f21;
             margin-top: 0.25rem;
-          }
-
-          .badge {
-            display: inline-block;
-            padding: 0.25rem 0.5rem;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            margin-left: 0.5rem;
-            font-weight: 600;
-
-            &.required-badge {
-              background: #850f21;
-              color: white;
-            }
-
-            &.optional-badge {
-              background: #6c757d;
-              color: white;
-            }
           }
         }
 
@@ -299,67 +145,8 @@
     }
   }
 
-  // Best practices section
-  .metadata-best-practices {
-    ul {
-      list-style: none;
-      padding: 0;
-
-      li {
-        padding: 0.75rem 0;
-        padding-left: 2rem;
-        position: relative;
-        line-height: 1.6;
-
-        &::before {
-          content: "✓";
-          position: absolute;
-          left: 0;
-          color: #28a745;
-          font-weight: bold;
-          font-size: 1.2rem;
-        }
-
-        strong {
-          color: #2c3e50;
-        }
-      }
-    }
-  }
-
   // Responsive adjustments
   @media (max-width: 768px) {
-    .metadata-heading h1 {
-      font-size: 2rem;
-    }
-
-    .metadata-intro .lead {
-      font-size: 1.1rem;
-    }
-
-    .metadata-table-header {
-      flex-direction: column;
-      align-items: stretch;
-
-      h2 {
-        font-size: 1.5rem;
-      }
-
-      .button-group {
-        flex-direction: column;
-        width: 100%;
-      }
-
-      .search-box-wrapper {
-        min-width: 100%;
-      }
-
-      .download-csv-btn {
-        width: 100%;
-        text-align: center;
-      }
-    }
-
     .metadata-table {
       font-size: 0.85rem;
 
@@ -375,11 +162,6 @@
           min-width: auto;
         }
       }
-    }
-
-    .legend {
-      flex-direction: column;
-      gap: 0.75rem;
     }
   }
 }

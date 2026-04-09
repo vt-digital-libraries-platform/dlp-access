@@ -9,21 +9,15 @@ type Props = {
 };
 
 export const HomeStatement: FC<Props> = ({ homeStatement }) => {
-  if (homeStatement) {
-    return (
-      <div
-        className="home-statement-wrapper"
-        role="region"
-        aria-label="Introduction"
-      >
-        {homeStatement.statement && (
-          <div className="home-statement">
-            <p>{cleanHTML(homeStatement.statement, "html")}</p>
-          </div>
-        )}
-      </div>
-    );
-  } else {
-    return <></>;
-  }
+  return (
+    <>
+      {homeStatement && homeStatement.statement && (
+        <div className="home-statement">
+          <p className="statement">
+            {cleanHTML(homeStatement.statement, "html")}
+          </p>
+        </div>
+      )}
+    </>
+  );
 };

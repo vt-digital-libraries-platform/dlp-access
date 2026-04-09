@@ -8,7 +8,7 @@ import { cleanHTML } from "../lib/MetadataRenderer";
 import { SiteTitle } from "../components/SiteTitle";
 
 import "../css/Editor.scss";
-import "../css/AdditionalPages.scss";
+import "../css/Typography.scss";
 
 class AdditionalPages extends Component {
   constructor(props) {
@@ -110,7 +110,7 @@ class AdditionalPages extends Component {
           site={this.props.site}
           template="{{title}}"
         />
-        <div className="container additional-pages-wrapper quill-styles">
+        <div className="container quill-styles typography-wrapper">
           {this.getPageCopy()}
         </div>
       </>
