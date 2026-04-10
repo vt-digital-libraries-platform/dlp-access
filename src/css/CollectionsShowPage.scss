@@ -446,9 +446,10 @@ div.collection-item .item-image img {
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 0.24rem;
   background-color: transparent;
-}
 
-.collection-items-list-wrapper .sort-btn:focus-visible {
-  outline: var(--focus_outline);
-  outline-offset: var(--focus-outline__offset);
+  &:focus-visible,
+  &:focus {
+    outline: var(--focus_outline);
+    outline-offset: var(--focus-outline__offset);
+  }
 }
