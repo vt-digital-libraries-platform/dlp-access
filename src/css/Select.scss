@@ -11,6 +11,9 @@
     padding: 0.45rem 0.65rem;
     font-family: "gineso-condensed", sans-serif;
     border-radius: 0.28rem;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 0.24rem;
+    background-color: transparent;
   }
   select:focus-visible {
     outline: var(--focus_outline);
