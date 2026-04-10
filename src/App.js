@@ -185,7 +185,12 @@ class App extends Component {
                   <Route
                     path="/accessibility"
                     exact
-                    element={<AccessibilityPage site={this.state.site} />}
+                    element={
+                      <AccessibilityPage
+                        site={this.state.site}
+                        parentKey="accessibility"
+                      />
+                    }
                   />
                   <Route
                     path="/metadata"
