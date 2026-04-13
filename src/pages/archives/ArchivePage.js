@@ -417,7 +417,7 @@ class ArchivePage extends Component {
                       )}
                     </div>
                   </div>
-                  <div>
+                  <div className="collapsible-cards-container">
                     <CollapsibleCard
                       title="About"
                       marker="about"

@@ -24,6 +24,12 @@ div.item-image-section img.item-img {
   width: 100%;
 }
 
+.item-details-section .collapsible-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .dataContainer {
   display: flex;
   width: 100%;
