@@ -1,32 +1,17 @@
-import * as React from "react";
-import { styled } from "@mui/material/styles";
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import Collapse from "@mui/material/Collapse";
-import IconButton from "@mui/material/IconButton";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import InfoIcon from "@mui/icons-material/Info";
-import CopyrightIcon from "@mui/icons-material/Copyright";
-import LocalLibraryIcon from "@mui/icons-material/LocalLibrary";
-import { LeafletThumb } from "./LeafletThumb";
-import Citation from "../components/Citation";
-
-import "../css/CollapsibleCards.scss";
+import { faCopyright } from "@fortawesome/free-regular-svg-icons";
+import {
+  faAngleDown,
+  faAngleRight,
+  faBookOpen,
+  faCircleInfo,
+  faLocationDot
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useState } from "react";
 import { htmlParsedValue } from "src/lib/MetadataRenderer";
-
-const ExpandMore = styled((props) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest
-  })
-}));
+import Citation from "../components/Citation";
+import "../css/CollapsibleCards.scss";
+import { LeafletThumb } from "./LeafletThumb";
 
 const single_value_headers = [
   "bibliographic_citation",
@@ -84,17 +69,39 @@ const multi_value_headers = [
 const getMarker = (marker) => {
   switch (marker) {
     case "location":
-      return <LocationOnIcon style={{ color: "#ffffff", fontSize: "0.8em" }} />;
+      return (
+        <FontAwesomeIcon
+          icon={faLocationDot}
+          aria-hidden="true"
+          className="card-summary-icon"
+        />
+      );
 
     case "about":
-      return <InfoIcon style={{ color: "#ffffff", fontSize: "0.8em" }} />;
+      return (
+        <FontAwesomeIcon
+          icon={faCircleInfo}
+          aria-hidden="true"
+          className="card-summary-icon"
+        />
+      );
 
     case "copyright":
-      return <CopyrightIcon style={{ color: "#ffffff", fontSize: "0.8em" }} />;
+      return (
+        <FontAwesomeIcon
+          icon={faCopyright}
+          aria-hidden="true"
+          className="card-summary-icon"
+        />
+      );
 
     case "citation":
       return (
-        <LocalLibraryIcon style={{ color: "#ffffff", fontSize: "0.8em" }} />
+        <FontAwesomeIcon
+          icon={faBookOpen}
+          aria-hidden="true"
+          className="card-summary-icon"
+        />
       );
 
     default:
@@ -137,34 +144,28 @@ const getCopyrightData = (data) => {
   let key1 = "rights_holder";
   let key2 = "rights";
   return (
-    <table style={{ width: "100%", borderCollapse: "collapse" }}>
-      <tbody>
-        {data[key1] && (
-          <tr>
-            <td
-              style={{ padding: "4px 2px", verticalAlign: "top", width: "30%" }}
-            >
-              <h6 key={key1}>{`${modifyKey(key1)}`}</h6>
-            </td>
-            <td style={{ padding: "2px", verticalAlign: "top" }}>
-              <div dangerouslySetInnerHTML={{ __html: data[key1] }} />
-            </td>
-          </tr>
-        )}
-        {data[key2] && (
-          <tr>
-            <td
-              style={{ padding: "4px 2px", verticalAlign: "top", width: "30%" }}
-            >
-              <h6 key={key2}>{`${modifyKey(key2)}`}</h6>
-            </td>
-            <td style={{ padding: "2px", verticalAlign: "top" }}>
-              <div dangerouslySetInnerHTML={{ __html: data[key2] }} />
-            </td>
-          </tr>
-        )}
-      </tbody>
-    </table>
+    <ul className="data-list">
+      {data[key1] && (
+        <li className="data-list-item">
+          <h3 className="data-list-label">{modifyKey(key1)}</h3>
+          <div className="data-list-value">
+            <p className="data-list-value-text">
+              {htmlParsedValue(data[key1])}
+            </p>
+          </div>
+        </li>
+      )}
+      {data[key2] && (
+        <li className="data-list-item">
+          <h3 className="data-list-label">{modifyKey(key2)}</h3>
+          <div className="data-list-value">
+            <p className="data-list-value-text">
+              {htmlParsedValue(data[key2])}
+            </p>
+          </div>
+        </li>
+      )}
+    </ul>
   );
 };
 
@@ -176,10 +177,11 @@ export default function CollapsibleCard({
   defaultExpand,
   parentCollection
 }) {
-  const [expanded, setExpanded] = React.useState(defaultExpand);
+  const [expanded, setExpanded] = useState(true);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
+  const handleExpandClick = (e) => {
+    e.preventDefault();
+    setExpanded((prev) => !prev);
   };
 
   let facetSearchItems = [
@@ -190,47 +192,41 @@ export default function CollapsibleCard({
     "tags"
   ];
 
-  const renderContent = (key, value, index) => {
+  const renderContent = (key, value) => {
     if (typeof value === "string" && value.includes("<a href=")) {
-      return <div key={index}>{htmlParsedValue(value)}</div>;
+      return htmlParsedValue(value);
     } else if (typeof value === "string" && value.startsWith("http")) {
       return (
-        <div key={index}>
-          <a href={value} target="_blank" rel="noopener noreferrer">
-            {value}
-          </a>
-        </div>
+        <a href={value} target="_blank" rel="noopener noreferrer">
+          {value}
+        </a>
       );
     } else if (facetSearchItems.includes(key)) {
       return (
-        <div key={index}>
-          <a
-            href={`/search?q=&field=all&view=Gallery&${key}=${value}`}
-            rel="noopener noreferrer"
-          >
-            {value}
-          </a>
-        </div>
+        <a
+          href={`/search?q=&field=all&view=Gallery&${key}=${value}`}
+          rel="noopener noreferrer"
+        >
+          {value}
+        </a>
       );
     } else if (key === "language") {
       return (
-        <div key={index}>
-          <a
-            href="https://en.wikipedia.org/wiki/English_language"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            en
-          </a>
-        </div>
+        <a
+          href="https://en.wikipedia.org/wiki/English_language"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          en
+        </a>
       );
     } else {
-      return <div key={index}>{value}</div>;
+      return value;
     }
   };
 
   const getAboutData = (data) => {
-    let items = [
+    const items = [
       "description",
       "date",
       "rights",
@@ -240,68 +236,48 @@ export default function CollapsibleCard({
       "location",
       "visibility"
     ];
+
     return (
-      <table style={{ width: "100%", borderCollapse: "collapse" }}>
-        <tbody>
-          {single_value_headers.map((key) =>
-            data[key] && !items.includes(key) ? (
-              <tr key={key} style={{ padding: "4px 2px" }}>
-                <td
-                  style={{ padding: "2px", verticalAlign: "top", width: "30%" }}
-                >
-                  <h6>{modifyKey(key)}</h6>
-                </td>
-                <td style={{ padding: "2px", verticalAlign: "top" }}>
-                  {data[key] === "string" && data[key].startsWith("http") ? (
-                    <a
-                      href={data[key]}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {data[key]}
-                    </a>
-                  ) : (
-                    data[key]
-                  )}
-                </td>
-              </tr>
-            ) : null
-          )}
-          {multi_value_headers.map((key) =>
-            data[key] && !items.includes(key) && data[key].length > 0 ? (
-              <tr key={key} style={{ padding: "4px 2px" }}>
-                <td
-                  style={{ padding: "2px", verticalAlign: "top", width: "30%" }}
-                >
-                  <h6>{modifyKey(key)}</h6>
-                </td>
-                <td style={{ padding: "2px", verticalAlign: "top" }}>
-                  {/* {Array.isArray(data[key]) ? (
-                    data[key].map((value, index) =>
-                      typeof value === "string" && value.startsWith("http") ? (
-                        <div key={index}>
-                          <a href={value} target="_blank" rel="noopener noreferrer">
-                            {value}
-                          </a>
-                        </div>
-                      ) : (
-                        <div key={index}>{value}</div>
-                      )
-                    )
-                  ) : (
-                    data[key]
-                  )} */}
-                  {Array.isArray(data[key])
-                    ? data[key].map((value, index) =>
-                        renderContent(key, value, index)
-                      )
-                    : renderContent(data[key], 0)}
-                </td>
-              </tr>
-            ) : null
-          )}
-        </tbody>
-      </table>
+      <ul className="data-list">
+        {single_value_headers.map((key) =>
+          data[key] && !items.includes(key) ? (
+            <li key={key} className="data-list-item">
+              <h3 className="data-list-label">{modifyKey(key)}</h3>
+              <p className="data-list-value">
+                {typeof data[key] === "string" &&
+                data[key].startsWith("http") ? (
+                  <a href={data[key]} target="_blank" rel="noopener noreferrer">
+                    {data[key]}
+                  </a>
+                ) : (
+                  data[key]
+                )}
+              </p>
+            </li>
+          ) : null
+        )}
+
+        {multi_value_headers.map((key) =>
+          data[key] && !items.includes(key) && data[key].length > 0 ? (
+            <li key={key} className="data-list-item">
+              <h3 className="data-list-label">{modifyKey(key)}</h3>
+              <div className="data-list-value">
+                {Array.isArray(data[key]) ? (
+                  data[key].map((value, index) => (
+                    <p key={index} className="data-list-value-text">
+                      {renderContent(key, value)}
+                    </p>
+                  ))
+                ) : (
+                  <p className="data-list-value-text">
+                    {renderContent(key, data[key])}
+                  </p>
+                )}
+              </div>
+            </li>
+          ) : null
+        )}
+      </ul>
     );
   };
 
@@ -324,43 +300,32 @@ export default function CollapsibleCard({
     }
   };
 
+  const getCollapsibleArrow = () => {
+    return expanded ? (
+      <FontAwesomeIcon
+        className="expand-icon"
+        icon={faAngleDown}
+        aria-hidden="true"
+      />
+    ) : (
+      <FontAwesomeIcon
+        className="expand-icon"
+        icon={faAngleRight}
+        aria-hidden="true"
+      />
+    );
+  };
+
   return (
-    <Card sx={{ width: "100%", marginBottom: "1vh" }}>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          backgroundColor: "#861f41",
-          color: "white",
-          fontSize: "2rem"
-        }}
-      >
-        <CardHeader
-          avatar={getMarker(marker)}
-          title={title}
-          titleTypographyProps={{ style: { fontSize: "0.55em" } }}
-          style={{ padding: "0.2em" }}
-        />
-        <CardActions disableSpacing>
-          <ExpandMore
-            expand={expanded}
-            onClick={handleExpandClick}
-            aria-expanded={expanded}
-            aria-label="show more"
-            style={{ padding: "2px" }}
-          >
-            <ExpandMoreIcon
-              style={{ padding: "2px", color: "white", fontSize: "2rem" }}
-            />
-          </ExpandMore>
-        </CardActions>
+    <details className="card-details" open={expanded}>
+      <summary className="card-summary" onClick={handleExpandClick}>
+        {getMarker(marker)}
+        {title}
+        {getCollapsibleArrow()}
+      </summary>
+      <div className="card-content">
+        {getContent(marker, data, site, parentCollection)}
       </div>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent className="card-content">
-          {getContent(marker, data, site, parentCollection)}
-        </CardContent>
-      </Collapse>
-    </Card>
+    </details>
   );
 }

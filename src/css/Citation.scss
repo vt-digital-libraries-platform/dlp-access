@@ -25,9 +25,10 @@
 }
 
 .citation .citation-tab-content .copy-button-container .heading {
+  font-size: 0.95rem;
   font-family: "Acherus", sans-serif !important;
   font-weight: 500;
-  margin: 0 !important;
+  margin: 0;
 }
 
 .citation .citation-tab-content .copy-button-container .citation-copy-button {
@@ -39,11 +40,15 @@
 .citation .citation-tab-content .citation-text {
   padding: 0.5rem;
   line-height: 1.35rem;
+  font-family: "Lato", sans-serif !important;
+  font-size: 0.88rem;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .citation .citation-tab-content .citation-text a {
-  font-family: "Acherus", sans-serif !important;
-  font-size: 14px !important;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .citation .citation-tab-content pre {
