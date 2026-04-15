@@ -177,7 +177,7 @@ export default function CollapsibleCard({
   defaultExpand,
   parentCollection
 }) {
-  const [expanded, setExpanded] = useState(true);
+  const [expanded, setExpanded] = useState(defaultExpand ?? true);
 
   const handleExpandClick = (e) => {
     e.preventDefault();
