@@ -40,14 +40,9 @@ export const CollectionItems: FC<Props> = ({
         className={`collection-items-list-wrapper ${
           viewOption === "list" ? "col-12 col-lg-8" : "no-size"
         }`}
-        role="region"
-        aria-labelledby="collection-items-section-header"
       >
         <div className="row justify-content-between mb-3">
-          <h2
-            className="collection-items-header col-auto"
-            id="collection-items-section-header"
-          >
+          <h2 className="collection-items-header col-auto">
             {`Items in Collection (${total})`}
           </h2>
           <div className="col-auto mr-1">

@@ -31,18 +31,12 @@ export const CollectionTopContent: FC<Props> = ({
   );
 
   return (
-    <div
-      className="top-content-row row"
-      role="region"
-      aria-labelledby="collection-page-title"
-    >
+    <div className="top-content-row row">
       <div className="collection-img-col col-12 col-lg-3">
         {collectionThumbnail && <img src={collectionThumbnail} alt="" />}
       </div>
       <div className="collection-details-col col-12 col-lg-9">
-        <h1 className="collection-title" id="collection-page-title">
-          {collectionTitle}
-        </h1>
+        <h1 className="collection-title">{collectionTitle}</h1>
         <div className="post-heading">
           {creator && (
             <span className="creator">Created by: {creator.join(", ")}</span>
