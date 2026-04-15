@@ -14,6 +14,15 @@
   font-size: 1.1rem;
   border-radius: 0.3rem;
   list-style: none;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: var(--focus_outline);
+    outline-offset: var(--focus-outline__offset);
+  }
 }
 
 .card-summary .card-summary-icon {
