@@ -120,6 +120,32 @@
     }
   }
 
+  /** Container Margin & Padding Overrides **/
+  .container,
+  &.container {
+    width: 95vw;
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+
+    @media (min-width: 576px) {
+      max-width: max(540px, 93vw);
+    }
+
+    @media (min-width: 768px) {
+      max-width: max(720px, 93vw);
+    }
+
+    @media (min-width: 992px) {
+      max-width: max(960px, 93vw);
+    }
+
+    @media (min-width: 1200px) {
+      max-width: min(1500px, 85vw);
+    }
+  }
+
   /** Custom Classes **/
 
   .statement {
