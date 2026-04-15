@@ -4,10 +4,33 @@
   position: relative;
 }
 
+.citation .citation-tab-list {
+  display: flex;
+  gap: 0.25rem;
+  border-bottom: 1px solid #ccc;
+}
+
 .citation .citation-tab {
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: transparent;
+  padding: 0.5rem 1rem;
   font-family: "gineso-condensed", sans-serif;
-  font-size: 1.05rem;
-  text-transform: none;
+  font-size: 1.1rem;
+
+  &:focus-visible {
+    outline: var(--focus_outline);
+    outline-offset: var(--focus-outline__offset);
+  }
+}
+
+.citation .citation-tab.is-active {
+  border-bottom-color: var(--vt-maroon);
+  color: var(--vt-maroon);
+}
+
+.citation .citation-tab[aria-selected="false"]:hover {
+  color: var(--vt-maroon);
 }
 
 .citation .citation-tab-content {
@@ -35,6 +58,15 @@
   font-size: 13px;
   padding: 5px 10px;
   border-radius: 0.2rem;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: var(--focus_outline);
+    outline-offset: var(--focus-outline__offset);
+  }
 }
 
 .citation .citation-tab-content .citation-text {

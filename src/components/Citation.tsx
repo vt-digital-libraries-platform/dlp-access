@@ -1,33 +1,28 @@
 import { faCopy } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Tooltip } from "@mui/material";
-import Box from "@mui/material/Box";
-import Tab from "@mui/material/Tab";
-import TabContext from "@mui/lab/TabContext";
-import TabList from "@mui/lab/TabList";
-import TabPanel from "@mui/lab/TabPanel";
 
 import { useEffect, useRef, useState } from "react";
+import type { KeyboardEvent } from "react";
 
 import "../css/Citation.scss";
+import "../css/Typography.scss";
 
-interface Props {
+type Props = {
   item: Archive;
   site: Site;
   parentCollection: Collection;
-}
+};
 
 const Citation = ({ item, site, parentCollection }: Props) => {
   const [tabValue, setTabValue] = useState("citation");
   const [copiedCitation, setCopiedCitation] = useState(false);
   const [copiedBibTeX, setCopiedBibTeX] = useState(false);
+  const citationTabRef = useRef<HTMLButtonElement | null>(null);
+  const bibTeXTabRef = useRef<HTMLButtonElement | null>(null);
   const citationCopyTimerRef = useRef<NodeJS.Timeout | null>(null);
   const bibTeXCopyTimerRef = useRef<NodeJS.Timeout | null>(null);
   const copyCooldown = 1000;
-
-  const handleTabChange = (_: React.SyntheticEvent, newValue: string) => {
-    setTabValue(newValue);
-  };
 
   useEffect(() => {
     return () => {
@@ -170,119 +165,168 @@ const Citation = ({ item, site, parentCollection }: Props) => {
       );
     }
   };
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
+    if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
+      event.preventDefault();
+      const nextTab = tabValue === "citation" ? "bibtex" : "citation";
+      setTabValue(nextTab);
+      if (nextTab === "citation") {
+        citationTabRef.current?.focus();
+      } else {
+        bibTeXTabRef.current?.focus();
+      }
+    }
+  };
+
   const citationObj = getCitation();
   return (
     <div className="citation">
-      <TabContext value={tabValue}>
-        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-          <TabList onChange={handleTabChange}>
-            <Tab label="Citation" value="citation" className="citation-tab" />
-            <Tab label="BibTeX" value="bibtex" className="citation-tab" />
-          </TabList>
-        </Box>
+      <div
+        className="citation-tab-list"
+        role="tablist"
+        aria-label="Citation formats"
+      >
+        <button
+          id="citation-tab"
+          ref={citationTabRef}
+          type="button"
+          role="tab"
+          aria-selected={tabValue === "citation"}
+          aria-controls="citation-panel"
+          tabIndex={tabValue === "citation" ? 0 : -1}
+          className={`citation-tab${
+            tabValue === "citation" ? " is-active" : ""
+          }`}
+          onClick={() => setTabValue("citation")}
+          onKeyDown={handleKeyDown}
+        >
+          Citation
+        </button>
+        <button
+          id="bibtex-tab"
+          ref={bibTeXTabRef}
+          type="button"
+          role="tab"
+          aria-selected={tabValue === "bibtex"}
+          aria-controls="bibtex-panel"
+          tabIndex={tabValue === "bibtex" ? 0 : -1}
+          onKeyDown={handleKeyDown}
+          className={`citation-tab${tabValue === "bibtex" ? " is-active" : ""}`}
+          onClick={() => setTabValue("bibtex")}
+        >
+          BibTeX
+        </button>
+      </div>
 
-        <TabPanel value="citation" className="citation-tab-content">
-          <div className="copy-button-container">
-            <h3 id="citation-preview-heading" className="heading">
-              Citation Preview
-            </h3>
+      <div
+        id="citation-panel"
+        role="tabpanel"
+        aria-labelledby="citation-tab"
+        className="citation-tab-content"
+        hidden={tabValue !== "citation"}
+      >
+        <div className="copy-button-container">
+          <h3 id="citation-preview-heading" className="heading">
+            Citation Preview
+          </h3>
 
-            <Tooltip
-              title={copiedCitation ? "Copied!" : ""}
-              arrow
-              open={copiedCitation === true}
-              slotProps={{
-                popper: {
-                  modifiers: [
-                    {
-                      name: "offset",
-                      options: {
-                        offset: [0, -6]
-                      }
+          <Tooltip
+            title={copiedCitation ? "Copied!" : ""}
+            arrow
+            open={copiedCitation === true}
+            slotProps={{
+              popper: {
+                modifiers: [
+                  {
+                    name: "offset",
+                    options: {
+                      offset: [0, -6]
                     }
-                  ]
-                }
-              }}
-            >
-              <button
-                type="button"
-                className="btn btn-secondary citation-copy-button"
-                onClick={onCopyCitation}
-                disabled={copiedCitation}
-              >
-                <FontAwesomeIcon
-                  icon={faCopy}
-                  className="mr-1"
-                  aria-hidden={true}
-                />
-                <span>Copy Citation</span>
-              </button>
-            </Tooltip>
-          </div>
-
-          <p
-            className="citation-text"
-            aria-labelledby="citation-preview-heading"
+                  }
+                ]
+              }
+            }}
           >
-            {citationObj.creator && <span>{citationObj.creator}</span>}
-            <span className="title">{citationObj.title}</span>
-            <span>{citationObj.dlpInstance}</span>
-            <span>{citationObj.sponsor}</span>
-            <span>
-              <a href={citationObj.permalink || "#"} className="mr-1">
-                {citationObj.permalink || "N/A"}
-              </a>
-            </span>
-            <span>{`accessed ${citationObj.accessDate}`}</span>
-          </p>
-        </TabPanel>
-
-        <TabPanel value="bibtex" className="citation-tab-content">
-          <div className="copy-button-container">
-            <h3 id="bibtex-preview-heading" className="heading">
-              BibTeX Preview
-            </h3>
-
-            <Tooltip
-              title={copiedBibTeX ? "Copied!" : ""}
-              arrow
-              open={copiedBibTeX === true}
-              slotProps={{
-                popper: {
-                  modifiers: [
-                    {
-                      name: "offset",
-                      options: {
-                        offset: [0, -6]
-                      }
-                    }
-                  ]
-                }
-              }}
+            <button
+              type="button"
+              className="btn btn-secondary citation-copy-button"
+              onClick={onCopyCitation}
+              disabled={copiedCitation}
             >
-              <button
-                type="button"
-                className="btn btn-secondary citation-copy-button"
-                onClick={onCopyBibTeXCitation}
-                disabled={copiedBibTeX}
-              >
-                <FontAwesomeIcon
-                  icon={faCopy}
-                  className="mr-1"
-                  aria-hidden={true}
-                />
-                <span>Copy Citation</span>
-              </button>
-            </Tooltip>
-          </div>
+              <FontAwesomeIcon
+                icon={faCopy}
+                className="mr-1"
+                aria-hidden={true}
+              />
+              <span>Copy Citation</span>
+            </button>
+          </Tooltip>
+        </div>
 
-          <pre>
-            <code aria-labelledby="bibtex-preview-heading">
-              {bibTeXCitation}
-            </code>
-          </pre>
-        </TabPanel>
-      </TabContext>
+        <p className="citation-text" aria-labelledby="citation-preview-heading">
+          {citationObj.creator && <span>{citationObj.creator}</span>}
+          <span className="title">{citationObj.title}</span>
+          <span>{citationObj.dlpInstance}</span>
+          <span>{citationObj.sponsor}</span>
+          <span>
+            <a href={citationObj.permalink || "#"} className="mr-1">
+              {citationObj.permalink || "N/A"}
+            </a>
+          </span>
+          <span>{`accessed ${citationObj.accessDate}`}</span>
+        </p>
+      </div>
+
+      <div
+        id="bibtex-panel"
+        role="tabpanel"
+        aria-labelledby="bibtex-tab"
+        className="citation-tab-content"
+        hidden={tabValue !== "bibtex"}
+      >
+        <div className="copy-button-container">
+          <h3 id="bibtex-preview-heading" className="heading">
+            BibTeX Preview
+          </h3>
+
+          <Tooltip
+            title={copiedBibTeX ? "Copied!" : ""}
+            arrow
+            open={copiedBibTeX === true}
+            slotProps={{
+              popper: {
+                modifiers: [
+                  {
+                    name: "offset",
+                    options: {
+                      offset: [0, -6]
+                    }
+                  }
+                ]
+              }
+            }}
+          >
+            <button
+              type="button"
+              className="btn btn-secondary citation-copy-button"
+              onClick={onCopyBibTeXCitation}
+              disabled={copiedBibTeX}
+            >
+              <FontAwesomeIcon
+                icon={faCopy}
+                className="mr-1"
+                aria-hidden={true}
+              />
+              <span>Copy Citation</span>
+            </button>
+          </Tooltip>
+        </div>
+
+        <pre>
+          <code aria-labelledby="bibtex-preview-heading">{bibTeXCitation}</code>
+        </pre>
+      </div>
     </div>
   );
 };

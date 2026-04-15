@@ -428,21 +428,21 @@ class ArchivePage extends Component {
                       title="Copyright"
                       marker="copyright"
                       data={this.state.item}
-                      defaultExpand={false}
+                      defaultExpand={true}
                     />
                     <CollapsibleCard
                       title="Citation"
                       marker="citation"
                       data={this.state.item}
                       site={this.props.site}
-                      defaultExpand={false}
+                      defaultExpand={true}
                       parentCollection={this.state.topLevelParentCollection}
                     />
                     <CollapsibleCard
                       title="Location"
                       marker="location"
                       data={this.state.item}
-                      defaultExpand={false}
+                      defaultExpand={true}
                     />
                   </div>
                 </div>
