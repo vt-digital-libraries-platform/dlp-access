@@ -19,6 +19,8 @@ import "../../../css/CollectionsShowPage.scss";
 import { NotFound } from "../../NotFound";
 import { useGetCollection } from "./useGetCollection";
 
+import "../../../css/Typography.scss";
+
 type Props = {
   site: Site;
   customKey: string;
@@ -95,7 +97,7 @@ export const CollectionsShowPage: FC<Props> = ({ site, customKey }) => {
             }
           ]}
         ></Helmet>
-        <div className="container">
+        <div className="container typography-wrapper">
           <div className="breadcrumbs-wrapper">
             <nav aria-label="Collection breadcrumbs">
               <Breadcrumbs
