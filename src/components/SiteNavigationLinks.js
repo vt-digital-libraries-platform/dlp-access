@@ -16,7 +16,7 @@ class SiteNavigationLinks extends Component {
     const sitePages = {};
     Object.keys(sitePageItems)
       .sort()
-      .forEach(function(key) {
+      .forEach(function (key) {
         sitePages[key] = sitePageItems[key];
       });
 
@@ -120,6 +120,13 @@ class SiteNavigationLinks extends Component {
           <div className="link-wrapper">
             <NavLink onClick={this.onNavClick} to="/search" tabIndex="-1">
               SEARCH
+            </NavLink>
+          </div>
+        </li>
+        <li className="nav-item">
+          <div className="link-wrapper">
+            <NavLink onClick={this.onNavClick} to="/metadata" tabIndex="-1">
+              METADATA GUIDE
             </NavLink>
           </div>
         </li>
