@@ -153,7 +153,7 @@
     border: var(--themeHighlightColor) solid 1px;
     border-radius: 10px;
 
-    transition: color 0.3s var(--transition-time-function),
+    transition: background-color 0.3s var(--transition-time-function),
       box-shadow 0.3s var(--transition-time-function),
       transform 0.3s var(--transition-time-function);
     transform: translateY(0);
@@ -182,7 +182,11 @@
     &,
     p,
     span,
-    a {
+    a,
+    &:hover,
+    &:focus,
+    &:focus-visible,
+    &:focus-within {
       color: white;
     }
 
