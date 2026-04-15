@@ -36,10 +36,10 @@ export const CollectionTopContent: FC<Props> = ({
       role="region"
       aria-labelledby="collection-page-title"
     >
-      <div className="collection-img-col col-sm-4">
+      <div className="collection-img-col col-12 col-lg-3">
         {collectionThumbnail && <img src={collectionThumbnail} alt="" />}
       </div>
-      <div className="collection-details-col col-md-8">
+      <div className="collection-details-col col-12 col-lg-9">
         <h1 className="collection-title" id="collection-page-title">
           {collectionTitle}
         </h1>

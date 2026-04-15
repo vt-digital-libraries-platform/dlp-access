@@ -8,31 +8,43 @@ div.nav-row {
 }
 
 .top-content-row {
-  margin-top: 40px !important;
+  margin-top: 1rem !important;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+}
+
+.top-content-row col {
+  display: flex;
+  flex-direction: column;
 }
 
 .top-content-row .collection-img-col {
-  display: none;
-}
+  position: relative;
+  height: min(115px, 15vh);
+  padding-bottom: 1rem;
 
-@media only screen and (min-width: 768px) {
-  .top-content-row .collection-img-col {
-    display: block;
-    height: 300px;
-    text-align: center;
+  @media screen and (min-width: 992px) {
+    height: 100%;
+    max-height: none;
+    padding-top: 1rem;
   }
 }
 
 .top-content-row .collection-img-col img {
-  max-height: 100%;
-  max-width: 100%;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+
+  @media screen and (min-width: 992px) {
+    object-fit: contain;
+    object-position: top center;
+  }
 }
 
 h1.collection-title {
-  font-family: "gineso-condensed", sans-serif;
-  font-size: 1.563rem;
-  font-weight: 400;
-  display: block;
+  padding-top: 0;
 }
 
 h2.subcollection-title {
@@ -44,8 +56,7 @@ h2.subcollection-title {
 
 div.post-heading {
   font-family: "gineso-condensed", sans-serif;
-  padding-bottom: 20px;
-  border-bottom: 1px solid var(--dark-gray);
+  padding: 0 0 1.25rem 0;
 }
 
 span.item-count:after,
@@ -54,7 +65,7 @@ span.creator:after {
 }
 
 .description {
-  padding: 15px 0 25px 0;
+  padding: 0 0 1.5rem 0;
 }
 
 .description h2.introduction {
