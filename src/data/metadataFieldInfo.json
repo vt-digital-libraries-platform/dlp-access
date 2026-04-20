@@ -387,15 +387,15 @@
   "rights": {
     "labelName": "Rights Statement",
     "type": "String (Repeatable)",
-    "required": "No",
-    "description": "Rights and access information",
+    "required": "Conditional",
+    "description": "Rights and access information. Either rights or rights_holder must be provided",
     "example": "http://rightsstatements.org/vocab/InC-NC/1.0/"
   },
   "rights_holder": {
     "labelName": "Rights Holder",
     "type": "String (Repeatable)",
-    "required": "No",
-    "description": "Entity holding intellectual property rights",
+    "required": "Conditional",
+    "description": "Entity holding intellectual property rights.  Either rights or rights_holder must be provided",
     "example": "Virginia Polytechnic Institute and State University. Department of Entomology"
   },
   "source": {

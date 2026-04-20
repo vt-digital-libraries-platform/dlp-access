@@ -166,9 +166,6 @@ export function generateMetadataFields() {
   const collectionFields = parseCollectionFields();
   const metadataFields = [];
 
-  // Manual override for required fields (per business requirements)
-  const requiredFieldsOverride = new Set(["identifier", "title", "rights"]);
-
   // Using fields from schema - show all Archive fields
   const archiveFieldNames = Object.keys(archiveFields).sort();
 
@@ -183,10 +180,10 @@ export function generateMetadataFields() {
     );
     const type = getCustomTypeString(fieldName, defaultType);
 
-    // Check if required
+    // Required comes from schema (String! = required); JSON can override with 'Conditional'
     let required = schemaInfo.isRequired;
-    if (requiredFieldsOverride.has(fieldName)) {
-      required = true;
+    if (displayInfo?.required === "Conditional") {
+      required = "Conditional";
     }
 
     // Use display info if available, otherwise use defaults
@@ -229,10 +226,10 @@ export function generateMetadataFields() {
     );
     const type = getCustomTypeString(fieldName, defaultType);
 
-    // Check if required
+    // Required comes from schema (String! = required); JSON can override with 'Conditional'
     let required = schemaInfo.isRequired;
-    if (requiredFieldsOverride.has(fieldName)) {
-      required = true;
+    if (displayInfo?.required === "Conditional") {
+      required = "Conditional";
     }
 
     // Use display info if available, otherwise use defaults
@@ -248,7 +245,9 @@ export function generateMetadataFields() {
 
     metadataFields.push({
       columnName: fieldName,
-      labelName: labelName + " (Collection)",
+      labelName: labelName.endsWith(" (Collection)")
+        ? labelName
+        : labelName + " (Collection)",
       type: type,
       description: description,
       example: example,

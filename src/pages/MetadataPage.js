@@ -32,7 +32,11 @@ class MetadataPage extends Component {
     // Create CSV where each field is a column instead of a row
     const columnNames = metadataFields.map((field) => field.columnName);
     const labelNames = metadataFields.map((field) =>
-      field.required ? `${field.labelName} (Required)` : field.labelName
+      field.required === true
+        ? `${field.labelName} (Required)`
+        : field.required === "Conditional"
+        ? `${field.labelName} (Conditional)`
+        : field.labelName
     );
     const types = metadataFields.map((field) => field.type);
     const descriptions = metadataFields.map((field) => field.description);
@@ -163,7 +167,10 @@ class MetadataPage extends Component {
                           field.columnName.toLowerCase().includes(query) ||
                           field.labelName.toLowerCase().includes(query) ||
                           field.type.toLowerCase().includes(query) ||
-                          (field.required && "required".includes(query)) ||
+                          (field.required === true &&
+                            "required".includes(query)) ||
+                          (field.required === "Conditional" &&
+                            "conditional".includes(query)) ||
                           field.description.toLowerCase().includes(query) ||
                           field.example.toLowerCase().includes(query)
                         );
@@ -174,12 +181,20 @@ class MetadataPage extends Component {
                             {field.columnName}
                           </th>
                           <td className="label-name">
-                            {field.required ? (
+                            {field.required === true ? (
                               <>
                                 {field.labelName}
                                 <br />
                                 <span className="required-indicator">
                                   (Required)
+                                </span>
+                              </>
+                            ) : field.required === "Conditional" ? (
+                              <>
+                                {field.labelName}
+                                <br />
+                                <span className="required-indicator conditional-indicator">
+                                  (Conditional)
                                 </span>
                               </>
                             ) : (
