@@ -2,8 +2,8 @@ import { faCopy } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Tooltip } from "@mui/material";
 
-import { useEffect, useRef, useState } from "react";
 import type { KeyboardEvent } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import "../css/Citation.scss";
 import "../css/Typography.scss";
@@ -18,8 +18,8 @@ const Citation = ({ item, site, parentCollection }: Props) => {
   const [tabValue, setTabValue] = useState("citation");
   const [copiedCitation, setCopiedCitation] = useState(false);
   const [copiedBibTeX, setCopiedBibTeX] = useState(false);
-  const citationTabRef = useRef<HTMLButtonElement | null>(null);
-  const bibTeXTabRef = useRef<HTMLButtonElement | null>(null);
+  const citationTabRef = useRef<HTMLAnchorElement | null>(null);
+  const bibTeXTabRef = useRef<HTMLAnchorElement | null>(null);
   const citationCopyTimerRef = useRef<NodeJS.Timeout | null>(null);
   const bibTeXCopyTimerRef = useRef<NodeJS.Timeout | null>(null);
   const copyCooldown = 1000;
@@ -166,7 +166,7 @@ const Citation = ({ item, site, parentCollection }: Props) => {
     }
   };
 
-  const handleKeyDown = (event: KeyboardEvent<HTMLButtonElement>) => {
+  const handleKeyDown = (event: KeyboardEvent<HTMLAnchorElement>) => {
     if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
       event.preventDefault();
       const nextTab = tabValue === "citation" ? "bibtex" : "citation";
@@ -181,45 +181,53 @@ const Citation = ({ item, site, parentCollection }: Props) => {
 
   const citationObj = getCitation();
   return (
-    <div className="citation">
-      <div
+    <div className="citation typography-wrapper">
+      <ul
         className="citation-tab-list"
         role="tablist"
         aria-label="Citation formats"
       >
-        <button
-          id="citation-tab"
-          ref={citationTabRef}
-          type="button"
-          role="tab"
-          aria-selected={tabValue === "citation"}
-          aria-controls="citation-panel"
-          tabIndex={tabValue === "citation" ? 0 : -1}
-          className={`citation-tab${
-            tabValue === "citation" ? " is-active" : ""
-          }`}
-          onClick={() => setTabValue("citation")}
-          onKeyDown={handleKeyDown}
-        >
-          Citation
-        </button>
-        <button
-          id="bibtex-tab"
-          ref={bibTeXTabRef}
-          type="button"
-          role="tab"
-          aria-selected={tabValue === "bibtex"}
-          aria-controls="bibtex-panel"
-          tabIndex={tabValue === "bibtex" ? 0 : -1}
-          onKeyDown={handleKeyDown}
-          className={`citation-tab${tabValue === "bibtex" ? " is-active" : ""}`}
-          onClick={() => setTabValue("bibtex")}
-        >
-          BibTeX
-        </button>
-      </div>
+        <li role="presentation">
+          <a
+            id="citation-tab"
+            role="tab"
+            href="#citation-panel"
+            tabIndex={tabValue === "citation" ? 0 : -1}
+            className={`citation-tab${
+              tabValue === "citation" ? " is-active" : ""
+            }`}
+            onClick={(e) => {
+              e.preventDefault();
+              setTabValue("citation");
+            }}
+            onKeyDown={handleKeyDown}
+            ref={citationTabRef}
+          >
+            Citation
+          </a>
+        </li>
+        <li role="presentation">
+          <a
+            id="bibtex-tab"
+            role="tab"
+            href="#bibtex-panel"
+            tabIndex={tabValue === "bibtex" ? 0 : -1}
+            className={`citation-tab${
+              tabValue === "bibtex" ? " is-active" : ""
+            }`}
+            onClick={(e) => {
+              e.preventDefault();
+              setTabValue("bibtex");
+            }}
+            onKeyDown={handleKeyDown}
+            ref={bibTeXTabRef}
+          >
+            BibTeX
+          </a>
+        </li>
+      </ul>
 
-      <div
+      <section
         id="citation-panel"
         role="tabpanel"
         aria-labelledby="citation-tab"
@@ -276,9 +284,9 @@ const Citation = ({ item, site, parentCollection }: Props) => {
           </span>
           <span>{`accessed ${citationObj.accessDate}`}</span>
         </p>
-      </div>
+      </section>
 
-      <div
+      <section
         id="bibtex-panel"
         role="tabpanel"
         aria-labelledby="bibtex-tab"
@@ -326,7 +334,7 @@ const Citation = ({ item, site, parentCollection }: Props) => {
         <pre>
           <code aria-labelledby="bibtex-preview-heading">{bibTeXCitation}</code>
         </pre>
-      </div>
+      </section>
     </div>
   );
 };
