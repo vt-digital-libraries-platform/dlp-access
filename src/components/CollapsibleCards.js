@@ -1,16 +1,15 @@
 import { faCopyright } from "@fortawesome/free-regular-svg-icons";
 import {
   faAngleDown,
-  faAngleRight,
   faBookOpen,
   faCircleInfo,
   faLocationDot
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useState } from "react";
 import { htmlParsedValue } from "src/lib/MetadataRenderer";
 import Citation from "../components/Citation";
 import "../css/CollapsibleCards.scss";
+import "../css/Typography.scss";
 import { LeafletThumb } from "./LeafletThumb";
 
 const single_value_headers = [
@@ -144,28 +143,20 @@ const getCopyrightData = (data) => {
   let key1 = "rights_holder";
   let key2 = "rights";
   return (
-    <ul className="data-list">
+    <dl className="data-list">
       {data[key1] && (
-        <li className="data-list-item">
-          <h3 className="data-list-label">{modifyKey(key1)}</h3>
-          <div className="data-list-value">
-            <p className="data-list-value-text">
-              {htmlParsedValue(data[key1])}
-            </p>
-          </div>
-        </li>
+        <div className="data-list-item">
+          <dt className="data-list-label">{modifyKey(key1)}</dt>
+          <dd className="data-list-value">{htmlParsedValue(data[key1])}</dd>
+        </div>
       )}
       {data[key2] && (
-        <li className="data-list-item">
-          <h3 className="data-list-label">{modifyKey(key2)}</h3>
-          <div className="data-list-value">
-            <p className="data-list-value-text">
-              {htmlParsedValue(data[key2])}
-            </p>
-          </div>
-        </li>
+        <div className="data-list-item">
+          <dt className="data-list-label">{modifyKey(key2)}</dt>
+          <dd className="data-list-value">{htmlParsedValue(data[key2])}</dd>
+        </div>
       )}
-    </ul>
+    </dl>
   );
 };
 
@@ -177,14 +168,7 @@ export default function CollapsibleCard({
   defaultExpand,
   parentCollection
 }) {
-  const [expanded, setExpanded] = useState(defaultExpand ?? true);
-
-  const handleExpandClick = (e) => {
-    e.preventDefault();
-    setExpanded((prev) => !prev);
-  };
-
-  let facetSearchItems = [
+  const facetSearchItems = [
     "format",
     "format_physical",
     "medium",
@@ -238,12 +222,12 @@ export default function CollapsibleCard({
     ];
 
     return (
-      <ul className="data-list">
+      <dl className="data-list">
         {single_value_headers.map((key) =>
           data[key] && !items.includes(key) ? (
-            <li key={key} className="data-list-item">
-              <h3 className="data-list-label">{modifyKey(key)}</h3>
-              <p className="data-list-value">
+            <div key={key} className="data-list-item">
+              <dt className="data-list-label">{modifyKey(key)}</dt>
+              <dd className="data-list-value">
                 {typeof data[key] === "string" &&
                 data[key].startsWith("http") ? (
                   <a href={data[key]} target="_blank" rel="noopener noreferrer">
@@ -252,32 +236,24 @@ export default function CollapsibleCard({
                 ) : (
                   data[key]
                 )}
-              </p>
-            </li>
+              </dd>
+            </div>
           ) : null
         )}
 
         {multi_value_headers.map((key) =>
           data[key] && !items.includes(key) && data[key].length > 0 ? (
-            <li key={key} className="data-list-item">
-              <h3 className="data-list-label">{modifyKey(key)}</h3>
-              <div className="data-list-value">
-                {Array.isArray(data[key]) ? (
-                  data[key].map((value, index) => (
-                    <p key={index} className="data-list-value-text">
-                      {renderContent(key, value)}
-                    </p>
-                  ))
-                ) : (
-                  <p className="data-list-value-text">
-                    {renderContent(key, data[key])}
-                  </p>
-                )}
-              </div>
-            </li>
+            <div key={key} className="data-list-item">
+              <dt className="data-list-label">{modifyKey(key)}</dt>
+              {data[key].map((value, index) => (
+                <dd key={index} className="data-list-value">
+                  {renderContent(key, value)}
+                </dd>
+              ))}
+            </div>
           ) : null
         )}
-      </ul>
+      </dl>
     );
   };
 
@@ -300,28 +276,19 @@ export default function CollapsibleCard({
     }
   };
 
-  const getCollapsibleArrow = () => {
-    return expanded ? (
-      <FontAwesomeIcon
-        className="expand-icon"
-        icon={faAngleDown}
-        aria-hidden="true"
-      />
-    ) : (
-      <FontAwesomeIcon
-        className="expand-icon"
-        icon={faAngleRight}
-        aria-hidden="true"
-      />
-    );
-  };
-
   return (
-    <details className="card-details" open={expanded}>
-      <summary className="card-summary" onClick={handleExpandClick}>
+    <details
+      className="card-details typography-wrapper"
+      open={defaultExpand ?? true}
+    >
+      <summary className="card-summary">
         {getMarker(marker)}
         {title}
-        {getCollapsibleArrow()}
+        <FontAwesomeIcon
+          className="expand-icon"
+          icon={faAngleDown}
+          aria-hidden="true"
+        />
       </summary>
       <div className="card-content">
         {getContent(marker, data, site, parentCollection)}
