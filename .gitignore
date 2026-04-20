@@ -28,7 +28,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-!amplify/backend/api/vtdlp/schema.graphql
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend
 amplify/.config/local-*
