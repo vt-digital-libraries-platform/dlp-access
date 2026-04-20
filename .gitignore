@@ -28,6 +28,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+!amplify/backend/api/vtdlp/schema.graphql
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend
 amplify/.config/local-*
@@ -49,6 +50,7 @@ amplifytools.xcconfig
 .secret-*
 **.sample
 #amplify-do-not-edit-end
+
 docs/
 # Generated files
 # schema.js is auto-generated from amplify/backend/api/vtdlp/schema.graphql by scripts/generate-schema-js.js
