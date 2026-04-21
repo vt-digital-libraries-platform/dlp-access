@@ -166,13 +166,22 @@ class SearchLoader extends Component {
       nextToken: this.state.nextTokens[this.state.page]
     };
     let searchResults = await fetchSearchResults(this, options);
-    nextTokens[this.state.page + 1] = searchResults.nextToken;
-    this.setState({
-      items: searchResults.items,
-      total: searchResults.total,
-      nextTokens: nextTokens,
-      totalPages: Math.ceil(searchResults.total / this.state.limit)
-    });
+    if (searchResults) {
+      nextTokens[this.state.page + 1] = searchResults.nextToken;
+      this.setState({
+        items: searchResults.items,
+        total: searchResults.total,
+        nextTokens: nextTokens,
+        totalPages: Math.ceil(searchResults.total / this.state.limit)
+      });
+    } else {
+      this.setState({
+        items: [],
+        total: 0,
+        nextTokens: [],
+        totalPages: 0
+      });
+    }
   }
 
   componentDidUpdate(prevProps) {
