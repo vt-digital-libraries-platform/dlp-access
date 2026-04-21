@@ -243,6 +243,8 @@ const Citation = ({ item, site, parentCollection }: Props) => {
             title={copiedCitation ? "Copied!" : ""}
             arrow
             open={copiedCitation === true}
+            aria-live="assertive"
+            aria-atomic="true"
             slotProps={{
               popper: {
                 modifiers: [
@@ -260,7 +262,6 @@ const Citation = ({ item, site, parentCollection }: Props) => {
               type="button"
               className="btn btn-secondary citation-copy-button"
               onClick={onCopyCitation}
-              disabled={copiedCitation}
             >
               <FontAwesomeIcon
                 icon={faCopy}
@@ -302,6 +303,8 @@ const Citation = ({ item, site, parentCollection }: Props) => {
             title={copiedBibTeX ? "Copied!" : ""}
             arrow
             open={copiedBibTeX === true}
+            aria-live="assertive"
+            aria-atomic="true"
             slotProps={{
               popper: {
                 modifiers: [
@@ -319,7 +322,6 @@ const Citation = ({ item, site, parentCollection }: Props) => {
               type="button"
               className="btn btn-secondary citation-copy-button"
               onClick={onCopyBibTeXCitation}
-              disabled={copiedBibTeX}
             >
               <FontAwesomeIcon
                 icon={faCopy}
