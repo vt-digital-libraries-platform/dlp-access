@@ -168,6 +168,10 @@ class FeedbackPage extends Component {
                   provide general feedback about {siteName}. Your submission
                   will be logged and emailed to our team at{" "}
                   <a href={`mailto:${feedbackEmail}`}>{feedbackEmail}</a>.
+                  <br />
+                  Please include the URL of the page where you encountered the
+                  issue and a brief description of what happened. We will do our
+                  best to respond as soon as possible.
                 </p>
 
                 <form onSubmit={this.handleSubmit} className="feedback-form">
