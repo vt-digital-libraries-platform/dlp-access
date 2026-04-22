@@ -23,7 +23,7 @@ const initialFormState = [];
 
 const editorModules = {
   toolbar: [
-    [{ header: [2, 3, 4, 5, 6, false] }],
+    [{ header: [1, 2, 3, 4, 5, 6, false] }],
     ["bold", "italic", "underline"],
     [{ script: "sub" }, { script: "super" }],
     [{ list: "ordered" }, { list: "bullet" }],
@@ -36,6 +36,24 @@ const editorModules = {
     matchVisual: false
   }
 };
+
+const editorFormats = [
+  "header",
+  "bold",
+  "italic",
+  "underline",
+  "script",
+  "list",
+  "bullet",
+  "indent",
+  "align",
+  "link",
+  "code-block",
+  "blockquote",
+  "image",
+  "color",
+  "background"
+];
 class SitePagesForm extends Component {
   constructor(props) {
     super(props);
@@ -284,7 +302,7 @@ class SitePagesForm extends Component {
     if (htmlUrl && useDataUrl) {
       await getFileContent(htmlUrl, "html", this);
     } else if (pageContentId) {
-      await getPageContentById(pageContentId).then(resp => {
+      await getPageContentById(pageContentId).then((resp) => {
         this.setState({
           copy: resp,
           pageContentId: pageContentId
@@ -310,7 +328,7 @@ class SitePagesForm extends Component {
         variables: { input: page },
         authMode: "AMAZON_COGNITO_USER_POOLS"
       });
-      temp.forEach(item => {
+      temp.forEach((item) => {
         if (item.pageName === this.state.pageId) {
           item.pageContentId = page.id;
           item.useDataUrl = false;
@@ -323,7 +341,7 @@ class SitePagesForm extends Component {
         variables: { input: page },
         authMode: "AMAZON_COGNITO_USER_POOLS"
       });
-      temp.forEach(item => {
+      temp.forEach((item) => {
         if (item.pageName === this.state.pageId) {
           item.useDataUrl = false;
         }
@@ -496,7 +514,7 @@ class SitePagesForm extends Component {
   viewSitePages() {
     return (
       <ul>
-        {this.state.formState.map(page => {
+        {this.state.formState.map((page) => {
           return (
             <li key={page.pageName}>
               <div>
@@ -553,6 +571,7 @@ class SitePagesForm extends Component {
                   placeholder={"Enter page content"}
                   onChange={this.handleChange}
                   modules={editorModules}
+                  formats={editorFormats}
                 ></Editor>
                 <Button
                   className="mr-2"
