@@ -100,6 +100,24 @@ class MetadataPage extends Component {
             name="description"
             content="Comprehensive metadata field guide for digital collections"
           />
+          <div className="container metadata-page-wrapper typography-wrapper">
+            <h1>{title}</h1>
+            <div>
+              <div className="metadata-intro">
+                <p className="lead">
+                  This guide provides detailed information about metadata fields
+                  used in the digital library platform. Fields marked as
+                  "Required" are mandatory. This is for basic metadata fields
+                  but for more complex metadata schemas (e.g., 3D objects)
+                  please contact{" "}
+                  <a href="mailto:digitallibraries@vt.edu">
+                    digitallibraries@vt.edu
+                  </a>
+                  .
+                </p>
+              </div>
+            </div>
+          </div>
         </>
       );
     } else {
