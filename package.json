@@ -87,9 +87,7 @@
     ]
   },
   "scripts": {
-    "prestart": "node scripts/generate-schema-js.js",
     "start": "react-scripts start",
-    "prebuild": "node scripts/generate-schema-js.js",
     "build": "react-scripts --max_old_space_size=5632 --optimize-for-size build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
