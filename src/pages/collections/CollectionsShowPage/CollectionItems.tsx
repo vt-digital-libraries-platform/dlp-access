@@ -4,6 +4,7 @@ import Pagination from "../../../components/Pagination";
 import ResultsNumberDropdown from "../../../components/ResultsNumberDropdown";
 import SortOrderDropdown from "../../../components/SortOrderDropdown";
 import { Thumbnail } from "../../../components/Thumbnail";
+import "../../../css/Select.scss";
 import { language_codes } from "../../../lib/language_codes";
 import { RenderItems, arkLinkFormatted } from "../../../lib/MetadataRenderer";
 import { useGetCollectionItems } from "./useGetCollectionItems";
@@ -53,7 +54,7 @@ export const CollectionItems: FC<Props> = ({
             <div className="display-option-container">
               <ResultsNumberDropdown
                 setLimit={handleResultsNumberDropdown}
-                className="page-cnt-dropdown mr-2"
+                className="select-dropdown mr-2"
               />
               <SortOrderDropdown
                 sortOpt={sortOpt}

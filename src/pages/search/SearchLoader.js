@@ -5,6 +5,7 @@ import { fetchLanguages } from "../../lib/fetchTools";
 import { fetchSearchResults } from "../../lib/fetchTools";
 
 import SearchResults from "./SearchResults";
+import "../../css/Typography.scss";
 
 let nextTokens = [];
 
@@ -198,25 +199,28 @@ class SearchLoader extends Component {
             site={this.props.site}
             template="{{title}}"
           />
-          <SearchResults
-            site={this.props.site}
-            items={this.state.items}
-            total={this.state.total}
-            page={this.state.page}
-            limit={this.state.limit}
-            setLimit={this.setLimit.bind(this)}
-            previousPage={this.previousPage.bind(this)}
-            nextPage={this.nextPage.bind(this)}
-            setPage={this.setPage.bind(this)}
-            totalPages={this.state.totalPages}
-            filters={this.state.filters}
-            field={this.state.field}
-            q={this.state.q}
-            view={this.state.view}
-            updateFormState={this.updateFormState}
-            searchFacets={searchPageInfo.facets}
-            searchSorts={searchPageInfo.sort}
-          />
+          <div className="container typography-wrapper">
+            <h1>Search</h1>
+            <SearchResults
+              site={this.props.site}
+              items={this.state.items}
+              total={this.state.total}
+              page={this.state.page}
+              limit={this.state.limit}
+              setLimit={this.setLimit.bind(this)}
+              previousPage={this.previousPage.bind(this)}
+              nextPage={this.nextPage.bind(this)}
+              setPage={this.setPage.bind(this)}
+              totalPages={this.state.totalPages}
+              filters={this.state.filters}
+              field={this.state.field}
+              q={this.state.q}
+              view={this.state.view}
+              updateFormState={this.updateFormState}
+              searchFacets={searchPageInfo.facets}
+              searchSorts={searchPageInfo.sort}
+            />
+          </div>
         </div>
       );
     } else {

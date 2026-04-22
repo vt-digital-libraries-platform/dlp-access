@@ -101,7 +101,7 @@ class NavBar extends Component {
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link" to="/collections">
+            <NavLink className="nav-link" to="/search?&category=collection">
               BROWSE COLLECTIONS
             </NavLink>
           </li>

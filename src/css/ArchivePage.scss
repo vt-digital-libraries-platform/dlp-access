@@ -46,23 +46,10 @@ div.item-image-section img.item-img {
     font-family: "gineso-condensed", sans-serif;
   }
 
-  a {
+  a,
+  a:visited {
     font-family: "gineso-condensed", sans-serif;
     font-size: 1rem;
-    color: var(--hokieOrange) !important;
-    text-decoration: underline !important;
-  }
-  a:visited {
-    color: var(--hokieOrange) !important;
-    text-decoration: underline !important;
-  }
-  a:hover {
-    color: var(--hokieMaroon) !important;
-  }
-  a:focus {
-    color: var(--hokieMaroon) !important;
-    outline: 0.15em dashed var(--themeHighlightColor);
-    text-decoration: none !important;
   }
 }
 

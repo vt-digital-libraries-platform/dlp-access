@@ -1,141 +1,135 @@
+.card--img-zoom {
+  .card__img-wrapper img {
+    transition: transform 0.5s ease;
+    transform: scale(1.05);
+
+    &.round-img {
+      transform: scale(1.15);
+    }
+  }
+
+  &:hover,
+  &:focus,
+  &:focus-within,
+  &:focus-visible,
+  &:has(a:focus-visible) {
+    .card__img-wrapper img {
+      transform: scale(1.15);
+
+      &.round-img {
+        transform: scale(1.25);
+      }
+    }
+  }
+}
+
 .featured-items-wrapper {
   display: flex;
   flex-direction: column;
-  padding: 40px 40px 20px 40px;
   width: 100%;
-}
-.featured-items-wrapper ul {
-  padding-left: 0;
-}
-.card-padding {
-  padding: 0 0;
-}
-.featured-items-wrapper .card-body {
-  padding: 5px;
-  // margin-left:20px;
-}
-.featured-items-wrapper li {
-  padding-bottom: 8px;
-}
-@media (max-width: 768px) {
-  .featured-items-wrapper li:focus-visible::after {
-    inset: -4px; /* expands dashed line evenly */
+
+  ul {
+    padding-left: 0;
+
+    li {
+      align-items: stretch;
+    }
   }
-}
-/* Mobile */
-// @media (max-width: 768px) {
-//   .featured-items-wrapper {
-//     flex-direction: column;
-//     padding-bottom: 5px;
 
-//   }
-//   .card-padding {
-//     padding-bottom: 0px;
-//   }
-// }
-//.card-gallery-border:hover,
-//.card-gallery-border:focus {
-//  outline: 2px dashed #000;
-//}
+  .featured-items__card {
+    position: relative; /* Establish new stacking context for pseudo-elem */
+    border: none;
+    background-color: transparent;
+    margin: 1rem 10vw;
+    @media screen and (min-width: 576px) {
+      margin: 1rem 0;
+    }
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
 
-.featured-items-wrapper .card {
-  // margin-top: 5px;
-  margin-bottom: 5px;
-  border: none;
-}
+    &:focus-visible,
+    &:has(a:focus-visible) {
+      outline: 2px dashed #861f41;
+      outline-offset: 3px;
+    }
 
-.featured-items-wrapper .card:hover,
-.featured-items-wrapper .card:focus {
-  //  box-shadow: 0px 0px 2px var(--dark-gray);
-  outline: 2px dashed #000;
-  //outline: 2px dashed #861f41
-  //  outline-offset: 5px;
-}
+    a:first-child {
+      position: static;
 
-.featured-items-wrapper .card-img-top {
-  width: 100%;
-  height: 192px;
-  object-fit: scale-down;
-}
+      &:link,
+      &:visited,
+      &:hover,
+      &:focus,
+      &:active {
+        color: inherit;
+        text-decoration: none;
+      }
 
-.featured-items-wrapper .card-body {
-  text-align: center;
-  //  height: 9rem;
-}
+      &:focus,
+      &:focus-visible {
+        outline: none; /* Card has a focus style for primary link's pseudo-elem */
+      }
 
-.featured-items-wrapper .card-body .card-title {
-  font-family: "gineso-condensed", sans-serif;
-  font-size: 1.1rem;
-}
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: 10;
+        pointer-events: auto;
+        opacity: 0;
+      }
+    }
 
-.featured-items-wrapper .card-body .card-text {
-  font-family: "Acherus", sans-serif;
-}
+    a:not(:first-child),
+    button {
+      position: relative;
+      z-index: 20; /* Can interact without clicking the card's pseudo-elem */
+    }
+  }
 
-.featured-items-wrapper a,
-.featured-items-wrapper a:visited,
-.featured-items-wrapper a:hover,
-.featured-items-wrapper a:focus,
-.featured-items-wrapper a:active {
-  color: black;
-  text-decoration: none;
-}
+  .card__img-wrapper {
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+    border-radius: 50%;
+    margin: auto 1rem;
+    box-shadow: -1px 0px 8px #0000004e;
 
-.crop-text-4 {
-  -webkit-line-clamp: 4;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-}
+    img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+    }
+  }
 
-.featured-items-heading {
-  margin-bottom: 40px;
-  padding: 10px;
-}
+  .card__body {
+    padding: 0.5rem 5px 1rem 5px;
+    text-align: center;
+    flex-grow: 1;
+    align-content: flex-start;
+  }
 
-.featured-items-heading h2 {
-  font-family: "gineso-condensed", sans-serif;
-  text-align: left;
-  font-size: 2.1875rem;
-}
+  .card__title {
+    font-weight: 500;
+    font-size: 1.2rem;
+    @media screen and (min-width: 1200px) {
+      font-size: 1.325rem;
+    }
+    text-align: inherit;
+    margin-bottom: 0.25rem;
+    text-wrap: balance;
+    line-clamp: 4;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 
-/* The dots/bullets/indicators */
-.featured-items-indicators {
-  text-align: center;
-  padding-top: 20px;
-  /* Adding a visibility item until we can fix the functionality of the feature items indicator*/
-  visibility: hidden;
-}
-
-.featured-items-indicators button {
-  border: none;
-  background-color: var(--light-gray);
-  margin-right: 2px;
-  padding: 2.5px 3px;
-}
-
-.featured-items-indicators button:last-child {
-  margin-right: 0;
-}
-
-.featured-items-indicators .dot {
-  cursor: pointer;
-  height: 20px;
-  width: 20px;
-  padding: 0;
-  margin: 0 2px;
-  background-color: white;
-  border: 6px solid #8b9192;
-  border-radius: 50%;
-  display: inline-block;
-  transition: background-color 0.6s ease;
-}
-
-.featured-items-indicators .dot-active {
-  border-color: var(--themeHighlightColor);
-}
-
-.featured-items-indicators .dot:hover {
-  border-color: var(--themeHighlightColor);
+  .card__details {
+    font-family: "Acherus", sans-serif;
+    text-wrap: balance;
+  }
 }
