@@ -37,9 +37,19 @@ class AccessibilityPage extends Component {
           template="{{title}}"
         />
         <div className="container accessibility-page-wrapper">
-          <h1>Accessibility</h1>
-          <div className="accessibility-content quill-styles">
-            {cleanHTML(this.state.copy, "page")}
+          <div className="row">
+            <div className="col-12 accessibility-heading">
+              <h1 id="accessibility-heading">Accessibility</h1>
+            </div>
+            <div
+              className="col-md-9"
+              role="region"
+              aria-labelledby="accessibility-heading"
+            >
+              <div className="accessibility-content quill-styles">
+                {cleanHTML(this.state.copy, "page")}
+              </div>
+            </div>
           </div>
         </div>
       </>
