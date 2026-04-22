@@ -7,6 +7,7 @@ import {
 import { cleanHTML } from "../lib/MetadataRenderer";
 import { SiteTitle } from "../components/SiteTitle";
 
+import "../css/AdditionalPages.scss";
 import "../css/Editor.scss";
 import "../css/Typography.scss";
 
