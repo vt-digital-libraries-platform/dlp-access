@@ -39,7 +39,7 @@ class ArchivePage extends Component {
     super(props);
     this.state = {
       item: null,
-      parentCollection: null,
+      topLevelParentCollection: null,
       collectionCustomKey: "",
       page: 0,
       category: "archive",
@@ -87,9 +87,9 @@ class ArchivePage extends Component {
       const collectionCustomKey = topLevelParentCollection.custom_key;
       const archiveSchema = this.buildArchiveSchema(item);
       this.setState({
-        item: item,
-        collectionCustomKey: collectionCustomKey,
-        topLevelParentCollection: topLevelParentCollection,
+        item,
+        collectionCustomKey,
+        topLevelParentCollection,
         info: archiveSchema,
         title_data: { item: { ...item }, collection: { ...collection } },
         title_template: getTitleTemplateForType(item, collection)
@@ -436,7 +436,7 @@ class ArchivePage extends Component {
                       data={this.state.item}
                       site={this.props.site}
                       defaultExpand={false}
-                      parentCollection={this.state.parentCollection}
+                      parentCollection={this.state.topLevelParentCollection}
                     />
                     <CollapsibleCard
                       title="Location"

@@ -49,6 +49,7 @@ amplifytools.xcconfig
 .secret-*
 **.sample
 #amplify-do-not-edit-end
+
 docs/
 # Generated files
 # schema.js is auto-generated from amplify/backend/api/vtdlp/schema.graphql by scripts/generate-schema-js.js

@@ -4,7 +4,8 @@ import ContactSection from "../components/ContactSection";
 import { getFileContent, getPageContentById } from "../lib/fetchTools";
 import { cleanHTML } from "../lib/MetadataRenderer";
 
-import "../css/TermsPage.scss";
+import "../css/Typography.scss";
+import "../css/AboutPage.scss";
 import "../css/Editor.scss";
 class PermissionsPage extends Component {
   constructor(props) {
@@ -43,36 +44,27 @@ class PermissionsPage extends Component {
           site={this.props.site}
           template="{{title}}"
         />
-        <div className="container">
-          <div className="row terms-page-wrapper">
-            <div className="col-12 terms-heading">
-              <h1 id="permissions-heading">Permissions</h1>
+        <div className="container typography-wrapper">
+          <h1>Permissions</h1>
+          <div className="row">
+            <div className="col-lg-8 mb-5">
+              {cleanHTML(this.state.copy, "page")}
             </div>
-            <div
-              className="col-md-8"
-              role="region"
-              aria-labelledby="permissions-heading"
-            >
-              <div className="terms-details quill-styles">
-                {cleanHTML(this.state.copy, "page")}
+            <div className="col-lg-4 mb-5 about-contact-section-wrapper">
+              <div className="surface-round-gray vertical-flex">
+                <ContactSection
+                  siteDetails={this.props.site}
+                  site={this.props.site}
+                />
+                {download ? (
+                  <div>
+                    <h2>Downloadable forms</h2>
+                    <a href={download}>
+                      Permission form for image reproductions
+                    </a>
+                  </div>
+                ) : null}
               </div>
-            </div>
-            <div className="col-md-4 contact-section-wrapper">
-              <ContactSection
-                siteDetails={this.props.site}
-                site={this.props.site}
-              />
-              {download ? (
-                <div role="region" aria-labelledby="terms-downloads-section">
-                  <h2
-                    className="terms-downloads-heading"
-                    id="terms-downloads-section"
-                  >
-                    Downloadable forms
-                  </h2>
-                  <a href={download}>Permission form for image reproductions</a>
-                </div>
-              ) : null}
             </div>
           </div>
         </div>

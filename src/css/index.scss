@@ -20,10 +20,8 @@ code {
 }
 
 a.skipLink:focus {
-  outline-color: #75787b;
-  outline-offset: 3px;
-  outline-style: dashed;
-  outline-width: 2px;
+  outline: var(--focus_outline);
+  outline-offset: var(--focus-outline__offset);
 }
 
 #vt_offcanvas_nav .vt-parent-org {
@@ -61,10 +59,8 @@ nav.navbar.navbar-expand-md.top-navbar ul.navbar-nav a:focus {
 }
 nav.navbar.navbar-expand-md.top-navbar ul.navbar-nav a:focus-visible {
   color: var(--hokieMaroon);
-  outline-color: var(--hokieMaroon);
-  outline-offset: 3px;
-  outline-style: dashed;
-  outline-width: 2px;
+  outline: var(--focus_outline);
+  outline-offset: var(--focus-outline__offset);
 }
 
 nav.navbar.navbar-expand-md.top-navbar ul.navbar-nav a:active {
@@ -89,16 +85,18 @@ li.nav-item.dropdown:hover div.dropdown-menu {
   }
 }
 
-p > a {
+p a,
+tr a {
   color: var(--hokieOrange) !important;
   text-decoration: underline !important;
 
   &:hover {
     color: var(--hokieMaroon) !important;
   }
-  &:focus {
+
+  &:focus-visible {
     color: var(--hokieMaroon) !important;
-    outline: 0.15em dashed var(--themeHighlightColor);
+    outline: var(--focus_outline);
     text-decoration: none !important;
   }
 }

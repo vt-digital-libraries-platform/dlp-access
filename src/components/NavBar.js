@@ -9,7 +9,7 @@ class NavBar extends Component {
     const sitePages = {};
     Object.keys(sitePageItems)
       .sort()
-      .forEach(function(key) {
+      .forEach(function (key) {
         sitePages[key] = sitePageItems[key];
       });
 
@@ -101,7 +101,7 @@ class NavBar extends Component {
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link" to="/collections">
+            <NavLink className="nav-link" to="/search?&category=collection">
               BROWSE COLLECTIONS
             </NavLink>
           </li>

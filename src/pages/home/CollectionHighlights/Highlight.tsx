@@ -19,32 +19,26 @@ export const Highlight: FC<Props> = ({ highlight, index, siteId }) => {
     return null;
   }
   return (
-    <div
-      className="col-md-6 col-lg-3"
-      role="group"
-      aria-roledescription="category card"
-    >
-      <a href={highlight.link}>
-        <div
-          className="category-container"
-          style={{
-            backgroundImage: `url(${imgSrc})`,
-            backgroundPosition: "center",
-            backgroundSize: "cover",
-          }}
-          data-testid={`collectionHighlight_${index}`}
-        >
-          <div className="category-details">
-            <span>{highlight.itemCount}</span>
-            <h3>{highlight.title}</h3>
-          </div>
-          <div className="category-link">
-            <p>
-              Explore<i className="fal fa-arrow-right"></i>
-            </p>
-          </div>
+    <li className="col-md-6 col-lg-3">
+      <a
+        className="focusable category-container"
+        href={highlight.link}
+        style={{
+          backgroundImage: `url(${imgSrc})`,
+          backgroundPosition: "center",
+          backgroundSize: "cover"
+        }}
+        data-testid={`collectionHighlight_${index}`}
+      >
+        <p className="category-link">
+          Explore
+          <i className="fal fa-arrow-right" aria-hidden="true"></i>
+        </p>
+        <div className="category-details">
+          <p className="highlight__count">{highlight.itemCount}</p>
+          <p>{highlight.title}</p>
         </div>
       </a>
-    </div>
+    </li>
   );
 };

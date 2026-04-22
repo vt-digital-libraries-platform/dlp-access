@@ -8,6 +8,7 @@ import { MultimediaSection } from "./home/MultimediaSection";
 import { SiteSponsors } from "./home/SiteSponsors";
 import { CollectionHighlights } from "./home/CollectionHighlights";
 
+import "../css/Typography.scss";
 import "../css/HomePage.scss";
 
 class HomePage extends Component {
@@ -38,7 +39,7 @@ class HomePage extends Component {
           site={this.props.site}
           template="{{title}}"
         />
-        <div className="home-wrapper">
+        <div className="home-wrapper typography-wrapper">
           <FeaturedStaticImage
             staticImage={staticImage}
             site={this.props.site}
@@ -46,40 +47,68 @@ class HomePage extends Component {
           <div className="container">
             <h1>
               <span className="sr-only">Virginia Tech </span>
-              {this.props.site.siteName === "Virginia Tech Digital Libraries"
-                ? "Digital Libraries Platform"
-                : this.props.site.siteName}
+              {(this.props.site.siteName === "Virginia Tech Digital Libraries"
+                ? "Digital Library Platform"
+                : this.props.site.siteName
+              )
+                .replace("Virginia Tech", "")
+                .replace("Home", "")
+                .trim()}
               <span className="sr-only"> Home</span>
             </h1>
             <HomeStatement homeStatement={homeStatement} />
-
             <h2>Search</h2>
             <div className="home-search-wrapper">
               <SearchBar filters={{}} view="Gallery" field="all" q="" />
             </div>
-
+            <h2 className="sr-only">Browse Links</h2>
             <div className="home-nav-links">
-              <a href="/search?&category=archive">View All Items</a>
-              <a href="/search?&category=collection">View All Collections</a>
+              <a
+                className="button-link--primary"
+                href="/search?&category=archive"
+              >
+                Browse Items
+              </a>
+              <a
+                className="button-link--primary"
+                href="/search?&category=collection"
+              >
+                Browse Collections
+              </a>
             </div>
-
-            <FeaturedItems
-              featuredItems={featuredItems}
-              site={this.props.site}
-            />
-
-            <MultimediaSection mediaSection={mediaSection} />
-
-            <SiteSponsors
-              sponsors={sponsors}
-              sponsorsStyle={sponsorsStyle}
-              site={this.props.site}
-            />
-
-            <CollectionHighlights
-              collectionHighlights={collectionHighlights}
-              site={this.props.site}
-            />
+            {featuredItems && featuredItems.length > 0 && (
+              <>
+                <FeaturedItems
+                  featuredItems={featuredItems}
+                  site={this.props.site}
+                />
+              </>
+            )}
+            {mediaSection && (
+              <>
+                <h2>Multimedia</h2>
+                <MultimediaSection mediaSection={mediaSection} />
+              </>
+            )}
+            {sponsors && sponsors.length > 0 && (
+              <>
+                <h2>Sponsors</h2>
+                <SiteSponsors
+                  sponsors={sponsors}
+                  sponsorsStyle={sponsorsStyle}
+                  site={this.props.site}
+                />
+              </>
+            )}
+            {collectionHighlights && collectionHighlights.length > 0 && (
+              <>
+                <h2>Highlights</h2>
+                <CollectionHighlights
+                  collectionHighlights={collectionHighlights}
+                  site={this.props.site}
+                />
+              </>
+            )}
           </div>
         </div>
       </>

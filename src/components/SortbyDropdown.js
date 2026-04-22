@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Dropdown } from "semantic-ui-react";
+import { Component } from "react";
+import "../css/Select.scss";
 
 class SortbyDropdown extends Component {
   constructor(props) {
@@ -36,10 +36,10 @@ class SortbyDropdown extends Component {
     }));
   };
 
-  updateSort = (e, { value }) => {
-    this.setState({ selectedValue: value });
+  updateSort = (e) => {
+    this.setState({ selectedValue: e.target.value });
 
-    let opt_arr = value.split(" ");
+    let opt_arr = e.target.value.split(" ");
     let sort = {
       field: opt_arr[0],
       direction: opt_arr[1]
@@ -48,22 +48,20 @@ class SortbyDropdown extends Component {
   };
 
   render() {
-    let selectedOpt = this.state.selectedValue.split(" ");
-    const text = `${this.formatField(selectedOpt[0])} ${this.formatDirection(
-      selectedOpt[0],
-      selectedOpt[1]
-    )}`;
     return (
-      <div className="form-group">
-        <label id="sort-label">Sort by</label>
-        <Dropdown
-          text={text}
-          selection
-          options={this.valueOptions()}
+      <div className="select-dropdown">
+        <label htmlFor="sort-opt-dropdown">Sort By:</label>
+        <select
+          id="sort-opt-dropdown"
+          defaultValue="title asc"
           onChange={this.updateSort}
-          aria-labelledby="sort-label"
-          aria-haspopup="listbox"
-        />
+        >
+          {this.valueOptions().map((option) => (
+            <option key={option.key} value={option.value}>
+              {option.text}
+            </option>
+          ))}
+        </select>
       </div>
     );
   }

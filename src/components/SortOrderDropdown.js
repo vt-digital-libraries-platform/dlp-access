@@ -1,14 +1,39 @@
 import { Component } from "react";
-import { Button, Dropdown, Icon } from "semantic-ui-react";
+import { Icon } from "semantic-ui-react";
+import "../css/Select.scss";
 
 class SortOrderDropdown extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      sortField: "title",
-      sortDirection: "asc"
+      sortField: props.sortOpt?.field || "title",
+      sortDirection: props.sortOpt?.direction || "asc"
     };
-    this.sortFieldOptions = [
+  }
+
+  handleFieldChange = (e) => {
+    this.setState((prevState) => ({
+      ...prevState,
+      sortField: e.target.value
+    }));
+    if (typeof this.props.setSortOrder === "function") {
+      this.props.setSortOrder(e.target.value, this.state.sortDirection);
+    }
+  };
+
+  handleSortOrderChange = () => {
+    const newSortOrder = this.state.sortDirection === "asc" ? "desc" : "asc";
+    this.setState((prevState) => ({
+      ...prevState,
+      sortDirection: newSortOrder
+    }));
+    if (typeof this.props.setSortOrder === "function") {
+      this.props.setSortOrder(this.state.sortField, newSortOrder);
+    }
+  };
+
+  render() {
+    const sortFieldOptions = [
       {
         key: "title",
         text: "Title",
@@ -70,44 +95,9 @@ class SortOrderDropdown extends Component {
         value: "tags"
       }
     ];
-  }
-
-  handleFieldChange = (_, result) => {
-    this.setState((prevState) => ({
-      ...prevState,
-      sortField: result.value
-    }));
-    if (typeof this.props.setSortOrder === "function") {
-      this.props.setSortOrder(result.value, this.state.sortDirection);
-    }
-  };
-
-  handleSortOrderChange = () => {
-    const newSortOrder = this.state.sortDirection === "asc" ? "desc" : "asc";
-    this.setState((prevState) => ({
-      ...prevState,
-      sortDirection: newSortOrder
-    }));
-    if (typeof this.props.setSortOrder === "function") {
-      this.props.setSortOrder(this.state.sortField, newSortOrder);
-    }
-  };
-
-  formatActiveDisplayText = () => {
-    try {
-      const currentSortOpt = this.sortFieldOptions.find(
-        (option) => option.value === this.state.sortField
-      );
-      return `Sort by ${currentSortOpt.text}`;
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  render() {
     return (
       <>
-        <Dropdown
+        {/* <Dropdown
           selection
           compact
           scrolling
@@ -119,21 +109,38 @@ class SortOrderDropdown extends Component {
           aria-haspopup="listbox"
           className="mr-2"
           title="Sort fields"
-        />
-        <Button
-          basic
-          icon
+        /> */}
+        <div className="select-dropdown mr-2">
+          <label htmlFor="sort-opt-dropdown">Sort By:</label>
+          <select
+            id="sort-opt-dropdown"
+            defaultValue="title"
+            onChange={this.handleFieldChange}
+          >
+            {sortFieldOptions.map((option) => (
+              <option key={option.key} value={option.value}>
+                {option.text}
+              </option>
+            ))}
+          </select>
+        </div>
+        <button
+          type="button"
           className="sort-btn"
-          title="Sort order"
-          aria-label="Sort order button"
           onClick={this.handleSortOrderChange}
         >
           {this.state.sortDirection === "asc" ? (
-            <Icon name="sort content ascending" className="sort-btn-icon" />
+            <>
+              <Icon name="sort amount up" className="sort-btn-icon" />
+              <span className="sr-only">Sort order: ascending</span>
+            </>
           ) : (
-            <Icon name="sort content descending" className="sort-btn-icon" />
+            <>
+              <Icon name="sort amount down" className="sort-btn-icon" />
+              <span className="sr-only">Sort order: descending</span>
+            </>
           )}
-        </Button>
+        </button>
       </>
     );
   }

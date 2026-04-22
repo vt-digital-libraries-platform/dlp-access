@@ -1,5 +1,4 @@
 import { Component } from "react";
-import { Dropdown } from "semantic-ui-react";
 
 class ResultsNumberDropdown extends Component {
   constructor(props) {
@@ -9,11 +8,11 @@ class ResultsNumberDropdown extends Component {
     };
   }
 
-  handleChange = (event, result) => {
+  handleChange = (event) => {
     this.setState({
-      selectedLimit: result.value
+      selectedLimit: event.target.value
     });
-    this.props.setLimit(event, result);
+    this.props.setLimit(event, { value: event.target.value });
   };
 
   formatActiveDisplayText = () => {
@@ -40,18 +39,20 @@ class ResultsNumberDropdown extends Component {
     ];
     return (
       <>
-        <Dropdown
-          title="Items per page"
-          selection
-          compact
-          text={this.formatActiveDisplayText()}
-          value={this.state.selectedLimit}
-          options={numberOptions}
-          onChange={this.handleChange}
-          aria-label="Results per page"
-          aria-haspopup="listbox"
-          className={this.props.className || ""}
-        />
+        <div className={`${this.props.className || ""}`.trim()}>
+          <label htmlFor="results-number-dropdown">Results per page:</label>
+          <select
+            id="results-number-dropdown"
+            defaultValue="10"
+            onChange={this.handleChange}
+          >
+            {numberOptions.map((option) => (
+              <option key={option.key} value={option.value}>
+                {option.value}
+              </option>
+            ))}
+          </select>
+        </div>
       </>
     );
   }

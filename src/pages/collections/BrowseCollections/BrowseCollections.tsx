@@ -126,7 +126,10 @@ export const BrowseCollections: FC<Props> = ({ scrollUp, site }) => {
                   updateFormState={handleSetView}
                   pageViews={["Gallery", "List"]}
                 />
-                <ResultsNumberDropdown setLimit={handleResultsNumberDropdown} />
+                <ResultsNumberDropdown
+                  className="select-dropdown"
+                  setLimit={handleResultsNumberDropdown}
+                />
               </div>
             </div>
           </div>

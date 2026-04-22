@@ -1,88 +1,101 @@
 .collection-highlights-wrapper {
-  padding: 40px 20px;
-  width: 100%;
-}
+  --card-background-color: hsl(from var(--vt-smoke-9s) h s l);
+  padding: 2.5rem 0;
 
-.collection-highlights-wrapper .category-container {
-  margin-top: 5px;
-  margin-bottom: 5px;
-}
-.collection-highlights-wrapper .category-container:hover,
-.collection-highlights-wrapper .category-container:focus {
-  border-color: var(--themeHighlightColor);
-}
+  &a,
+  &a:visited,
+  &a:hover {
+    color: black;
+    text-decoration: none;
+  }
 
-.collection-highlights-wrapper .category-container {
-  height: 350px;
-  display: flex;
-  flex-wrap: wrap;
-  text-align: center;
-}
+  .category-container {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 100%;
+    display: flex;
+    flex-direction: column-reverse; // Reversed so we keep the layout with "Explore" on the bottom but screen readers read "Explore [count] [title]"
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    text-align: center;
+    border-radius: 10px;
+    overflow: hidden;
+    outline-offset: 5px;
 
-.category-container .category-details {
-  width: 100%;
-  height: 80%;
-  background-color: rgba(31, 30, 30, 0.75);
-  padding: 80px 40px 0px 40px;
-}
-.category-container .category-details span {
-  font-family: "Acherus", sans-serif;
-  font-style: italic;
-  font-size: 60px;
-  color: white;
-  opacity: 1;
-  text-shadow: -2px 6px 3px #000000b5;
-}
+    transition: color 0.3s var(--transition-time-function),
+      box-shadow 0.3s var(--transition-time-function),
+      transform 0.3s var(--transition-time-function);
+    transform: translateY(0);
 
-.category-container .category-details h3 {
-  font-family: "Acherus", sans-serif;
-  color: white;
-  font-style: italic;
-  font-size: 1.25rem;
-}
+    &:hover,
+    &:focus,
+    &:focus-visible {
+      --boxShadowColor: hsl(
+        from var(--themeHighlightColor) h calc(s * 0.3) calc(l * 0.8) / 0.4
+      );
+      box-shadow: -1px 2px 2px var(--boxShadowColor),
+        -2px 4px 4px var(--boxShadowColor), 1px 6px 6px var(--boxShadowColor);
+      transform: translateY(-2px);
 
-.category-container .category-link {
-  width: 100%;
-  height: 20%;
-  background-color: rgba(31, 30, 30, 0.75);
-  border-top: 1px solid white;
-}
+      @media (prefers-reduced-motion: reduce) {
+        transform: none;
+      }
 
-.category-container .category-link p {
-  font-family: "gineso-condensed", sans-serif;
-  color: white;
-  font-size: 24px;
-  padding-top: 15px;
-}
+      .category-link {
+        -webkit-text-stroke: 3px transparent;
+        text-shadow: 0 0 6px transparent;
+        background-color: var(--themeHighlightColor);
+        transition: background-color 0.3s var(--transition-time-function),
+          text-shadow 0.3s var(--transition-time-function);
+      }
+    }
+  }
 
-.category-container .category-link .fa-arrow-right {
-  height: 21px;
-  width: 30px;
-  padding-left: 10px;
-}
+  .category-details,
+  .category-link {
+    background-color: hsl(from var(--card-background-color) h s l / 80%);
 
-.collection-highlights-wrapper .card-body .card-title {
-  font-family: "gineso-condensed", sans-serif;
-  font-size: 1.25rem;
-}
+    color: white;
+    paint-order: stroke fill;
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke: 3px hsl(from var(--card-background-color) h s l / 30%);
+    text-shadow: 0 0 6px var(--card-background-color);
+  }
 
-.collection-highlights-wrapper .card-body .card-text {
-  font-family: "Acherus", sans-serif;
-}
+  .category-container .category-details {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 4rem 32px;
 
-.collection-highlights-wrapper a,
-.collection-highlights-wrapper a:visited,
-.collection-highlights-wrapper a:hover {
-  color: black;
-  text-decoration: none;
-}
+    p {
+      font-family: "Acherus", sans-serif;
+      font-size: 1.25rem;
+      text-wrap-style: balance;
+    }
 
-.collection-highlights-heading {
-  margin-bottom: 40px;
-}
+    & > :first-child {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
 
-.collection-highlights-heading h2 {
-  font-family: "gineso-condensed", sans-serif;
-  text-align: center;
-  font-size: 2.1875rem;
+    .highlight__count {
+      font-size: 3.75rem;
+      margin-bottom: 0rem;
+      opacity: 1;
+    }
+  }
+
+  .category-link {
+    padding: 1.5rem 10px;
+    margin: 0;
+    border-top: 1px solid white;
+    font-family: "gineso-condensed", sans-serif;
+    font-size: 1.5rem;
+
+    svg {
+      margin-left: 1ch;
+    }
+  }
 }
