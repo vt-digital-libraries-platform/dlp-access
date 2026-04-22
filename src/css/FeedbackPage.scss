@@ -1,18 +1,7 @@
-.feedback-page-wrapper a,
-.feedback-page-wrapper a:visited {
-  color: var(--hokieOrange);
-}
-
-.feedback-page-wrapper a:hover,
-.feedback-page-wrapper a:focus,
-.feedback-page-wrapper a:active {
-  color: var(--hokieOrangeHover);
-}
-
-.feedback-page-wrapper h1 {
-  font-family: "gineso-condensed", sans-serif;
-  font-size: 2.625rem;
-  margin-bottom: 20px;
+.feedback-page-wrapper a:focus {
+  outline: 0.15em dashed var(--themeHighlightColor);
+  outline-offset: 2px;
+  text-decoration: none;
 }
 
 .feedback-content {
@@ -21,7 +10,6 @@
 }
 
 .feedback-instructions {
-  font-family: "Acherus", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
   margin-bottom: 30px;
@@ -38,7 +26,6 @@
 }
 
 .feedback-type-fieldset legend {
-  font-family: "gineso-condensed", sans-serif;
   font-size: 1.25rem;
   font-weight: 600;
   padding: 0 10px;
@@ -73,7 +60,6 @@
 }
 
 .radio-option label {
-  font-family: "Acherus", sans-serif;
   font-size: 1rem;
   cursor: pointer;
   margin: 0;
@@ -84,7 +70,6 @@
 }
 
 .form-control label {
-  font-family: "gineso-condensed", sans-serif;
   font-size: 1.15rem;
   font-weight: 600;
   display: block;
@@ -94,7 +79,6 @@
 .form-control textarea {
   width: 100%;
   padding: 12px;
-  font-family: "Acherus", sans-serif;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -111,7 +95,6 @@
 .form-control input[type="email"] {
   width: 100%;
   padding: 12px;
-  font-family: "Acherus", sans-serif;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -127,7 +110,6 @@
 .form-text {
   display: block;
   margin-top: 8px;
-  font-family: "Acherus", sans-serif;
   font-size: 0.9rem;
   color: #666;
 }
@@ -136,7 +118,6 @@
   padding: 15px 20px;
   margin-bottom: 20px;
   border-radius: 4px;
-  font-family: "Acherus", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
 }
@@ -162,7 +143,6 @@
 .submit-button {
   background-color: var(--hokieOrange);
   color: white;
-  font-family: "gineso-condensed", sans-serif;
   font-size: 1.15rem;
   font-weight: 600;
   padding: 12px 30px;
