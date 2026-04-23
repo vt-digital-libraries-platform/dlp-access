@@ -110,11 +110,11 @@ class NavBar extends Component {
               SEARCH
             </NavLink>
           </li>
-          <li className="nav-item">
+          {/* <li className="nav-item">
             <NavLink className="nav-link" to="/metadata">
               METADATA GUIDE
             </NavLink>
-          </li>
+          </li> */}
           {additionalListItems}
         </ul>
       </nav>

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import { SiteTitle } from "../components/SiteTitle";
 import { buildHeaderSchema } from "../lib/richSchemaTools";
-// import { generateMetadataFields } from "../lib/schemaParser";
+import { generateMetadataFields } from "../lib/schemaParser";
 
 import "../css/Editor.scss";
 import "../css/MetadataPage.scss";
@@ -71,193 +71,143 @@ class MetadataPage extends Component {
       : "Digital Library";
 
     // Metadata field definitions dynamically generated from GraphQL schema
-    let metadataFields = [];
-    // metadataFields = generateMetadataFields();
+    const metadataFields = generateMetadataFields();
 
-    if (!metadataFields || metadataFields.length === 0) {
-      return (
-        <>
-          <SiteTitle
-            data={{ title: "Metadata Guide" }}
-            site={this.props.site}
-            template="{{title}}"
-          />
-          <Helmet
-            script={[
-              { type: "text/javascript" },
-              {
-                type: "application/ld+json",
-                innerHTML: buildHeaderSchema(
-                  "Article",
-                  "MetadataPage",
-                  window.location.href,
-                  siteTitle
-                )
-              }
-            ]}
-          ></Helmet>
-          <meta
-            name="description"
-            content="Comprehensive metadata field guide for digital collections"
-          />
-          <div className="container metadata-page-wrapper typography-wrapper">
-            <h1>{title}</h1>
-            <div>
-              <div className="metadata-intro">
-                <p className="lead">In development.</p>
-                <p className="lead">
-                  This guide will provide detailed information about metadata
-                  fields used in the digital library platform. Fields marked as
-                  "Required" are mandatory. This is for basic metadata fields
-                  but for more complex metadata schemas (e.g., 3D objects)
-                  please contact{" "}
-                  <a href="mailto:digitallibraries@vt.edu">
-                    digitallibraries@vt.edu
-                  </a>
-                  .
-                </p>
-              </div>
+    return (
+      <>
+        <SiteTitle
+          data={{ title: "Metadata Guide" }}
+          site={this.props.site}
+          template="{{title}}"
+        />
+        <Helmet
+          script={[
+            { type: "text/javascript" },
+            {
+              type: "application/ld+json",
+              innerHTML: buildHeaderSchema(
+                "Article",
+                "MetadataPage",
+                window.location.href,
+                siteTitle
+              )
+            }
+          ]}
+        ></Helmet>
+        <meta
+          name="description"
+          content="Comprehensive metadata field guide for digital collections"
+        />
+        <div className="container metadata-page-wrapper typography-wrapper">
+          <h1>{title}</h1>
+          <div>
+            <div className="metadata-intro">
+              <p className="lead">
+                This guide provides detailed information about metadata fields
+                used in the digital library platform. Fields marked as
+                "Required" are mandatory. This is for basic metadata fields but
+                for more complex metadata schemas (e.g., 3D objects) please
+                contact{" "}
+                <a href="mailto:digitallibraries@vt.edu">
+                  digitallibraries@vt.edu
+                </a>
+                .
+              </p>
+              <button
+                className="button-link--primary download-csv-btn focusable"
+                role="link"
+                onClick={() => this.downloadCSV(metadataFields)}
+              >
+                <span className="sr-only">
+                  Download metadata field reference as CSV
+                </span>
+                <span aria-hidden="true">⬇ Download CSV</span>
+              </button>
             </div>
-          </div>
-        </>
-      );
-    } else {
-      return (
-        <>
-          <SiteTitle
-            data={{ title: "Metadata Guide" }}
-            site={this.props.site}
-            template="{{title}}"
-          />
-          <Helmet
-            script={[
-              { type: "text/javascript" },
-              {
-                type: "application/ld+json",
-                innerHTML: buildHeaderSchema(
-                  "Article",
-                  "MetadataPage",
-                  window.location.href,
-                  siteTitle
-                )
-              }
-            ]}
-          ></Helmet>
-          <meta
-            name="description"
-            content="Comprehensive metadata field guide for digital collections"
-          />
-          <div className="container metadata-page-wrapper typography-wrapper">
-            <h1>{title}</h1>
-            <div>
-              <div className="metadata-intro">
-                <p className="lead">
-                  This guide provides detailed information about metadata fields
-                  used in the digital library platform. Fields marked as
-                  "Required" are mandatory. This is for basic metadata fields
-                  but for more complex metadata schemas (e.g., 3D objects)
-                  please contact{" "}
-                  <a href="mailto:digitallibraries@vt.edu">
-                    digitallibraries@vt.edu
-                  </a>
-                  .
-                </p>
-                <button
-                  className="button-link--primary download-csv-btn focusable"
-                  role="link"
-                  onClick={() => this.downloadCSV(metadataFields)}
+            <h2 id="metadata-table-heading">Metadata Field Reference</h2>
+            <search>
+              <h3>Search Metadata Fields</h3>
+              <input
+                type="search"
+                className="field-search-input"
+                aria-labelledby="metadata-search-input-label"
+                value={this.state.searchQuery}
+                onChange={this.handleSearchChange}
+              />
+              <p id="metadata-search-input-label">
+                Search by name, label, type, or description. Results will be
+                filtered as you type.
+              </p>
+              <h3>Results</h3>
+              <section className="table-responsive metadata-table-section">
+                <table className="metadata-table" tabIndex="0" role="table">
+                  <caption className="sr-only">
+                    Metadata field reference table with column names, label
+                    names, data types, descriptions, and examples
+                  </caption>
+                  <thead>
+                    <tr>
+                      <th scope="col">Metadata Column Name</th>
+                      <th scope="col">Label Name</th>
+                      <th scope="col">Type</th>
+                      <th scope="col">Description</th>
+                      <th scope="col">Example</th>
+                    </tr>
+                  </thead>
+                  <tbody id="metadata-table-body">
+                    {metadataFields
+                      .filter((field) => {
+                        const query = this.state.searchQuery.toLowerCase();
+                        return (
+                          query === "" ||
+                          field.columnName.toLowerCase().includes(query) ||
+                          field.labelName.toLowerCase().includes(query) ||
+                          field.type.toLowerCase().includes(query) ||
+                          (field.required && "required".includes(query)) ||
+                          field.description.toLowerCase().includes(query) ||
+                          field.example.toLowerCase().includes(query)
+                        );
+                      })
+                      .map((field, index) => (
+                        <tr key={index}>
+                          <th scope="row" className="column-name">
+                            {field.columnName}
+                          </th>
+                          <td className="label-name">
+                            {field.required ? (
+                              <>
+                                {field.labelName}
+                                <br />
+                                <span className="required-indicator">
+                                  (Required)
+                                </span>
+                              </>
+                            ) : (
+                              field.labelName
+                            )}
+                          </td>
+                          <td className="type">{field.type}</td>
+                          <td className="description">{field.description}</td>
+                          <td className="example">
+                            <code>{field.example}</code>
+                          </td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+                <div
+                  aria-live="assertive"
+                  aria-atomic="true"
+                  id="no-results-live-region"
                 >
-                  <span className="sr-only">
-                    Download metadata field reference as CSV
-                  </span>
-                  <span aria-hidden="true">⬇ Download CSV</span>
-                </button>
-              </div>
-              <h2 id="metadata-table-heading">Metadata Field Reference</h2>
-              <search>
-                <h3>Search Metadata Fields</h3>
-                <input
-                  type="search"
-                  className="field-search-input"
-                  aria-labelledby="metadata-search-input-label"
-                  value={this.state.searchQuery}
-                  onChange={this.handleSearchChange}
-                />
-                <p id="metadata-search-input-label">
-                  Search by name, label, type, or description. Results will be
-                  filtered as you type.
-                </p>
-                <h3>Results</h3>
-                <section className="table-responsive metadata-table-section">
-                  <table className="metadata-table" tabIndex="0" role="table">
-                    <caption className="sr-only">
-                      Metadata field reference table with column names, label
-                      names, data types, descriptions, and examples
-                    </caption>
-                    <thead>
-                      <tr>
-                        <th scope="col">Metadata Column Name</th>
-                        <th scope="col">Label Name</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Description</th>
-                        <th scope="col">Example</th>
-                      </tr>
-                    </thead>
-                    <tbody id="metadata-table-body">
-                      {metadataFields
-                        .filter((field) => {
-                          const query = this.state.searchQuery.toLowerCase();
-                          return (
-                            query === "" ||
-                            field.columnName.toLowerCase().includes(query) ||
-                            field.labelName.toLowerCase().includes(query) ||
-                            field.type.toLowerCase().includes(query) ||
-                            (field.required && "required".includes(query)) ||
-                            field.description.toLowerCase().includes(query) ||
-                            field.example.toLowerCase().includes(query)
-                          );
-                        })
-                        .map((field, index) => (
-                          <tr key={index}>
-                            <th scope="row" className="column-name">
-                              {field.columnName}
-                            </th>
-                            <td className="label-name">
-                              {field.required ? (
-                                <>
-                                  {field.labelName}
-                                  <br />
-                                  <span className="required-indicator">
-                                    (Required)
-                                  </span>
-                                </>
-                              ) : (
-                                field.labelName
-                              )}
-                            </td>
-                            <td className="type">{field.type}</td>
-                            <td className="description">{field.description}</td>
-                            <td className="example">
-                              <code>{field.example}</code>
-                            </td>
-                          </tr>
-                        ))}
-                    </tbody>
-                  </table>
-                  <div
-                    aria-live="assertive"
-                    aria-atomic="true"
-                    id="no-results-live-region"
-                  >
-                    {this.state.resultsMessage}
-                  </div>
-                </section>
-              </search>
-            </div>
+                  {this.state.resultsMessage}
+                </div>
+              </section>
+            </search>
           </div>
-        </>
-      );
-    }
+        </div>
+      </>
+    );
   }
 }
 
