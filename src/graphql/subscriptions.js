@@ -1135,3 +1135,63 @@ export const onDeleteHistory = /* GraphQL */ `
     }
   }
 `;
+export const onCreateMetadataField = /* GraphQL */ `
+  subscription OnCreateMetadataField(
+    $filter: ModelSubscriptionMetadataFieldFilterInput
+  ) {
+    onCreateMetadataField(filter: $filter) {
+      id
+      columnName
+      labelName
+      type
+      required
+      description
+      example
+      category
+      sortOrder
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateMetadataField = /* GraphQL */ `
+  subscription OnUpdateMetadataField(
+    $filter: ModelSubscriptionMetadataFieldFilterInput
+  ) {
+    onUpdateMetadataField(filter: $filter) {
+      id
+      columnName
+      labelName
+      type
+      required
+      description
+      example
+      category
+      sortOrder
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteMetadataField = /* GraphQL */ `
+  subscription OnDeleteMetadataField(
+    $filter: ModelSubscriptionMetadataFieldFilterInput
+  ) {
+    onDeleteMetadataField(filter: $filter) {
+      id
+      columnName
+      labelName
+      type
+      required
+      description
+      example
+      category
+      sortOrder
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;

@@ -1376,3 +1376,47 @@ export const listHistories = /* GraphQL */ `
     }
   }
 `;
+export const getMetadataField = /* GraphQL */ `
+  query GetMetadataField($id: ID!) {
+    getMetadataField(id: $id) {
+      id
+      columnName
+      labelName
+      type
+      required
+      description
+      example
+      category
+      sortOrder
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const listMetadataFields = /* GraphQL */ `
+  query ListMetadataFields(
+    $filter: ModelMetadataFieldFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listMetadataFields(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        columnName
+        labelName
+        type
+        required
+        description
+        example
+        category
+        sortOrder
+        createdAt
+        updatedAt
+        __typename
+      }
+      nextToken
+      __typename
+    }
+  }
+`;
