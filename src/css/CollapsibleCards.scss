@@ -32,13 +32,11 @@ details summary.card-summary .card-summary-icon {
   display: inline-flex;
 }
 
-details summary.card-summary .expand-icon {
+details.card-details .expand-icon {
   margin-right: 0;
   margin-left: auto;
   font-size: 1.2rem;
-}
-
-details.card-details .expand-icon {
+  transition: 0.3s ease;
   transform: rotate(-90deg);
 }
 
