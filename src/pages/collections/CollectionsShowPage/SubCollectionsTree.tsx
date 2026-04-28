@@ -1,17 +1,29 @@
-import { FC } from "react";
+import { FC, SyntheticEvent } from "react";
 import { SimpleTreeView } from "@mui/x-tree-view/SimpleTreeView";
 import SvgIcon from "@mui/material/SvgIcon";
-import { useLoadMap } from "./useLoadMap";
 import { CollectionTreeItem } from "./CollectionTreeItem";
 
 type Props = {
   collection: Collection;
+  collectionMap: MapObject | null;
+  expanded: string[] | undefined;
+  handleToggle: (
+    event: SyntheticEvent<Element, Event>,
+    itemIds: string[]
+  ) => void;
 };
-export const SubCollectionsTree: FC<Props> = ({ collection }) => {
-  const { collectionMap, expanded, handleToggle } = useLoadMap(collection);
-
-  if (!collectionMap) {
-    return <div>Loading...</div>;
+export const SubCollectionsTree: FC<Props> = ({
+  collection,
+  collectionMap,
+  expanded,
+  handleToggle
+}) => {
+  if (
+    !collectionMap ||
+    !collectionMap.children.length ||
+    collection.collection_category === "iawa"
+  ) {
+    return <></>;
   }
 
   const CollapseIcon = () => {
