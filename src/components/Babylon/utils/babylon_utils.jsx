@@ -1,6 +1,11 @@
 import * as BABYLON from "@babylonjs/core";
 
-export const loadModel = async (url, scene, loadingScreen) => {
+export const loadModel = async (
+  url,
+  scene,
+  loadingScreen,
+  allowTransparency = false
+) => {
   const filename = url.split("/").pop();
   const path = url.replace(filename, "");
   let response,
@@ -24,10 +29,15 @@ export const loadModel = async (url, scene, loadingScreen) => {
   if (response?.meshes?.length > 0) {
     model = response.meshes[0];
     for (const mesh of response.meshes) {
+      // for debugging
       // mesh.showBoundingBox = true;
       mesh.checkCollisions = true;
       if (mesh.material) {
-        mesh.material.transparencyMode = BABYLON.Material.MATERIAL_OPAQUE;
+        if (!allowTransparency) {
+          mesh.material.transparencyMode = BABYLON.Material.MATERIAL_OPAQUE;
+        } else {
+          mesh.material.transparencyMode = BABYLON.Material.MATERIAL_ALPHABLEND;
+        }
       }
     }
   }

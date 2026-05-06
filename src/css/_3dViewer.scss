@@ -18,8 +18,6 @@
   }
 
   div#controls {
-    // border: 1px solid var(--dark-gray);
-    // border-radius: 5px;
     margin-top: 5px;
     padding: 10px;
     input[type="radio"],
@@ -34,6 +32,10 @@
     }
     #controls-top-row {
       display: none;
+    }
+    #controls-bottom-row {
+      padding: 0;
+      margin: 0;
     }
   }
 

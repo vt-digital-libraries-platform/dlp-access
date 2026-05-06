@@ -6,10 +6,12 @@ import MiradorViewer from "src/components/MiradorViewer";
 import X3DElement from "src/components/X3DElement";
 import "../../css/3D2Diiif.scss";
 import dragToRotateIcon from "../../images/drag_to_rotate.jpg";
+import BabylonElement from "../Babylon/BabylonElement";
 
 type Props = {
   item: {
     archiveOptions: string;
+    format: string;
     location: [number, number];
     manifest_url: string;
     thumbnail_path: string;
@@ -51,12 +53,9 @@ export const ThreeD2DiiifHandler: FC<Props> = ({ item, site }) => {
     };
 
     const x3dElement = document.getElementById("x3d-element-wrapper");
-
     if (x3dElement) {
       x3dElement.addEventListener("mousedown", handleMouseDown);
       x3dElement.addEventListener("touchstart", handleMouseDown);
-    } else {
-      console.log("x3dElement not found");
     }
 
     return () => {
@@ -92,7 +91,11 @@ export const ThreeD2DiiifHandler: FC<Props> = ({ item, site }) => {
   }, [threeD, fullScreen, item.title]);
 
   const getThreeDThumb = () => {
-    return options?.assets?.morpho_thumb || item.thumbnail_path;
+    return (
+      options?.assets?.thumbnail ||
+      options?.assets?.morpho_thumb ||
+      item.thumbnail_path
+    );
   };
 
   const getIIIFThumb = () => {
@@ -112,59 +115,45 @@ export const ThreeD2DiiifHandler: FC<Props> = ({ item, site }) => {
   };
 
   const primarySectionContent = () => {
+    let primaryContent = <></>;
+    let width = document.getElementById("image-wrapper")?.offsetWidth;
+    let height = document.getElementById("image-wrapper")?.offsetHeight;
+    const _3dFormat =
+      options.assets.media_type === "3d_2diiif" && options.assets.gltf_config
+        ? "gltf"
+        : "x3d";
+
+    if (_3dFormat === "gltf") {
+      try {
+        primaryContent = gltfContent();
+      } catch (e) {
+        console.error(e);
+      }
+    } else if (_3dFormat === "x3d") {
+      try {
+        primaryContent = x3dContent(width, height);
+      } catch (e) {
+        console.error(e);
+      }
+    }
+    return primaryContent;
+  };
+
+  const x3dContent = (
+    width: number | undefined,
+    height: number | undefined
+  ) => {
     return (
       <>
         <div
-          style={{ height: imageWrapperHeight }}
-          hidden={threeD !== "primary"}
+          className={`x3d-vis ${threeD === "primary" ? "primary" : "hidden"}`}
+          id="x3d-element-wrapper"
         >
-          <div
-            className="options-wrapper"
-            id="options-wrapper"
-            ref={optionsRef}
-          >
-            <h4 style={{ marginBottom: 0 }}>{item.title}</h4>
-            <Tooltip
-              title={fullScreen ? "Exit full screen" : "Enter full screen"}
-              arrow
-              slotProps={{
-                popper: {
-                  disablePortal: true,
-                  modifiers: [
-                    {
-                      name: "offset",
-                      options: {
-                        offset: [0, -6]
-                      }
-                    }
-                  ]
-                }
-              }}
-            >
-              <button onClick={handleFullscreen} className="fullscreen-toggle">
-                {fullScreen ? (
-                  <>
-                    <FontAwesomeIcon
-                      icon={faCompress}
-                      className="toggle-icon"
-                    />
-                    <span className="sr-only">Exit full screen</span>
-                  </>
-                ) : (
-                  <>
-                    <FontAwesomeIcon icon={faExpand} className="toggle-icon" />
-                    <span className="sr-only">Enter full screen</span>
-                  </>
-                )}
-              </button>
-            </Tooltip>
-          </div>
-          <div
-            id="x3d-element-wrapper"
-            style={{ height: imageWrapperHeight - optionsWrapperHeight }}
-          >
-            <X3DElement url={options.assets.x3d_config} />
-          </div>
+          <X3DElement
+            url={options.assets.x3d_config}
+            frameWidth={width}
+            frameHeight={width}
+          />
           {showImage && (
             <div className="drag-to-rotate-container">
               <img
@@ -178,7 +167,7 @@ export const ThreeD2DiiifHandler: FC<Props> = ({ item, site }) => {
         </div>
         {item.manifest_url && (
           <div
-            style={{ height: imageWrapperHeight, width: "100%" }}
+            style={{ height: height, width: width }}
             hidden={threeD === "primary"}
           >
             <MiradorViewer
@@ -188,6 +177,40 @@ export const ThreeD2DiiifHandler: FC<Props> = ({ item, site }) => {
               hidden={threeD === "primary"}
             />
           </div>
+        )}
+      </>
+    );
+  };
+
+  const gltfContent = () => {
+    return (
+      <>
+        <div
+          className={`gltf-vis ${threeD === "primary" ? "primary" : "hidden"}`}
+          id="gltf-element-wrapper"
+        >
+          <div className="image-wrapper" id="image-wrapper">
+            <BabylonElement
+              model={options.assets.gltf_config}
+              env={options.assets.env_config}
+              scaleFactor={
+                options.config?._3d?.scale_factor || options.assets.scale_factor
+              }
+              rotation={
+                options.config?._3d?.rotation || options.assets.rotation
+              }
+              item={item}
+              _3dConfig={options?.config?._3d}
+            />
+          </div>
+        </div>
+        {item.manifest_url && (
+          <MiradorViewer
+            item={item}
+            site={site}
+            type="3d_2diiif"
+            hidden={threeD === "primary"}
+          />
         )}
       </>
     );

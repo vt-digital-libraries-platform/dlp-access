@@ -415,7 +415,7 @@ export const getParentCollectionForItem = async (item) => {
   let response = null;
 
   try {
-    if (item.parent_collection && item.parent_collection.length > 0) {
+    if (item?.parent_collection && item?.parent_collection.length > 0) {
       response = await API.graphql(
         graphqlOperation(queries.getCollection, {
           id: item.parent_collection[0]

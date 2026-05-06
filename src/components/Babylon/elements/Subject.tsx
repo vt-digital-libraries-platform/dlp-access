@@ -7,15 +7,18 @@ class Subject {
   private modelMaxSize: number;
   private scene: BABYLON.Scene;
   private loadingScreen?: BABYLON.ILoadingScreen | null;
+  private allowTransparency: boolean;
   constructor(
     model: string,
     scene: BABYLON.Scene,
     scaleFactor: number,
+    allowTransparency: boolean,
     loadingScreen?: BABYLON.ILoadingScreen | null
   ) {
     this.model = null;
     this.scene = scene;
     this.loadingScreen = loadingScreen;
+    this.allowTransparency = allowTransparency || false;
     this.modelDimensions = new BABYLON.Vector3(0, 0, 0);
     this.modelMaxSize = 0;
 
@@ -23,7 +26,12 @@ class Subject {
   }
 
   async init(model: string, scaleFactor: number) {
-    this.model = await loadModel(model, this.scene, this.loadingScreen);
+    this.model = await loadModel(
+      model,
+      this.scene,
+      this.loadingScreen,
+      this.allowTransparency
+    );
     if (!this.model) {
       console.error("Failed to load model:", model);
       return;
@@ -37,14 +45,15 @@ class Subject {
     this.scaleModel(this.model, scaleFactor);
     this.model.checkCollisions = true;
 
-    // position model
-    const objectHoverHeight = this.modelDimensions._y / 2;
-    this.model.position = new BABYLON.Vector3(0, objectHoverHeight, 0);
+    // position model at origin
+    this.model.position = new BABYLON.Vector3(0, 0, 0);
   }
 
   scaleModel(model: BABYLON.AbstractMesh, scaleFactor: number | null) {
     for (const mesh of model.getChildMeshes()) {
-      mesh.scaling.scaleInPlace(scaleFactor || 1);
+      mesh.scaling.scaleInPlace(scaleFactor || 150);
+      // for debugging: show bounding box
+      // mesh.showBoundingBox = true;
     }
   }
 

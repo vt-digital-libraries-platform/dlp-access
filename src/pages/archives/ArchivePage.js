@@ -79,6 +79,7 @@ class ArchivePage extends Component {
     );
     try {
       const item = response.data.searchArchives.items[0];
+      console.log("item", item);
       const collection = await getParentCollectionForItem(item);
       const topLevelParentCollection = await getTopLevelParentForCollection(
         collection
@@ -180,14 +181,32 @@ class ArchivePage extends Component {
   is3D_2DiiifType(item) {
     try {
       const options = JSON.parse(item.archiveOptions);
-      return (
-        item.format.indexOf("model/x3d") !== -1 &&
-        !!options.assets.x3d_config &&
-        !!options.assets.x3d_src_img
-      );
+      const is3D_2Diiif =
+        options.assets.media_type === "3d_2diiif" && !!item.manifest_url;
+      const hasX3DandTIFF =
+        item.format?.indexOf("model/x3d") !== -1 &&
+        item.format?.indexOf("image/tiff") !== -1;
+      const hasGLTFandEnv =
+        !!options.assets.gltf_config && !!options.assets.env_config;
+      return is3D_2Diiif && (hasX3DandTIFF || hasGLTFandEnv);
     } catch (error) {
       return false;
     }
+  }
+
+  isX3DType(item) {
+    let match = false;
+    try {
+      const options = JSON.parse(item.archiveOptions);
+      const type = options.assets.media_type;
+      match =
+        type === "3d-model/x3dom" &&
+        !!options.assets.x3d_config &&
+        !!options.assets.x3d_src_img;
+    } catch (error) {
+      return false;
+    }
+    return match;
   }
 
   isGLTFType(item) {
@@ -230,7 +249,16 @@ class ArchivePage extends Component {
       720
     );
 
-    if (this.isGLTFType(item)) {
+    if (this.is3D_2DiiifType(item)) {
+      display = (
+        <ThreeD2DiiifHandler
+          item={item}
+          frameWidth={width}
+          frameHeight={width}
+          site={this.props.site}
+        />
+      );
+    } else if (this.isGLTFType(item)) {
       let options = {};
       try {
         options = JSON.parse(item.archiveOptions);
@@ -243,21 +271,27 @@ class ArchivePage extends Component {
           <BabylonElement
             model={options.assets.gltf_config}
             env={options.assets.env_config}
-            scaleFactor={options.assets.scale_factor}
-            rotation={options.assets.rotation}
+            scaleFactor={
+              options.config?._3d?.scale_factor || options.assets.scale_factor
+            }
+            rotation={options.config?._3d?.rotation || options.assets.rotation}
             item={item}
             _3dConfig={options?.config?._3d}
           />
         </div>
       );
-    } else if (this.is3D_2DiiifType(item)) {
+    } else if (this.isX3DUrl(item.manifest_url)) {
       display = (
-        <ThreeD2DiiifHandler
-          item={item}
-          frameWidth={width}
-          frameHeight={width}
-          site={this.props.site}
-        />
+        <div
+          className="obj-wrapper"
+          style={{ width: `${width}px`, height: "100px" }}
+        >
+          <X3DElement
+            url={item.manifest_url}
+            frameSize={width}
+            frameHeight={100}
+          />
+        </div>
       );
     } else if (this.isMiradorURL(item.manifest_url, item)) {
       display = <MiradorViewer item={item} site={this.props.site} />;
@@ -317,19 +351,6 @@ class ArchivePage extends Component {
       display = (
         <div className="obj-wrapper" style={{ width: `${width}px` }}>
           <MtlElement mtl={item.manifest_url} />
-        </div>
-      );
-    } else if (this.isX3DUrl(item.manifest_url)) {
-      display = (
-        <div
-          className="obj-wrapper"
-          style={{ width: `${width}px`, height: "100px" }}
-        >
-          <X3DElement
-            url={item.manifest_url}
-            frameSize={width}
-            frameHeight={100}
-          />
         </div>
       );
     } else {

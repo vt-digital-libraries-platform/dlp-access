@@ -8,9 +8,9 @@ import Camera from "./elements/Camera";
 import FlashCard from "./elements/addOns/FlashCard";
 
 class BabylonController {
-  constructor(options) {
+  constructor(props) {
     registerBuiltInLoaders();
-    this.options = options;
+    this.props = props;
     this.canvasWrapper = document.getElementById("canvas-wrapper");
     this.canvas = this.createCanvas(this.canvasWrapper);
     this.engine = new BABYLON.Engine(this.canvas, true);
@@ -27,17 +27,17 @@ class BabylonController {
     this.percentLoaded = null;
 
     this.initialPosition = new BABYLON.Vector3(0, 0.5, 10);
+    this.initialRadius = 4;
+
     this.initialRotationVector = new BABYLON.Vector3(
-      this.options?.rotation?.horizontal || Math.PI / 2,
-      this.options?.rotation?.vertical || Math.PI / 2,
+      this.props?.rotation?.horizontal || 0,
+      this.props?.rotation?.vertical || Math.PI / 2,
       0
     );
-    // -Math.PI / 2
-    this.initialRotation = this.options.rotation || {
-      horizontal: Math.PI / 2,
+    this.initialRotation = this.props.rotation || {
+      horizontal: 0,
       vertical: Math.PI / 2
     };
-    this.initialRadius = 3;
 
     this.createScene();
     this.addListeners();
@@ -74,21 +74,27 @@ class BabylonController {
       this.engine,
       this.canvasWrapper
     ).getLoadingScreen();
-    // this.engine.loadingScreen = this.loadingScreen;
-    // this.engine.loadingScreen.displayLoadingUI();
 
     // Create the environment around the subject
-    const environment = new Environment(this.scene, this.options.env);
+    const environment = new Environment(this.scene, this.props.env);
+
+    // for debugging
+    // this.axesViewer = new BABYLON.AxesViewer(this.scene, 0.5);
 
     // load and position ground
-    const GROUND_DIAMETER = 100;
+    const GROUND_DIAMETER = 0.5;
     const groundModel = new Ground(this.scene, GROUND_DIAMETER);
+    const scaleFactor =
+      typeof this.props.scaleFactor === "number"
+        ? this.props.scaleFactor
+        : parseFloat(this.props.scaleFactor);
 
     // load the subject model
     this.model = new Subject(
-      this.options.model,
+      this.props.model,
       this.scene,
-      this.options.scaleFactor,
+      scaleFactor,
+      this.props._3dConfig?.allowTransparency || false,
       this.loadingScreen
     );
 
@@ -119,8 +125,8 @@ class BabylonController {
     this.scene.activeCamera = this.ArcRotateCamera.active;
 
     // addOns from config
-    if (this.options?._3dConfig?.addOns?.length > 0) {
-      this.handleAddOns(this.options._3dConfig.addOns);
+    if (this.props?._3dConfig?.addOns?.length > 0) {
+      this.handleAddOns(this.props._3dConfig.addOns);
     }
 
     // this.engine.hideLoadingUI();
@@ -138,7 +144,7 @@ class BabylonController {
   handleAddOn(addOn) {
     switch (addOn.type) {
       case "flash_card":
-        const flashCard = new FlashCard(this.scene, this.options, addOn);
+        const flashCard = new FlashCard(this.scene, this.props, addOn);
         break;
       default:
         console.warn(`Unknown add-on type: ${addOn.type}`);
@@ -194,7 +200,7 @@ class BabylonController {
     canvas.style.width = "100%";
     canvas.style.height = "100%";
     canvas.id = "three-d-canvas";
-    canvas.setAttribute("aria-label", this.options?.item?.title || "3d model");
+    canvas.setAttribute("aria-label", this.props?.item?.title || "3d model");
     canvas.setAttribute("aria-roleDescription", "3d model");
     canvasWrapper.innerHTML = "";
     canvasWrapper.appendChild(canvas);
