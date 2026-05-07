@@ -79,11 +79,28 @@ class ArchivePage extends Component {
     );
     try {
       const item = response.data.searchArchives.items[0];
-      console.log("item", item);
+      if (!item) {
+        this.setState({
+          isError: true
+        });
+        return;
+      }
       const collection = await getParentCollectionForItem(item);
+      if (!collection) {
+        this.setState({
+          isError: true
+        });
+        return;
+      }
       const topLevelParentCollection = await getTopLevelParentForCollection(
         collection
       );
+      if (!topLevelParentCollection) {
+        this.setState({
+          isError: true
+        });
+        return;
+      }
 
       const collectionCustomKey = topLevelParentCollection.custom_key;
       const archiveSchema = this.buildArchiveSchema(item);
