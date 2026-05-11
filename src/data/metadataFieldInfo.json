@@ -13,12 +13,26 @@
     "description": "Alternate or variant titles",
     "example": "Adult teeth clacker; url: https://digital.lib.vt.edu/archive/77af7ceb"
   },
+  "alt_text": {
+    "labelName": "Alt Text",
+    "type": "String",
+    "required": "Yes",
+    "description": "Alternative text for screen readers - must not be empty string to avoid erroneously marking items as decorative",
+    "example": "page1: Detail of barn structure"
+  },
   "archiveOptions": {
     "labelName": "ArchiveOptions",
     "type": "JSON",
     "required": "No",
     "description": "ArchiveOptions field",
     "example": "Contact us if you have 3D objects for formatting"
+  },
+  "archived": {
+    "labelName": "Archived Status",
+    "type": "Boolean",
+    "required": "Yes",
+    "description": "Whether item meets Title II accessibility requirements - defaults to true before Title II deadline, after deadline any new/updated records must have accessibility compliance",
+    "example": "Photograph of Floyd County Historical Collection:  Aerial of the Blue Ridge Parkway"
   },
   "basis_of_record": {
     "labelName": "Basis Of Record",
@@ -38,15 +52,15 @@
     "labelName": "Collection",
     "type": "Collection",
     "required": "No",
-    "description": "Collection field",
-    "example": "N/A"
+    "description": "System generated collection id",
+    "example": "6282d06c-1559-4769-bc73-8fd8e4f01844"
   },
   "conforms_to": {
     "labelName": "Conforms To",
     "type": "String (Repeatable)",
     "required": "No",
-    "description": "Conforms To field",
-    "example": ""
+    "description": "Standard to which the described resource conforms.",
+    "example": "https://iiif.io/api/presentation/3/"
   },
   "contributor": {
     "labelName": "Contributor",
@@ -73,8 +87,8 @@
     "labelName": "Created",
     "type": "String (Repeatable)",
     "required": "No",
-    "description": "Created field",
-    "example": ""
+    "description": "Date of creation of the resource",
+    "example": "3/25/1941"
   },
   "creator": {
     "labelName": "Creator",
@@ -118,6 +132,27 @@
     "description": "Download Link field",
     "example": "https://www.morphosource.org/concern/biological_specimens/000621373"
   },
+  "embargo_end_date": {
+    "labelName": "Embargo End Date",
+    "type": "String",
+    "required": "No",
+    "description": "Embargo End Date field",
+    "example": "12/10/2021"
+  },
+  "embargo_note": {
+    "labelName": "Embargo Note",
+    "type": "String",
+    "required": "No",
+    "description": "Embargo Note field",
+    "example": "Restricted by the collection manager until embargo end date"
+  },
+  "embargo_start_date": {
+    "labelName": "Embargo Start Date",
+    "type": "String",
+    "required": "No",
+    "description": "Embargo Start Date field",
+    "example": "12/1/2021"
+  },
   "end_date": {
     "labelName": "End Date",
     "type": "String (Date)",
@@ -130,7 +165,7 @@
     "type": "Boolean",
     "required": "No",
     "description": "Explicit field",
-    "example": ""
+    "example": "True/False"
   },
   "extent": {
     "labelName": "Extent",
@@ -138,6 +173,13 @@
     "required": "No",
     "description": "Size or duration of the resource",
     "example": "8 pages"
+  },
+  "extracted_text": {
+    "labelName": "Extracted text",
+    "type": "AWSJSON",
+    "required": "No",
+    "description": "Text extracted from the item",
+    "example": "{\"page1\": \"The records of the Virginia Tech Libraries...\", \"page2\": \"Chapter 1: Introduction...\"}"
   },
   "format": {
     "labelName": "Format",
@@ -157,22 +199,22 @@
     "labelName": "Has Format",
     "type": "String (Repeatable)",
     "required": "No",
-    "description": "Has Format field",
-    "example": ""
+    "description": "another resource that is the same content in a different format",
+    "example": "https://digital.lib.vt.edu/archive/s253n52s"
   },
   "has_part": {
     "labelName": "Has Part",
     "type": "String (Repeatable)",
     "required": "No",
     "description": "Component parts of this resource",
-    "example": " "
+    "example": "Chapter 1"
   },
   "has_version": {
     "labelName": "Has Version",
     "type": "String (Repeatable)",
     "required": "No",
-    "description": "Has Version field",
-    "example": ""
+    "description": "A related resource that is a version, edition, or adaptation of the described resource.",
+    "example": "First edition"
   },
   "heirarchy_path": {
     "labelName": "Heirarchy Path",
@@ -199,29 +241,29 @@
     "labelName": "Is Format Of",
     "type": "String (Repeatable)",
     "required": "No",
-    "description": "Is Format Of field",
-    "example": ""
+    "description": "The physical original this digital item is derived from",
+    "example": "Ms1990-057_box1_folder3.tif"
   },
   "is_part_of": {
     "labelName": "Is Part Of",
     "type": "String (Repeatable)",
     "required": "No",
     "description": "Collection or resource this is part of",
-    "example": "\"Ms1990-057, Folder 11\" || \"Pardy Residence\""
+    "example": "Ms1990-057"
   },
   "is_version_of": {
     "labelName": "Is Version Of",
     "type": "String (Repeatable)",
     "required": "No",
     "description": "Is Version Of field",
-    "example": "https://hub.catalogit.app/8896/folder/16957660-1e34-11ed-938c-b3b1b0b61c9e/entry/4723ef90-1efd-11ed-8ab2-1300b398da90"
+    "example": "Folder 11 || Pardy Residence"
   },
   "item_category": {
     "labelName": "Item Category",
     "type": "String",
     "required": "Yes",
     "description": "Category for item-level access control",
-    "example": "Default"
+    "example": "https://hub.catalogit.app/8896/folder/16957660-1e34-11ed-938c-b3b1b0b61c9e/entry/4723ef90-1efd-11ed-8ab2-1300b398da90"
   },
   "language": {
     "labelName": "Language",
@@ -235,14 +277,14 @@
     "type": "String (Repeatable)",
     "required": "No",
     "description": "License information for the resource",
-    "example": "http://creativecommons.org/publicdomain/zero/1.0/\""
+    "example": "http://creativecommons.org/publicdomain/zero/1.0/"
   },
   "location": {
     "labelName": "Location",
     "type": "URI / Identifier (Repeatable)",
     "required": "No",
     "description": "Related items or collections",
-    "example": " \"34.186672\" ||\"-118.448742\""
+    "example": "34.186672 ||-118.448742"
   },
   "manifest_file_characterization": {
     "labelName": "Manifest File Characterization",
@@ -277,14 +319,14 @@
     "type": "String (Repeatable)",
     "required": "No",
     "description": "Alternative identifiers for this resource",
-    "example": " \"Occurrence ID: 565cbc5e-1449-484c-9841-d5d6689ad2bc\"|| \"Record ID: 565cbc5e-1449-484c-9841-d5d6689ad2bc\" "
+    "example": "Occurrence ID: 565cbc5e-1449-484c-9841-d5d6689ad2bc|| Record ID: 565cbc5e-1449-484c-9841-d5d6689ad2bc"
   },
   "parent_collection": {
     "labelName": "Parent Collection",
     "type": "String (Repeatable)",
     "required": "No",
     "description": "Parent collection identifier",
-    "example": "CIDA"
+    "example": "ba27d970-1b39-4190-be1e-eeadd3cbbca4"
   },
   "parent_collection_identifier": {
     "labelName": "Parent Collection Identifier",
@@ -292,6 +334,20 @@
     "required": "No",
     "description": "Parent Collection Identifier field",
     "example": "CIDA"
+  },
+  "partner": {
+    "labelName": "Partner",
+    "type": "String(Repeatable)",
+    "required": "No",
+    "description": "Partner field",
+    "example": "SCUA"
+  },
+  "partner_id": {
+    "labelName": "Partner Id",
+    "type": "String(Repeatable)",
+    "required": "No",
+    "description": "Partner Id field",
+    "example": "System generated"
   },
   "provenance": {
     "labelName": "Provenance",
@@ -319,7 +375,7 @@
     "type": "String (Repeatable)",
     "required": "No",
     "description": "Related items or collections",
-    "example": " "
+    "example": "https://liberalarts.vt.edu/research-centers/center-for-humanities.html"
   },
   "repository": {
     "labelName": "Repository",
@@ -331,16 +387,16 @@
   "rights": {
     "labelName": "Rights Statement",
     "type": "String (Repeatable)",
-    "required": "Yes",
-    "description": "Rights and access information",
-    "example": "\"http://rightsstatements.org/vocab/InC-NC/1.0/\" "
+    "required": "Conditional",
+    "description": "Rights and access information. Either rights or rights_holder must be provided",
+    "example": "http://rightsstatements.org/vocab/InC-NC/1.0/"
   },
   "rights_holder": {
     "labelName": "Rights Holder",
     "type": "String (Repeatable)",
-    "required": "No",
-    "description": "Entity holding intellectual property rights",
-    "example": "\"Virginia Polytechnic Institute and State University. Department of Entomology\" "
+    "required": "Conditional",
+    "description": "Entity holding intellectual property rights.  Either rights or rights_holder must be provided",
+    "example": "Virginia Polytechnic Institute and State University. Department of Entomology"
   },
   "source": {
     "labelName": "Source",
@@ -354,7 +410,7 @@
     "type": "String (Repeatable)",
     "required": "No",
     "description": "Geographic location associated with the item",
-    "example": "\"Germany\""
+    "example": "Germany"
   },
   "start_date": {
     "labelName": "Start Date",
@@ -375,7 +431,14 @@
     "type": "String (Repeatable)",
     "required": "No",
     "description": "Informal keywords or tags",
-    "example": " \"iiif\"||\"entomology\""
+    "example": "iiiif || entomology"
+  },
+  "taxonomy": {
+    "labelName": "Taxonomy",
+    "type": "Multi-Valued String (Repeatable)",
+    "required": "No",
+    "description": "Taxonomy field",
+    "example": "Kingdom: Animalia Phylum: Arthropoda Clade: Pancrustacea Class: Insecta Order: Lepidoptera Family: Pieridae Genus: Eurema Species: Abaeis nicippe"
   },
   "temporal": {
     "labelName": "Temporal Coverage",
@@ -397,6 +460,13 @@
     "required": "Yes",
     "description": "Official title of the resource",
     "example": "Aerial of the Blue Ridge Parkway"
+  },
+  "title_template": {
+    "labelName": "Title Template",
+    "type": "String (Repeatable)",
+    "required": "No",
+    "description": "A template string for auto-generating titles",
+    "example": "Special Collections and University Archives, Virginia Tech."
   },
   "type": {
     "labelName": "Resource Type",
@@ -431,7 +501,7 @@
     "type": "String",
     "required": "Yes",
     "description": "Category for collection-level access control",
-    "example": "Default"
+    "example": "System generated"
   },
   "collectionmap": {
     "labelName": "Collectionmap (Collection)",
@@ -461,25 +531,11 @@
     "description": "Ownerinfo field (Collection-level only)",
     "example": "System generated"
   },
-  "visualDescription": {
+  "visual_description": {
     "labelName": "Visual Description",
     "type": "JSON (Dictionary)",
-    "required": "No",
+    "required": "Yes",
     "description": "Detailed visual description for accessibility - stores description for the whole item and for each page/file in the item record",
-    "example": "{item\": \"Black-and-white photograph showing the Blue Ridge Parkway bordered by forested and agricultural land.\""
-  },
-  "alt": {
-    "labelName": "Alt Text",
-    "type": "String",
-    "required": "No",
-    "description": "Alternative text for screen readers - must not be empty string to avoid erroneously marking items as decorative",
-    "example": " \"page1\": \"Detail of barn structure\"}\""
-  },
-  "archived": {
-    "labelName": "Archived Status",
-    "type": "Boolean",
-    "required": "No",
-    "description": "Whether item meets Title II accessibility requirements - defaults to true before Title II deadline, after deadline any new/updated records must have accessibility compliance",
-    "example": "Photograph of Floyd County Historical Collection:  Aerial of the Blue Ridge Parkway"
+    "example": "Black-and-white photograph showing the Blue Ridge Parkway bordered by forested and agricultural land."
   }
 }
