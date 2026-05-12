@@ -18,11 +18,7 @@ export const SubCollectionsTree: FC<Props> = ({
   expanded,
   handleToggle
 }) => {
-  if (
-    !collectionMap ||
-    !collectionMap.children.length ||
-    collection.collection_category === "iawa"
-  ) {
+  if (!collectionMap || !collectionMap.children.length) {
     return <></>;
   }
 
