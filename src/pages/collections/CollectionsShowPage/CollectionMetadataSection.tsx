@@ -27,7 +27,7 @@ export const CollectionMetadataSection: FC<Props> = ({
   const { collectionMap, expanded, handleToggle } = useLoadMap(collection);
   if (collection) {
     const needsMap = () => {
-      return collectionMap && collectionMap.children.length;
+      return collectionMap?.children?.length;
     };
     return (
       <>
