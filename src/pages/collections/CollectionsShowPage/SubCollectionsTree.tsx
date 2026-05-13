@@ -18,7 +18,7 @@ export const SubCollectionsTree: FC<Props> = ({
   expanded,
   handleToggle
 }) => {
-  if (!collectionMap || !collectionMap.children.length) {
+  if (!collectionMap || !collectionMap?.children?.length) {
     return <></>;
   }
 
