@@ -4,6 +4,52 @@ import "../css/ListPages.scss";
 import parse from "html-react-parser";
 import sanitizeHtml from "sanitize-html";
 
+/**
+ * Auto-detects URLs in text and converts them to proper <a href="..."> elements.
+ * Also fixes <a> tags that are missing href attributes.
+ *
+ * @param {string} html - The HTML content to process
+ * @returns {string} - HTML with properly formatted links
+ */
+function autoLinkHTML(html) {
+  if (!html || typeof html !== "string") {
+    return html;
+  }
+
+  // Step 1: Fix <a> tags without href attribute
+  // Match: <a>URL</a> or <a ...attributes...>URL</a> where href is missing
+  html = html.replace(
+    /<a(?![^>]*href=)([^>]*)>((?:https?:\/\/|www\.)[^\s<]+)<\/a>/gi,
+    (match, attrs, url) => {
+      // If URL starts with www., add https://
+      const fullUrl = url.startsWith("www.") ? `https://${url}` : url;
+      // Preserve any existing attributes
+      return `<a href="${fullUrl}"${attrs}>${url}</a>`;
+    }
+  );
+
+  // Step 2: Auto-detect and wrap plain URLs that aren't already in anchor tags
+  // This regex matches URLs that are NOT already inside <a> tags
+  // Match URLs: http://, https://, or www.
+  const urlRegex =
+    /(?<!<a[^>]*>)(?<!href=["'])(?<!src=["'])((?:https?:\/\/|www\.)[^\s<>"']+)(?![^<]*<\/a>)/gi;
+
+  html = html.replace(urlRegex, (match) => {
+    // Check if this URL is inside an existing tag's attribute
+    // Simple heuristic: if preceded by = within 5 chars, it's likely an attribute
+    const beforeMatch = html.substring(0, html.indexOf(match));
+    if (beforeMatch.slice(-5).includes("=")) {
+      return match; // Don't wrap URLs in attributes
+    }
+
+    // Add https:// prefix for www. URLs
+    const href = match.startsWith("www.") ? `https://${match}` : match;
+    return `<a href="${href}">${match}</a>`;
+  });
+
+  return html;
+}
+
 export function cleanHTML(content, type) {
   let options;
   if (type === "transcript") {
@@ -152,9 +198,13 @@ export function cleanHTML(content, type) {
   } else {
     options = null;
   }
+
+  // Auto-detect and fix links in the HTML content before sanitizing
+  const linkedContent = autoLinkHTML(content);
+
   let cleaned = options
-    ? parse(sanitizeHtml(content, options))
-    : parse(sanitizeHtml(content));
+    ? parse(sanitizeHtml(linkedContent, options))
+    : parse(sanitizeHtml(linkedContent));
   return cleaned;
 }
 

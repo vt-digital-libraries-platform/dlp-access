@@ -6,7 +6,7 @@ import {
   faLocationDot
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { htmlParsedValue } from "src/lib/MetadataRenderer";
+import { htmlParsedValue, cleanHTML } from "src/lib/MetadataRenderer";
 import Citation from "../components/Citation";
 import "../css/CollapsibleCards.scss";
 import "../css/Typography.scss";
@@ -147,13 +147,25 @@ const getCopyrightData = (data) => {
       {data[key1] && (
         <div className="data-list-item">
           <dt className="data-list-label">{modifyKey(key1)}</dt>
-          <dd className="data-list-value">{htmlParsedValue(data[key1])}</dd>
+          <dd className="data-list-value">
+            {cleanHTML(String(data[key1]), "html")}
+          </dd>
         </div>
       )}
       {data[key2] && (
         <div className="data-list-item">
           <dt className="data-list-label">{modifyKey(key2)}</dt>
-          <dd className="data-list-value">{htmlParsedValue(data[key2])}</dd>
+          {Array.isArray(data[key2]) ? (
+            data[key2].map((value, index) => (
+              <dd key={index} className="data-list-value">
+                {cleanHTML(String(value), "html")}
+              </dd>
+            ))
+          ) : (
+            <dd className="data-list-value">
+              {cleanHTML(String(data[key2]), "html")}
+            </dd>
+          )}
         </div>
       )}
     </dl>
