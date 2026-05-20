@@ -232,6 +232,11 @@ span.creator:after {
     border-bottom: 1px solid var(--dark-gray);
     border-right: none;
   }
+  .mid-content-row .details-section.no-map,
+  .mid-content-row.list-view .details-section.no-map {
+    border-right: none;
+    border-bottom: none;
+  }
 }
 
 .mid-content-row .details-section-header {

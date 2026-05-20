@@ -4,6 +4,7 @@ import { RenderItemsDetailed } from "../../../lib/MetadataRenderer";
 import "../../../css/CollectionsShowPage.scss";
 import { CollectionDescription } from "./CollectionDescription";
 import { language_codes } from "../../../lib/language_codes";
+import { useLoadMap } from "./useLoadMap";
 
 const languages = language_codes["abbr"];
 
@@ -23,13 +24,20 @@ export const CollectionMetadataSection: FC<Props> = ({
   site,
   collectionCustomKey
 }) => {
+  const { collectionMap, expanded, handleToggle } = useLoadMap(collection);
   if (collection) {
+    const needsMap = () => {
+      return collectionMap?.children?.length;
+    };
     return (
       <>
         <div
           className={`${
-            viewOption === "list" ? "col-12" : "col-12 col-lg-8"
-          } details-section`}
+            viewOption === "list" || !needsMap()
+              ? "col-12 "
+              : "col-12 col-lg-8 "
+          }
+            details-section ${!needsMap() ? "no-map" : ""}`}
           role="region"
           aria-labelledby="collection-details-section-header"
         >
@@ -75,7 +83,12 @@ export const CollectionMetadataSection: FC<Props> = ({
           role="region"
           aria-labelledby="collection-subcollections-section"
         >
-          <SubCollectionsTree collection={collection} />
+          <SubCollectionsTree
+            collection={collection}
+            collectionMap={collectionMap}
+            expanded={expanded}
+            handleToggle={handleToggle}
+          />
         </div>
       </>
     );
