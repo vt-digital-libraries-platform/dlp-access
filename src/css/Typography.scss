@@ -210,4 +210,19 @@
       outline: 2px solid var(--vt-maroon);
     }
   }
+
+  /** Additional Scopes **/
+
+  /* 
+   * Secondary Pages: /metadata, /about, /permissions and [additional pages]
+   * Donut-scoped to exclude the Contact block injected into /about and /permissions
+   */
+  @scope (*.secondary-page) to (.contact-section) {
+    &:scope {
+      h2 {
+        border-bottom: 3px solid var(--hokieOrange);
+        width: 100%;
+      }
+    }
+  }
 }
