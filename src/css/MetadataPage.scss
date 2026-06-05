@@ -102,19 +102,20 @@
           font-weight: 600;
           color: #333;
           min-width: 150px;
+        }
 
-          .required-indicator {
-            display: inline-block;
-            font-size: 0.8rem;
-            font-weight: 500;
-            font-style: italic;
-            color: #850f21;
-            margin-top: 0.25rem;
-          }
+        .required-indicator {
+          display: inline-block;
+          font-size: 0.8rem;
+          font-weight: 500;
+          font-style: italic;
+          font-family: Arial, sans-serif;
+          color: #850f21;
+          margin-top: 0.25rem;
+        }
 
-          .conditional-indicator {
-            color: #850f21;
-          }
+        .conditional-indicator {
+          color: #850f21;
         }
 
         &.type {
