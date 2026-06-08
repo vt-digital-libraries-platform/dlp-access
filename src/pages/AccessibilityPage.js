@@ -3,8 +3,8 @@ import { SiteTitle } from "../components/SiteTitle";
 import { getFileContent, getPageContentById } from "../lib/fetchTools";
 import { cleanHTML } from "../lib/MetadataRenderer";
 
-import "../css/AccessibilityPage.scss";
 import "../css/Editor.scss";
+import "../css/Typography.scss";
 
 class AccessibilityPage extends Component {
   constructor(props) {
@@ -36,21 +36,9 @@ class AccessibilityPage extends Component {
           site={this.props.site}
           template="{{title}}"
         />
-        <div className="container accessibility-page-wrapper">
-          <div className="row">
-            <div className="col-12 accessibility-heading">
-              <h1 id="accessibility-heading">Accessibility</h1>
-            </div>
-            <div
-              className="col-md-9"
-              role="region"
-              aria-labelledby="accessibility-heading"
-            >
-              <div className="accessibility-content quill-styles">
-                {cleanHTML(this.state.copy, "page")}
-              </div>
-            </div>
-          </div>
+        <div className="container typography-wrapper secondary-page">
+          <h1 id="accessibility-heading">Accessibility</h1>
+          {cleanHTML(this.state.copy, "page")}
         </div>
       </>
     );
