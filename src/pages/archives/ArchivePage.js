@@ -260,6 +260,12 @@ class ArchivePage extends Component {
   }
 
   mediaDisplay(item) {
+    let options = {};
+    try {
+      options = JSON.parse(item.archiveOptions);
+    } catch (error) {
+      console.log("Error parsing archive options", error);
+    }
     let display = null;
     let width = Math.min(
       document.getElementById("content-wrapper").offsetWidth - 50,
@@ -276,13 +282,6 @@ class ArchivePage extends Component {
         />
       );
     } else if (this.isGLTFType(item)) {
-      let options = {};
-      try {
-        options = JSON.parse(item.archiveOptions);
-      } catch (error) {
-        console.log("Error parsing archive options", error);
-      }
-
       display = (
         <div className="image-wrapper" id="image-wrapper">
           <BabylonElement

@@ -24,8 +24,9 @@ type Props = {
 
 export const ThreeD2DiiifHandler: FC<Props> = ({ item, site }) => {
   const options = JSON.parse(item.archiveOptions);
+
   const [threeD, setThreeD] = useState(
-    options.assets.media_type === "3d_2diiif" ? "primary" : "secondary"
+    options?.assets?.media_type === "3d_2diiif" ? "primary" : "secondary"
   );
   const [fullScreen, setFullScreen] = useState(false);
   const [optionsWrapperHeight, setOptWrapperHeight] = useState(0);
