@@ -1,6 +1,3 @@
-import { faCompress, faExpand } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Tooltip } from "@mui/material";
 import { FC, useEffect, useLayoutEffect, useRef, useState } from "react";
 import MiradorViewer from "src/components/MiradorViewer";
 import X3DElement from "src/components/X3DElement";
@@ -107,12 +104,18 @@ export const ThreeD2DiiifHandler: FC<Props> = ({ item, site }) => {
     e.preventDefault();
     e.stopPropagation();
     setThreeD("secondary");
+    document
+      .getElementById("image-wrapper")
+      ?.style.setProperty("height", `${imageWrapperHeight}px`);
   };
 
   const threeDThumbClickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     e.stopPropagation();
     setThreeD("primary");
+    document
+      .getElementById("image-wrapper")
+      ?.style.setProperty("height", `${imageWrapperHeight - 100}px`);
   };
 
   const primarySectionContent = () => {
@@ -253,7 +256,7 @@ export const ThreeD2DiiifHandler: FC<Props> = ({ item, site }) => {
       <div
         className="image-wrapper"
         id="image-wrapper"
-        style={{ height: imageWrapperHeight }}
+        style={{ height: imageWrapperHeight - 100 }}
       >
         {primarySectionContent()}
       </div>

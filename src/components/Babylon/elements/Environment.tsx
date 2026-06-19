@@ -7,8 +7,18 @@ class Environment {
     this.scene = scene;
     this.envURL = envURL;
 
+    this.createHemisphericLight();
     this.createEnvironmentLight();
     this.createSkybox();
+  }
+
+  createHemisphericLight() {
+    const hemisphericLight = new BABYLON.HemisphericLight(
+      "hemisphericLight",
+      new BABYLON.Vector3(0, 1, 0),
+      this.scene
+    );
+    hemisphericLight.intensity = 0.065;
   }
 
   createEnvironmentLight() {

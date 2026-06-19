@@ -282,15 +282,38 @@ class ArchivePage extends Component {
         />
       );
     } else if (this.isGLTFType(item)) {
+      let scaleFactor = 0.25; // default scale factor
+      if (typeof options.config?._3d?.scale_factor === "string") {
+        scaleFactor = parseFloat(options.config._3d.scale_factor);
+      } else if (typeof options.config?._3d?.scale_factor === "number") {
+        scaleFactor = options.config._3d.scale_factor;
+      }
+
+      let rotation = {
+        horizontal: 0,
+        vertical: 0
+      };
+      if (typeof options.config?._3d?.rotation?.horizontal === "string") {
+        rotation.horizontal = parseFloat(
+          options.config._3d.rotation.horizontal
+        );
+      } else if (
+        typeof options.config?._3d?.rotation?.horizontal === "number"
+      ) {
+        rotation.horizontal = options.config._3d.rotation.horizontal;
+      }
+      if (typeof options.config?._3d?.rotation?.vertical === "string") {
+        rotation.vertical = parseFloat(options.config._3d.rotation.vertical);
+      } else if (typeof options.config?._3d?.rotation?.vertical === "number") {
+        rotation.vertical = options.config._3d.rotation.vertical;
+      }
       display = (
         <div className="image-wrapper" id="image-wrapper">
           <BabylonElement
             model={options.assets.gltf_config}
             env={options.assets.env_config}
-            scaleFactor={
-              options.config?._3d?.scale_factor || options.assets.scale_factor
-            }
-            rotation={options.config?._3d?.rotation || options.assets.rotation}
+            scaleFactor={scaleFactor}
+            rotation={rotation}
             item={item}
             _3dConfig={options?.config?._3d}
           />

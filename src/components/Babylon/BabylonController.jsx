@@ -26,12 +26,15 @@ class BabylonController {
     this.loadingBar = null;
     this.percentLoaded = null;
 
+    const defaultScaleFactor = 0.25;
+    this.scaleFactor =
+      this.toFloat(this.props.scaleFactor) || defaultScaleFactor;
     this.initialPosition = new BABYLON.Vector3(0, 0.5, 10);
     this.initialRadius = 4;
 
     this.initialRotationVector = new BABYLON.Vector3(
-      this.props?.rotation?.horizontal || 0,
-      this.props?.rotation?.vertical || Math.PI / 2,
+      this.toFloat(this.props?.rotation?.horizontal),
+      this.toFloat(this.props?.rotation?.vertical) || Math.PI / 2,
       0
     );
     this.initialRotation = this.props.rotation || {
@@ -81,22 +84,18 @@ class BabylonController {
     // for debugging
     // this.axesViewer = new BABYLON.AxesViewer(this.scene, 0.5);
 
-    // load and position ground
-    const GROUND_DIAMETER = 0.5;
-    const groundModel = new Ground(this.scene, GROUND_DIAMETER);
-    const scaleFactor =
-      typeof this.props.scaleFactor === "number"
-        ? this.props.scaleFactor
-        : parseFloat(this.props.scaleFactor);
-
     // load the subject model
     this.model = new Subject(
       this.props.model,
       this.scene,
-      scaleFactor,
+      this.scaleFactor,
       this.props._3dConfig?.allowTransparency || false,
       this.loadingScreen
     );
+
+    // load and position ground
+    const GROUND_DIAMETER = 4;
+    new Ground(this.scene, GROUND_DIAMETER);
 
     // cameras
     this.ArcRotateCamera = new Camera(
@@ -110,16 +109,16 @@ class BabylonController {
       this.model.ellipsoid
     );
 
-    this.UniversalCamera = new Camera(
-      "universal",
-      this.scene,
-      this.canvas,
-      this.initialPosition,
-      this.initialRotationVector,
-      null,
-      this.initialRadius,
-      this.model.ellipsoid
-    );
+    // this.UniversalCamera = new Camera(
+    //   "universal",
+    //   this.scene,
+    //   this.canvas,
+    //   this.initialPosition,
+    //   this.initialRotationVector,
+    //   null,
+    //   this.initialRadius,
+    //   this.model.ellipsoid
+    // );
 
     this.attachControl(this.ArcRotateCamera.active);
     this.scene.activeCamera = this.ArcRotateCamera.active;
@@ -133,6 +132,13 @@ class BabylonController {
     this.engine.runRenderLoop(() => {
       this.scene.render();
     });
+  }
+
+  toFloat(floatVal) {
+    if (parseFloat(floatVal) === 0 || !parseFloat(floatVal)) {
+      return 0.0;
+    }
+    return parseFloat(floatVal);
   }
 
   handleAddOns(addOns) {
