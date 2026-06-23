@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import { API, graphqlOperation } from "aws-amplify";
 import { SiteTitle } from "../components/SiteTitle";
 import { buildHeaderSchema } from "../lib/richSchemaTools";
+import { cleanHTML } from "../lib/MetadataRenderer";
 import { listMetadataFields } from "../graphql/queries";
 import metadataFieldInfo from "../data/metadataFieldInfo.json";
 
@@ -301,9 +302,13 @@ class MetadataPage extends Component {
                               )}
                             </td>
                             <td className="type">{field.type}</td>
-                            <td className="description">{field.description}</td>
+                            <td className="description">
+                              {cleanHTML(String(field.description), "html")}
+                            </td>
                             <td className="example">
-                              <code>{field.example}</code>
+                              <code>
+                                {cleanHTML(String(field.example), "html")}
+                              </code>
                             </td>
                           </tr>
                         ))}
