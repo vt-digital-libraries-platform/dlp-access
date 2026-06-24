@@ -1,15 +1,17 @@
 import React, { Component } from "react";
 import { API } from "aws-amplify";
+import DOMPurify from "dompurify";
 import { SiteTitle } from "../components/SiteTitle";
 
 import "../css/FeedbackPage.scss";
+import "../css/Typography.scss";
 
 // sanitizeMessage: strips \r and invisible control characters from the message field.
 // Keeps \n so the user's line breaks and paragraphs are preserved.
 // \r is stripped because email parsers use \r\n as a header separator.
 const sanitizeMessage = (value) => {
   // eslint-disable-next-line no-control-regex
-  return value.replace(/[\r\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, "");
+  return DOMPurify.sanitize(value).replace(/[\r\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g,"");
 };
 
 // sanitizeEmail: strips everything including \n from the email field.
@@ -17,7 +19,7 @@ const sanitizeMessage = (value) => {
 // field is either a mistake or a header injection attempt.
 const sanitizeEmail = (value) => {
   // eslint-disable-next-line no-control-regex
-  return value.replace(/[\r\n\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g, "");
+  return DOMPurify.sanitize(value).replace(/[\r\n\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g,"");
 };
 
 // validateEmail: stricter than the browser's built-in type="email" check.
@@ -103,15 +105,9 @@ class FeedbackPage extends Component {
     // Return silently with no error so the bot doesn't know it was caught.
     if (honeypot) return;
 
-    // Strip control characters before any data leaves the browser.
-    // sanitizeMessage keeps \n so paragraph line breaks in the message are preserved.
-    // sanitizeEmail strips \n too since email addresses never contain line breaks.
-    const cleanMessage = sanitizeMessage(feedbackMessage);
-    const cleanEmail = sanitizeEmail(submittedBy);
-
     // Reject malformed emails before the Lambda is called.
     // Only runs if the user typed something — email is optional.
-    if (cleanEmail && !validateEmail(cleanEmail)) {
+    if (submittedBy && !validateEmail(submittedBy)) {
       this.setState({
         submitError:
           "Please enter a valid email address (e.g. name@domain.com)."
@@ -141,7 +137,7 @@ class FeedbackPage extends Component {
     }
 
     // Validate email required for Accessibility Barrier
-    if (feedbackType === "Accessibility Barrier" && !cleanEmail.trim()) {
+    if (feedbackType === "Accessibility Barrier" && !submittedBy.trim()) {
       this.setState({
         submitError:
           "Email is required when reporting an accessibility barrier."
@@ -162,13 +158,13 @@ class FeedbackPage extends Component {
       const response = await API.post("feedbackapi", "/submit", {
         body: {
           feedbackType,
-          message: cleanMessage,
+          message: sanitizeMessage(feedbackMessage),
           siteName,
           emailTo: feedbackEmail,
           // Send empty string when no email provided — the Lambda handles
           // the "Anonymous" fallback so we don't send a non-email string
           // that would fail the Lambda's email format validation
-          submittedBy: cleanEmail
+          submittedBy: sanitizeEmail(submittedBy)
         }
       });
 
@@ -236,176 +232,156 @@ class FeedbackPage extends Component {
           site={this.props.site}
           template="{{title}}"
         />
-        <div className="container feedback-page-wrapper">
-          <div className="row">
-            <div className="col-12">
-              <h1 id="feedback-heading">Feedback Form</h1>
-            </div>
-            <div
-              className="col-md-9"
-              role="region"
-              aria-labelledby="feedback-heading"
-            >
-              <div className="feedback-content">
-                {this.state.submitSuccess && (
-                  <div className="alert alert-success" role="alert">
-                    <strong>Success!</strong> Your feedback has been submitted.
-                    We'll review it shortly.
-                  </div>
-                )}
+        <div className="container typography-wrapper">
+          <h1>Feedback Form</h1>
+          <h2 className="sr-only">Submit Feedback</h2>
+          <div className="feedback-content">
+            <p>
+              Use this form to report accessibility barriers, issues, or provide
+              general feedback about {siteName}. Your submission will be logged
+              and emailed to our team at{" "}
+              <a href={`mailto:${feedbackEmail}`}>{feedbackEmail}</a>.
+            </p>
 
-                {this.state.submitError && (
-                  <div className="alert alert-danger" role="alert">
-                    <strong>Error:</strong> {this.state.submitError}
-                  </div>
-                )}
+            <form onSubmit={this.handleSubmit} className="feedback-form">
+              {/* Honeypot: Invisible to humans, bots fill it in. If filled on submit, the submission is silently dropped. */}
+              <input
+                type="text"
+                name="website"
+                value={this.state.honeypot}
+                onChange={(e) => this.setState({ honeypot: e.target.value })}
+                style={{ display: "none" }}
+                aria-hidden="true"
+                tabIndex="-1"
+                autoComplete="off"
+              />
 
-                <p className="feedback-instructions">
-                  Use this form to report accessibility barriers, issues, or
-                  provide general feedback about {siteName}. Your submission
-                  will be logged and emailed to our team at{" "}
-                  <a href={`mailto:${feedbackEmail}`}>{feedbackEmail}</a>.
-                  <br />
-                  Please include the URL of the page where you encountered the
-                  issue and a brief description of what happened. We will do our
-                  best to respond as soon as possible.
-                </p>
-
-                <form onSubmit={this.handleSubmit} className="feedback-form">
-                  {/* Honeypot: invisible to humans, bots fill it in.
-                      display:none hides it visually. aria-hidden hides it from
-                      screen readers. tabIndex="-1" removes it from keyboard tab
-                      order. If filled on submit, the submission is silently dropped. */}
-                  <input
-                    type="text"
-                    name="website"
-                    value={this.state.honeypot}
-                    onChange={(e) =>
-                      this.setState({ honeypot: e.target.value })
-                    }
-                    style={{ display: "none" }}
-                    aria-hidden="true"
-                    tabIndex="-1"
-                    autoComplete="off"
-                  />
-                  <fieldset className="feedback-type-fieldset">
-                    <legend>
-                      Feedback Type
-                      <span className="feedback-type-hint">
-                        Please select a feedback type
-                      </span>
-                    </legend>
-                    <div className="radio-group">
-                      <div className="radio-option">
-                        <input
-                          type="radio"
-                          id="accessibility-barrier"
-                          name="feedbackType"
-                          value="Accessibility Barrier"
-                          checked={
-                            this.state.feedbackType === "Accessibility Barrier"
-                          }
-                          onChange={this.handleFeedbackTypeChange}
-                        />
-                        <label htmlFor="accessibility-barrier">
-                          Accessibility Barrier
-                        </label>
-                      </div>
-                      <div className="radio-option">
-                        <input
-                          type="radio"
-                          id="issue"
-                          name="feedbackType"
-                          value="Issue"
-                          checked={this.state.feedbackType === "Issue"}
-                          onChange={this.handleFeedbackTypeChange}
-                        />
-                        <label htmlFor="issue">Issue</label>
-                      </div>
-                      <div className="radio-option">
-                        <input
-                          type="radio"
-                          id="general-feedback"
-                          name="feedbackType"
-                          value="General Feedback"
-                          checked={
-                            this.state.feedbackType === "General Feedback"
-                          }
-                          onChange={this.handleFeedbackTypeChange}
-                        />
-                        <label htmlFor="general-feedback">
-                          General Feedback
-                        </label>
-                      </div>
-                    </div>
-                  </fieldset>
-
-                  <div className="form-control">
-                    <label htmlFor="feedback-message">
-                      Your Message (Required)
-                    </label>
-                    <textarea
-                      id="feedback-message"
-                      name="feedbackMessage"
-                      value={this.state.feedbackMessage}
-                      onChange={this.handleMessageChange}
-                      required
-                      rows="8"
-                      maxLength={5000}
-                      placeholder="Please describe your feedback in detail..."
-                      aria-describedby="message-help"
-                      disabled={this.state.isSubmitting}
-                    />
-                    <small id="message-help" className="form-text">
-                      Please provide as much detail as possible to help us
-                      address your feedback.
-                    </small>
-                  </div>
-
-                  <div className="form-control">
-                    <label htmlFor="submitted-by">
-                      Your Email
-                      {this.state.feedbackType === "Accessibility Barrier"
-                        ? " (Required)"
-                        : " (Optional)"}
-                    </label>
+              {/* Feedback Form Fields */}
+              <fieldset className="feedback-type-fieldset">
+                <legend>Feedback Type (Required)</legend>
+                <div className="radio-group">
+                  <div className="radio-option">
                     <input
-                      type="email"
-                      id="submitted-by"
-                      name="submittedBy"
-                      value={this.state.submittedBy}
-                      onChange={this.handleSubmittedByChange}
-                      placeholder="your.email@example.com"
-                      aria-describedby="email-help"
-                      disabled={this.state.isSubmitting}
-                      maxLength={254}
-                      required={
+                      type="radio"
+                      id="accessibility-barrier"
+                      name="feedbackType"
+                      value="Accessibility Barrier"
+                      checked={
                         this.state.feedbackType === "Accessibility Barrier"
                       }
+                      onChange={this.handleFeedbackTypeChange}
                     />
-                    <small id="email-help" className="form-text">
-                      {this.state.feedbackType === "Accessibility Barrier"
-                        ? "Email is required for accessibility barriers so we can follow up with you."
-                        : "Provide your email if you'd like us to follow up with you."}
-                    </small>
+                    <label htmlFor="accessibility-barrier">
+                      Accessibility Barrier
+                    </label>
                   </div>
+                  <div className="radio-option">
+                    <input
+                      type="radio"
+                      id="issue"
+                      name="feedbackType"
+                      value="Issue"
+                      checked={this.state.feedbackType === "Issue"}
+                      onChange={this.handleFeedbackTypeChange}
+                    />
+                    <label htmlFor="issue">Issue</label>
+                  </div>
+                  <div className="radio-option">
+                    <input
+                      type="radio"
+                      id="general-feedback"
+                      name="feedbackType"
+                      value="General Feedback"
+                      checked={this.state.feedbackType === "General Feedback"}
+                      onChange={this.handleFeedbackTypeChange}
+                    />
+                    <label htmlFor="general-feedback">
+                      Feedback or Suggestion
+                    </label>
+                  </div>
+                </div>
+              </fieldset>
 
-                  <button
-                    type="submit"
-                    className="submit-button"
-                    disabled={
-                      this.state.isSubmitting || cooldownSecondsLeft > 0
-                    }
-                  >
-                    {this.state.isSubmitting
-                      ? "Submitting..."
-                      : cooldownSecondsLeft > 0
-                      ? `Please wait ${cooldownSecondsLeft}s...`
-                      : "Submit Feedback"}
-                  </button>
-                </form>
+              <div className="form-control">
+                <label htmlFor="feedback-message">Details (Required)</label>
+                <p id="detailsHelp" className="feedback-instructions">
+                  To help us better understand your feedback or issue, please
+                  include your device type, operating system, web browser, and
+                  the name or URL of the page your feedback is about.
+                  <em>
+                    {" "}
+                    Example: "I encountered an issue on the homepage while using
+                    Safari on an iPhone running iOS 26.5."
+                  </em>
+                </p>
+                <textarea
+                  id="feedback-message"
+                  name="feedbackMessage"
+                  value={this.state.feedbackMessage}
+                  onChange={this.handleMessageChange}
+                  required
+                  rows="8"
+                  maxLength={5000}
+                  aria-describedby="detailsHelp"
+                  disabled={this.state.isSubmitting}
+                />
               </div>
-            </div>
+
+              <div className="form-control">
+                <label htmlFor="submitted-by">
+                  Your Email
+                  {this.state.feedbackType === "Accessibility Barrier"
+                    ? " (Required)"
+                    : " (Optional)"}
+                </label>
+                <p id="emailHelp" className="feedback-instructions">
+                  Please provide your email address
+                  {this.state.feedbackType === "Accessibility Barrier"
+                    ? " so we can contact you about your barrier report and resolve any access issues."
+                    : " if you'd like for us to follow up with you."}
+                </p>
+                <input
+                  type="email"
+                  autocomplete="email"
+                  id="submitted-by"
+                  name="submittedBy"
+                  value={this.state.submittedBy}
+                  onChange={this.handleSubmittedByChange}
+                  aria-describedby="emailHelp"
+                  disabled={this.state.isSubmitting}
+                  maxLength={254}
+                  required={this.state.feedbackType === "Accessibility Barrier"}
+                />
+              </div>
+
+              {this.state.submitSuccess && (
+                <div className="alert alert-success" role="alert">
+                  <strong>Success!</strong> Your feedback has been submitted.
+                </div>
+              )}
+
+              {this.state.submitError && (
+                <div className="alert alert-danger" role="alert">
+                  <strong>Error:</strong> {this.state.submitError}
+                  <p>
+                    If you encounter this issue again, please email us at&nbsp;
+                    <a href={`mailto:${feedbackEmail}`}>{feedbackEmail}</a>
+                  </p>
+                </div>
+              )}
+
+              <button
+                type="submit"
+                className="submit-button"
+                disabled={this.state.isSubmitting || cooldownSecondsLeft > 0}
+              >
+                {this.state.isSubmitting
+                  ? "Submitting..."
+                  : cooldownSecondsLeft > 0
+                  ? `Please wait ${cooldownSecondsLeft}s...`
+                  : "Submit Feedback"}
+              </button>
+            </form>
           </div>
         </div>
       </>
