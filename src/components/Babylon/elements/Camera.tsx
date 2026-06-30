@@ -69,20 +69,27 @@ class Camera {
   }
 
   private createArcRotateCamera() {
-    const _y = this.modelDimensions ? this.modelDimensions._y : 1;
+    const horizontal =
+      typeof this.rotation.horizontal === "number"
+        ? this.rotation.horizontal
+        : parseFloat(this.rotation.horizontal);
+    const vertical =
+      typeof this.rotation.vertical === "number"
+        ? this.rotation.vertical
+        : parseFloat(this.rotation.vertical);
     const camera = new BABYLON.ArcRotateCamera(
       "arcCamera",
-      this.rotation.horizontal,
-      this.rotation.vertical,
+      horizontal || 0,
+      vertical || Math.PI / 2,
       this.radius,
-      new BABYLON.Vector3(0, _y / 2, 0),
+      new BABYLON.Vector3(0, 0, 0),
       this.scene
     );
 
     camera.speed = 0.25;
     camera.wheelPrecision = 100;
     camera.lowerRadiusLimit = 1;
-    camera.upperRadiusLimit = 3;
+    camera.upperRadiusLimit = 5;
     camera.minZ = 0.1;
     camera.useAutoRotationBehavior = true;
     if (camera.autoRotationBehavior) {

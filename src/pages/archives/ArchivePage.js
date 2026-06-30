@@ -79,10 +79,28 @@ class ArchivePage extends Component {
     );
     try {
       const item = response.data.searchArchives.items[0];
+      if (!item) {
+        this.setState({
+          isError: true
+        });
+        return;
+      }
       const collection = await getParentCollectionForItem(item);
+      if (!collection) {
+        this.setState({
+          isError: true
+        });
+        return;
+      }
       const topLevelParentCollection = await getTopLevelParentForCollection(
         collection
       );
+      if (!topLevelParentCollection) {
+        this.setState({
+          isError: true
+        });
+        return;
+      }
 
       const collectionCustomKey = topLevelParentCollection.custom_key;
       const archiveSchema = this.buildArchiveSchema(item);
@@ -180,14 +198,32 @@ class ArchivePage extends Component {
   is3D_2DiiifType(item) {
     try {
       const options = JSON.parse(item.archiveOptions);
-      return (
-        item.format.indexOf("model/x3d") !== -1 &&
-        !!options.assets.x3d_config &&
-        !!options.assets.x3d_src_img
-      );
+      const is3D_2Diiif =
+        options.assets.media_type === "3d_2diiif" && !!item.manifest_url;
+      const hasX3DandTIFF =
+        item.format?.indexOf("model/x3d") !== -1 &&
+        item.format?.indexOf("image/tiff") !== -1;
+      const hasGLTFandEnv =
+        !!options.assets.gltf_config && !!options.assets.env_config;
+      return is3D_2Diiif && (hasX3DandTIFF || hasGLTFandEnv);
     } catch (error) {
       return false;
     }
+  }
+
+  isX3DType(item) {
+    let match = false;
+    try {
+      const options = JSON.parse(item.archiveOptions);
+      const type = options.assets.media_type;
+      match =
+        type === "3d-model/x3dom" &&
+        !!options.assets.x3d_config &&
+        !!options.assets.x3d_src_img;
+    } catch (error) {
+      return false;
+    }
+    return match;
   }
 
   isGLTFType(item) {
@@ -224,33 +260,19 @@ class ArchivePage extends Component {
   }
 
   mediaDisplay(item) {
+    let options = {};
+    try {
+      options = JSON.parse(item.archiveOptions);
+    } catch (error) {
+      console.log("Error parsing archive options", error);
+    }
     let display = null;
     let width = Math.min(
       document.getElementById("content-wrapper").offsetWidth - 50,
       720
     );
 
-    if (this.isGLTFType(item)) {
-      let options = {};
-      try {
-        options = JSON.parse(item.archiveOptions);
-      } catch (error) {
-        console.log("Error parsing archive options", error);
-      }
-
-      display = (
-        <div className="image-wrapper" id="image-wrapper">
-          <BabylonElement
-            model={options.assets.gltf_config}
-            env={options.assets.env_config}
-            scaleFactor={options.assets.scale_factor}
-            rotation={options.assets.rotation}
-            item={item}
-            _3dConfig={options?.config?._3d}
-          />
-        </div>
-      );
-    } else if (this.is3D_2DiiifType(item)) {
+    if (this.is3D_2DiiifType(item)) {
       display = (
         <ThreeD2DiiifHandler
           item={item}
@@ -258,6 +280,57 @@ class ArchivePage extends Component {
           frameHeight={width}
           site={this.props.site}
         />
+      );
+    } else if (this.isGLTFType(item)) {
+      let scaleFactor = 0.25; // default scale factor
+      if (typeof options.config?._3d?.scale_factor === "string") {
+        scaleFactor = parseFloat(options.config._3d.scale_factor);
+      } else if (typeof options.config?._3d?.scale_factor === "number") {
+        scaleFactor = options.config._3d.scale_factor;
+      }
+
+      let rotation = {
+        horizontal: 0,
+        vertical: 0
+      };
+      if (typeof options.config?._3d?.rotation?.horizontal === "string") {
+        rotation.horizontal = parseFloat(
+          options.config._3d.rotation.horizontal
+        );
+      } else if (
+        typeof options.config?._3d?.rotation?.horizontal === "number"
+      ) {
+        rotation.horizontal = options.config._3d.rotation.horizontal;
+      }
+      if (typeof options.config?._3d?.rotation?.vertical === "string") {
+        rotation.vertical = parseFloat(options.config._3d.rotation.vertical);
+      } else if (typeof options.config?._3d?.rotation?.vertical === "number") {
+        rotation.vertical = options.config._3d.rotation.vertical;
+      }
+      display = (
+        <div className="image-wrapper" id="image-wrapper">
+          <BabylonElement
+            model={options.assets.gltf_config}
+            env={options.assets.env_config}
+            scaleFactor={scaleFactor}
+            rotation={rotation}
+            item={item}
+            _3dConfig={options?.config?._3d}
+          />
+        </div>
+      );
+    } else if (this.isX3DUrl(item.manifest_url)) {
+      display = (
+        <div
+          className="obj-wrapper"
+          style={{ width: `${width}px`, height: "100px" }}
+        >
+          <X3DElement
+            url={item.manifest_url}
+            frameSize={width}
+            frameHeight={100}
+          />
+        </div>
       );
     } else if (this.isMiradorURL(item.manifest_url, item)) {
       display = <MiradorViewer item={item} site={this.props.site} />;
@@ -317,19 +390,6 @@ class ArchivePage extends Component {
       display = (
         <div className="obj-wrapper" style={{ width: `${width}px` }}>
           <MtlElement mtl={item.manifest_url} />
-        </div>
-      );
-    } else if (this.isX3DUrl(item.manifest_url)) {
-      display = (
-        <div
-          className="obj-wrapper"
-          style={{ width: `${width}px`, height: "100px" }}
-        >
-          <X3DElement
-            url={item.manifest_url}
-            frameSize={width}
-            frameHeight={100}
-          />
         </div>
       );
     } else {
