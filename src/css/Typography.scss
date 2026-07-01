@@ -188,7 +188,11 @@
   }
 
   .button-link--primary,
-  .button-link--primary:visited {
+  .button-link--primary:visited,
+  .button-link--primary:hover,
+  .button-link--primary:focus,
+  .button-link--primary:focus-within,
+  .button-link--primary:focus-visible {
     &,
     p,
     span,
