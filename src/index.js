@@ -13,7 +13,17 @@ import "bootstrap/dist/css/bootstrap.css";
 import "semantic-ui-css/semantic.min.css";
 
 console.clear();
-Amplify.configure(config);
+Amplify.configure({
+  ...config,
+  API: {
+    endpoints: [
+      {
+        name: "feedbackapi",
+        endpoint: process.env.REACT_APP_FEEDBACK_API_ENDPOINT
+      }
+    ]
+  }
+});
 
 const container = document.getElementById("root");
 const root = ReactDOMClient.createRoot(container);

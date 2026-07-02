@@ -33,19 +33,6 @@ import { NotFound } from "./pages/NotFound";
 
 import "./App.scss";
 
-import { Amplify } from "aws-amplify";
-
-Amplify.configure({
-  API: {
-    endpoints: [
-      {
-        name: "feedbackapi",
-        endpoint: process.env.REACT_APP_FEEDBACK_API_ENDPOINT
-      }
-    ]
-  }
-});
-
 class App extends Component {
   constructor(props) {
     super(props);
