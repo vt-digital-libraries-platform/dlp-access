@@ -1,0 +1,89 @@
+.feedback-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: max(32px, 2rem);
+
+  .feedback-instructions {
+    padding: 12px;
+    background-color: var(--vt-smoke-7t);
+    border-left: 4px solid var(--hokieOrange);
+  }
+
+  fieldset,
+  .form-control {
+    border: 1px solid var(--vt-grey-3s);
+    padding: 16px;
+    border-radius: var(--input-border-radius);
+
+    @media screen and (min-width: max(48rem, 768px)) {
+      padding: 24px;
+    }
+  }
+
+  fieldset > legend,
+  .form-control > label {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: max(16px, 1rem);
+  }
+
+  .alert {
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .alert-success {
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+    border-left: 4px solid #28a745;
+  }
+
+  .alert-danger {
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+    border-left: 4px solid #dc3545;
+  }
+
+  .alert strong {
+    font-weight: 600;
+  }
+
+  .submit-button {
+    width: fit-content;
+    background-color: var(--hokieOrange);
+    color: white;
+    font-size: 1.15rem;
+    font-weight: 600;
+    font-family: inherit;
+    padding: 12px 30px;
+    border: none;
+    border-radius: var(--button-border-radius);
+    cursor: pointer;
+    transition: background-color 0.3s var(--transition-time-function);
+
+    &:hover,
+    &:focus {
+      background-color: var(--hokieOrangeHover);
+    }
+
+    &:active {
+      transform: translateY(1px);
+    }
+
+    &:disabled,
+    &:disabled:hover {
+      background-color: var(--vt-white);
+      border: 1px solid var(--vt-smoke-5s);
+      box-shadow: inset 2px 2px 4px -2px var(--vt-smoke-5s);
+      color: var(--vt-smoke-5s);
+      cursor: not-allowed;
+      transform: none;
+    }
+  }
+}

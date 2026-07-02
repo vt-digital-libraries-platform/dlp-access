@@ -67,7 +67,7 @@ class AboutPage extends Component {
             }
           ]}
         ></Helmet>
-        <div className="container typography-wrapper">
+        <div className="container typography-wrapper secondary-page">
           <h1>{title}</h1>
           <div className="row">
             <div className="col-lg-8 mb-5">

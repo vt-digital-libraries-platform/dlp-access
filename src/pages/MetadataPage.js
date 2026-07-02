@@ -198,7 +198,7 @@ class MetadataPage extends Component {
           name="description"
           content="Comprehensive metadata field guide for digital collections"
         />
-        <div className="container metadata-page-wrapper typography-wrapper">
+        <div className="container metadata-page-wrapper typography-wrapper secondary-page">
           <h1>{title}</h1>
           {loading && <p>Loading metadata fields...</p>}
           {error && <p className="error-message">{error}</p>}

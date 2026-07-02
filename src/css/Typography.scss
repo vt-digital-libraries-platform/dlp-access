@@ -5,6 +5,12 @@
   font-weight: 400;
   font-size: 1rem;
   text-align: left;
+  color: rgba(
+    0,
+    0,
+    0,
+    1
+  ); // Prevent semantic.min.css from adding 87% opacity to button text
 
   /* CUSTOMIZATIONS */
 
@@ -87,6 +93,10 @@
     }
   }
 
+  & p {
+    line-height: 1.6;
+  }
+
   & a {
     color: var(--hokieOrange);
     text-decoration: underline;
@@ -151,7 +161,7 @@
     align-self: center;
     padding: 0.75rem 1.5rem;
     border: var(--themeHighlightColor) solid 1px;
-    border-radius: 10px;
+    border-radius: var(--button-border-radius);
 
     transition: color 0.3s var(--transition-time-function),
       box-shadow 0.3s var(--transition-time-function),
@@ -178,7 +188,11 @@
   }
 
   .button-link--primary,
-  .button-link--primary:visited {
+  .button-link--primary:visited,
+  .button-link--primary:hover,
+  .button-link--primary:focus,
+  .button-link--primary:focus-within,
+  .button-link--primary:focus-visible {
     &,
     p,
     span,
@@ -199,7 +213,13 @@
     }
   }
 
-  input {
+  /* Forms & Inputs */
+
+  input:not([type="radio"], [type="checkbox"]),
+  textarea {
+    width: 100%;
+    padding: 12px;
+    margin: calc(var(--focus-outline__offset) + 2px) 0;
     border-radius: var(--input-border-radius);
     outline: none;
     border: 1px solid var(--vt-grey-3s);
@@ -207,7 +227,65 @@
     transition: outline-color 0.3s var(--transition-time-function);
 
     &:focus-visible {
-      outline: 2px solid var(--vt-maroon);
+      border-color: var(--focus-color--input);
+      outline: var(--focus-outline--input);
+      outline-offset: var(--focus-outline__offset);
+    }
+  }
+
+  textarea {
+    resize: vertical;
+  }
+
+  input[type="radio"] {
+    width: 1.125rem;
+    height: 1.125rem;
+    border-radius: 100%;
+    overflow: hidden;
+  }
+
+  .radio-option {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 2px 4px;
+    width: fit-content;
+    gap: 8px;
+
+    & label {
+      margin-bottom: 0;
+    }
+  }
+
+  .radio-option:has(input[type="radio"]:focus-visible),
+  .radio-option:has(input[type="radio"]:hover) {
+    border-radius: var(--input-border-radius);
+    outline: var(--focus-outline--input);
+    outline-offset: var(--focus-outline__offset);
+
+    & input[type="radio"] {
+      outline: none;
+    }
+  }
+
+  .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  /** Additional Scopes **/
+
+  /* 
+   * Secondary Pages: /metadata, /about, /permissions and [additional pages]
+   * Donut-scoped to exclude the Contact block injected into /about and /permissions
+   */
+  @scope (*.secondary-page) to (.contact-section) {
+    &:scope {
+      h2 {
+        border-bottom: 3px solid var(--hokieOrange);
+        width: 100%;
+      }
     }
   }
 }

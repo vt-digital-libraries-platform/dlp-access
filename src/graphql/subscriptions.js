@@ -853,6 +853,108 @@ export const onDeleteCollectionmap = /* GraphQL */ `
     }
   }
 `;
+export const onCreateHistory = /* GraphQL */ `
+  subscription OnCreateHistory($filter: ModelSubscriptionHistoryFilterInput) {
+    onCreateHistory(filter: $filter) {
+      event
+      groups
+      id
+      siteID
+      userEmail
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateHistory = /* GraphQL */ `
+  subscription OnUpdateHistory($filter: ModelSubscriptionHistoryFilterInput) {
+    onUpdateHistory(filter: $filter) {
+      event
+      groups
+      id
+      siteID
+      userEmail
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteHistory = /* GraphQL */ `
+  subscription OnDeleteHistory($filter: ModelSubscriptionHistoryFilterInput) {
+    onDeleteHistory(filter: $filter) {
+      event
+      groups
+      id
+      siteID
+      userEmail
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onCreateMetadataField = /* GraphQL */ `
+  subscription OnCreateMetadataField(
+    $filter: ModelSubscriptionMetadataFieldFilterInput
+  ) {
+    onCreateMetadataField(filter: $filter) {
+      id
+      columnName
+      labelName
+      type
+      required
+      description
+      example
+      category
+      sortOrder
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onUpdateMetadataField = /* GraphQL */ `
+  subscription OnUpdateMetadataField(
+    $filter: ModelSubscriptionMetadataFieldFilterInput
+  ) {
+    onUpdateMetadataField(filter: $filter) {
+      id
+      columnName
+      labelName
+      type
+      required
+      description
+      example
+      category
+      sortOrder
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
+export const onDeleteMetadataField = /* GraphQL */ `
+  subscription OnDeleteMetadataField(
+    $filter: ModelSubscriptionMetadataFieldFilterInput
+  ) {
+    onDeleteMetadataField(filter: $filter) {
+      id
+      columnName
+      labelName
+      type
+      required
+      description
+      example
+      category
+      sortOrder
+      createdAt
+      updatedAt
+      __typename
+    }
+  }
+`;
 export const onCreatePageContent = /* GraphQL */ `
   subscription OnCreatePageContent(
     $filter: ModelSubscriptionPageContentFilterInput
@@ -1087,108 +1189,6 @@ export const onDeleteSite = /* GraphQL */ `
       siteOptions
       sitePages
       siteTitle
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const onCreateHistory = /* GraphQL */ `
-  subscription OnCreateHistory($filter: ModelSubscriptionHistoryFilterInput) {
-    onCreateHistory(filter: $filter) {
-      event
-      groups
-      id
-      siteID
-      userEmail
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const onUpdateHistory = /* GraphQL */ `
-  subscription OnUpdateHistory($filter: ModelSubscriptionHistoryFilterInput) {
-    onUpdateHistory(filter: $filter) {
-      event
-      groups
-      id
-      siteID
-      userEmail
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const onDeleteHistory = /* GraphQL */ `
-  subscription OnDeleteHistory($filter: ModelSubscriptionHistoryFilterInput) {
-    onDeleteHistory(filter: $filter) {
-      event
-      groups
-      id
-      siteID
-      userEmail
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const onCreateMetadataField = /* GraphQL */ `
-  subscription OnCreateMetadataField(
-    $filter: ModelSubscriptionMetadataFieldFilterInput
-  ) {
-    onCreateMetadataField(filter: $filter) {
-      id
-      columnName
-      labelName
-      type
-      required
-      description
-      example
-      category
-      sortOrder
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const onUpdateMetadataField = /* GraphQL */ `
-  subscription OnUpdateMetadataField(
-    $filter: ModelSubscriptionMetadataFieldFilterInput
-  ) {
-    onUpdateMetadataField(filter: $filter) {
-      id
-      columnName
-      labelName
-      type
-      required
-      description
-      example
-      category
-      sortOrder
-      createdAt
-      updatedAt
-      __typename
-    }
-  }
-`;
-export const onDeleteMetadataField = /* GraphQL */ `
-  subscription OnDeleteMetadataField(
-    $filter: ModelSubscriptionMetadataFieldFilterInput
-  ) {
-    onDeleteMetadataField(filter: $filter) {
-      id
-      columnName
-      labelName
-      type
-      required
-      description
-      example
-      category
-      sortOrder
       createdAt
       updatedAt
       __typename

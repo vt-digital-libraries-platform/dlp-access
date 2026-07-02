@@ -44,7 +44,7 @@ class PermissionsPage extends Component {
           site={this.props.site}
           template="{{title}}"
         />
-        <div className="container typography-wrapper">
+        <div className="container typography-wrapper secondary-page">
           <h1>Permissions</h1>
           <div className="row">
             <div className="col-lg-8 mb-5">

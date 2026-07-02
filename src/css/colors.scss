@@ -13,15 +13,17 @@
   --vt-smoke: #e5e1e6;
   --vt-smoke-7t: #f2f0f2;
   --vt-smoke-9t: #faf9fa;
+  --vt-smoke-5s: #737173; // Contrast on white: 4.84:1
   --vt-smoke-9s: #171617;
   --vt-impactOrange: #ca4f00;
   --vt-impactOrange-1s: #b64700;
   --vt-impactOrange-4s: #792f00;
+  --vt-impactOrange-7hs: #4f1f00; // Between 7s & 8s, contrast on impactOrange: 3.02:1
 
   --hokieMaroon: var(--vt-maroon);
   --hokieMaroonHover: #4c0000;
-  --hokieOrange: #c64600;
-  --hokieOrangeHover: #7a2b00;
+  --hokieOrange: var(--vt-impactOrange);
+  --hokieOrangeHover: var(--vt-impactOrange-7hs);
   --light-gray: var(--vt-smoke-9t);
   --dark-gray: var(--vt-hokieStone);
   --darker-gray: #555;
@@ -31,11 +33,18 @@
   --titleFontSize: 40px;
   --sponsorsColor: var(--vt-hokieStone);
 
-  --focus_outline: 2px dashed var(--vt-maroon);
-  --focus_outline--dark: 2px dashed var(--vt-white);
+  --focus-color: var(--vt-maroon);
+  --focus-color--dark: var(--vt-white);
+  --focus-color--input: var(--hokieOrange);
+
+  --focus_outline: 2px dashed var(--focus-color);
+  --focus_outline--dark: 2px dashed var(--focus-color--dark);
+  --focus-outline--input: 2px solid var(--focus-color--input);
+
   --focus-outline__offset: 3px;
 
-  --input-border-radius: 4px;
+  --input-border-radius: 8px;
+  --button-border-radius: 12px;
 
   --transition-time-function: cubic-bezier(
     0.23,

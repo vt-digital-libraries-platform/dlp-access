@@ -110,7 +110,7 @@ class AdditionalPages extends Component {
           site={this.props.site}
           template="{{title}}"
         />
-        <div className="container quill-styles typography-wrapper">
+        <div className="container quill-styles typography-wrapper secondary-page">
           {this.getPageCopy()}
         </div>
       </>
