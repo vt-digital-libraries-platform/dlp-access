@@ -126,8 +126,8 @@ const getLocationData = (data) => {
 const modifyKey = (key, site) => {
   let newKey = "";
   if (site?.displayedAttributes) {
-    const attrObj = JSON.parse(site?.displayedAttributes);
     try {
+      const attrObj = JSON.parse(site?.displayedAttributes);
       newKey =
         attrObj["archive"]?.find((attr) => attr.field === key)?.label || newKey;
     } catch (e) {
