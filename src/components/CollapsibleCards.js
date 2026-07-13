@@ -125,6 +125,7 @@ const getLocationData = (data) => {
 
 const modifyKey = (key, site) => {
   let newKey = "";
+  // If the key is in the site's displayedAttributes, use the label from there
   if (site?.displayedAttributes) {
     try {
       const attrObj = JSON.parse(site?.displayedAttributes);
