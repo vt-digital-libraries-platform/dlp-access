@@ -1,0 +1,50 @@
+.format-browse-intro {
+  margin-bottom: 25px;
+}
+
+ul.format-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 15px;
+}
+
+.format-list-item a,
+.format-list-item a:visited {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 15px 20px;
+  border: 1px solid var(--vt-grey-2t);
+  border-radius: 4px;
+  color: var(--hokieOrange);
+  text-decoration: none;
+}
+
+.format-list-item a:hover,
+.format-list-item a:active {
+  color: var(--hokieOrangeHover);
+  border-color: var(--hokieOrangeHover);
+  text-decoration: underline;
+}
+
+.format-list-item a:focus {
+  color: var(--hokieOrangeHover);
+  outline: var(--focus_outline);
+  outline-offset: 2px;
+}
+
+.format-list-item .format-value {
+  font-family: "Acherus", sans-serif;
+  font-size: 1.125rem;
+}
+
+// vt-smoke-5s is 4.84:1 on white -- WCAG AA for this size.
+.format-list-item .format-count {
+  color: var(--vt-smoke-5s);
+  font-size: 0.9375rem;
+  white-space: nowrap;
+}
