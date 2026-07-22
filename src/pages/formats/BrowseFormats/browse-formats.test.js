@@ -7,9 +7,7 @@ import { mock_site } from "src/fixtures/mock_site";
 
 describe("BrowseFormats component", () => {
   const setup = (site = mock_site, total = 42) => {
-    jest
-      .spyOn(FetchTools, "fetchSearchResults")
-      .mockResolvedValue({ items: [], nextToken: null, total: total });
+    jest.spyOn(FetchTools, "getItemCountByFormat").mockResolvedValue(total);
     render(
       <MemoryRouter>
         <BrowseFormats site={site} />
@@ -47,14 +45,8 @@ describe("BrowseFormats component", () => {
     expect(
       await screen.findByRole("link", { name: "Photograph, 42 items" })
     ).toBeInTheDocument();
-    expect(FetchTools.fetchSearchResults).toHaveBeenCalledTimes(3);
-    expect(FetchTools.fetchSearchResults).toHaveBeenCalledWith(
-      null,
-      expect.objectContaining({
-        filter: { category: "archive", format: ["Photograph"] },
-        limit: 1
-      })
-    );
+    expect(FetchTools.getItemCountByFormat).toHaveBeenCalledTimes(3);
+    expect(FetchTools.getItemCountByFormat).toHaveBeenCalledWith("Photograph");
   });
 
   it("exposes the count in the link's accessible name and hides the visible copy", async () => {
@@ -88,12 +80,43 @@ describe("BrowseFormats component", () => {
       screen.getByText("No formats have been configured for this site.")
     ).toBeInTheDocument();
     expect(screen.queryByRole("list")).not.toBeInTheDocument();
-    expect(FetchTools.fetchSearchResults).not.toHaveBeenCalled();
+    expect(FetchTools.getItemCountByFormat).not.toHaveBeenCalled();
+  });
+
+  it.each([
+    ["a string instead of an array", "Photograph"],
+    ["an object", { Photograph: 1 }],
+    ["null", null]
+  ])("falls back to the empty state when values is %s", (_label, values) => {
+    jest.spyOn(console, "error").mockImplementation(() => {});
+    const site = {
+      ...mock_site,
+      searchPage: JSON.stringify({ facets: { format: { values: values } } })
+    };
+    setup(site);
+    expect(
+      screen.getByText("No formats have been configured for this site.")
+    ).toBeInTheDocument();
+    expect(FetchTools.getItemCountByFormat).not.toHaveBeenCalled();
+  });
+
+  it("skips non-string and blank entries instead of throwing", async () => {
+    const site = {
+      ...mock_site,
+      searchPage: JSON.stringify({
+        facets: { format: { values: ["Photograph", 1900, "", null, "Audio"] } }
+      })
+    };
+    setup(site);
+    expect(await screen.findAllByRole("listitem")).toHaveLength(2);
+    expect(screen.getByText("Audio")).toBeInTheDocument();
+    expect(screen.getByText("Photograph")).toBeInTheDocument();
+    expect(FetchTools.getItemCountByFormat).toHaveBeenCalledTimes(2);
   });
 
   it("still renders the format when its count cannot be fetched", async () => {
     jest
-      .spyOn(FetchTools, "fetchSearchResults")
+      .spyOn(FetchTools, "getItemCountByFormat")
       .mockRejectedValue(new Error("network"));
     jest.spyOn(console, "error").mockImplementation(() => {});
     render(

@@ -15,7 +15,9 @@ type Props = {
 
 type FormatFacet = {
   label?: string;
-  values?: string[];
+  // Parsed out of a hand-editable site record, so it is not trustworthy as
+  // string[] until checked. Validated by readValues() below.
+  values?: unknown;
 };
 
 const searchLink = (value: string) =>
@@ -38,9 +40,30 @@ const getFormatFacet = (site: Site): FormatFacet | null => {
   }
 };
 
+/**
+ * A malformed values list falls back to the empty state rather than throwing:
+ * a non-array spreads into per-character entries, and a non-string entry blows
+ * up the sort comparator, neither of which the caller can recover from.
+ */
+const readValues = (facet: FormatFacet | null): string[] => {
+  const configured = facet?.values;
+  if (!Array.isArray(configured)) {
+    if (configured !== undefined) {
+      console.error("searchPage facets.format.values is not an array");
+    }
+    return [];
+  }
+  return configured
+    .filter(
+      (value: unknown): value is string =>
+        typeof value === "string" && value.trim() !== ""
+    )
+    .sort((a, b) => a.localeCompare(b));
+};
+
 export const BrowseFormats: FC<Props> = ({ site, title }) => {
   const facet = getFormatFacet(site);
-  const values = [...(facet?.values || [])].sort((a, b) => a.localeCompare(b));
+  const values = readValues(facet);
   const valueKey = values.join("|");
   const heading = title || facet?.label || "Browse by Format";
 

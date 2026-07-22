@@ -601,6 +601,34 @@ export const getCollectionItems = async (
   return items.data.searchArchives;
 };
 
+/**
+ * Counts the visible items of a given format for this site.
+ *
+ * Uses a narrow inline query rather than fetchSearchResults: the generated
+ * searchArchives document selects 74 fields including extracted_text, which
+ * would mean downloading a full item record per format just to read a total.
+ */
+export const getItemCountByFormat = async (format) => {
+  const REP_TYPE = process.env.REACT_APP_REP_TYPE.toLowerCase();
+  const queryCountByFormat = `query CountArchivesByFormat(
+      $filter: SearchableArchiveFilterInput
+    ) {
+    searchArchives(filter: $filter, limit: 1) {
+      total
+    }
+  }`;
+  const response = await API.graphql(
+    graphqlOperation(queryCountByFormat, {
+      filter: {
+        item_category: { eq: REP_TYPE },
+        visibility: { eq: true },
+        format: { eq: format }
+      }
+    })
+  );
+  return response.data.searchArchives.total;
+};
+
 export const getCollectionMap = async (mapIdentifier) => {
   try {
     const response = await API.graphql(
