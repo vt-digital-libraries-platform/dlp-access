@@ -138,7 +138,7 @@
   },
   "jest": {
     "transformIgnorePatterns": [
-      "node_modules/(?!(@react-scripts|react-scripts|decode-uri-component|filter-obj|split-on-first|query-string)/)"
+      "node_modules/(?!(.*/)?(@react-scripts|react-scripts|decode-uri-component|filter-obj|split-on-first|query-string|axios)/)"
     ]
   }
 }
