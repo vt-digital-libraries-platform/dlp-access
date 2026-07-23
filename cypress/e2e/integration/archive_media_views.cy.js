@@ -52,15 +52,12 @@ describe("archive_media_views: Archive pdf embed", () => {
 describe("archive_media_views: Archive Mirador viewer", () => {
   it("renders viewer if manifest.json", () => {
     cy.visit("/archive/cv65x38f").wait(2000);
-    cy.get("div#mirador_viewer > div > main")
-      .eq(0)
-      .should("have.class", "mirador-viewer")
-      .should("be.visible");
-    cy.get(
-      "div.mirador-primary-window > section.mirador-osd-container > div.openseadragon-container > div.openseadragon-canvas > canvas"
-    )
-      .eq(0)
-      .should("be.visible");
+    cy.get("#mirador_viewer main.mirador-viewer")
+      .should("exist")
+      .and("be.visible");
+    cy.get("#mirador_viewer .openseadragon-canvas canvas")
+      .should("exist")
+      .and("be.visible");
   });
 });
 

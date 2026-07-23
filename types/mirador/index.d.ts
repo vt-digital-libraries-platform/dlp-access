@@ -11,8 +11,15 @@ declare module "mirador" {
     [key: string]: unknown;
   }
 
+  export interface MiradorInstance {
+    actions?: unknown;
+    store?: unknown;
+    unmount?: () => void;
+    [key: string]: unknown;
+  }
+
   export interface MiradorModule {
-    viewer(config: MiradorConfig): unknown;
+    viewer(config: MiradorConfig, pluginsOrStruct?: unknown): MiradorInstance;
   }
 
   const Mirador: MiradorModule;

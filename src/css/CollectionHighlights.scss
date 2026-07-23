@@ -30,9 +30,7 @@
     &:hover,
     &:focus,
     &:focus-visible {
-      --boxShadowColor: hsl(
-        from var(--themeHighlightColor) h calc(s * 0.3) calc(l * 0.8) / 0.4
-      );
+      --boxShadowColor: hsl(from var(--themeHighlightColor) h s l / 0.4);
       box-shadow: -1px 2px 2px var(--boxShadowColor),
         -2px 4px 4px var(--boxShadowColor), 1px 6px 6px var(--boxShadowColor);
       transform: translateY(-2px);

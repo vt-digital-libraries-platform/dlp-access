@@ -21,11 +21,27 @@ type Props = {
   hidden?: boolean;
 };
 
+type MiradorWindow = {
+  manifestId: string;
+  [key: string]: unknown;
+};
+
+type MiradorViewerConfig = {
+  language: string;
+  id: string;
+  window: Record<string, unknown>;
+  views: Array<Record<string, unknown>>;
+  windows: MiradorWindow[];
+  thumbnailNavigation: Record<string, unknown>;
+  workspace: Record<string, unknown>;
+  workspaceControlPanel: Record<string, unknown>;
+};
+
 const MiradorViewer: FC<Props> = ({ item, site, type, hidden }) => {
   const windowObjects = site?.miradorOptions?.windowObjects;
 
   useEffect(() => {
-    const config: any = {
+    const config: MiradorViewerConfig = {
       language: "en",
       id: VIEWER_ID,
       window: {
@@ -61,10 +77,21 @@ const MiradorViewer: FC<Props> = ({ item, site, type, hidden }) => {
     };
 
     if (windowObjects) {
-      config.windows[0] = Object.assign(config.windows[0], windowObjects);
+      config.windows[0] = Object.assign({}, config.windows[0], windowObjects);
     }
 
-    Mirador.viewer(config);
+    const miradorInstance = Mirador.viewer(config);
+
+    return () => {
+      if (
+        miradorInstance &&
+        typeof miradorInstance === "object" &&
+        "unmount" in miradorInstance &&
+        typeof miradorInstance.unmount === "function"
+      ) {
+        miradorInstance.unmount();
+      }
+    };
   }, [item.manifest_url, windowObjects]);
 
   const miradorElement = <div id={VIEWER_ID}></div>;
