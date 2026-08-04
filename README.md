@@ -107,7 +107,7 @@ This starts the app at `http://localhost:3010` with `REACT_APP_USE_MOCKS=true` a
 
 **Works:** home page, browse collections, collection/archive detail, search (read-only GraphQL + stubbed S3 URLs).
 
-**Does not work:** admin/Cognito auth, mutations, uploads, feedback API, mint service, or Cypress E2E against real AWS.
+**Does not work:** admin/Cognito auth, mutations, uploads, feedback API, mint service, or the existing AWS-backed Cypress suites (`integration/`, `site_admin/`). For accessibility demos against mocks, see [Accessibility (Axe Watcher) against local mocks](#accessibility-axe-watcher-against-local-mocks).
 
 ## Amplify Environment variables
 We assign each site with a unique ```REACT_APP_REP_TYPE```.
@@ -166,6 +166,43 @@ See instruction and various site content examples below:
 
   * The username for authentication is: `devtest`. You can create this `devtest` account through account creation page.
   * You can create your own testing account and password, and update the username. E.g., [an example here](https://github.com/VTUL/dlp-access/blob/dev/cypress/integration/admin_page_sitepages_config.spec.js#L1)
+
+### Accessibility (Axe Watcher) against local mocks
+
+You can run a small Cypress smoke suite with [Axe Watcher](https://docs.deque.com/devtools-for-web/4/en/wa-home) against `npm run start:mock` (no AWS) and upload results to [Axe Developer Hub](https://docs.deque.com/developer-hub/2/en/dh-welcome).
+
+1. Create an Axe Developer Hub project (product: **Axe Watcher**, language: **JavaScript**, framework: **Cypress**) and copy the project ID.
+2. Create an Axe Developer Hub API key in your [Axe Account](https://axe.deque.com/settings).
+3. Put credentials in a gitignored `.env` at the repo root (or export them in your shell):
+
+```sh
+ACCESSIBILITY_API_KEY=your-api-key
+PROJECT_ID=your-project-uuid
+```
+
+4. Install and run:
+
+```sh
+npm install
+npm run test:a11y:mock
+```
+
+This starts the mock app on port 3010, runs `cypress/e2e/a11y/**/*.cy.js` in **headed Chromium / Chrome for Testing**, and flushes results to Developer Hub.
+
+**Important:** Branded Google Chrome 137+ no longer loads extensions via `--load-extension`, so Axe Watcher will time out on flush if you use normal Chrome. The `cypress:a11y` script auto-selects Chromium or a local Chrome for Testing install (`npx @puppeteer/browsers install chrome@stable`, or `brew install --cask chromium`). Override with `AXE_CHROME_BINARY=/path/to/browser` if needed.
+
+Watcher only supports `cypress run` (not interactive `cypress open` as the primary path). If flush still times out, confirm network access to `axe.deque.com` and that `ACCESSIBILITY_API_KEY` / `PROJECT_ID` are set.
+
+Or run the pieces separately:
+
+```sh
+npm run start:mock   # terminal 1 — http://localhost:3010
+npm run cypress:a11y # terminal 2
+```
+
+Then open your project at [axe.deque.com](https://axe.deque.com) to review Branches / Test Runs.
+
+A starter GitHub Actions workflow is in [`.github/workflows/a11y-watcher.yml`](.github/workflows/a11y-watcher.yml) (`workflow_dispatch`). Configure repository secret `ACCESSIBILITY_API_KEY` and variable `PROJECT_ID` before using it. Existing AWS-backed Cypress suites (`integration/`, `site_admin/`) are unchanged and still need real Amplify/Cognito.
 
 
 ## Cleanup

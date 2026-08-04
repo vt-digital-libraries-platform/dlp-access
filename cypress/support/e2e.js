@@ -14,19 +14,22 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands'
+import "./commands";
+import "@axe-core/watcher/cypress/support";
 
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
-Cypress.on('uncaught:exception', (err, runnable) => {
+afterEach(() => {
+  cy.axeWatcherFlush({ timeout: 30000 });
+});
+
+Cypress.on("uncaught:exception", (err, runnable) => {
   // returning false here prevents Cypress from
   // failing the test
-  return false
-})
+  return false;
+});
 
 // beforeEach(() => {
 //   cy.wait(1000)
 // })
-
-

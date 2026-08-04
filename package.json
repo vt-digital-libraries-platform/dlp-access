@@ -97,7 +97,9 @@
     "build": "react-scripts --max_old_space_size=5632 --optimize-for-size build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "generate:mock-data": "node scripts/generate-mock-data.js"
+    "generate:mock-data": "node scripts/generate-mock-data.js",
+    "cypress:a11y": "node scripts/run-cypress-a11y.js",
+    "test:a11y:mock": "start-server-and-test start:mock http-get://localhost:3010 cypress:a11y"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -125,6 +127,7 @@
     }
   },
   "devDependencies": {
+    "@axe-core/watcher": "^4.5.0",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
@@ -136,10 +139,12 @@
     "@types/uuid": "^9.0.1",
     "cypress": "^13.6.4",
     "cypress-localstorage-commands": "^2.2.2",
+    "dotenv": "^17.4.2",
     "husky": "^3.1.0",
     "lint-staged": "^13.2.0",
     "prettier": "^2.8.7",
-    "semantic-ui-css": "git+https://github.com/Semantic-Org/Semantic-UI-CSS.git"
+    "semantic-ui-css": "git+https://github.com/Semantic-Org/Semantic-UI-CSS.git",
+    "start-server-and-test": "^2.1.5"
   },
   "jest": {
     "transformIgnorePatterns": [
