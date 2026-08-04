@@ -1,0 +1,21 @@
+[
+  {
+    "collection_category": "default",
+    "collectionmap_id": "19",
+    "create_date": "2020/07/14 14:43:26",
+    "createdAt": "2020-07-14T14:43:26.000Z",
+    "custom_key": "ark:/53696/j22hdemo",
+    "description": ["A demo collection"],
+    "heirarchy_path": ["692555a6-c794-11ea-87d0-0242ac130003"],
+    "id": "692555a6-c794-11ea-87d0-0242ac130003",
+    "identifier": "democollection",
+    "modified_date": "2020/07/14 19:33:51",
+    "thumbnail_path": "https://hokiesports.com/images/2018/10/11/271f4e06b61983fba5c37bad7586f2e8.jpg",
+    "title": "Demo collection",
+    "updatedAt": "2020-07-14T19:33:51.000Z",
+    "visibility": true,
+    "parent_collection": null,
+    "subject": ["Architecture", "Demo"],
+    "creator": ["Demo"]
+  }
+]

@@ -94,6 +94,21 @@ aws amplify list-backend-environments --app-id=AmplifyAppId
 
 * Default group: `public`
 
+### Local mock (no AWS)
+
+If you do not have AWS credentials, you can run the browse UI against an in-memory Amplify mock layer:
+
+```sh
+npm install
+npm run start:mock
+```
+
+This starts the app at `http://localhost:3010` with `REACT_APP_USE_MOCKS=true` and `REACT_APP_REP_TYPE=Default` (port 3010 avoids Cursor and other tools that often bind 3000/3001). Seed data lives under `src/mock/data/` (regenerate from `examples/jsons/` with `npm run generate:mock-data`).
+
+**Works:** home page, browse collections, collection/archive detail, search (read-only GraphQL + stubbed S3 URLs).
+
+**Does not work:** admin/Cognito auth, mutations, uploads, feedback API, mint service, or Cypress E2E against real AWS.
+
 ## Amplify Environment variables
 We assign each site with a unique ```REACT_APP_REP_TYPE```.
 

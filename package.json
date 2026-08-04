@@ -3,10 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@aws-amplify/auth": "^5.6.23",
     "@aws-amplify/cli-extensibility-helper": "^3.0.1",
+    "@aws-amplify/core": "^5.8.18",
+    "@aws-amplify/storage": "^5.9.23",
     "@aws-amplify/ui-react": "^5.3.3",
+    "@aws-sdk/util-utf8-browser": "^3.259.0",
     "@babylonjs/core": "^7.34.4",
-    "@babylonjs/gui": "^8.32.0",
+    "@babylonjs/gui": "^7.54.3",
     "@babylonjs/loaders": "^7.34.4",
     "@babylonjs/materials": "^7.37.0",
     "@blueprintjs/core": "^4.17.8",
@@ -21,6 +25,7 @@
     "@mui/lab": "^5.0.0-alpha.125",
     "@mui/material": "^5.11.16",
     "@mui/styles": "^5.11.16",
+    "@mui/system": "^5.18.0",
     "@mui/x-tree-view": "^7.17.0",
     "@types/jest": "^29.5.0",
     "@types/node": "^18.15.11",
@@ -88,9 +93,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:mock": "REACT_APP_USE_MOCKS=true REACT_APP_REP_TYPE=Default PORT=3010 react-scripts start",
     "build": "react-scripts --max_old_space_size=5632 --optimize-for-size build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "generate:mock-data": "node scripts/generate-mock-data.js"
   },
   "eslintConfig": {
     "extends": "react-app"
