@@ -11,6 +11,7 @@ src/ui-components
 
 # testing
 /coverage
+/cypress/screenshots
 
 # production
 /build
