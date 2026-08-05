@@ -11,6 +11,8 @@ src/ui-components
 
 # testing
 /coverage
+/cypress/screenshots
+/cypress/reports
 
 # production
 /build
@@ -58,3 +60,7 @@ amplifytools.xcconfig
 .secret-*
 **.sample
 #amplify-do-not-edit-end
+
+.env
+# Local Chrome for Testing (Axe Watcher)
+chrome/

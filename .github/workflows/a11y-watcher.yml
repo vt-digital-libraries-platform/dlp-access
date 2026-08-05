@@ -1,0 +1,62 @@
+# Upload Axe Watcher Cypress results to Axe Developer Hub.
+# Manual runs only by default so existing PR checks are unchanged.
+#
+# Required repository secrets / variables:
+#   secrets.ACCESSIBILITY_API_KEY  — Axe Developer Hub API key (project admin)
+#   vars.PROJECT_ID                — Developer Hub project UUID
+#     (or secrets.PROJECT_ID if you prefer a secret)
+#
+# Optional later: add dequelabs/axe-devhub-action after this job to gate PRs
+# on an a11y threshold. See https://docs.deque.com/developer-hub/2/en/dh-github-action
+
+name: Axe Watcher a11y (mock)
+
+on:
+  workflow_dispatch:
+  # Uncomment to run on PRs once secrets are configured and the check is ready:
+  # pull_request:
+  #   branches: [dev, main]
+
+jobs:
+  a11y-watcher:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      ACCESSIBILITY_API_KEY: ${{ secrets.ACCESSIBILITY_API_KEY }}
+      PROJECT_ID: ${{ vars.PROJECT_ID }}
+      CI: true
+      # Clear proxy vars that can break uploads to axe.deque.com.
+      HTTP_PROXY: ""
+      HTTPS_PROXY: ""
+      http_proxy: ""
+      https_proxy: ""
+      ALL_PROXY: ""
+      all_proxy: ""
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Branded Google Chrome 137+ ignores --load-extension; Watcher needs CFT/Chromium.
+      - name: Install Chrome for Testing
+        run: npx @puppeteer/browsers install chrome@stable
+
+      - name: Run Axe Watcher Cypress suite against mock app
+        # Watcher needs a headed Chromium; xvfb provides a display on CI.
+        run: xvfb-run -a npm run test:a11y:mock
+
+      # Optional follow-up gate (enable after baseline exists in Developer Hub):
+      # - name: Check Axe Developer Hub threshold
+      #   uses: dequelabs/axe-devhub-action@v1
+      #   with:
+      #     api_key: ${{ secrets.ACCESSIBILITY_API_KEY }}
+      #     project_id: ${{ vars.PROJECT_ID }}
+      #     enable_a11y_threshold: true

@@ -7,10 +7,18 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
 import { Amplify } from "aws-amplify";
-import config from "./aws-exports";
 
 import "bootstrap/dist/css/bootstrap.css";
 import "semantic-ui-css/semantic.min.css";
+
+let config;
+if (process.env.REACT_APP_USE_MOCKS === "true") {
+  const { installMocks } = require("./mock");
+  installMocks();
+  config = require("./mock/aws-exports.mock").default;
+} else {
+  config = require("./aws-exports").default;
+}
 
 console.clear();
 Amplify.configure({

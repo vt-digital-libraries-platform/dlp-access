@@ -1,0 +1,12 @@
+[
+  {
+    "id": "mock-about",
+    "page_content_category": "default",
+    "content": "<h1>About</h1><p>This is local mock content for the About page.</p>"
+  },
+  {
+    "id": "mock-terms",
+    "page_content_category": "default",
+    "content": "<h1>Permissions</h1><p>This is local mock permissions content.</p>"
+  }
+]
