@@ -12,6 +12,7 @@ src/ui-components
 # testing
 /coverage
 /cypress/screenshots
+/cypress/reports
 
 # production
 /build

@@ -187,7 +187,7 @@ npm install
 npm run test:a11y:mock
 ```
 
-This starts the mock app on port 3010, runs `cypress/e2e/a11y/**/*.cy.js` in **headed Chromium / Chrome for Testing**, and flushes results to Developer Hub.
+This starts the mock app on port 3010, runs `cypress/e2e/a11y/**/*.cy.js` in **headed Chromium / Chrome for Testing**, flushes results to Developer Hub, and writes a [mochawesome](https://www.npmjs.com/package/mochawesome) HTML report to `cypress/reports/a11y/mochawesome.html` (open with `open cypress/reports/a11y/mochawesome.html`).
 
 **Important:** Branded Google Chrome 137+ no longer loads extensions via `--load-extension`, so Axe Watcher will time out on flush if you use normal Chrome. The `cypress:a11y` script auto-selects Chromium or a local Chrome for Testing install (`npx @puppeteer/browsers install chrome@stable`, or `brew install --cask chromium`). Override with `AXE_CHROME_BINARY=/path/to/browser` if needed.
 
@@ -200,7 +200,7 @@ npm run start:mock   # terminal 1 — http://localhost:3010
 npm run cypress:a11y # terminal 2
 ```
 
-Then open your project at [axe.deque.com](https://axe.deque.com) to review Branches / Test Runs.
+Then open `cypress/reports/a11y/mochawesome.html` for the Cypress pass/fail report, and your project at [axe.deque.com](https://axe.deque.com) for Axe Watcher Branches / Test Runs.
 
 A starter GitHub Actions workflow is in [`.github/workflows/a11y-watcher.yml`](.github/workflows/a11y-watcher.yml) (`workflow_dispatch`). Configure repository secret `ACCESSIBILITY_API_KEY` and variable `PROJECT_ID` before using it. Existing AWS-backed Cypress suites (`integration/`, `site_admin/`) are unchanged and still need real Amplify/Cognito.
 
