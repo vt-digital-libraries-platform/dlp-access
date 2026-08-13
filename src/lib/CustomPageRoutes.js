@@ -3,14 +3,12 @@ import AboutPage from "../pages/AboutPage";
 import PermissionsPage from "../pages/PermissionsPage";
 import AdditionalPages from "../pages/AdditionalPages";
 import FeedbackPage from "../pages/FeedbackPage";
-import { BrowseFormats } from "../pages/formats/BrowseFormats";
 
 const pageComponents = {
   AboutPage: AboutPage,
   PermissionsPage: PermissionsPage,
   AdditionalPages: AdditionalPages,
-  FeedbackPage: FeedbackPage,
-  BrowseFormats: BrowseFormats
+  FeedbackPage: FeedbackPage
 };
 
 function route(site, key, path, title, PageComponent, childKey = null) {
