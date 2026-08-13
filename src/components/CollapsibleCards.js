@@ -161,12 +161,14 @@ const getCopyrightData = (data, site) => {
       {data[key1] && (
         <div className="data-list-item">
           <dt className="data-list-label">{modifyKey(key1, site)}</dt>
-          <dd className="data-list-value">{htmlParsedValue(data[key1])}</dd>
+          <dd className="data-list-value">
+            {cleanHTML(String(data[key1]), "html")}
+          </dd>
         </div>
       )}
       {data[key2] && (
         <div className="data-list-item">
-          <dt className="data-list-label">{modifyKey(key2)}</dt>
+          <dt className="data-list-label">{modifyKey(key2, site)}</dt>
           {Array.isArray(data[key2]) ? (
             data[key2].map((value, index) => (
               <dd key={index} className="data-list-value">
