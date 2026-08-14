@@ -199,7 +199,8 @@ export default function CollapsibleCard({
     "format_physical",
     "medium",
     "type",
-    "tags"
+    "tags",
+    "language"
   ];
 
   const renderContent = (key, value) => {
@@ -218,16 +219,6 @@ export default function CollapsibleCard({
           rel="noopener noreferrer"
         >
           {value}
-        </a>
-      );
-    } else if (key === "language") {
-      return (
-        <a
-          href="https://en.wikipedia.org/wiki/English_language"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          en
         </a>
       );
     } else {
