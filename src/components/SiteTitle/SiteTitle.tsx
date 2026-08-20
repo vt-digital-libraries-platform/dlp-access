@@ -23,7 +23,7 @@ export const SiteTitle: FC<Props> = ({ data, template, site }) => {
    * @returns String - The page title to be inserted into the document's <head> element.
    **/
   const buildPageTitle = (
-    data: { [key: string]: string },
+    data: { [key: string]: any },
     template: string | { [key: string]: string },
     site?: { siteTitle?: string }
   ) => {
