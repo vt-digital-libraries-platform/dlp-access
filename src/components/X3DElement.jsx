@@ -69,7 +69,7 @@ class X3DElement extends Component {
           <x3d id="x3dElement" is="x3d" width="100%" height="100%">
             <scene is="x3d">
               <viewpoint ref={this.viewpointRef} position="0 0 4" />
-              <navigationInfo type="examine" id="navType" />
+              <navigationinfo type="examine" id="navType" />
               <inline
                 id="x3dInline"
                 DEF="x3dInline"

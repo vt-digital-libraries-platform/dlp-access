@@ -52,7 +52,7 @@ class ArchivePage extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props !== prevProps) {
+    if (this.props.customKey !== prevProps.customKey) {
       this.getArchive(this.props.customKey);
     }
   }
