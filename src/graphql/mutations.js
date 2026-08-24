@@ -56,6 +56,7 @@ export const createArchive = /* GraphQL */ `
       parent_collection_identifier
       partner_id
       provenance
+      provider
       publisher
       references
       relation
@@ -104,6 +105,7 @@ export const createArchive = /* GraphQL */ `
         parent_collection_identifier
         partner_id
         provenance
+        provider
         relation
         rights_holder
         rights
@@ -198,6 +200,7 @@ export const updateArchive = /* GraphQL */ `
       parent_collection_identifier
       partner_id
       provenance
+      provider
       publisher
       references
       relation
@@ -246,6 +249,7 @@ export const updateArchive = /* GraphQL */ `
         parent_collection_identifier
         partner_id
         provenance
+        provider
         relation
         rights_holder
         rights
@@ -340,6 +344,7 @@ export const deleteArchive = /* GraphQL */ `
       parent_collection_identifier
       partner_id
       provenance
+      provider
       publisher
       references
       relation
@@ -388,6 +393,7 @@ export const deleteArchive = /* GraphQL */ `
         parent_collection_identifier
         partner_id
         provenance
+        provider
         relation
         rights_holder
         rights
@@ -461,6 +467,7 @@ export const createCollection = /* GraphQL */ `
       parent_collection_identifier
       partner_id
       provenance
+      provider
       relation
       rights_holder
       rights
@@ -543,6 +550,7 @@ export const updateCollection = /* GraphQL */ `
       parent_collection_identifier
       partner_id
       provenance
+      provider
       relation
       rights_holder
       rights
@@ -625,6 +633,7 @@ export const deleteCollection = /* GraphQL */ `
       parent_collection_identifier
       partner_id
       provenance
+      provider
       relation
       rights_holder
       rights
@@ -714,6 +723,7 @@ export const createCollectionmap = /* GraphQL */ `
         parent_collection_identifier
         partner_id
         provenance
+        provider
         relation
         rights_holder
         rights
@@ -779,6 +789,7 @@ export const updateCollectionmap = /* GraphQL */ `
         parent_collection_identifier
         partner_id
         provenance
+        provider
         relation
         rights_holder
         rights
@@ -844,6 +855,7 @@ export const deleteCollectionmap = /* GraphQL */ `
         parent_collection_identifier
         partner_id
         provenance
+        provider
         relation
         rights_holder
         rights
