@@ -26,11 +26,10 @@ class BabylonController {
     this.loadingBar = null;
     this.percentLoaded = null;
 
-    const defaultScaleFactor = 0.25;
-    this.scaleFactor =
-      this.toFloat(this.props.scaleFactor) || defaultScaleFactor;
+    // camera distance is now computed automatically from the loaded
+    // model's height (see Subject#getCameraDistance); scaleFactor from
+    // content config is not wired into that yet.
     this.initialPosition = new BABYLON.Vector3(0, 0.5, 10);
-    this.initialRadius = 4;
 
     this.initialRotationVector = new BABYLON.Vector3(
       this.toFloat(this.props?.rotation?.horizontal),
@@ -88,16 +87,20 @@ class BabylonController {
     this.model = new Subject(
       this.props.model,
       this.scene,
-      this.scaleFactor,
+      null,
       this.props._3dConfig?.allowTransparency || false,
       this.loadingScreen
     );
+    await this.model.ready;
 
-    // load and position ground
-    const GROUND_DIAMETER = 4;
-    new Ground(this.scene, GROUND_DIAMETER);
+    // load and position ground, sized to the model's initial framing
+    // distance; rescaled every frame below to keep its apparent size
+    // roughly constant as the camera zooms
+    this.ground = new Ground(this.scene, this.model.getCameraDistance());
 
     // cameras
+    const { lower: lowerRadiusLimit, upper: upperRadiusLimit } =
+      this.model.getCameraRadiusLimits();
     this.ArcRotateCamera = new Camera(
       "arcRotate",
       this.scene,
@@ -105,8 +108,11 @@ class BabylonController {
       this.initialPosition,
       null,
       this.initialRotation,
-      this.initialRadius,
-      this.model.ellipsoid
+      this.model.getCameraDistance(),
+      this.model.ellipsoid,
+      lowerRadiusLimit,
+      upperRadiusLimit,
+      this.model.getCameraTarget()
     );
 
     // this.UniversalCamera = new Camera(
@@ -122,6 +128,11 @@ class BabylonController {
 
     this.attachControl(this.ArcRotateCamera.active);
     this.scene.activeCamera = this.ArcRotateCamera.active;
+
+    // keep the ground's apparent size roughly constant as the camera zooms
+    this.scene.onBeforeRenderObservable.add(() => {
+      this.ground.setScale(this.ArcRotateCamera.active.radius);
+    });
 
     // addOns from config
     if (this.props?._3dConfig?.addOns?.length > 0) {

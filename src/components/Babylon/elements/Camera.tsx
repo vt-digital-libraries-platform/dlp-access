@@ -1,5 +1,10 @@
 import * as BABYLON from "@babylonjs/core";
 
+// fallbacks for callers (e.g. the commented-out UniversalCamera setup)
+// that don't supply model-derived radius limits
+const DEFAULT_LOWER_RADIUS_LIMIT = 1;
+const DEFAULT_UPPER_RADIUS_LIMIT = 5;
+
 class Camera {
   private scene: BABYLON.Scene;
   private canvas: HTMLCanvasElement;
@@ -10,6 +15,9 @@ class Camera {
   private rotation: { horizontal: number; vertical: number };
   private radius: number;
   private modelDimensions?: { _x: number; _y: number; _z: number };
+  private lowerRadiusLimit: number;
+  private upperRadiusLimit: number;
+  private target: BABYLON.Vector3;
 
   constructor(
     type: string,
@@ -19,7 +27,10 @@ class Camera {
     rotationVector: BABYLON.Vector3,
     rotation: { horizontal: number; vertical: number },
     radius: number,
-    modelDimensions?: { _x: number; _y: number; _z: number }
+    modelDimensions?: { _x: number; _y: number; _z: number },
+    lowerRadiusLimit: number = DEFAULT_LOWER_RADIUS_LIMIT,
+    upperRadiusLimit: number = DEFAULT_UPPER_RADIUS_LIMIT,
+    target: BABYLON.Vector3 = new BABYLON.Vector3(0, 0, 0)
   ) {
     this.scene = scene;
     this.canvas = canvas;
@@ -29,6 +40,9 @@ class Camera {
     this.rotation = rotation;
     this.radius = radius;
     this.modelDimensions = modelDimensions;
+    this.lowerRadiusLimit = lowerRadiusLimit;
+    this.upperRadiusLimit = upperRadiusLimit;
+    this.target = target;
 
     // Create the camera based on the type
     this.active = this.createCamera();
@@ -82,14 +96,14 @@ class Camera {
       horizontal || 0,
       vertical || Math.PI / 2,
       this.radius,
-      new BABYLON.Vector3(0, 0, 0),
+      this.target,
       this.scene
     );
 
     camera.speed = 0.25;
     camera.wheelPrecision = 100;
-    camera.lowerRadiusLimit = 1;
-    camera.upperRadiusLimit = 5;
+    camera.lowerRadiusLimit = this.lowerRadiusLimit;
+    camera.upperRadiusLimit = this.upperRadiusLimit;
     camera.minZ = 0.1;
     camera.useAutoRotationBehavior = true;
     if (camera.autoRotationBehavior) {
