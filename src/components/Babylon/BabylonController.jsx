@@ -112,7 +112,8 @@ class BabylonController {
       this.model.ellipsoid,
       lowerRadiusLimit,
       upperRadiusLimit,
-      this.model.getCameraTarget()
+      this.model.getCameraTarget(),
+      this.model.getCameraMinZ()
     );
 
     // this.UniversalCamera = new Camera(

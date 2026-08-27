@@ -14,6 +14,13 @@ const MAX_RADIUS_MULTIPLIER = 1.5;
 // must match Ground.tsx's fixed y position so the model's base always
 // rests on the ground plane, regardless of the model's own pivot/scale
 const GROUND_Y = -1;
+// hardcoded fallback near-clip distance, used only if the model has no
+// measurable bounding radius
+const DEFAULT_MIN_Z = 0.1;
+// fraction of the gap between lowerRadiusLimit and modelBoundingRadius to
+// use as the near clip plane, so it's always well inside the closest the
+// camera can get to the model regardless of model scale
+const MIN_Z_MARGIN = 0.5;
 
 class Subject {
   private model: BABYLON.AbstractMesh | null;
@@ -71,8 +78,21 @@ class Subject {
     this.modelBoundingRadius = BABYLON.Vector3.Distance(min, max) / 2;
     this.model.checkCollisions = true;
 
-    // center the model horizontally and rest its base on the ground plane
-    this.model.position = new BABYLON.Vector3(0, GROUND_Y - min.y, 0);
+    // Center the model horizontally and rest its base on the ground plane.
+    // Recentering on the bounding box's true x/z center (not just zeroing
+    // position, which only helps if the mesh's own pivot already happens
+    // to sit at its bounding-box center) puts the box's center exactly at
+    // the camera's orbit target, so modelBoundingRadius (the box's
+    // circumscribed-sphere radius) actually bounds the model from the
+    // target in every direction — otherwise the near-zoom clamp could let
+    // the camera dolly into the model from some angles but not others.
+    const centerX = (min.x + max.x) / 2;
+    const centerZ = (min.z + max.z) / 2;
+    this.model.position = new BABYLON.Vector3(
+      -centerX,
+      GROUND_Y - min.y,
+      -centerZ
+    );
   }
 
   private isValidCameraDistance(value: number | null | undefined): boolean {
@@ -118,6 +138,22 @@ class Subject {
   // shifted to rest its base on the ground plane.
   getCameraTarget(): BABYLON.Vector3 {
     return new BABYLON.Vector3(0, GROUND_Y + this.modelHeight / 2, 0);
+  }
+
+  // Near clip distance for the camera. A hardcoded minZ (e.g. Babylon's
+  // usual 0.1) is fine for real-world-scale models, but breaks down for
+  // small-scale ones where it can end up larger than lowerRadiusLimit
+  // itself — putting the entire model inside the near-clip region so it
+  // gets culled outright at max zoom-in, which looks like the camera
+  // clipping into the object. Scaling minZ to a fraction of the gap
+  // between lowerRadiusLimit and the model's bounding radius keeps it
+  // safely inside that gap at any scale.
+  getCameraMinZ(fov: number = DEFAULT_CAMERA_FOV): number {
+    if (!this.modelBoundingRadius) {
+      return DEFAULT_MIN_Z;
+    }
+    const { lower } = this.getCameraRadiusLimits(fov);
+    return (lower - this.modelBoundingRadius) * MIN_Z_MARGIN;
   }
 
   getModelDimensions(): BABYLON.Vector3 {

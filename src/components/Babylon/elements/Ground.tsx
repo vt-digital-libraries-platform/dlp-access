@@ -1,10 +1,14 @@
 import * as BABYLON from "@babylonjs/core";
 
+// shrinks the ground disc's diameter by 5% relative to the passed-in radius
+const DIAMETER_SCALE = 0.75;
+
 class Ground {
   private mesh: BABYLON.Mesh;
   private referenceRadius: number;
 
   constructor(scene: BABYLON.Scene, radius: number) {
+    radius *= DIAMETER_SCALE;
     this.referenceRadius = radius;
     this.mesh = BABYLON.MeshBuilder.CreateDisc("ground", { radius }, scene);
     this.mesh.rotation.x = Math.PI / 2;

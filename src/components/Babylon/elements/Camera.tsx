@@ -4,6 +4,9 @@ import * as BABYLON from "@babylonjs/core";
 // that don't supply model-derived radius limits
 const DEFAULT_LOWER_RADIUS_LIMIT = 1;
 const DEFAULT_UPPER_RADIUS_LIMIT = 5;
+// matches Camera's own former hardcoded minZ, used when no model-derived
+// value is supplied
+const DEFAULT_MIN_Z = 0.1;
 
 class Camera {
   private scene: BABYLON.Scene;
@@ -18,6 +21,7 @@ class Camera {
   private lowerRadiusLimit: number;
   private upperRadiusLimit: number;
   private target: BABYLON.Vector3;
+  private minZ: number;
 
   constructor(
     type: string,
@@ -30,7 +34,8 @@ class Camera {
     modelDimensions?: { _x: number; _y: number; _z: number },
     lowerRadiusLimit: number = DEFAULT_LOWER_RADIUS_LIMIT,
     upperRadiusLimit: number = DEFAULT_UPPER_RADIUS_LIMIT,
-    target: BABYLON.Vector3 = new BABYLON.Vector3(0, 0, 0)
+    target: BABYLON.Vector3 = new BABYLON.Vector3(0, 0, 0),
+    minZ: number = DEFAULT_MIN_Z
   ) {
     this.scene = scene;
     this.canvas = canvas;
@@ -43,6 +48,7 @@ class Camera {
     this.lowerRadiusLimit = lowerRadiusLimit;
     this.upperRadiusLimit = upperRadiusLimit;
     this.target = target;
+    this.minZ = minZ;
 
     // Create the camera based on the type
     this.active = this.createCamera();
@@ -104,7 +110,7 @@ class Camera {
     camera.wheelPrecision = 100;
     camera.lowerRadiusLimit = this.lowerRadiusLimit;
     camera.upperRadiusLimit = this.upperRadiusLimit;
-    camera.minZ = 0.1;
+    camera.minZ = this.minZ;
     camera.useAutoRotationBehavior = true;
     if (camera.autoRotationBehavior) {
       camera.autoRotationBehavior.zoomStopsAnimation = true;
