@@ -29,7 +29,7 @@ class Environment {
   createSkybox() {
     const skybox = BABYLON.MeshBuilder.CreateBox(
       "skyBox",
-      { size: 100.0 },
+      { size: 1000.0 },
       this.scene
     );
     const skyboxMaterial = new BABYLON.StandardMaterial("skyBox", this.scene);
