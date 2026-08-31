@@ -21,6 +21,7 @@ import {
   getTopLevelParentForCollection
 } from "../../lib/fetchTools";
 import { buildRichSchema } from "../../lib/richSchemaTools";
+import { resolveMediaKind } from "../../lib/mediaKind";
 import { searchArchives } from "../../graphql/queries";
 import RelatedItems from "../../components/RelatedItems";
 import { Thumbnail } from "../../components/Thumbnail";
@@ -130,117 +131,6 @@ class ArchivePage extends Component {
     this.setState({ page: page });
   };
 
-  isImgURL(url) {
-    let match = false;
-    try {
-      match = url.match(/\.(jpeg|jpg|gif|png)$/) != null;
-    } catch (error) {
-      console.log("probs not an img");
-    }
-    return match;
-  }
-
-  isAudioURL(url) {
-    return url && url.match(/\.(mp3|ogg|wav)$/) != null;
-  }
-
-  isVideoURL(url) {
-    return url && url.match(/\.(mp4|mov)$/) != null;
-  }
-
-  isKalturaURL(url) {
-    return url && url.match(/(video.vt.edu\/media)/) != null;
-  }
-
-  isPdfURL(url) {
-    return url && url.match(/\.(pdf)$/) != null;
-  }
-
-  isMiradorURL(url, item = null) {
-    let has_3d = false;
-    if (item) {
-      has_3d = this.is3D_2DiiifType(item);
-    }
-    let match = false;
-    try {
-      match = url.match(/(\/manifest.json)$/) != null;
-    } catch (error) {
-      return false;
-    }
-    return !has_3d && match;
-  }
-
-  isMinervaURL(url) {
-    let match = false;
-    try {
-      match = url.match(/(\/exhibit.json)$/) != null;
-    } catch (error) {
-      return false;
-    }
-    return match;
-  }
-
-  isObjURL(url) {
-    return url && url.match(/\.(obj|OBJ)$/) != null;
-  }
-
-  isMtlUrl(url) {
-    return url && url.match(/\.(mtl)$/) != null;
-  }
-
-  isX3DUrl(url) {
-    return url && url.match(/\.(x3d|X3D)$/) != null;
-  }
-  isGLTFUrl(url) {
-    return url && url.match(/\.(gltf|GLTF|glb|GLB)$/) != null;
-  }
-
-  is3D_2DiiifType(item) {
-    try {
-      const options = JSON.parse(item.archiveOptions);
-      const is3D_2Diiif =
-        options.assets.media_type === "3d_2diiif" && !!item.manifest_url;
-      const hasX3DandTIFF =
-        item.format?.indexOf("model/x3d") !== -1 &&
-        item.format?.indexOf("image/tiff") !== -1;
-      const hasGLTFandEnv =
-        !!options.assets.gltf_config && !!options.assets.env_config;
-      return is3D_2Diiif && (hasX3DandTIFF || hasGLTFandEnv);
-    } catch (error) {
-      return false;
-    }
-  }
-
-  isX3DType(item) {
-    let match = false;
-    try {
-      const options = JSON.parse(item.archiveOptions);
-      const type = options.assets.media_type;
-      match =
-        type === "3d-model/x3dom" &&
-        !!options.assets.x3d_config &&
-        !!options.assets.x3d_src_img;
-    } catch (error) {
-      return false;
-    }
-    return match;
-  }
-
-  isGLTFType(item) {
-    let match = false;
-    try {
-      const options = JSON.parse(item.archiveOptions);
-      const type = options.assets.media_type;
-      match =
-        type === "3d-model/gltf" &&
-        !!options.assets.gltf_config &&
-        !!options.assets.env_config;
-    } catch (error) {
-      return false;
-    }
-    return match;
-  }
-
   buildArchiveSchema(item) {
     let info = {};
     let collectionURL = window.location.href.replace("archive", "collection");
@@ -260,139 +150,104 @@ class ArchivePage extends Component {
   }
 
   mediaDisplay(item) {
-    let options = {};
-    try {
-      options = JSON.parse(item.archiveOptions);
-    } catch (error) {
-      console.log("Error parsing archive options", error);
-    }
-    let display = null;
+    const media = resolveMediaKind(item);
     let width = Math.min(
       document.getElementById("content-wrapper").offsetWidth - 50,
       720
     );
 
-    if (this.is3D_2DiiifType(item)) {
-      display = (
-        <ThreeD2DiiifHandler
-          item={item}
-          frameWidth={width}
-          frameHeight={width}
-          site={this.props.site}
-        />
-      );
-    } else if (this.isGLTFType(item)) {
-      let scaleFactor = 0.25; // default scale factor
-      if (typeof options.config?._3d?.scale_factor === "string") {
-        scaleFactor = parseFloat(options.config._3d.scale_factor);
-      } else if (typeof options.config?._3d?.scale_factor === "number") {
-        scaleFactor = options.config._3d.scale_factor;
-      }
-
-      let rotation = {
-        horizontal: 0,
-        vertical: 0
-      };
-      if (typeof options.config?._3d?.rotation?.horizontal === "string") {
-        rotation.horizontal = parseFloat(
-          options.config._3d.rotation.horizontal
-        );
-      } else if (
-        typeof options.config?._3d?.rotation?.horizontal === "number"
-      ) {
-        rotation.horizontal = options.config._3d.rotation.horizontal;
-      }
-      if (typeof options.config?._3d?.rotation?.vertical === "string") {
-        rotation.vertical = parseFloat(options.config._3d.rotation.vertical);
-      } else if (typeof options.config?._3d?.rotation?.vertical === "number") {
-        rotation.vertical = options.config._3d.rotation.vertical;
-      }
-      display = (
-        <div className="image-wrapper" id="image-wrapper">
-          <BabylonElement
-            model={options.assets.gltf_config}
-            env={options.assets.env_config}
-            scaleFactor={scaleFactor}
-            rotation={rotation}
+    switch (media.kind) {
+      case "3d-2diiif-gltf":
+      case "3d-2diiif-x3d":
+        return (
+          <ThreeD2DiiifHandler
             item={item}
-            _3dConfig={options?.config?._3d}
+            media={media}
+            frameWidth={width}
+            frameHeight={width}
+            site={this.props.site}
           />
-        </div>
-      );
-    } else if (this.isX3DType(item)) {
-      display = (
-        <div className="obj-wrapper image-wrapper">
-          <X3DElement
-            url={options.assets?.x3d_config}
-            frameSize={width}
-            frameHeight={100}
+        );
+      case "gltf":
+        return (
+          <div className="image-wrapper" id="image-wrapper">
+            <BabylonElement
+              model={media.gltfConfig}
+              env={media.envConfig}
+              scaleFactor={media.scaleFactor}
+              rotation={media.rotation}
+              item={item}
+              _3dConfig={media.threeDConfig}
+            />
+          </div>
+        );
+      case "x3d":
+        return (
+          <div className="obj-wrapper image-wrapper">
+            <X3DElement
+              url={media.x3dConfig}
+              frameSize={width}
+              frameHeight={100}
+            />
+          </div>
+        );
+      case "mirador":
+        return <MiradorViewer item={item} site={this.props.site} />;
+      case "minerva":
+        return <MinervaPlayer item={item} site={this.props.site} />;
+      case "image":
+        return (
+          <Thumbnail
+            className="item-img"
+            item={item}
+            imgURL={media.url}
+            altText={item.title}
+            site={this.props.site}
           />
-        </div>
-      );
-    } else if (this.isMiradorURL(item.manifest_url, item)) {
-      display = <MiradorViewer item={item} site={this.props.site} />;
-    } else if (this.isMinervaURL(item.manifest_url)) {
-      display = <MinervaPlayer item={item} site={this.props.site} />;
-    } else if (this.isImgURL(item.manifest_url)) {
-      display = (
-        <Thumbnail
-          className="item-img"
-          item={item}
-          imgURL={item.manifest_url}
-          altText={item.title}
-          site={this.props.site}
-        />
-      );
-    } else if (this.isAudioURL(item.manifest_url)) {
-      const transcript = item.archiveOptions
-        ? JSON.parse(item.archiveOptions)
-        : null;
-      display = (
-        <MediaElement
-          src={item.manifest_url}
-          mediaType="audio"
-          site={this.props.site}
-          poster={item.thumbnail_path}
-          title={item.title}
-          transcript={transcript ? transcript?.audioTranscript : null}
-          isPodcast={this.state.item?.type?.find((item) => item === "podcast")}
-        />
-      );
-    } else if (this.isVideoURL(item.manifest_url)) {
-      display = (
-        <MediaElement
-          src={item.manifest_url}
-          mediaType="video"
-          site={this.props.site}
-          poster={item.thumbnail_path}
-        />
-      );
-    } else if (this.isKalturaURL(item.manifest_url)) {
-      display = <KalturaPlayer manifest_url={item.manifest_url} />;
-    } else if (this.isPdfURL(item.manifest_url)) {
-      display = (
-        <PDFViewer manifest_url={item.manifest_url} title={item.title} />
-      );
-    } else if (this.isObjURL(item.manifest_url)) {
-      const texPath = item.manifest_url.substring(
-        0,
-        item.manifest_url.lastIndexOf("/") + 1
-      );
-      display = (
-        <div className="obj-wrapper" style={{ width: `${width}px` }}>
-          <OBJModel src={item.manifest_url} texPath={texPath} />
-        </div>
-      );
-    } else if (this.isMtlUrl(item.manifest_url)) {
-      display = (
-        <div className="obj-wrapper" style={{ width: `${width}px` }}>
-          <MtlElement mtl={item.manifest_url} />
-        </div>
-      );
-    } else {
-      display = <></>;
+        );
+      case "audio":
+        return (
+          <MediaElement
+            src={media.url}
+            mediaType="audio"
+            site={this.props.site}
+            poster={item.thumbnail_path}
+            title={item.title}
+            transcript={media.transcript}
+            isPodcast={this.state.item?.type?.find(
+              (item) => item === "podcast"
+            )}
+          />
+        );
+      case "video":
+        return (
+          <MediaElement
+            src={media.url}
+            mediaType="video"
+            site={this.props.site}
+            poster={item.thumbnail_path}
+          />
+        );
+      case "kaltura":
+        return <KalturaPlayer manifest_url={media.url} />;
+      case "pdf":
+        return <PDFViewer manifest_url={media.url} title={item.title} />;
+      case "obj":
+        return (
+          <div className="obj-wrapper" style={{ width: `${width}px` }}>
+            <OBJModel src={media.url} texPath={media.texPath} />
+          </div>
+        );
+      case "mtl":
+        return (
+          <div className="obj-wrapper" style={{ width: `${width}px` }}>
+            <MtlElement mtl={media.url} />
+          </div>
+        );
+      case "unknown":
+      default:
+        return <></>;
     }
-    return display;
   }
 
   fileExtensionFromFileName(filename) {

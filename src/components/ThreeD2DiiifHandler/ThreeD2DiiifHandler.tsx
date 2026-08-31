@@ -4,6 +4,7 @@ import X3DElement from "src/components/X3DElement";
 import "../../css/3D2Diiif.scss";
 import dragToRotateIcon from "../../images/drag_to_rotate.jpg";
 import BabylonElement from "../Babylon/BabylonElement";
+import { MediaKind } from "src/lib/mediaKind";
 
 type Props = {
   item: {
@@ -14,17 +15,17 @@ type Props = {
     thumbnail_path: string;
     title: string;
   };
+  // ArchivePage has already run resolveMediaKind(item) to decide to render
+  // this component; the resolved value is passed down rather than
+  // re-parsed here, so it's always one of the "3d-2diiif-*" kinds.
+  media: Extract<MediaKind, { kind: "3d-2diiif-gltf" | "3d-2diiif-x3d" }>;
   frameWidth: number;
   frameHeight: number;
   site: {};
 };
 
-export const ThreeD2DiiifHandler: FC<Props> = ({ item, site }) => {
-  const options = JSON.parse(item.archiveOptions);
-
-  const [threeD, setThreeD] = useState(
-    options?.assets?.media_type === "3d_2diiif" ? "primary" : "secondary"
-  );
+export const ThreeD2DiiifHandler: FC<Props> = ({ item, media, site }) => {
+  const [threeD, setThreeD] = useState<"primary" | "secondary">("primary");
   const [fullScreen, setFullScreen] = useState(false);
   const [optionsWrapperHeight, setOptWrapperHeight] = useState(0);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -89,11 +90,7 @@ export const ThreeD2DiiifHandler: FC<Props> = ({ item, site }) => {
   }, [threeD, fullScreen, item.title]);
 
   const getThreeDThumb = () => {
-    return (
-      options?.assets?.thumbnail ||
-      options?.assets?.morpho_thumb ||
-      item.thumbnail_path
-    );
+    return media.thumb;
   };
 
   const getIIIFThumb = () => {
@@ -119,31 +116,21 @@ export const ThreeD2DiiifHandler: FC<Props> = ({ item, site }) => {
   };
 
   const primarySectionContent = () => {
-    let primaryContent = <></>;
     let width = document.getElementById("image-wrapper")?.offsetWidth;
     let height = document.getElementById("image-wrapper")?.offsetHeight;
-    const _3dFormat =
-      options.assets.media_type === "3d_2diiif" && options.assets.gltf_config
-        ? "gltf"
-        : "x3d";
 
-    if (_3dFormat === "gltf") {
-      try {
-        primaryContent = gltfContent();
-      } catch (e) {
-        console.error(e);
-      }
-    } else if (_3dFormat === "x3d") {
-      try {
-        primaryContent = x3dContent(width, height);
-      } catch (e) {
-        console.error(e);
-      }
+    try {
+      return media.kind === "3d-2diiif-gltf"
+        ? gltfContent(media)
+        : x3dContent(media, width, height);
+    } catch (e) {
+      console.error(e);
+      return <></>;
     }
-    return primaryContent;
   };
 
   const x3dContent = (
+    media: Extract<MediaKind, { kind: "3d-2diiif-x3d" }>,
     width: number | undefined,
     height: number | undefined
   ) => {
@@ -154,7 +141,7 @@ export const ThreeD2DiiifHandler: FC<Props> = ({ item, site }) => {
           id="x3d-element-wrapper"
         >
           <X3DElement
-            url={options.assets.x3d_config}
+            url={media.x3dConfig}
             frameWidth={width}
             frameHeight={width}
           />
@@ -186,7 +173,9 @@ export const ThreeD2DiiifHandler: FC<Props> = ({ item, site }) => {
     );
   };
 
-  const gltfContent = () => {
+  const gltfContent = (
+    media: Extract<MediaKind, { kind: "3d-2diiif-gltf" }>
+  ) => {
     return (
       <>
         <div
@@ -195,16 +184,12 @@ export const ThreeD2DiiifHandler: FC<Props> = ({ item, site }) => {
         >
           <div className="image-wrapper" id="image-wrapper">
             <BabylonElement
-              model={options.assets.gltf_config}
-              env={options.assets.env_config}
-              scaleFactor={
-                options.config?._3d?.scale_factor || options.assets.scale_factor
-              }
-              rotation={
-                options.config?._3d?.rotation || options.assets.rotation
-              }
+              model={media.gltfConfig}
+              env={media.envConfig}
+              scaleFactor={media.scaleFactor}
+              rotation={media.rotation}
               item={item}
-              _3dConfig={options?.config?._3d}
+              _3dConfig={media.threeDConfig}
             />
           </div>
         </div>
