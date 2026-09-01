@@ -40,6 +40,15 @@ export const MinervaPlayer: FC<MinervaPlayerProps> = ({ item, site }) => {
     const nav = document.getElementById("vt_nav");
     nav?.classList.remove("hidden");
 
+    // Minerva appends its own hash params to the current URL while open;
+    // strip them via replaceState (no new history entry) so the browser's
+    // back button from the Archive page doesn't trip over a stale hash.
+    window.history.replaceState(
+      null,
+      "",
+      window.location.pathname + window.location.search
+    );
+
     setFullScreenViewer(false);
   };
 
