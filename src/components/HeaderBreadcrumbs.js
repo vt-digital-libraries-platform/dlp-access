@@ -65,12 +65,6 @@ class HeaderBreadcrumbs extends Breadcrumbs {
           url: pathname,
           custom_key: null
         };
-      } else if (page === "siteAdmin") {
-        pageObj = {
-          title: "Site Admin",
-          url: "/siteAdmin",
-          custom_key: null
-        };
       } else {
         pageObj = {
           title: page.charAt(0).toUpperCase() + page.slice(1),
