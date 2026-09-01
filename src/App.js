@@ -18,15 +18,12 @@ import HomePage from "./pages/HomePage";
 import MetadataPage from "./pages/MetadataPage";
 import AccessibilityPage from "./pages/AccessibilityPage";
 import FeedbackPage from "./pages/FeedbackPage";
-import SiteAdmin from "./pages/admin/SiteAdmin";
-import PodcastDeposit from "./pages/admin/PodcastDeposit";
 
 import { BrowseCollections } from "./pages/collections/BrowseCollections";
 import { CollectionsShowPage } from "./pages/collections/CollectionsShowPage";
 
 import SearchLoader from "./pages/search/SearchLoader";
 import ArchivePage from "./pages/archives/ArchivePage";
-import PreIngestCheck from "./pages/admin/ingestTools/PreIngestCheck";
 import { getSite } from "./lib/fetchTools";
 import { withRouter } from "./lib/WithRouter";
 import { NotFound } from "./pages/NotFound";
@@ -38,7 +35,6 @@ class App extends Component {
     super(props);
     this.state = {
       site: null,
-      siteChanged: false,
       paginationClick: null,
       path: "",
       isLoading: true
@@ -78,10 +74,6 @@ class App extends Component {
     this.setState({ paginationClick: event });
   }
 
-  siteChanged = (changed) => {
-    this.setState({ siteChanged: changed });
-  };
-
   configureStorage = () => {
     Storage.configure({
       customPrefix: {
@@ -93,13 +85,6 @@ class App extends Component {
   getCustomKeyFromURL = () => {
     return this.props.location.pathname.split("/").pop();
   };
-
-  componentDidUpdate() {
-    if (this.state.siteChanged) {
-      this.loadSite();
-      this.setState({ siteChanged: false });
-    }
-  }
 
   componentDidMount() {
     this.configureStorage();
@@ -202,23 +187,6 @@ class App extends Component {
                     path="/feedback"
                     exact
                     element={<FeedbackPage site={this.state.site} />}
-                  />
-                  <Route
-                    path="/siteAdmin"
-                    exact
-                    element={
-                      <SiteAdmin siteChanged={this.siteChanged.bind(this)} />
-                    }
-                  />
-                  <Route
-                    path="/podcastDeposit"
-                    exact
-                    element={<PodcastDeposit />}
-                  />
-                  <Route
-                    path="/siteAdmin/pre-ingest-check"
-                    exact
-                    element={<PreIngestCheck />}
                   />
                   <Route path="*" element={<NotFound />} />
                 </Routes>

@@ -44,7 +44,7 @@ class HeaderBreadcrumbs extends Breadcrumbs {
       }
     }
     if (title) {
-      this.setState({ title: title }, function() {
+      this.setState({ title: title }, function () {
         this.buildList(pathname, path_array);
       });
     } else {
@@ -61,12 +61,6 @@ class HeaderBreadcrumbs extends Breadcrumbs {
         pageObj = {
           title: this.state.title,
           url: pathname,
-          custom_key: null
-        };
-      } else if (page === "siteAdmin") {
-        pageObj = {
-          title: "Site Admin",
-          url: "/siteAdmin",
           custom_key: null
         };
       } else {
