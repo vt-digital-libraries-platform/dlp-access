@@ -130,74 +130,17 @@ class ArchivePage extends Component {
     this.setState({ page: page });
   };
 
-  isImgURL(url) {
-    let match = false;
+  parseArchiveOptions(item) {
     try {
-      match = url.match(/\.(jpeg|jpg|gif|png)$/) != null;
+      return JSON.parse(item.archiveOptions) || {};
     } catch (error) {
-      console.log("probs not an img");
+      return {};
     }
-    return match;
-  }
-
-  isAudioURL(url) {
-    return url && url.match(/\.(mp3|ogg|wav)$/) != null;
-  }
-
-  isVideoURL(url) {
-    return url && url.match(/\.(mp4|mov)$/) != null;
-  }
-
-  isKalturaURL(url) {
-    return url && url.match(/(video.vt.edu\/media)/) != null;
-  }
-
-  isPdfURL(url) {
-    return url && url.match(/\.(pdf)$/) != null;
-  }
-
-  isMiradorURL(url, item = null) {
-    let has_3d = false;
-    if (item) {
-      has_3d = this.is3D_2DiiifType(item);
-    }
-    let match = false;
-    try {
-      match = url.match(/(\/manifest.json)$/) != null;
-    } catch (error) {
-      return false;
-    }
-    return !has_3d && match;
-  }
-
-  isMinervaURL(url) {
-    let match = false;
-    try {
-      match = url.match(/(\/exhibit.json)$/) != null;
-    } catch (error) {
-      return false;
-    }
-    return match;
-  }
-
-  isObjURL(url) {
-    return url && url.match(/\.(obj|OBJ)$/) != null;
-  }
-
-  isMtlUrl(url) {
-    return url && url.match(/\.(mtl)$/) != null;
-  }
-
-  isX3DUrl(url) {
-    return url && url.match(/\.(x3d|X3D)$/) != null;
-  }
-  isGLTFUrl(url) {
-    return url && url.match(/\.(gltf|GLTF|glb|GLB)$/) != null;
   }
 
   is3D_2DiiifType(item) {
+    const options = this.parseArchiveOptions(item);
     try {
-      const options = JSON.parse(item.archiveOptions);
       const is3D_2Diiif =
         options.assets.media_type === "3d_2diiif" && !!item.manifest_url;
       const hasX3DandTIFF =
@@ -212,33 +155,112 @@ class ArchivePage extends Component {
   }
 
   isX3DType(item) {
-    let match = false;
+    const options = this.parseArchiveOptions(item);
     try {
-      const options = JSON.parse(item.archiveOptions);
-      const type = options.assets.media_type;
-      match =
-        type === "3d-model/x3dom" &&
+      return (
+        options.assets.media_type === "3d-model/x3dom" &&
         !!options.assets.x3d_config &&
-        !!options.assets.x3d_src_img;
+        !!options.assets.x3d_src_img
+      );
     } catch (error) {
       return false;
     }
-    return match;
   }
 
   isGLTFType(item) {
-    let match = false;
+    const options = this.parseArchiveOptions(item);
     try {
-      const options = JSON.parse(item.archiveOptions);
-      const type = options.assets.media_type;
-      match =
-        type === "3d-model/gltf" &&
+      return (
+        options.assets.media_type === "3d-model/gltf" &&
         !!options.assets.gltf_config &&
-        !!options.assets.env_config;
+        !!options.assets.env_config
+      );
     } catch (error) {
       return false;
     }
-    return match;
+  }
+
+  isIIIFType(item) {
+    const has_3d = this.is3D_2DiiifType(item);
+    let match = false;
+    try {
+      match = item.manifest_url.match(/(\/manifest.json)$/) != null;
+    } catch (error) {
+      return false;
+    }
+    return !has_3d && match;
+  }
+
+  isImgType(item) {
+    const options = this.parseArchiveOptions(item);
+    try {
+      return options.assets.media_type === "image" && !!options.assets.url;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  isAudioType(item) {
+    const options = this.parseArchiveOptions(item);
+    try {
+      return options.assets.media_type === "audio" && !!options.assets.url;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  isVideoType(item) {
+    const options = this.parseArchiveOptions(item);
+    try {
+      return options.assets.media_type === "video" && !!options.assets.url;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  isKalturaType(item) {
+    const options = this.parseArchiveOptions(item);
+    try {
+      return options.assets.media_type === "kaltura" && !!options.assets.url;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  isPdfType(item) {
+    const options = this.parseArchiveOptions(item);
+    try {
+      return options.assets.media_type === "pdf" && !!options.assets.url;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  isMinervaType(item) {
+    const options = this.parseArchiveOptions(item);
+    try {
+      return options.assets.media_type === "minerva" && !!options.assets.url;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  isObjType(item) {
+    const options = this.parseArchiveOptions(item);
+    try {
+      return options.assets.media_type === "obj" && !!options.assets.url;
+    } catch (error) {
+      return false;
+    }
+  }
+
+  isMtlType(item) {
+    const options = this.parseArchiveOptions(item);
+    try {
+      return options.assets.media_type === "mtl" && !!options.assets.url;
+    } catch (error) {
+      return false;
+    }
   }
 
   buildArchiveSchema(item) {
@@ -260,12 +282,7 @@ class ArchivePage extends Component {
   }
 
   mediaDisplay(item) {
-    let options = {};
-    try {
-      options = JSON.parse(item.archiveOptions);
-    } catch (error) {
-      console.log("Error parsing archive options", error);
-    }
+    const options = this.parseArchiveOptions(item);
     let display = null;
     let width = Math.min(
       document.getElementById("content-wrapper").offsetWidth - 50,
@@ -329,64 +346,65 @@ class ArchivePage extends Component {
           />
         </div>
       );
-    } else if (this.isMiradorURL(item.manifest_url, item)) {
+    } else if (this.isIIIFType(item)) {
       display = <MiradorViewer item={item} site={this.props.site} />;
-    } else if (this.isMinervaURL(item.manifest_url)) {
-      display = <MinervaPlayer item={item} site={this.props.site} />;
-    } else if (this.isImgURL(item.manifest_url)) {
+    } else if (this.isMinervaType(item)) {
+      display = (
+        <MinervaPlayer
+          item={item}
+          url={options.assets.url}
+          site={this.props.site}
+        />
+      );
+    } else if (this.isImgType(item)) {
       display = (
         <Thumbnail
           className="item-img"
           item={item}
-          imgURL={item.manifest_url}
+          imgURL={options.assets.url}
           altText={item.title}
           site={this.props.site}
         />
       );
-    } else if (this.isAudioURL(item.manifest_url)) {
-      const transcript = item.archiveOptions
-        ? JSON.parse(item.archiveOptions)
-        : null;
+    } else if (this.isAudioType(item)) {
       display = (
         <MediaElement
-          src={item.manifest_url}
+          src={options.assets.url}
           mediaType="audio"
           site={this.props.site}
           poster={item.thumbnail_path}
           title={item.title}
-          transcript={transcript ? transcript?.audioTranscript : null}
+          transcript={options.audioTranscript ?? null}
           isPodcast={this.state.item?.type?.find((item) => item === "podcast")}
         />
       );
-    } else if (this.isVideoURL(item.manifest_url)) {
+    } else if (this.isVideoType(item)) {
       display = (
         <MediaElement
-          src={item.manifest_url}
+          src={options.assets.url}
           mediaType="video"
           site={this.props.site}
           poster={item.thumbnail_path}
         />
       );
-    } else if (this.isKalturaURL(item.manifest_url)) {
-      display = <KalturaPlayer manifest_url={item.manifest_url} />;
-    } else if (this.isPdfURL(item.manifest_url)) {
+    } else if (this.isKalturaType(item)) {
+      display = <KalturaPlayer manifest_url={options.assets.url} />;
+    } else if (this.isPdfType(item)) {
       display = (
-        <PDFViewer manifest_url={item.manifest_url} title={item.title} />
+        <PDFViewer manifest_url={options.assets.url} title={item.title} />
       );
-    } else if (this.isObjURL(item.manifest_url)) {
-      const texPath = item.manifest_url.substring(
-        0,
-        item.manifest_url.lastIndexOf("/") + 1
-      );
+    } else if (this.isObjType(item)) {
+      const assetUrl = options.assets.url;
+      const texPath = assetUrl.substring(0, assetUrl.lastIndexOf("/") + 1);
       display = (
         <div className="obj-wrapper" style={{ width: `${width}px` }}>
-          <OBJModel src={item.manifest_url} texPath={texPath} />
+          <OBJModel src={assetUrl} texPath={texPath} />
         </div>
       );
-    } else if (this.isMtlUrl(item.manifest_url)) {
+    } else if (this.isMtlType(item)) {
       display = (
         <div className="obj-wrapper" style={{ width: `${width}px` }}>
-          <MtlElement mtl={item.manifest_url} />
+          <MtlElement mtl={options.assets.url} />
         </div>
       );
     } else {

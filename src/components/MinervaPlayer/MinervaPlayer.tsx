@@ -12,6 +12,7 @@ import "../../css/Viewer.scss";
 interface MinervaPlayerProps {
   item: Archive;
   site: Site;
+  url?: string;
 }
 
 declare global {
@@ -20,7 +21,7 @@ declare global {
   }
 }
 
-export const MinervaPlayer: FC<MinervaPlayerProps> = ({ item, site }) => {
+export const MinervaPlayer: FC<MinervaPlayerProps> = ({ item, site, url }) => {
   let display: ReactElement;
   const location = useLocation();
   const [fullScreenViewer, setFullScreenViewer] = useState(false);
@@ -98,7 +99,7 @@ export const MinervaPlayer: FC<MinervaPlayerProps> = ({ item, site }) => {
     try {
       window.viewer = MinervaStory.build_page({
         hideWelcome: true,
-        exhibit: item.manifest_url,
+        exhibit: url || item.manifest_url,
         id: "minerva-browser",
         embedded: true
       });
