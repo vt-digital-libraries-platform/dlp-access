@@ -2,10 +2,8 @@ import React, { Component } from "react";
 import { Helmet } from "react-helmet";
 import { API, graphqlOperation } from "aws-amplify";
 import PDFViewer from "../../components/PDFViewer";
-import { KalturaPlayer } from "../../components/KalturaPlayer";
 import { MinervaPlayer } from "../../components/MinervaPlayer";
 import MiradorViewer from "../../components/MiradorViewer";
-import { OBJModel } from "react-3d-viewer";
 import { ThreeD2DiiifHandler } from "../../components/ThreeD2DiiifHandler";
 import { MediaElement } from "../../components/MediaElement";
 import SearchBar from "../../components/SearchBar";
@@ -24,7 +22,6 @@ import { buildRichSchema } from "../../lib/richSchemaTools";
 import { searchArchives } from "../../graphql/queries";
 import RelatedItems from "../../components/RelatedItems";
 import { Thumbnail } from "../../components/Thumbnail";
-import MtlElement from "../../components/MtlElement";
 import X3DElement from "../../components/X3DElement";
 import ReactGA from "react-ga4";
 import CollapsibleCard from "../../components/CollapsibleCards";
@@ -218,15 +215,6 @@ class ArchivePage extends Component {
     }
   }
 
-  isKalturaType(item) {
-    const options = this.parseArchiveOptions(item);
-    try {
-      return options.assets.media_type === "kaltura" && !!options.assets.url;
-    } catch (error) {
-      return false;
-    }
-  }
-
   isPdfType(item) {
     const options = this.parseArchiveOptions(item);
     try {
@@ -240,24 +228,6 @@ class ArchivePage extends Component {
     const options = this.parseArchiveOptions(item);
     try {
       return options.assets.media_type === "minerva" && !!options.assets.url;
-    } catch (error) {
-      return false;
-    }
-  }
-
-  isObjType(item) {
-    const options = this.parseArchiveOptions(item);
-    try {
-      return options.assets.media_type === "obj" && !!options.assets.url;
-    } catch (error) {
-      return false;
-    }
-  }
-
-  isMtlType(item) {
-    const options = this.parseArchiveOptions(item);
-    try {
-      return options.assets.media_type === "mtl" && !!options.assets.url;
     } catch (error) {
       return false;
     }
@@ -387,25 +357,9 @@ class ArchivePage extends Component {
           poster={item.thumbnail_path}
         />
       );
-    } else if (this.isKalturaType(item)) {
-      display = <KalturaPlayer manifest_url={options.assets.url} />;
     } else if (this.isPdfType(item)) {
       display = (
         <PDFViewer manifest_url={options.assets.url} title={item.title} />
-      );
-    } else if (this.isObjType(item)) {
-      const assetUrl = options.assets.url;
-      const texPath = assetUrl.substring(0, assetUrl.lastIndexOf("/") + 1);
-      display = (
-        <div className="obj-wrapper" style={{ width: `${width}px` }}>
-          <OBJModel src={assetUrl} texPath={texPath} />
-        </div>
-      );
-    } else if (this.isMtlType(item)) {
-      display = (
-        <div className="obj-wrapper" style={{ width: `${width}px` }}>
-          <MtlElement mtl={options.assets.url} />
-        </div>
       );
     } else {
       display = <></>;

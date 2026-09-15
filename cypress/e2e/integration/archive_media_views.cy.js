@@ -29,16 +29,6 @@ describe("archive_media_views: Archive video player", () => {
   });
 });
 
-describe("archive_media_views: Archive kaltura embed", () => {
-  it("renders kaltura video player inside iframe", () => {
-    cy.visit("http://localhost:3000/archive/m81xyh23").wait(2000);
-    cy.get("iframe")
-      .eq(0)
-      .should("have.class", "kaltura-player")
-      .should("be.visible");
-  });
-});
-
 describe("archive_media_views: Archive pdf embed", () => {
   it("renders pdf file inside canvas", () => {
     cy.visit("http://localhost:3000/archive/m92xyh34").wait(1000);
