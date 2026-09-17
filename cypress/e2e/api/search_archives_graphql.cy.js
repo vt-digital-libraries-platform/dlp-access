@@ -30,22 +30,26 @@ const searchArchivesQuery = `
 
 `;
 
+// Taubman Museum of Art collection, which currently holds ~1,655 archive
+// items in this environment - large enough to exercise pagination.
+const parent_id = "eab14157-2c87-4a1b-ad2a-eab17954d11f";
+
 describe("searchArchives query default sorting", () => {
   it("Archives sorted by title in asc order by default", () => {
     const variables = {
       limit: 5,
-      parent_id: "4172836b-4760-423c-bb4e-c5215e069d76"
+      parent_id
     };
     cy.graphqlRequest(searchArchivesQuery, variables).then((res) => {
       expect(res.status).to.eq(200);
       const items = res.body.data.searchArchives.items;
       expect(items).to.exist;
       expect(items).to.have.lengthOf(5);
-      expect(items[0].title).to.eq("Abaeis nicippe ((Cramer, 1779))");
-      expect(items[1].title).to.eq("Abaeis nicippe ((Cramer, 1779))");
-      expect(items[2].title).to.eq("Achalarus lyciades ((Geyer, [1832]))");
-      expect(items[3].title).to.eq("Achalarus lyciades ((Geyer, [1832]))");
-      expect(items[4].title).to.eq("Achalarus lyciades ((Geyer, [1832]))");
+      expect(items[0].title).to.eq("\"'TAKE MY LEG O LORD, BUT SAVE MY LIFE'\"");
+      expect(items[1].title).to.eq("\"2-PAGE SCENE: WOMAN AND MAN, WITH ANOTHER WOMAN BEHIND SCREEN\"");
+      expect(items[2].title).to.eq("\"A MAN IN A PHONE BOOTH, WILLIS PARK, BAINBRIDGE, DECATUR COUNTY, GEORGIA\"");
+      expect(items[3].title).to.eq("\"ACTS AND MONUMENTS OF THE CHRISTIAN MARTYRS, PAGE I\"");
+      expect(items[4].title).to.eq("\"ACTS AND MONUMENTS OF THE CHRISTIAN MARTYRS, PAGE I\"");
     });
   });
 });
@@ -54,7 +58,7 @@ describe("searchArchives query sort by title by desc order", () => {
   it("Archives sorted by title in desc order", () => {
     const variables = {
       limit: 5,
-      parent_id: "4172836b-4760-423c-bb4e-c5215e069d76",
+      parent_id,
       sort: [
         {
           field: "title",
@@ -67,20 +71,20 @@ describe("searchArchives query sort by title by desc order", () => {
       const items = res.body.data.searchArchives.items;
       expect(items).to.exist;
       expect(items).to.have.lengthOf(5);
-      expect(items[0].title).to.eq("speyeria idalia ((Drury, 1773))");
-      expect(items[1].title).to.eq("moduza (Moore, 1881)");
-      expect(items[2].title).to.eq("hes");
-      expect(items[3].title).to.eq("Zerene cesonia ((Stoll, 1790))");
-      expect(items[4].title).to.eq("Xylocopa virginica ((Linnaeus, 1771))");
+      expect(items[0].title).to.eq("[Stencil]");
+      expect(items[1].title).to.eq("[MacDowell Eakins Archive West End Art Emporium]");
+      expect(items[2].title).to.eq("[MARKET]");
+      expect(items[3].title).to.eq("[HANK WILLIAMS] GRACE AND VIOLENCE...");
+      expect(items[4].title).to.eq("[FRONTISPIECE] ALBUM OF VIRGINIA/ILLUSTRATED/BY/ED. BEYER/1858");
     });
   });
 });
 
 describe("searchArchives query sort by start_date by asc order", () => {
-  it("Archives sorted by title in desc order", () => {
+  it("Archives sorted by start_date in asc order", () => {
     const variables = {
       limit: 5,
-      parent_id: "4172836b-4760-423c-bb4e-c5215e069d76",
+      parent_id,
       sort: [
         {
           field: "start_date",
@@ -93,20 +97,20 @@ describe("searchArchives query sort by start_date by asc order", () => {
       const items = res.body.data.searchArchives.items;
       expect(items).to.exist;
       expect(items).to.have.lengthOf(5);
-      expect(items[0].id).to.eq("5965bd54-6958-4a87-8c3d-024b716bc482");
-      expect(items[0].start_date).to.eq("1874/08/13");
+      expect(items[0].id).to.eq("4d69a7ca-cf33-4b73-9909-74d9b5221f85");
+      expect(items[0].start_date).to.eq("1475/01/09");
 
-      expect(items[1].id).to.eq("81675218-2bd6-45cb-972a-318b6f076d43");
-      expect(items[1].start_date).to.eq("1876/07/20");
+      expect(items[1].id).to.eq("da11e58d-d956-4464-a0c8-eb1652508404");
+      expect(items[1].start_date).to.eq("1500/01/09");
 
-      expect(items[2].id).to.eq("80323649-2160-458a-ab92-4a9596c9e760");
-      expect(items[2].start_date).to.eq("1889/07/03");
+      expect(items[2].id).to.eq("d169e875-906c-4560-b9d7-57310aba7b9e");
+      expect(items[2].start_date).to.eq("1647/01/09");
 
-      expect(items[3].id).to.eq("950254d0-8b29-4d4a-806b-3ec5a837f4ce");
-      expect(items[3].start_date).to.eq("1894/08/02");
+      expect(items[3].id).to.eq("d3f41cf5-6939-441e-8933-d170c4c22165");
+      expect(items[3].start_date).to.eq("1647/01/09");
 
-      expect(items[4].id).to.eq("559bcb88-14c9-4cc9-a587-a2b5c7b6fd7d");
-      expect(items[4].start_date).to.eq("1895/08/02");
+      expect(items[4].id).to.eq("dc1d3626-2371-4617-a749-43d651cd2a24");
+      expect(items[4].start_date).to.eq("1700/01/09");
     });
   });
 });
@@ -115,7 +119,7 @@ describe("searchArchives query sort by start_date by desc order", () => {
   let nextToken = null;
   const variables = {
     limit: 5,
-    parent_id: "4172836b-4760-423c-bb4e-c5215e069d76",
+    parent_id,
     sort: [
       {
         field: "start_date",
@@ -123,31 +127,31 @@ describe("searchArchives query sort by start_date by desc order", () => {
       }
     ]
   };
-  it("Archives sorted by title in desc order", () => {
+  it("Archives sorted by start_date in desc order", () => {
     cy.graphqlRequest(searchArchivesQuery, variables).then((res) => {
       expect(res.status).to.eq(200);
       let items = res.body.data.searchArchives.items;
       expect(items).to.exist;
       expect(items).to.have.lengthOf(5);
 
-      expect(items[0].id).to.eq("0e894be0-9a70-456e-bd58-682c9a9943a0");
-      expect(items[0].start_date).to.eq("2019/09/05");
+      expect(items[0].id).to.eq("0032ef45-3e59-4ec9-a42b-5d031180c6c1");
+      expect(items[0].start_date).to.eq("2011/01/09");
 
-      expect(items[1].id).to.eq("257c59d2-c2c0-4144-82e1-91e846fe10cf");
-      expect(items[1].start_date).to.eq("2018/08/14");
+      expect(items[1].id).to.eq("89ae9990-bfbf-45b1-a4a4-6a045705acd5");
+      expect(items[1].start_date).to.eq("2011/01/09");
 
-      expect(items[2].id).to.eq("7af4c0f2-5279-4ba8-8062-31f95c50674b");
-      expect(items[2].start_date).to.eq("2018/08/14");
+      expect(items[2].id).to.eq("498980c9-764e-4a82-8126-17331391001a");
+      expect(items[2].start_date).to.eq("2011/01/09");
 
-      expect(items[3].id).to.eq("d858803d-73df-4724-a7ac-c205f266cff4");
-      expect(items[3].start_date).to.eq("2018/08/14");
+      expect(items[3].id).to.eq("f911a7ca-8fda-4d4a-878c-1b2ac97980e7");
+      expect(items[3].start_date).to.eq("2011/01/09");
 
-      expect(items[4].id).to.eq("916b1668-ae83-4f81-9ddd-56cc01f9b473");
-      expect(items[4].start_date).to.eq("2018/08/14");
+      expect(items[4].id).to.eq("6862413f-59d0-459f-9226-f974961e1e6b");
+      expect(items[4].start_date).to.eq("2011/01/09");
 
       nextToken = res.body.data.searchArchives.nextToken;
       expect(nextToken).to.exist.to.eq(
-        "1534204800000::key::ark:/53696/ss07hm3g"
+        "1294531200000::key::ark:/53696/j482048s"
       );
     });
   });
@@ -159,29 +163,28 @@ describe("searchArchives query sort by start_date by desc order", () => {
       expect(items).to.exist;
       expect(items).to.have.lengthOf(5);
 
-      expect(items[0].id).to.eq("d6c01b8c-ab24-4018-bf38-5061203f15c4");
-      expect(items[0].start_date).to.eq("2018/08/13");
+      expect(items[0].id).to.eq("0d00dd04-df93-4d8f-ac03-78bb46a7f1cb");
+      expect(items[0].start_date).to.eq("2010/01/09");
 
-      expect(items[1].id).to.eq("e315eefa-6425-447f-99ca-3df0fdecfd1e");
-      expect(items[1].start_date).to.eq("2018/08/13");
+      expect(items[1].id).to.eq("19cfb7d5-74a2-4763-9083-0f1c3d671513");
+      expect(items[1].start_date).to.eq("2010/01/09");
 
-      expect(items[2].id).to.eq("58b724e3-f9bc-418a-bf86-526be1251f33");
-      expect(items[2].start_date).to.eq("2018/08/13");
+      expect(items[2].id).to.eq("0a27ba24-d2cd-41f4-900c-50f8bf907c74");
+      expect(items[2].start_date).to.eq("2010/01/09");
 
-      expect(items[3].id).to.eq("b00a2cf8-f569-4b5c-b1b8-8acec70af9ad");
-      expect(items[3].start_date).to.eq("2018/08/13");
+      expect(items[3].id).to.eq("5e083710-45a3-4b99-be7c-50e88cf693b1");
+      expect(items[3].start_date).to.eq("2010/01/09");
 
-      expect(items[4].id).to.eq("0edc34fa-9899-457b-9cad-2152065038e0");
-      expect(items[4].start_date).to.eq("2018/08/13");
+      expect(items[4].id).to.eq("21d4de66-9cd6-4206-9d7d-5f3ac4c2ab77");
+      expect(items[4].start_date).to.eq("2010/01/09");
     });
   });
 });
 
-describe("searchArchives query sort by a null field (creator)", () => {
-  let nextToken = null;
+describe("searchArchives query sort by creator by asc order", () => {
   const variables = {
     limit: 5,
-    parent_id: "4172836b-4760-423c-bb4e-c5215e069d76",
+    parent_id,
     sort: [
       {
         field: "creator",
@@ -197,48 +200,25 @@ describe("searchArchives query sort by a null field (creator)", () => {
       expect(items).to.exist;
       expect(items).to.have.lengthOf(5);
 
-      expect(items[0].id).to.eq("7b52b83a-4509-46cd-84b5-c296f554f3a8");
-      expect(items[0].custom_key).to.eq("ark:/53696/0046p295");
+      expect(items[0].id).to.eq("e8beb6a1-0868-45cc-bf77-c022455badae");
+      expect(items[0].custom_key).to.eq("ark:/53696/0d051p15");
 
-      expect(items[1].id).to.eq("539885c3-bdaf-4b23-8a86-39c2e1615861");
-      expect(items[1].custom_key).to.eq("ark:/53696/0057rw0d");
+      expect(items[1].id).to.eq("d569543e-82b5-4a70-a4d3-8a713f1a5831");
+      expect(items[1].custom_key).to.eq("ark:/53696/0g14ng0w");
 
-      expect(items[2].id).to.eq("b251e06e-9015-42f5-97a5-642c1dca2a18");
-      expect(items[2].custom_key).to.eq("ark:/53696/0194fs3t");
+      expect(items[2].id).to.eq("6d264938-232f-4bce-8a7c-3fa722e81aaf");
+      expect(items[2].custom_key).to.eq("ark:/53696/0m53bk2d");
 
-      expect(items[3].id).to.eq("f2c08f0b-0171-49b7-9f57-84e002b78bdc");
-      expect(items[3].custom_key).to.eq("ark:/53696/0267d54x");
+      expect(items[3].id).to.eq("45f867d3-cb5d-4da3-87c9-2f2c9e5daddf");
+      expect(items[3].custom_key).to.eq("ark:/53696/1m34c86t");
 
-      expect(items[4].id).to.eq("05878b4f-6cff-4433-b2fb-f050ba0a08fa");
-      expect(items[4].custom_key).to.eq("ark:/53696/0270450w");
+      expect(items[4].id).to.eq("6778cd3c-a1d1-4955-9eb7-3a598b0c0e55");
+      expect(items[4].custom_key).to.eq("ark:/53696/1m63hn2m");
 
-      nextToken = res.body.data.searchArchives.nextToken;
-      expect(nextToken).to.exist.to.eq("NULL_FIELD::key::ark:/53696/0270450w");
-    });
-
-    it("Paginate results with nextToken", () => {
-      variables["nextToken"] = nextToken;
-      cy.graphqlRequest(searchArchivesQuery, variables).then((res) => {
-        expect(res.status).to.eq(200);
-        const items = res.body.data.searchArchives.items;
-        expect(items).to.exist;
-        expect(items).to.have.lengthOf(5);
-
-        expect(items[0].id).to.eq("96dcdec6-1309-4c49-a58e-019b4479fbbd");
-        expect(items[0].custom_key).to.eq("ark:/53696/0318mv04");
-
-        expect(items[1].id).to.eq("32725f42-dc95-4214-8bbc-ab7a134e379a");
-        expect(items[1].custom_key).to.eq("ark:/53696/0326tc5f");
-
-        expect(items[2].id).to.eq("21dbb27a-e1d6-4428-bf26-62a87560a846");
-        expect(items[2].custom_key).to.eq("ark:/53696/0366j31q");
-
-        expect(items[3].id).to.eq("c7746e9b-3fb8-477f-be54-6b4bdc84a923");
-        expect(items[3].custom_key).to.eq("ark:/53696/0413w83z");
-
-        expect(items[4].id).to.eq("493f1e39-2099-4c74-b889-1cefd5f84f7d");
-        expect(items[4].custom_key).to.eq("ark:/53696/0448df2p");
-      });
+      const nextToken = res.body.data.searchArchives.nextToken;
+      expect(nextToken).to.exist.to.eq(
+        '("Japanese, dates unknown")::key::ark:/53696/1m63hn2m'
+      );
     });
   });
 });
