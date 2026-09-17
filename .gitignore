@@ -8,6 +8,10 @@ sync.sh
 src/ui-components
 # testing
 /coverage
+# cypress-generated artifacts
+cypress/screenshots/
+cypress/videos/
+cypress/downloads/
 # production
 /build
 /public/site_data/*
