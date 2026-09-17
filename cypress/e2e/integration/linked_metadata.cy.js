@@ -1,30 +1,38 @@
 describe('linked_metadata: Archive metadata', () => {
-  it('lands on search facet by the metadata field', () => {
-    cy.visit('/archive/cv65x38f');
-    cy.get('tr.creator > td.collection-detail-value > div > span.list-unstyled > a')
-      .click();
-    cy.wait(5000)
-    cy.url({ timeout: 2000 })
-      .should('eq', 'http://localhost:3000/search/?category=archive&creator=Green%2C%20Terence%20M.&field=title&q=&view=Gallery');
+  beforeEach(() => {
+    cy.visit('/archive/67474c70').wait(1000);
+    cy.get('.collapsible-cards-container details.card-details')
+      .first()
+      .as('aboutCard');
   });
 
-  it('first entry in "Is Part of" directs to the top level collection show page', () => {
-    cy.visit('/archive/cv65x38f');
-    cy.get('tr.is_part_of > td > div > span:nth-child(1) > a')
+  it('Type value links to a search filtered by that type', () => {
+    cy.get('@aboutCard')
+      .contains('dt.data-list-label', 'Type')
+      .next('dd.data-list-value')
+      .find('a')
       .click();
-    cy.wait(5000)
     cy.url({ timeout: 2000 })
-      .should('eq', 'http://localhost:3000/collection/4g825g7ddemo');
+      .should('eq', 'http://localhost:3000/search?q=&field=all&view=Gallery&type=Image');
+  });
+
+  it('Format value links to a search filtered by that format', () => {
+    cy.get('@aboutCard')
+      .contains('dt.data-list-label', 'Format')
+      .next('dd.data-list-value')
+      .find('a')
+      .click();
+    cy.url({ timeout: 2000 })
+      .should('eq', 'http://localhost:3000/search?q=&field=all&view=Gallery&format=image/tiff');
   });
 });
 
 describe('linked_metadata: Collection metadata', () => {
   it('lands on search facet by the metadata field', () => {
-    cy.visit('/collection/vb765t25demo');
-    cy.wait(5000);
-    cy.get('tr.language > td > div > span:nth-child(1) > a')
+    cy.visit('/collection/0f04aba5');
+    cy.wait(1500);
+    cy.get('tr.language td.collection-detail-value a')
       .click();
-    cy.wait(5000);
     cy.url({ timeout: 2000 })
       .should('eq', 'http://localhost:3000/search/?category=collection&field=title&language=en&q=&view=Gallery');
   });

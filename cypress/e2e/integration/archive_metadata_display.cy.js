@@ -1,37 +1,35 @@
-describe('archive_metadata_display: A single Archive Show page metadata section', () => {
+describe('archive_metadata_display: A single Archive Show page "About" metadata card', () => {
   beforeEach(() => {
-    cy.visit('/archive/cv65x38f').wait(1000);
-    cy.get('#content-wrapper > div.item-page-wrapper > div.item-details-section > div.details-section-metadata > table', { timeout: 5000 })
-      .as('metadataSection');
+    cy.visit('/archive/67474c70').wait(1000);
+    cy.get('.collapsible-cards-container details.card-details', { timeout: 5000 })
+      .first()
+      .as('aboutCard');
   })
 
   it('displays the identifier field and its corresponding value', () => {
-    cy.get('@metadataSection')
-      .find('tr.identifier > th.collection-detail-key')
+    cy.get('@aboutCard')
+      .contains('dt.data-list-label', 'Identifier')
       .invoke('text')
       .should('equal', 'Identifier');
-    cy.get('@metadataSection')
-      .find(':nth-child(1) > td.collection-detail-value').click();
-    cy.url({ timeout: 2000 }).should('include', '/archive/cv65x38f');
+    cy.get('@aboutCard')
+      .contains('dt.data-list-label', 'Identifier')
+      .next('dd.data-list-value')
+      .invoke('text')
+      .should('equal', 'TAU_ART_000885_0001');
   })
 
-  it('displays the custom key field and its corresponding value', () => {
-    cy.get('@metadataSection')
-      .find('tr.custom_key > th.collection-detail-key')
+  it('displays the "Belongs to" field with the parent collection name', () => {
+    cy.get('@aboutCard')
+      .contains('dt.data-list-label', 'Belongs to')
+      .next('dd.data-list-value')
       .invoke('text')
-      .should('equal', 'Permanent Link');
-    cy.get('@metadataSection')
-      .find('tr.custom_key > td.collection-detail-value')
-      .contains('idn.lib.vt.edu/ark:/53696/cv65x38f');
+      .should('equal', 'Taubman Museum of Art');
   })
 
-  it('displays the is_part_of field and its corresponding value', () => {
-    cy.get('@metadataSection')
-      .find('tr.is_part_of > th.collection-detail-key')
-      .invoke('text')
-      .should('equal', 'Belongs to');
-    cy.get('@metadataSection')
-      .find('tr.is_part_of > td > div > span:nth-child(1) > a').click();
-    cy.url({ timeout: 3000 }).should('include', '/collection/4g825g7ddemo');
+  it('links to the parent collection show page via the breadcrumbs', () => {
+    cy.get('.breadcrumbs-wrapper #vt_navtrail')
+      .contains('a', 'Taubman Museum of Art')
+      .click();
+    cy.url({ timeout: 2000 }).should('include', '/collection/8n449w6w');
   })
 })

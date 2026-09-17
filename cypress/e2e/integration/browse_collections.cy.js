@@ -7,24 +7,18 @@ describe("browse_collections: Browse collections page", () => {
     cy.get(".gallery-item")
       .first()
       .as("firstCollection")
-      .contains(
-        "Alberta Pfeiffer Architectural Collection, 1929-1976 (Ms1988-017)"
-      );
+      .contains("Charlie Brouwer Collection");
     cy.get("@firstCollection").click();
-    cy.url({ timeout: 2000 }).should("include", "/collection/vb765t25demo");
-    cy.contains("Ms1988_017_Pfeiffer");
+    cy.url({ timeout: 2000 }).should("include", "/collection/0f04aba5");
+    cy.contains("Brouwer");
   });
 
   it("renders the first 10 collections by default number of results to be showed", () => {
-    cy.get(".gallery-item").should("have.length", 5);
+    cy.get(".gallery-item").should("have.length", 10);
   });
 
-  it("renders the all the collections if increasing the number of results to be showed", () => {
-    cy.get("#content-wrapper")
-      .find("div.collection-view-options > :nth-child(2)")
-      .click()
-      .contains("50")
-      .click();
-    cy.get(".gallery-item").should("have.length", 5);
+  it("renders all the collections if increasing the number of results to be showed", () => {
+    cy.get("#results-number-dropdown").select("50");
+    cy.get(".gallery-item").should("have.length", 11);
   });
 });

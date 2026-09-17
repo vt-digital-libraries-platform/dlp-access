@@ -1,44 +1,43 @@
-describe("language_config.spec: Selecting English loads English results", () => {
+describe("language_config: Selecting English filters search results", () => {
   it("Language checkbox exists and updates url", () => {
     cy.visit("/search");
-    cy.wait(2000);
-    cy.get("div.facet-fields")
-      .find("div.category > div > h3 > button#category")
+    cy.wait(1000);
+    cy.get("[data-cy=filter-collapsibles]")
+      .find("button#category")
       .click({ force: true })
       .invoke("text")
       .should("equal", "Category");
     cy.get("input#archive", { timeout: 2000 }).click();
-    cy.get("div.facet-fields")
-      .find("div.language > div > h3 > button#language")
+    cy.get("[data-cy=filter-collapsibles]")
+      .find("button#language")
       .click({ force: true })
       .invoke("text")
       .should("equal", "Language");
     cy.get("input#en", { timeout: 2000 }).click();
-    cy.wait(2000);
+    cy.wait(1000);
     cy.url().should("include", "language=en");
   });
 
-  it("Items should now be English", () => {
+  it("Items should now be tagged with English as the language", () => {
     cy.visit("/search");
-    cy.wait(2000);
-    cy.get("div.facet-fields")
-      .find("div.category > div > h3 > button#category")
-      .click({ force: true })
-      .invoke("text")
-      .should("equal", "Category");
+    cy.wait(1000);
+    cy.get("[data-cy=filter-collapsibles]")
+      .find("button#category")
+      .click({ force: true });
     cy.get("input#archive", { timeout: 2000 }).click();
-    cy.get("div.facet-fields")
-      .find("div.language > div > h3 > button#language")
-      .click({ force: true })
-      .invoke("text")
-      .should("equal", "Language");
+    cy.get("[data-cy=filter-collapsibles]")
+      .find("button#language")
+      .click({ force: true });
     cy.get("input#en", { timeout: 2000 }).click();
-    cy.get("div.gallery-item > div.card > a").first().click({ force: true });
-    cy.wait(2000);
+    cy.wait(1000);
+    cy.get(".gallery-item").first().find("a").first().click();
+    cy.wait(1000);
     cy.url().should("include", "/archive/");
-    cy.get("div.details-section-metadata > table > tbody", { timeout: 5000 })
-      .find("tr.language td a", { timeout: 5000 })
+    cy.get(".collapsible-cards-container details.card-details", { timeout: 5000 })
+      .first()
+      .contains("dt.data-list-label", "Language")
+      .next("dd.data-list-value")
       .invoke("text")
-      .should("equal", "English");
+      .should("equal", "en");
   });
 });
