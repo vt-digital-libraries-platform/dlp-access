@@ -48,6 +48,7 @@ amplify/backend/.temp
 build/
 dist/
 node_modules/
+cdk.out/
 aws-exports.js
 awsconfiguration.json
 amplifyconfiguration.json

@@ -15,6 +15,7 @@ frontend:
     build:
       commands:
         - node -v
+        - npm run sync:appsync-key
         - npm run build
   artifacts:
     baseDirectory: build

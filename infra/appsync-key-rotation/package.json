@@ -1,0 +1,30 @@
+{
+  "name": "appsync-key-rotation",
+  "version": "1.0.0",
+  "private": true,
+  "description": "CDK app that schedules automatic rotation of an AppSync API key into SSM Parameter Store",
+  "bin": {
+    "appsync-key-rotation": "bin/appsync-key-rotation.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "synth": "cdk synth",
+    "deploy": "cdk deploy",
+    "diff": "cdk diff"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "aws-cdk": "^2.1142.0",
+    "esbuild": "^0.24.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.0"
+  },
+  "dependencies": {
+    "@aws-sdk/client-appsync": "^3.600.0",
+    "@aws-sdk/client-ssm": "^3.600.0",
+    "aws-cdk-lib": "^2.150.0",
+    "constructs": "^10.3.0",
+    "source-map-support": "^0.5.21"
+  }
+}
