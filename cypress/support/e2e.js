@@ -25,6 +25,27 @@ Cypress.on('uncaught:exception', (err, runnable) => {
   return false
 })
 
+if (Cypress.env('capture')) {
+  // Recording mode (`CYPRESS_capture=true npx cypress run ...`, run against a
+  // real dev server + live-data-backed API): logs every GraphQL request/
+  // response pair to cypress/fixtures/graphql/captures/<OperationName>.json,
+  // deduped by request variables, so it can be replayed offline afterwards
+  // via cy.mockGraphQL(). Re-run this whenever the underlying data changes
+  // enough that specs need a fresh snapshot.
+  beforeEach(() => {
+    cy.captureGraphQLTraffic();
+  });
+  afterEach(() => {
+    cy.flushCapturedGraphQL();
+  });
+}
+// Default mode: specs call cy.mockGraphQL() themselves (optionally with
+// overrides layered on top, see searchfacet_checkbox.cy.js) before visiting
+// a page, replaying previously captured GraphQL responses instead of hitting
+// the live API. Kept per-spec (rather than a single global intercept here) so
+// a spec's own overrides don't have to coexist with a second, competing
+// intercept.
+
 // beforeEach(() => {
 //   cy.wait(1000)
 // })

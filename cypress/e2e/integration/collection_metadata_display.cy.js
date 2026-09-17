@@ -1,5 +1,6 @@
 describe('collection_metadata_display: A single Collection Show page metadata section', () => {
   beforeEach(() => {
+    cy.mockGraphQL();
     cy.visit('/collection/0f04aba5').wait(1000);
   })
 

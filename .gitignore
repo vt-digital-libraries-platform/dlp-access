@@ -12,6 +12,7 @@ src/ui-components
 cypress/screenshots/
 cypress/videos/
 cypress/downloads/
+cypress.env.json
 # production
 /build
 /public/site_data/*

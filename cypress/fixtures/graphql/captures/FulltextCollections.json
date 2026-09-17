@@ -1,0 +1,1804 @@
+[
+  {
+    "variables": {
+      "filter": {
+        "collection_category": {
+          "eq": "federated"
+        },
+        "visibility": {
+          "eq": true
+        },
+        "parent_collection": {
+          "exists": false
+        }
+      },
+      "sort": {
+        "field": "title",
+        "direction": "asc"
+      },
+      "limit": 10,
+      "nextToken": null
+    },
+    "response": {
+      "data": {
+        "fulltextCollections": {
+          "items": [
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": "045994a0-2a81-48fa-805a-91cec6482811",
+              "collectionOptions": null,
+              "create_date": null,
+              "creator": [
+                "Brouwer, Charlie, 1946"
+              ],
+              "custom_key": "ark:/53696/0f04aba5",
+              "description": [
+                "Charlie Brouwer is a Virginia artist known for his sculptures, installations, and mixed media drawings. He previously taught at Radford University from 1987 - 2008 before transitioning to a full-time artist, exhibiting over 300 times in his career. This collection highlights select drawings and models from various exhibits that are currently housed at his studio in Floyd, Virginia. His studio website can be visited at https://www.charliebrouwer.com/."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "explicit_content": null,
+              "heirarchy_path": [
+                "3538665a-da0c-4841-a9b3-caadc82756ee"
+              ],
+              "id": "3538665a-da0c-4841-a9b3-caadc82756ee",
+              "identifier": "cbcst",
+              "is_part_of": null,
+              "language": [
+                "en"
+              ],
+              "location": null,
+              "modified_date": null,
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": null,
+              "rights": [
+                "http://rightsstatements.org/vocab/InC-EDU/1.0/"
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": null,
+              "subject": null,
+              "thumbnail_path": "https://d4qp6z580yvb5.cloudfront.net/federated/cbcst/representative.jpg",
+              "title": "Charlie Brouwer Collection",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2026-04-06T21:49:49.057Z",
+              "updatedAt": "2026-04-06T21:49:49.057Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": "32f5fb7a-ff7c-405d-b635-18e6ec7991a4",
+              "collectionOptions": null,
+              "create_date": null,
+              "creator": null,
+              "custom_key": "ark:/53696/6997b595",
+              "description": [
+                "The Christiansburg Institute's Digital Archives is a public, searchable archive of digital materials related to the history of Christiansburg Industrial Institute and broader African American history in Southwest Virginia.  This archive was made possible through a 2022 grant from the Council on Library and Information Resources. This archive was created by Christiansburg Institute, Inc.  Items in the archive are sourced from Christiansburg Institute Museum & Archives and community members who donated digital copies to the digital archive.  Christiansburg Institute, Inc., is a grassroots African American cultural heritage and historic preservation nonprofit with a mission of community education, intergenerational empowerment, and the equitable stewardship of African American history, stories, and culture. This archive is under construction.  Check back frequently as we work to digitize and describe more collections."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "explicit_content": null,
+              "heirarchy_path": [
+                "ba09dcae-e2aa-47e1-9a23-a0e0a97fbb0e"
+              ],
+              "id": "ba09dcae-e2aa-47e1-9a23-a0e0a97fbb0e",
+              "identifier": "CIDA",
+              "is_part_of": null,
+              "language": [
+                "en"
+              ],
+              "location": null,
+              "modified_date": null,
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "Christiansburg Institute, Inc."
+              ],
+              "rights": [
+                "http://rightsstatements.org/vocab/InC-EDU/1.0/"
+              ],
+              "source": [
+                "Christiansburg Institute, Inc"
+              ],
+              "spatial": null,
+              "start_date": null,
+              "subject": null,
+              "thumbnail_path": "https://d4qp6z580yvb5.cloudfront.net/federated/CIDA/representative.jpg",
+              "title": "Christiansburg Institute Digital Archive",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2026-02-27T17:52:15.643Z",
+              "updatedAt": "2026-02-27T17:52:15.643Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": "5479541a-e2b7-4166-b4a0-7c2cf3174672",
+              "collectionOptions": null,
+              "create_date": "2023/07/14 14:43:26",
+              "creator": null,
+              "custom_key": "ark:/53696/231c6f0d",
+              "description": [
+                "This collection contains an interactive tour of the coronal section of an adult wild-type mouse brain, showing Nhlh2 mRNA and Snhg14 long non-coding RNA colocalization in different regions of the brain. Nhlh2 and Snhg14 misexpression leads to Prader Willi syndrome phenotypes such as obesity, hyperphagia, low physical activity, disrupted sleep, memory, balance, and cognition."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "explicit_content": false,
+              "heirarchy_path": [
+                "231c6f0d-ed95-4240-8e0c-5fd988852a97"
+              ],
+              "id": "231c6f0d-ed95-4240-8e0c-5fd988852a97",
+              "identifier": "prader-willi_syndrome",
+              "is_part_of": null,
+              "language": null,
+              "location": null,
+              "modified_date": "2024/02/26 11:24:15",
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "University Libraries",
+                "Virginia Polytechnic Institute and State University"
+              ],
+              "rights": [
+                "https://rightsstatements.org/page/InC-NC/1.0/?language=en"
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": null,
+              "subject": null,
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/images/pws/PVN/pvn_thumb.png",
+              "title": "Expression Patterns of Genes Involved in the Etiology of Prader-Willi Syndrome",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2023-07-14T11:14:43.264Z",
+              "updatedAt": "2024-02-26T11:24:15.504Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": "9f63d36a-843a-4663-a6fe-8e94b54dcd45",
+              "collectionOptions": null,
+              "create_date": null,
+              "creator": null,
+              "custom_key": "ark:/53696/6c3325a9",
+              "description": [
+                "Located to the South of Ypres in Flanders, Hill 80 was a part of the fighting between the Allied and Central Powers throughout WWI. These objects help archaeologists find out who was fighting, and when, with astonishing accuracy. As you begin to move through this space, note that the artifacts in this exhibit are primarily grouped by their date of use and find location around Hill 80. Each section highlights the variety of nationalities represented by the objects found around this site indicates that fighting took place here continuously between 1914 and 1918."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": "1918",
+              "explicit_content": null,
+              "heirarchy_path": [
+                "dd3cfbe5-4075-44ae-86b2-37d72bf8f948"
+              ],
+              "id": "dd3cfbe5-4075-44ae-86b2-37d72bf8f948",
+              "identifier": "DH80",
+              "is_part_of": null,
+              "language": null,
+              "location": null,
+              "modified_date": null,
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": null,
+              "rights": null,
+              "source": null,
+              "spatial": [
+                "Ypres, West-Vlaanderen, Flanders, Belgium, Europe"
+              ],
+              "start_date": "1914",
+              "subject": null,
+              "thumbnail_path": "https://d4qp6z580yvb5.cloudfront.net/federated/DH80/representative.jpg",
+              "title": "Hill 80",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2025-11-03T20:53:10.528Z",
+              "updatedAt": "2025-11-03T20:53:10.528Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": "ae4dbcef-b4ea-4aff-a023-2f74d00c1954",
+              "collectionOptions": null,
+              "create_date": "2024/01/09 19:33:51",
+              "creator": null,
+              "custom_key": "ark:/53696/11783a71",
+              "description": [
+                "The Newman Map Collection, physically located at the Virginia Tech University Libraries, encompasses a series of maps that have undergone digitization for convenient digital access via the digital library platform. Unless expressly indicated otherwise, all original materials and intellectual property remain the possession of the contributing institution, presented here solely for free educational use by the public. Contact dataservices@vt.edu with questions about this collection."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "explicit_content": false,
+              "heirarchy_path": [
+                "11783a71-d006-4842-8c22-d1e845893370"
+              ],
+              "id": "11783a71-d006-4842-8c22-d1e845893370",
+              "identifier": "nmcst",
+              "is_part_of": null,
+              "language": null,
+              "location": null,
+              "modified_date": "2024/01/09 19:33:51",
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "University Libraries",
+                "Virginia Polytechnic Institute and State University"
+              ],
+              "rights": [
+                "Because physical maps acquired by Virginia Tech University Libraries came with a variety of use restrictions, rights within the Newman Library Map Collection are shown at the item level."
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": null,
+              "subject": null,
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/federated/nmcst/representative.jpg",
+              "title": "Newman Library Map Collection",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2024-01-09T11:14:43.264Z",
+              "updatedAt": "2024-01-09T11:14:43.264Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": "00b29eb9-9a04-485f-a840-71512b516b78",
+              "collectionOptions": null,
+              "create_date": null,
+              "creator": null,
+              "custom_key": "ark:/53696/nf82pn05",
+              "description": [
+                "The Rick Boucher Papers, 1968-2017 (bulk 1975-2011), document his career in the Virginia State Senate, 1975-1982, and in the United States Congress as the Representative of Virginia's 9th District, 1983-2011. The collection consists of press releases, Boucher's writings, mailers he distributed, information about his campaigns and elections, scripts of speeches he gave, news clippings about him and issues he worked on, correspondence, information about grants that he worked on, and audiovisual materials including photographs, VHS tapes, video reels, audio cassettes, DVDs, awards, and digital files. Materials primarily span from the beginning of his political career in 1975 to his retirement from Congress in 2011."
+              ],
+              "display_date": [
+                "1968-2017"
+              ],
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": "2017/10/16",
+              "explicit_content": null,
+              "heirarchy_path": [
+                "fe299dd6-7975-4d0e-9e3c-8755ac4de698"
+              ],
+              "id": "fe299dd6-7975-4d0e-9e3c-8755ac4de698",
+              "identifier": "Ms2021-048",
+              "is_part_of": null,
+              "language": [
+                "en"
+              ],
+              "location": null,
+              "modified_date": null,
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": null,
+              "rights": [
+                "Items in this collection are protected by copyright and/or related rights. You are free to use these items in any way that is permitted by the copyright and related rights legislation that applies to your use. In addition, no permission is required from the rights-holder(s) for educational uses. For other uses, you need to obtain permission from the rights-holder(s). https://rightsstatements.org/page/InC-EDU/"
+              ],
+              "source": [
+                "See the finding aid for the Rick Boucher Papers, Ms2021-048. https://ead.lib.virginia.edu/vivaxtf/view?docId=oai/lib.vt.edu/repositories/2/resources/3585.oai_ead.xml"
+              ],
+              "spatial": null,
+              "start_date": "1968/10/16",
+              "subject": [
+                "Virginia, Southwest",
+                "Local/Regional History and Appalachian South",
+                "Politicians -- United States"
+              ],
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/federated/Ms2021-048/representative.jpg",
+              "title": "Rick Boucher Papers",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2024-10-16T19:12:00.072Z",
+              "updatedAt": "2024-10-16T19:12:00.072Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": "ef8a2f24-a1ae-42c8-818c-9df13f39334a",
+              "collectionOptions": null,
+              "create_date": null,
+              "creator": [
+                "Virginia Polytechnic Institute"
+              ],
+              "custom_key": "ark:/53696/gf03nv9r",
+              "description": [
+                "Early women students at Virginia Polytechnic Institute (VPI) were not allowed to be in The Bugle yearbook. For several years after they were first admitted, they produced their own yearbook, called The Tin Horn. Four issues of The Tin Horn were published. The 1925 and 1929 issues were produced by hand. Issues in 1930 and 1931 were published by professional printers."
+              ],
+              "display_date": [
+                "1925-1931"
+              ],
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": "1931/07/29",
+              "explicit_content": null,
+              "heirarchy_path": [
+                "c25318a9-f91c-4af7-a1d3-cbcd21f04312"
+              ],
+              "id": "c25318a9-f91c-4af7-a1d3-cbcd21f04312",
+              "identifier": "LD5655.V8.T5",
+              "is_part_of": null,
+              "language": [
+                "English"
+              ],
+              "location": null,
+              "modified_date": null,
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": null,
+              "rights": [
+                "No Copyright - United States: The organization that has made the Item available believes that the Item is in the Public Domain under the laws of the United States, but a determination was not made as to its copyright status under the copyright laws of other countries. The Item may not be in the Public Domain under the laws of other countries. Please refer to the organization that has made the Item available for more information. <a href=\"http://rightsstatements.org/vocab/NoC-US/1.0/\">http://rightsstatements.org/vocab/NoC-US/1.0/</a>"
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": "1925/07/29",
+              "subject": [
+                "University Archives"
+              ],
+              "thumbnail_path": "https://d21nnzi4oh5qvs.cloudfront.net/federated/LD5655.V8.T5/representative.jpg",
+              "title": "The Tin Horn",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2024-07-29T16:18:52.064Z",
+              "updatedAt": "2024-07-29T16:18:52.064Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": [
+                "Researchers wishing to cite this collection should include the following information: [identification of item], [box], [folder], Virginia Cooperative Extension Service Photographs, RG26 2/b, Special Collections and University Archives, Virginia Tech, Blacksburg, Va."
+              ],
+              "collection_category": "federated",
+              "collectionmap_id": "ce96f41b-12c7-4eae-ad9c-6977a0bbe0ed",
+              "collectionOptions": null,
+              "create_date": null,
+              "creator": null,
+              "custom_key": "ark:/53696/d74bacac",
+              "description": [
+                "The Virginia Cooperative Extension Service Photographs, RG 26/2b, contains approximately 5,000 photographs of activities of the Agricultural Extension Service from 1937 thru 1966, primarily in the 1950s. Photographs depict 4-H activities, home demonstration work, food, breeding, field stations, gardening, poultry, dairy, and other subjects. The Extension Division, which was established in 1966, became the Virginia Cooperative Extension and Agricultural Experiment Station Division in 1995, often shortened to the Virginia Cooperative Extension (VCE)."
+              ],
+              "display_date": [
+                "1937-1966"
+              ],
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": "1966/06/25",
+              "explicit_content": null,
+              "heirarchy_path": [
+                "8668cdbd-ddc1-42a8-a5a9-66253ca28e58"
+              ],
+              "id": "8668cdbd-ddc1-42a8-a5a9-66253ca28e58",
+              "identifier": "RG26_02b",
+              "is_part_of": null,
+              "language": [
+                "English"
+              ],
+              "location": null,
+              "modified_date": null,
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "Special Collections and University Archives, Virginia Tech"
+              ],
+              "rights": [
+                "http://rightsstatements.org/vocab/InC-EDU/1.0/"
+              ],
+              "source": [
+                "<a href=\"https://ead.lib.virginia.edu/vivaxtf/view?docId=oai/VT/repositories_2_resources_3325.xml\" target=\"_blank\">See the finding aid for the Virginia Cooperative Extension Service Photographs.</a>"
+              ],
+              "spatial": null,
+              "start_date": "1937/06/25",
+              "subject": [
+                "Local/Regional History and Appalachian South",
+                "University History"
+              ],
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/federated/rg26_02b/representative.jpg",
+              "title": "Virginia Cooperative Extension Service Photographs",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2025-06-25T12:50:57.307Z",
+              "updatedAt": "2025-06-25T12:50:57.307Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": "fa875283-8292-48f5-8231-13f243c689cc",
+              "collectionOptions": null,
+              "create_date": null,
+              "creator": null,
+              "custom_key": "ark:/53696/xv327384",
+              "description": [
+                "The Virginia Polytechnic Institute and State University Insect Collection is the oldest and largest entomological collection in Virginia. Founded in 1888 by W.B. Alwood at the university's first experimental station with just a few insects collected from his apple orchards, the collection now composes more than 500,000 specimens. The collection contains many entomological treasures like American Burying Beetles collected from Blacksburg in 1889 (now extinct from the state), colorful Malaysian butterflies, a herbarium of plant pests, and an extensive slide collection of 50,000 soil mites. In addition to pinned dried specimens, the VTEC holds an alcohol collection of aquatic insects and Appalachian millipedes."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "explicit_content": null,
+              "heirarchy_path": [
+                "77f6d20c-b36d-42fd-9382-bed640baa31d"
+              ],
+              "id": "77f6d20c-b36d-42fd-9382-bed640baa31d",
+              "identifier": "vtec",
+              "is_part_of": null,
+              "language": [
+                "en"
+              ],
+              "location": null,
+              "modified_date": null,
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": null,
+              "rights": null,
+              "source": null,
+              "spatial": null,
+              "start_date": null,
+              "subject": null,
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/federated/vtec/representative.jpg",
+              "title": "Virginia Polytechnic Institute and State University Insect Collection",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2024-04-29T17:51:53.578Z",
+              "updatedAt": "2024-04-29T17:51:53.578Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": "305b4475-8b0e-4fa8-b312-5ef7a8faea24",
+              "collectionOptions": null,
+              "create_date": null,
+              "creator": null,
+              "custom_key": "ark:/53696/3a363323",
+              "description": [
+                "The Oris Glisson Historic Costume and Textile Collection is housed within the Department of Apparel, Housing, and Resource Management in Wallace Hall Room 123A."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "explicit_content": null,
+              "heirarchy_path": [
+                "63503c63-5e3f-4cb4-ae14-c48c58f6f706"
+              ],
+              "id": "63503c63-5e3f-4cb4-ae14-c48c58f6f706",
+              "identifier": "COST",
+              "is_part_of": null,
+              "language": null,
+              "location": null,
+              "modified_date": null,
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "Oris Glisson Historic Costume and Textile Collection"
+              ],
+              "rights": [
+                "http://rightsstatements.org/vocab/InC-EDU/1.0/"
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": null,
+              "subject": null,
+              "thumbnail_path": "https://d21nnzi4oh5qvs.cloudfront.net/federated/COST/representative.jpg",
+              "title": "Virginia Tech Historic Costume and Textile Collection",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2025-03-04T19:24:58.647Z",
+              "updatedAt": "2025-03-04T19:24:58.647Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            }
+          ],
+          "nextToken": "Virginia Tech Historic Costume and Textile Collection",
+          "total": 10,
+          "__typename": "SearchableCollectionConnection"
+        }
+      }
+    }
+  },
+  {
+    "variables": {
+      "filter": {
+        "collection_category": {
+          "eq": "federated"
+        },
+        "visibility": {
+          "eq": true
+        },
+        "parent_collection": {
+          "exists": false
+        }
+      },
+      "sort": {
+        "field": "title",
+        "direction": "asc"
+      },
+      "limit": "50",
+      "nextToken": null
+    },
+    "response": {
+      "data": {
+        "fulltextCollections": {
+          "items": [
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": "045994a0-2a81-48fa-805a-91cec6482811",
+              "collectionOptions": null,
+              "create_date": null,
+              "creator": [
+                "Brouwer, Charlie, 1946"
+              ],
+              "custom_key": "ark:/53696/0f04aba5",
+              "description": [
+                "Charlie Brouwer is a Virginia artist known for his sculptures, installations, and mixed media drawings. He previously taught at Radford University from 1987 - 2008 before transitioning to a full-time artist, exhibiting over 300 times in his career. This collection highlights select drawings and models from various exhibits that are currently housed at his studio in Floyd, Virginia. His studio website can be visited at https://www.charliebrouwer.com/."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "explicit_content": null,
+              "heirarchy_path": [
+                "3538665a-da0c-4841-a9b3-caadc82756ee"
+              ],
+              "id": "3538665a-da0c-4841-a9b3-caadc82756ee",
+              "identifier": "cbcst",
+              "is_part_of": null,
+              "language": [
+                "en"
+              ],
+              "location": null,
+              "modified_date": null,
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": null,
+              "rights": [
+                "http://rightsstatements.org/vocab/InC-EDU/1.0/"
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": null,
+              "subject": null,
+              "thumbnail_path": "https://d4qp6z580yvb5.cloudfront.net/federated/cbcst/representative.jpg",
+              "title": "Charlie Brouwer Collection",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2026-04-06T21:49:49.057Z",
+              "updatedAt": "2026-04-06T21:49:49.057Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": "32f5fb7a-ff7c-405d-b635-18e6ec7991a4",
+              "collectionOptions": null,
+              "create_date": null,
+              "creator": null,
+              "custom_key": "ark:/53696/6997b595",
+              "description": [
+                "The Christiansburg Institute's Digital Archives is a public, searchable archive of digital materials related to the history of Christiansburg Industrial Institute and broader African American history in Southwest Virginia.  This archive was made possible through a 2022 grant from the Council on Library and Information Resources. This archive was created by Christiansburg Institute, Inc.  Items in the archive are sourced from Christiansburg Institute Museum & Archives and community members who donated digital copies to the digital archive.  Christiansburg Institute, Inc., is a grassroots African American cultural heritage and historic preservation nonprofit with a mission of community education, intergenerational empowerment, and the equitable stewardship of African American history, stories, and culture. This archive is under construction.  Check back frequently as we work to digitize and describe more collections."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "explicit_content": null,
+              "heirarchy_path": [
+                "ba09dcae-e2aa-47e1-9a23-a0e0a97fbb0e"
+              ],
+              "id": "ba09dcae-e2aa-47e1-9a23-a0e0a97fbb0e",
+              "identifier": "CIDA",
+              "is_part_of": null,
+              "language": [
+                "en"
+              ],
+              "location": null,
+              "modified_date": null,
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "Christiansburg Institute, Inc."
+              ],
+              "rights": [
+                "http://rightsstatements.org/vocab/InC-EDU/1.0/"
+              ],
+              "source": [
+                "Christiansburg Institute, Inc"
+              ],
+              "spatial": null,
+              "start_date": null,
+              "subject": null,
+              "thumbnail_path": "https://d4qp6z580yvb5.cloudfront.net/federated/CIDA/representative.jpg",
+              "title": "Christiansburg Institute Digital Archive",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2026-02-27T17:52:15.643Z",
+              "updatedAt": "2026-02-27T17:52:15.643Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": "5479541a-e2b7-4166-b4a0-7c2cf3174672",
+              "collectionOptions": null,
+              "create_date": "2023/07/14 14:43:26",
+              "creator": null,
+              "custom_key": "ark:/53696/231c6f0d",
+              "description": [
+                "This collection contains an interactive tour of the coronal section of an adult wild-type mouse brain, showing Nhlh2 mRNA and Snhg14 long non-coding RNA colocalization in different regions of the brain. Nhlh2 and Snhg14 misexpression leads to Prader Willi syndrome phenotypes such as obesity, hyperphagia, low physical activity, disrupted sleep, memory, balance, and cognition."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "explicit_content": false,
+              "heirarchy_path": [
+                "231c6f0d-ed95-4240-8e0c-5fd988852a97"
+              ],
+              "id": "231c6f0d-ed95-4240-8e0c-5fd988852a97",
+              "identifier": "prader-willi_syndrome",
+              "is_part_of": null,
+              "language": null,
+              "location": null,
+              "modified_date": "2024/02/26 11:24:15",
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "University Libraries",
+                "Virginia Polytechnic Institute and State University"
+              ],
+              "rights": [
+                "https://rightsstatements.org/page/InC-NC/1.0/?language=en"
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": null,
+              "subject": null,
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/images/pws/PVN/pvn_thumb.png",
+              "title": "Expression Patterns of Genes Involved in the Etiology of Prader-Willi Syndrome",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2023-07-14T11:14:43.264Z",
+              "updatedAt": "2024-02-26T11:24:15.504Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": "9f63d36a-843a-4663-a6fe-8e94b54dcd45",
+              "collectionOptions": null,
+              "create_date": null,
+              "creator": null,
+              "custom_key": "ark:/53696/6c3325a9",
+              "description": [
+                "Located to the South of Ypres in Flanders, Hill 80 was a part of the fighting between the Allied and Central Powers throughout WWI. These objects help archaeologists find out who was fighting, and when, with astonishing accuracy. As you begin to move through this space, note that the artifacts in this exhibit are primarily grouped by their date of use and find location around Hill 80. Each section highlights the variety of nationalities represented by the objects found around this site indicates that fighting took place here continuously between 1914 and 1918."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": "1918",
+              "explicit_content": null,
+              "heirarchy_path": [
+                "dd3cfbe5-4075-44ae-86b2-37d72bf8f948"
+              ],
+              "id": "dd3cfbe5-4075-44ae-86b2-37d72bf8f948",
+              "identifier": "DH80",
+              "is_part_of": null,
+              "language": null,
+              "location": null,
+              "modified_date": null,
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": null,
+              "rights": null,
+              "source": null,
+              "spatial": [
+                "Ypres, West-Vlaanderen, Flanders, Belgium, Europe"
+              ],
+              "start_date": "1914",
+              "subject": null,
+              "thumbnail_path": "https://d4qp6z580yvb5.cloudfront.net/federated/DH80/representative.jpg",
+              "title": "Hill 80",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2025-11-03T20:53:10.528Z",
+              "updatedAt": "2025-11-03T20:53:10.528Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": "ae4dbcef-b4ea-4aff-a023-2f74d00c1954",
+              "collectionOptions": null,
+              "create_date": "2024/01/09 19:33:51",
+              "creator": null,
+              "custom_key": "ark:/53696/11783a71",
+              "description": [
+                "The Newman Map Collection, physically located at the Virginia Tech University Libraries, encompasses a series of maps that have undergone digitization for convenient digital access via the digital library platform. Unless expressly indicated otherwise, all original materials and intellectual property remain the possession of the contributing institution, presented here solely for free educational use by the public. Contact dataservices@vt.edu with questions about this collection."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "explicit_content": false,
+              "heirarchy_path": [
+                "11783a71-d006-4842-8c22-d1e845893370"
+              ],
+              "id": "11783a71-d006-4842-8c22-d1e845893370",
+              "identifier": "nmcst",
+              "is_part_of": null,
+              "language": null,
+              "location": null,
+              "modified_date": "2024/01/09 19:33:51",
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "University Libraries",
+                "Virginia Polytechnic Institute and State University"
+              ],
+              "rights": [
+                "Because physical maps acquired by Virginia Tech University Libraries came with a variety of use restrictions, rights within the Newman Library Map Collection are shown at the item level."
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": null,
+              "subject": null,
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/federated/nmcst/representative.jpg",
+              "title": "Newman Library Map Collection",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2024-01-09T11:14:43.264Z",
+              "updatedAt": "2024-01-09T11:14:43.264Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": "00b29eb9-9a04-485f-a840-71512b516b78",
+              "collectionOptions": null,
+              "create_date": null,
+              "creator": null,
+              "custom_key": "ark:/53696/nf82pn05",
+              "description": [
+                "The Rick Boucher Papers, 1968-2017 (bulk 1975-2011), document his career in the Virginia State Senate, 1975-1982, and in the United States Congress as the Representative of Virginia's 9th District, 1983-2011. The collection consists of press releases, Boucher's writings, mailers he distributed, information about his campaigns and elections, scripts of speeches he gave, news clippings about him and issues he worked on, correspondence, information about grants that he worked on, and audiovisual materials including photographs, VHS tapes, video reels, audio cassettes, DVDs, awards, and digital files. Materials primarily span from the beginning of his political career in 1975 to his retirement from Congress in 2011."
+              ],
+              "display_date": [
+                "1968-2017"
+              ],
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": "2017/10/16",
+              "explicit_content": null,
+              "heirarchy_path": [
+                "fe299dd6-7975-4d0e-9e3c-8755ac4de698"
+              ],
+              "id": "fe299dd6-7975-4d0e-9e3c-8755ac4de698",
+              "identifier": "Ms2021-048",
+              "is_part_of": null,
+              "language": [
+                "en"
+              ],
+              "location": null,
+              "modified_date": null,
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": null,
+              "rights": [
+                "Items in this collection are protected by copyright and/or related rights. You are free to use these items in any way that is permitted by the copyright and related rights legislation that applies to your use. In addition, no permission is required from the rights-holder(s) for educational uses. For other uses, you need to obtain permission from the rights-holder(s). https://rightsstatements.org/page/InC-EDU/"
+              ],
+              "source": [
+                "See the finding aid for the Rick Boucher Papers, Ms2021-048. https://ead.lib.virginia.edu/vivaxtf/view?docId=oai/lib.vt.edu/repositories/2/resources/3585.oai_ead.xml"
+              ],
+              "spatial": null,
+              "start_date": "1968/10/16",
+              "subject": [
+                "Virginia, Southwest",
+                "Local/Regional History and Appalachian South",
+                "Politicians -- United States"
+              ],
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/federated/Ms2021-048/representative.jpg",
+              "title": "Rick Boucher Papers",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2024-10-16T19:12:00.072Z",
+              "updatedAt": "2024-10-16T19:12:00.072Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": "ef8a2f24-a1ae-42c8-818c-9df13f39334a",
+              "collectionOptions": null,
+              "create_date": null,
+              "creator": [
+                "Virginia Polytechnic Institute"
+              ],
+              "custom_key": "ark:/53696/gf03nv9r",
+              "description": [
+                "Early women students at Virginia Polytechnic Institute (VPI) were not allowed to be in The Bugle yearbook. For several years after they were first admitted, they produced their own yearbook, called The Tin Horn. Four issues of The Tin Horn were published. The 1925 and 1929 issues were produced by hand. Issues in 1930 and 1931 were published by professional printers."
+              ],
+              "display_date": [
+                "1925-1931"
+              ],
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": "1931/07/29",
+              "explicit_content": null,
+              "heirarchy_path": [
+                "c25318a9-f91c-4af7-a1d3-cbcd21f04312"
+              ],
+              "id": "c25318a9-f91c-4af7-a1d3-cbcd21f04312",
+              "identifier": "LD5655.V8.T5",
+              "is_part_of": null,
+              "language": [
+                "English"
+              ],
+              "location": null,
+              "modified_date": null,
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": null,
+              "rights": [
+                "No Copyright - United States: The organization that has made the Item available believes that the Item is in the Public Domain under the laws of the United States, but a determination was not made as to its copyright status under the copyright laws of other countries. The Item may not be in the Public Domain under the laws of other countries. Please refer to the organization that has made the Item available for more information. <a href=\"http://rightsstatements.org/vocab/NoC-US/1.0/\">http://rightsstatements.org/vocab/NoC-US/1.0/</a>"
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": "1925/07/29",
+              "subject": [
+                "University Archives"
+              ],
+              "thumbnail_path": "https://d21nnzi4oh5qvs.cloudfront.net/federated/LD5655.V8.T5/representative.jpg",
+              "title": "The Tin Horn",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2024-07-29T16:18:52.064Z",
+              "updatedAt": "2024-07-29T16:18:52.064Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": [
+                "Researchers wishing to cite this collection should include the following information: [identification of item], [box], [folder], Virginia Cooperative Extension Service Photographs, RG26 2/b, Special Collections and University Archives, Virginia Tech, Blacksburg, Va."
+              ],
+              "collection_category": "federated",
+              "collectionmap_id": "ce96f41b-12c7-4eae-ad9c-6977a0bbe0ed",
+              "collectionOptions": null,
+              "create_date": null,
+              "creator": null,
+              "custom_key": "ark:/53696/d74bacac",
+              "description": [
+                "The Virginia Cooperative Extension Service Photographs, RG 26/2b, contains approximately 5,000 photographs of activities of the Agricultural Extension Service from 1937 thru 1966, primarily in the 1950s. Photographs depict 4-H activities, home demonstration work, food, breeding, field stations, gardening, poultry, dairy, and other subjects. The Extension Division, which was established in 1966, became the Virginia Cooperative Extension and Agricultural Experiment Station Division in 1995, often shortened to the Virginia Cooperative Extension (VCE)."
+              ],
+              "display_date": [
+                "1937-1966"
+              ],
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": "1966/06/25",
+              "explicit_content": null,
+              "heirarchy_path": [
+                "8668cdbd-ddc1-42a8-a5a9-66253ca28e58"
+              ],
+              "id": "8668cdbd-ddc1-42a8-a5a9-66253ca28e58",
+              "identifier": "RG26_02b",
+              "is_part_of": null,
+              "language": [
+                "English"
+              ],
+              "location": null,
+              "modified_date": null,
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "Special Collections and University Archives, Virginia Tech"
+              ],
+              "rights": [
+                "http://rightsstatements.org/vocab/InC-EDU/1.0/"
+              ],
+              "source": [
+                "<a href=\"https://ead.lib.virginia.edu/vivaxtf/view?docId=oai/VT/repositories_2_resources_3325.xml\" target=\"_blank\">See the finding aid for the Virginia Cooperative Extension Service Photographs.</a>"
+              ],
+              "spatial": null,
+              "start_date": "1937/06/25",
+              "subject": [
+                "Local/Regional History and Appalachian South",
+                "University History"
+              ],
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/federated/rg26_02b/representative.jpg",
+              "title": "Virginia Cooperative Extension Service Photographs",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2025-06-25T12:50:57.307Z",
+              "updatedAt": "2025-06-25T12:50:57.307Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": "fa875283-8292-48f5-8231-13f243c689cc",
+              "collectionOptions": null,
+              "create_date": null,
+              "creator": null,
+              "custom_key": "ark:/53696/xv327384",
+              "description": [
+                "The Virginia Polytechnic Institute and State University Insect Collection is the oldest and largest entomological collection in Virginia. Founded in 1888 by W.B. Alwood at the university's first experimental station with just a few insects collected from his apple orchards, the collection now composes more than 500,000 specimens. The collection contains many entomological treasures like American Burying Beetles collected from Blacksburg in 1889 (now extinct from the state), colorful Malaysian butterflies, a herbarium of plant pests, and an extensive slide collection of 50,000 soil mites. In addition to pinned dried specimens, the VTEC holds an alcohol collection of aquatic insects and Appalachian millipedes."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "explicit_content": null,
+              "heirarchy_path": [
+                "77f6d20c-b36d-42fd-9382-bed640baa31d"
+              ],
+              "id": "77f6d20c-b36d-42fd-9382-bed640baa31d",
+              "identifier": "vtec",
+              "is_part_of": null,
+              "language": [
+                "en"
+              ],
+              "location": null,
+              "modified_date": null,
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": null,
+              "rights": null,
+              "source": null,
+              "spatial": null,
+              "start_date": null,
+              "subject": null,
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/federated/vtec/representative.jpg",
+              "title": "Virginia Polytechnic Institute and State University Insect Collection",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2024-04-29T17:51:53.578Z",
+              "updatedAt": "2024-04-29T17:51:53.578Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": "305b4475-8b0e-4fa8-b312-5ef7a8faea24",
+              "collectionOptions": null,
+              "create_date": null,
+              "creator": null,
+              "custom_key": "ark:/53696/3a363323",
+              "description": [
+                "The Oris Glisson Historic Costume and Textile Collection is housed within the Department of Apparel, Housing, and Resource Management in Wallace Hall Room 123A."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "explicit_content": null,
+              "heirarchy_path": [
+                "63503c63-5e3f-4cb4-ae14-c48c58f6f706"
+              ],
+              "id": "63503c63-5e3f-4cb4-ae14-c48c58f6f706",
+              "identifier": "COST",
+              "is_part_of": null,
+              "language": null,
+              "location": null,
+              "modified_date": null,
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "Oris Glisson Historic Costume and Textile Collection"
+              ],
+              "rights": [
+                "http://rightsstatements.org/vocab/InC-EDU/1.0/"
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": null,
+              "subject": null,
+              "thumbnail_path": "https://d21nnzi4oh5qvs.cloudfront.net/federated/COST/representative.jpg",
+              "title": "Virginia Tech Historic Costume and Textile Collection",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2025-03-04T19:24:58.647Z",
+              "updatedAt": "2025-03-04T19:24:58.647Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            }
+          ],
+          "nextToken": "Virginia Tech Historic Costume and Textile Collection",
+          "total": 10,
+          "__typename": "SearchableCollectionConnection"
+        }
+      }
+    }
+  },
+  {
+    "variables": {
+      "filter": {
+        "collection_category": {
+          "eq": "federated"
+        },
+        "visibility": {
+          "eq": true
+        },
+        "parent_collection": {
+          "exists": false
+        }
+      },
+      "sort": {
+        "field": "title",
+        "direction": "asc"
+      },
+      "limit": 10
+    },
+    "response": {
+      "data": {
+        "fulltextCollections": {
+          "items": [
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": "045994a0-2a81-48fa-805a-91cec6482811",
+              "collectionOptions": null,
+              "create_date": null,
+              "creator": [
+                "Brouwer, Charlie, 1946"
+              ],
+              "custom_key": "ark:/53696/0f04aba5",
+              "description": [
+                "Charlie Brouwer is a Virginia artist known for his sculptures, installations, and mixed media drawings. He previously taught at Radford University from 1987 - 2008 before transitioning to a full-time artist, exhibiting over 300 times in his career. This collection highlights select drawings and models from various exhibits that are currently housed at his studio in Floyd, Virginia. His studio website can be visited at https://www.charliebrouwer.com/."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "explicit_content": null,
+              "heirarchy_path": [
+                "3538665a-da0c-4841-a9b3-caadc82756ee"
+              ],
+              "id": "3538665a-da0c-4841-a9b3-caadc82756ee",
+              "identifier": "cbcst",
+              "is_part_of": null,
+              "language": [
+                "en"
+              ],
+              "location": null,
+              "modified_date": null,
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": null,
+              "rights": [
+                "http://rightsstatements.org/vocab/InC-EDU/1.0/"
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": null,
+              "subject": null,
+              "thumbnail_path": "https://d4qp6z580yvb5.cloudfront.net/federated/cbcst/representative.jpg",
+              "title": "Charlie Brouwer Collection",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2026-04-06T21:49:49.057Z",
+              "updatedAt": "2026-04-06T21:49:49.057Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": "32f5fb7a-ff7c-405d-b635-18e6ec7991a4",
+              "collectionOptions": null,
+              "create_date": null,
+              "creator": null,
+              "custom_key": "ark:/53696/6997b595",
+              "description": [
+                "The Christiansburg Institute's Digital Archives is a public, searchable archive of digital materials related to the history of Christiansburg Industrial Institute and broader African American history in Southwest Virginia.  This archive was made possible through a 2022 grant from the Council on Library and Information Resources. This archive was created by Christiansburg Institute, Inc.  Items in the archive are sourced from Christiansburg Institute Museum & Archives and community members who donated digital copies to the digital archive.  Christiansburg Institute, Inc., is a grassroots African American cultural heritage and historic preservation nonprofit with a mission of community education, intergenerational empowerment, and the equitable stewardship of African American history, stories, and culture. This archive is under construction.  Check back frequently as we work to digitize and describe more collections."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "explicit_content": null,
+              "heirarchy_path": [
+                "ba09dcae-e2aa-47e1-9a23-a0e0a97fbb0e"
+              ],
+              "id": "ba09dcae-e2aa-47e1-9a23-a0e0a97fbb0e",
+              "identifier": "CIDA",
+              "is_part_of": null,
+              "language": [
+                "en"
+              ],
+              "location": null,
+              "modified_date": null,
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "Christiansburg Institute, Inc."
+              ],
+              "rights": [
+                "http://rightsstatements.org/vocab/InC-EDU/1.0/"
+              ],
+              "source": [
+                "Christiansburg Institute, Inc"
+              ],
+              "spatial": null,
+              "start_date": null,
+              "subject": null,
+              "thumbnail_path": "https://d4qp6z580yvb5.cloudfront.net/federated/CIDA/representative.jpg",
+              "title": "Christiansburg Institute Digital Archive",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2026-02-27T17:52:15.643Z",
+              "updatedAt": "2026-02-27T17:52:15.643Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": "5479541a-e2b7-4166-b4a0-7c2cf3174672",
+              "collectionOptions": null,
+              "create_date": "2023/07/14 14:43:26",
+              "creator": null,
+              "custom_key": "ark:/53696/231c6f0d",
+              "description": [
+                "This collection contains an interactive tour of the coronal section of an adult wild-type mouse brain, showing Nhlh2 mRNA and Snhg14 long non-coding RNA colocalization in different regions of the brain. Nhlh2 and Snhg14 misexpression leads to Prader Willi syndrome phenotypes such as obesity, hyperphagia, low physical activity, disrupted sleep, memory, balance, and cognition."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "explicit_content": false,
+              "heirarchy_path": [
+                "231c6f0d-ed95-4240-8e0c-5fd988852a97"
+              ],
+              "id": "231c6f0d-ed95-4240-8e0c-5fd988852a97",
+              "identifier": "prader-willi_syndrome",
+              "is_part_of": null,
+              "language": null,
+              "location": null,
+              "modified_date": "2024/02/26 11:24:15",
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "University Libraries",
+                "Virginia Polytechnic Institute and State University"
+              ],
+              "rights": [
+                "https://rightsstatements.org/page/InC-NC/1.0/?language=en"
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": null,
+              "subject": null,
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/images/pws/PVN/pvn_thumb.png",
+              "title": "Expression Patterns of Genes Involved in the Etiology of Prader-Willi Syndrome",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2023-07-14T11:14:43.264Z",
+              "updatedAt": "2024-02-26T11:24:15.504Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": "9f63d36a-843a-4663-a6fe-8e94b54dcd45",
+              "collectionOptions": null,
+              "create_date": null,
+              "creator": null,
+              "custom_key": "ark:/53696/6c3325a9",
+              "description": [
+                "Located to the South of Ypres in Flanders, Hill 80 was a part of the fighting between the Allied and Central Powers throughout WWI. These objects help archaeologists find out who was fighting, and when, with astonishing accuracy. As you begin to move through this space, note that the artifacts in this exhibit are primarily grouped by their date of use and find location around Hill 80. Each section highlights the variety of nationalities represented by the objects found around this site indicates that fighting took place here continuously between 1914 and 1918."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": "1918",
+              "explicit_content": null,
+              "heirarchy_path": [
+                "dd3cfbe5-4075-44ae-86b2-37d72bf8f948"
+              ],
+              "id": "dd3cfbe5-4075-44ae-86b2-37d72bf8f948",
+              "identifier": "DH80",
+              "is_part_of": null,
+              "language": null,
+              "location": null,
+              "modified_date": null,
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": null,
+              "rights": null,
+              "source": null,
+              "spatial": [
+                "Ypres, West-Vlaanderen, Flanders, Belgium, Europe"
+              ],
+              "start_date": "1914",
+              "subject": null,
+              "thumbnail_path": "https://d4qp6z580yvb5.cloudfront.net/federated/DH80/representative.jpg",
+              "title": "Hill 80",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2025-11-03T20:53:10.528Z",
+              "updatedAt": "2025-11-03T20:53:10.528Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": "ae4dbcef-b4ea-4aff-a023-2f74d00c1954",
+              "collectionOptions": null,
+              "create_date": "2024/01/09 19:33:51",
+              "creator": null,
+              "custom_key": "ark:/53696/11783a71",
+              "description": [
+                "The Newman Map Collection, physically located at the Virginia Tech University Libraries, encompasses a series of maps that have undergone digitization for convenient digital access via the digital library platform. Unless expressly indicated otherwise, all original materials and intellectual property remain the possession of the contributing institution, presented here solely for free educational use by the public. Contact dataservices@vt.edu with questions about this collection."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "explicit_content": false,
+              "heirarchy_path": [
+                "11783a71-d006-4842-8c22-d1e845893370"
+              ],
+              "id": "11783a71-d006-4842-8c22-d1e845893370",
+              "identifier": "nmcst",
+              "is_part_of": null,
+              "language": null,
+              "location": null,
+              "modified_date": "2024/01/09 19:33:51",
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "University Libraries",
+                "Virginia Polytechnic Institute and State University"
+              ],
+              "rights": [
+                "Because physical maps acquired by Virginia Tech University Libraries came with a variety of use restrictions, rights within the Newman Library Map Collection are shown at the item level."
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": null,
+              "subject": null,
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/federated/nmcst/representative.jpg",
+              "title": "Newman Library Map Collection",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2024-01-09T11:14:43.264Z",
+              "updatedAt": "2024-01-09T11:14:43.264Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": "00b29eb9-9a04-485f-a840-71512b516b78",
+              "collectionOptions": null,
+              "create_date": null,
+              "creator": null,
+              "custom_key": "ark:/53696/nf82pn05",
+              "description": [
+                "The Rick Boucher Papers, 1968-2017 (bulk 1975-2011), document his career in the Virginia State Senate, 1975-1982, and in the United States Congress as the Representative of Virginia's 9th District, 1983-2011. The collection consists of press releases, Boucher's writings, mailers he distributed, information about his campaigns and elections, scripts of speeches he gave, news clippings about him and issues he worked on, correspondence, information about grants that he worked on, and audiovisual materials including photographs, VHS tapes, video reels, audio cassettes, DVDs, awards, and digital files. Materials primarily span from the beginning of his political career in 1975 to his retirement from Congress in 2011."
+              ],
+              "display_date": [
+                "1968-2017"
+              ],
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": "2017/10/16",
+              "explicit_content": null,
+              "heirarchy_path": [
+                "fe299dd6-7975-4d0e-9e3c-8755ac4de698"
+              ],
+              "id": "fe299dd6-7975-4d0e-9e3c-8755ac4de698",
+              "identifier": "Ms2021-048",
+              "is_part_of": null,
+              "language": [
+                "en"
+              ],
+              "location": null,
+              "modified_date": null,
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": null,
+              "rights": [
+                "Items in this collection are protected by copyright and/or related rights. You are free to use these items in any way that is permitted by the copyright and related rights legislation that applies to your use. In addition, no permission is required from the rights-holder(s) for educational uses. For other uses, you need to obtain permission from the rights-holder(s). https://rightsstatements.org/page/InC-EDU/"
+              ],
+              "source": [
+                "See the finding aid for the Rick Boucher Papers, Ms2021-048. https://ead.lib.virginia.edu/vivaxtf/view?docId=oai/lib.vt.edu/repositories/2/resources/3585.oai_ead.xml"
+              ],
+              "spatial": null,
+              "start_date": "1968/10/16",
+              "subject": [
+                "Virginia, Southwest",
+                "Local/Regional History and Appalachian South",
+                "Politicians -- United States"
+              ],
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/federated/Ms2021-048/representative.jpg",
+              "title": "Rick Boucher Papers",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2024-10-16T19:12:00.072Z",
+              "updatedAt": "2024-10-16T19:12:00.072Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": "ef8a2f24-a1ae-42c8-818c-9df13f39334a",
+              "collectionOptions": null,
+              "create_date": null,
+              "creator": [
+                "Virginia Polytechnic Institute"
+              ],
+              "custom_key": "ark:/53696/gf03nv9r",
+              "description": [
+                "Early women students at Virginia Polytechnic Institute (VPI) were not allowed to be in The Bugle yearbook. For several years after they were first admitted, they produced their own yearbook, called The Tin Horn. Four issues of The Tin Horn were published. The 1925 and 1929 issues were produced by hand. Issues in 1930 and 1931 were published by professional printers."
+              ],
+              "display_date": [
+                "1925-1931"
+              ],
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": "1931/07/29",
+              "explicit_content": null,
+              "heirarchy_path": [
+                "c25318a9-f91c-4af7-a1d3-cbcd21f04312"
+              ],
+              "id": "c25318a9-f91c-4af7-a1d3-cbcd21f04312",
+              "identifier": "LD5655.V8.T5",
+              "is_part_of": null,
+              "language": [
+                "English"
+              ],
+              "location": null,
+              "modified_date": null,
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": null,
+              "rights": [
+                "No Copyright - United States: The organization that has made the Item available believes that the Item is in the Public Domain under the laws of the United States, but a determination was not made as to its copyright status under the copyright laws of other countries. The Item may not be in the Public Domain under the laws of other countries. Please refer to the organization that has made the Item available for more information. <a href=\"http://rightsstatements.org/vocab/NoC-US/1.0/\">http://rightsstatements.org/vocab/NoC-US/1.0/</a>"
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": "1925/07/29",
+              "subject": [
+                "University Archives"
+              ],
+              "thumbnail_path": "https://d21nnzi4oh5qvs.cloudfront.net/federated/LD5655.V8.T5/representative.jpg",
+              "title": "The Tin Horn",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2024-07-29T16:18:52.064Z",
+              "updatedAt": "2024-07-29T16:18:52.064Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": [
+                "Researchers wishing to cite this collection should include the following information: [identification of item], [box], [folder], Virginia Cooperative Extension Service Photographs, RG26 2/b, Special Collections and University Archives, Virginia Tech, Blacksburg, Va."
+              ],
+              "collection_category": "federated",
+              "collectionmap_id": "ce96f41b-12c7-4eae-ad9c-6977a0bbe0ed",
+              "collectionOptions": null,
+              "create_date": null,
+              "creator": null,
+              "custom_key": "ark:/53696/d74bacac",
+              "description": [
+                "The Virginia Cooperative Extension Service Photographs, RG 26/2b, contains approximately 5,000 photographs of activities of the Agricultural Extension Service from 1937 thru 1966, primarily in the 1950s. Photographs depict 4-H activities, home demonstration work, food, breeding, field stations, gardening, poultry, dairy, and other subjects. The Extension Division, which was established in 1966, became the Virginia Cooperative Extension and Agricultural Experiment Station Division in 1995, often shortened to the Virginia Cooperative Extension (VCE)."
+              ],
+              "display_date": [
+                "1937-1966"
+              ],
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": "1966/06/25",
+              "explicit_content": null,
+              "heirarchy_path": [
+                "8668cdbd-ddc1-42a8-a5a9-66253ca28e58"
+              ],
+              "id": "8668cdbd-ddc1-42a8-a5a9-66253ca28e58",
+              "identifier": "RG26_02b",
+              "is_part_of": null,
+              "language": [
+                "English"
+              ],
+              "location": null,
+              "modified_date": null,
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "Special Collections and University Archives, Virginia Tech"
+              ],
+              "rights": [
+                "http://rightsstatements.org/vocab/InC-EDU/1.0/"
+              ],
+              "source": [
+                "<a href=\"https://ead.lib.virginia.edu/vivaxtf/view?docId=oai/VT/repositories_2_resources_3325.xml\" target=\"_blank\">See the finding aid for the Virginia Cooperative Extension Service Photographs.</a>"
+              ],
+              "spatial": null,
+              "start_date": "1937/06/25",
+              "subject": [
+                "Local/Regional History and Appalachian South",
+                "University History"
+              ],
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/federated/rg26_02b/representative.jpg",
+              "title": "Virginia Cooperative Extension Service Photographs",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2025-06-25T12:50:57.307Z",
+              "updatedAt": "2025-06-25T12:50:57.307Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": "fa875283-8292-48f5-8231-13f243c689cc",
+              "collectionOptions": null,
+              "create_date": null,
+              "creator": null,
+              "custom_key": "ark:/53696/xv327384",
+              "description": [
+                "The Virginia Polytechnic Institute and State University Insect Collection is the oldest and largest entomological collection in Virginia. Founded in 1888 by W.B. Alwood at the university's first experimental station with just a few insects collected from his apple orchards, the collection now composes more than 500,000 specimens. The collection contains many entomological treasures like American Burying Beetles collected from Blacksburg in 1889 (now extinct from the state), colorful Malaysian butterflies, a herbarium of plant pests, and an extensive slide collection of 50,000 soil mites. In addition to pinned dried specimens, the VTEC holds an alcohol collection of aquatic insects and Appalachian millipedes."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "explicit_content": null,
+              "heirarchy_path": [
+                "77f6d20c-b36d-42fd-9382-bed640baa31d"
+              ],
+              "id": "77f6d20c-b36d-42fd-9382-bed640baa31d",
+              "identifier": "vtec",
+              "is_part_of": null,
+              "language": [
+                "en"
+              ],
+              "location": null,
+              "modified_date": null,
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": null,
+              "rights": null,
+              "source": null,
+              "spatial": null,
+              "start_date": null,
+              "subject": null,
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/federated/vtec/representative.jpg",
+              "title": "Virginia Polytechnic Institute and State University Insect Collection",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2024-04-29T17:51:53.578Z",
+              "updatedAt": "2024-04-29T17:51:53.578Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": "305b4475-8b0e-4fa8-b312-5ef7a8faea24",
+              "collectionOptions": null,
+              "create_date": null,
+              "creator": null,
+              "custom_key": "ark:/53696/3a363323",
+              "description": [
+                "The Oris Glisson Historic Costume and Textile Collection is housed within the Department of Apparel, Housing, and Resource Management in Wallace Hall Room 123A."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "explicit_content": null,
+              "heirarchy_path": [
+                "63503c63-5e3f-4cb4-ae14-c48c58f6f706"
+              ],
+              "id": "63503c63-5e3f-4cb4-ae14-c48c58f6f706",
+              "identifier": "COST",
+              "is_part_of": null,
+              "language": null,
+              "location": null,
+              "modified_date": null,
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "Oris Glisson Historic Costume and Textile Collection"
+              ],
+              "rights": [
+                "http://rightsstatements.org/vocab/InC-EDU/1.0/"
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": null,
+              "subject": null,
+              "thumbnail_path": "https://d21nnzi4oh5qvs.cloudfront.net/federated/COST/representative.jpg",
+              "title": "Virginia Tech Historic Costume and Textile Collection",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2025-03-04T19:24:58.647Z",
+              "updatedAt": "2025-03-04T19:24:58.647Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            }
+          ],
+          "nextToken": "Virginia Tech Historic Costume and Textile Collection",
+          "total": 10,
+          "__typename": "SearchableCollectionConnection"
+        }
+      }
+    }
+  }
+]

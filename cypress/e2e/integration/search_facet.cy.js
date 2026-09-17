@@ -1,5 +1,6 @@
 describe('search_facet: Heading text', () => {
   it('contains the correct title', () => {
+    cy.mockGraphQL();
     cy.visit('/search');
     cy.get('h2')
       .invoke('text')
@@ -9,6 +10,7 @@ describe('search_facet: Heading text', () => {
 
 describe('search_facet: Collapsible search filter field', () => {
   beforeEach(() => {
+    cy.mockGraphQL();
     cy.visit('/search');
   });
 

@@ -1,0 +1,3961 @@
+[
+  {
+    "variables": {
+      "filter": {
+        "or": [
+          {
+            "collection_category": {
+              "eq": "federated"
+            },
+            "visibility": {
+              "eq": true
+            },
+            "parent_collection": {
+              "exists": false
+            }
+          },
+          {
+            "item_category": {
+              "eq": "federated"
+            },
+            "visibility": {
+              "eq": true
+            }
+          }
+        ]
+      },
+      "sort": {
+        "field": "title",
+        "direction": "asc"
+      },
+      "limit": 10
+    },
+    "response": {
+      "data": {
+        "searchObjects": {
+          "items": [
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "create_date": null,
+              "creator": [
+                "CARTER, ALLEN D. (United States, 1947 - 2009)"
+              ],
+              "custom_key": "ark:/53696/67474c70",
+              "description": null,
+              "display_date": [
+                "no date"
+              ],
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "heirarchy_path": [
+                "eab14157-2c87-4a1b-ad2a-eab17954d11f"
+              ],
+              "id": "66b52e0c-a9a4-41be-a785-4530a8babf89",
+              "identifier": "TAU_ART_000885_0001",
+              "is_part_of": [
+                "Taubman Museum of Art"
+              ],
+              "language": null,
+              "location": null,
+              "modified_date": null,
+              "parent_collection": [
+                "eab14157-2c87-4a1b-ad2a-eab17954d11f"
+              ],
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": [
+                "Virginia Polytechnic Institute and State University. University Libraries (Digital)"
+              ],
+              "relation": null,
+              "rights_holder": null,
+              "rights": [
+                "http://rightsstatements.org/vocab/InC-EDU/1.0/"
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": null,
+              "subject": [
+                "Virginia",
+                "Art",
+                "DRAWINGS"
+              ],
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/swva/TAU_ART/tiles/TAU_ART_000885_0001-1/full/187,/0/default.jpg",
+              "title": "\"'TAKE MY LEG O LORD, BUT SAVE MY LIFE'\"",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": "{\"page_count\":1}",
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": null,
+              "coverage": null,
+              "created": null,
+              "date": null,
+              "download_link": null,
+              "explicit": null,
+              "extent": [
+                "24 13/16 x 17 13/16 in. (63 x 45.2 cm)"
+              ],
+              "extracted_text": null,
+              "format": [
+                "image/tiff"
+              ],
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": null,
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://img.cloud.lib.vt.edu/swva/TAU_ART/TAU_ART_000885_0001/manifest.json",
+              "medium": [
+                "crayon, wash, and ink on paper"
+              ],
+              "other_identifier": null,
+              "publisher": null,
+              "references": null,
+              "repository": [
+                "Taubman Museum of Art",
+                "1995.009",
+                "Gift of Allen Carter in Honor of Artiller Carter"
+              ],
+              "tags": null,
+              "taxonomy": null,
+              "temporal": null,
+              "type": [
+                "Image"
+              ],
+              "visual_description": null,
+              "createdAt": "2022-12-15T18:38:45.349Z",
+              "updatedAt": "2026-03-25T18:07:38.853Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "create_date": null,
+              "creator": [
+                "(\"Japanese, dates unknown\")"
+              ],
+              "custom_key": "ark:/53696/6j00n78n",
+              "description": null,
+              "display_date": [
+                "no date"
+              ],
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "heirarchy_path": [
+                "eab14157-2c87-4a1b-ad2a-eab17954d11f"
+              ],
+              "id": "e0e75e40-0f77-4cf9-91a1-54e0158525a3",
+              "identifier": "TAU_ART_000815_0001",
+              "is_part_of": [
+                "Taubman Museum of Art"
+              ],
+              "language": null,
+              "location": null,
+              "modified_date": null,
+              "parent_collection": [
+                "eab14157-2c87-4a1b-ad2a-eab17954d11f"
+              ],
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": [
+                "Virginia Polytechnic Institute and State University. University Libraries (Digital)"
+              ],
+              "relation": null,
+              "rights_holder": null,
+              "rights": [
+                "http://rightsstatements.org/vocab/InC-EDU/1.0/"
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": null,
+              "subject": [
+                "Virginia",
+                "Art",
+                "PRINTS"
+              ],
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/swva/TAU_ART/tiles/TAU_ART_000815_0001-1/full/250,/0/default.jpg",
+              "title": "\"2-PAGE SCENE: WOMAN AND MAN, WITH ANOTHER WOMAN BEHIND SCREEN\"",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": "{\"page_count\":1}",
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": null,
+              "coverage": null,
+              "created": null,
+              "date": null,
+              "download_link": null,
+              "explicit": null,
+              "extent": null,
+              "extracted_text": null,
+              "format": [
+                "image/tiff"
+              ],
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": null,
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://img.cloud.lib.vt.edu/swva/TAU_ART/TAU_ART_000815_0001/manifest.json",
+              "medium": [
+                "woodblock print (crepe paper)"
+              ],
+              "other_identifier": null,
+              "publisher": null,
+              "references": null,
+              "repository": [
+                "Taubman Museum of Art",
+                "1996.169.001-.002",
+                "The Peggy Macdowell Thomas Japanese Print Collection"
+              ],
+              "tags": null,
+              "taxonomy": null,
+              "temporal": null,
+              "type": [
+                "Image"
+              ],
+              "visual_description": null,
+              "createdAt": "2022-12-15T18:38:17.127Z",
+              "updatedAt": "2026-03-25T18:07:57.609Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": [
+                "Researchers wishing to cite this collection should include the following information: \"A Bachelor's Residence and Workshop,\" Pringle residence, Seattle, Washington, n.d. Portfolio (Ms1998-022) - Special Collections, Virginia Polytechnic Institute and State University, Blacksburg, Va."
+              ],
+              "create_date": null,
+              "creator": [
+                "Young, Jean Linden, 1922-1997"
+              ],
+              "custom_key": "ark:/53696/7q72ks16",
+              "description": [
+                "Elevation drawings, section drawings, a fireplace template, and floor plans for the Pringle residence."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "heirarchy_path": [
+                "252dadd0-3a8d-45e5-a61f-dbd7358d4d6c",
+                "d485b2f2-ab14-47e4-9b24-b3de891c35e0",
+                "2b3a5b90-d675-43ac-9002-c75de443aa6e"
+              ],
+              "id": "ddc2faa9-2faf-441a-a1a4-8e6847f52b74",
+              "identifier": "Ms1998_022_B003_F013_001_Pringle_Dr",
+              "is_part_of": [
+                "Ms1998-022",
+                "Ms1998-022, Box 3, Folder 13",
+                "Pringle Residence"
+              ],
+              "language": [
+                "en"
+              ],
+              "location": [
+                "Seattle, Washington"
+              ],
+              "modified_date": null,
+              "parent_collection": [
+                "2b3a5b90-d675-43ac-9002-c75de443aa6e"
+              ],
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "Special Collections, University Libraries, Virginia Tech"
+              ],
+              "rights": [
+                "Permission to publish material from the \"A Bachelor's Residence and Workshop,\" Pringle residence, Seattle, Washington, n.d. Portfolio (Ms1998-022) must be obtained from University Libraries Special Collections, Virginia Tech./"
+              ],
+              "source": [
+                "Please consult the <a href=\"http://ead.lib.virginia.edu/vivaxtf/view?docId=vt/viblbv00530.xml\">Guide to the Jean Linden Young Papers</a> for more information."
+              ],
+              "spatial": [
+                "Seattle, Washington"
+              ],
+              "start_date": null,
+              "subject": null,
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/iawa/Ms1998_022_Young/Ms1998_022_Box3/Ms1998_022_B3_Folder13/tiles/Ms1998_022_B003_F013_001_Pringle_Dr-1/full/208,/0/default.jpg",
+              "title": "\"A Bachelor's Residence and Workshop,\" Pringle residence, Seattle, Washington, n.d. Portfolio (Ms1998-022)",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": "{\"page_count\":7}",
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": null,
+              "coverage": null,
+              "created": null,
+              "date": null,
+              "download_link": null,
+              "explicit": null,
+              "extent": null,
+              "extracted_text": null,
+              "format": null,
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": null,
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://img.cloud.lib.vt.edu/iawa/Ms1998_022_Young/Ms1998_022_Box3/Ms1998_022_B3_Folder13/Ms1998_022_B003_F013_001_Pringle_Dr/manifest.json",
+              "medium": null,
+              "other_identifier": null,
+              "publisher": null,
+              "references": null,
+              "repository": null,
+              "tags": [
+                "Project records",
+                "Residential"
+              ],
+              "taxonomy": null,
+              "temporal": null,
+              "type": [
+                "Architectural drawings (visual works)",
+                "Elevations (orthographic projections)",
+                "Floor plans (orthographic projections)",
+                "Sections (orthographic projections)",
+                "Interior design"
+              ],
+              "visual_description": null,
+              "createdAt": "2022-08-17T20:00:55.080Z",
+              "updatedAt": "2026-03-25T18:06:59.106Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": [
+                "Researchers wishing to cite this collection should include the following information: \"A Concept Study,\" Church of Religious Science, Seattle, Washington, n.d. Portfolio (Ms1998-022) - Special Collections, Virginia Polytechnic Institute and State University, Blacksburg, Va."
+              ],
+              "create_date": null,
+              "creator": [
+                "Young, Jean Linden, 1922-1997"
+              ],
+              "custom_key": "ark:/53696/1t81fp4x",
+              "description": [
+                "Architectural renderings related to Young's Church of Religious Science building; these renderings include notes on the conceptual design of the structure, floor plans, site plan, and elevation drawings."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "heirarchy_path": [
+                "252dadd0-3a8d-45e5-a61f-dbd7358d4d6c",
+                "b0048f1e-fad2-432e-9daa-a55455bfd83a"
+              ],
+              "id": "4eb563dc-eb89-462c-a7a6-a9c03b526181",
+              "identifier": "Ms1998_022_B004_003_ReligiousScience_Dr",
+              "is_part_of": [
+                "Ms1998-022",
+                "Ms1998-022, Box 4",
+                "Church of Religious Science"
+              ],
+              "language": [
+                "en"
+              ],
+              "location": [
+                "Seattle, Washington"
+              ],
+              "modified_date": null,
+              "parent_collection": [
+                "b0048f1e-fad2-432e-9daa-a55455bfd83a"
+              ],
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "Special Collections, University Libraries, Virginia Tech"
+              ],
+              "rights": [
+                "Permission to publish material from the \"A Concept Study,\" Church of Religious Science, Seattle, Washington, n.d. Portfolio (Ms1998-022) must be obtained from University Libraries Special Collections, Virginia Tech./"
+              ],
+              "source": [
+                "Please consult the <a href=\"http://ead.lib.virginia.edu/vivaxtf/view?docId=vt/viblbv00530.xml\">Guide to the Jean Linden Young Papers</a> for more information."
+              ],
+              "spatial": [
+                "Seattle, Washington"
+              ],
+              "start_date": null,
+              "subject": null,
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/iawa/Ms1998_022_Young/Ms1998_022_Box4/tiles/Ms1998_022_B004_003_ReligiousScience_Dr-1/full/250,/0/default.jpg",
+              "title": "\"A Concept Study,\" Church of Religious Science, Seattle, Washington, n.d. Portfolio (Ms1998-022)",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": "{\"page_count\":2}",
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": null,
+              "coverage": null,
+              "created": null,
+              "date": null,
+              "download_link": null,
+              "explicit": null,
+              "extent": null,
+              "extracted_text": null,
+              "format": [
+                "18 in. x 25 in.",
+                "45.72 cm x  63.5 cm"
+              ],
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": null,
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://img.cloud.lib.vt.edu/iawa/Ms1998_022_Young/Ms1998_022_Box4/Ms1998_022_B004_003_ReligiousScience_Dr/manifest.json",
+              "medium": [
+                "Ink"
+              ],
+              "other_identifier": null,
+              "publisher": null,
+              "references": null,
+              "repository": null,
+              "tags": [
+                "Religious building spaces"
+              ],
+              "taxonomy": null,
+              "temporal": null,
+              "type": [
+                "Conceptual drawings",
+                "Elevations (orthographic projections)",
+                "Floor plans (orthographic projections)",
+                "Site plans"
+              ],
+              "visual_description": null,
+              "createdAt": "2022-08-17T20:01:10.015Z",
+              "updatedAt": "2026-03-25T18:07:52.736Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "create_date": null,
+              "creator": [
+                "KWILECKI, PAUL (United States, 1928-2009)"
+              ],
+              "custom_key": null,
+              "description": null,
+              "display_date": [
+                "1976"
+              ],
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "heirarchy_path": [
+                "eab14157-2c87-4a1b-ad2a-eab17954d11f"
+              ],
+              "id": "cff1c120-6742-4ee3-b350-f5b209069fb4",
+              "identifier": "TAU_ART_000061_0001",
+              "is_part_of": [
+                "Taubman Museum of Art"
+              ],
+              "language": null,
+              "location": null,
+              "modified_date": null,
+              "parent_collection": [
+                "eab14157-2c87-4a1b-ad2a-eab17954d11f"
+              ],
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": [
+                "Virginia Polytechnic Institute and State University. University Libraries (Digital)"
+              ],
+              "relation": null,
+              "rights_holder": null,
+              "rights": [
+                "http://rightsstatements.org/vocab/InC-EDU/1.0/"
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": "1976/01/09",
+              "subject": [
+                "Virginia",
+                "Art",
+                "PHOTOGRAPHS"
+              ],
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/swva/TAU_ART/tiles/TAU_ART_000061_0001-1/full/250,/0/default.jpg",
+              "title": "\"A MAN IN A PHONE BOOTH, WILLIS PARK, BAINBRIDGE, DECATUR COUNTY, GEORGIA\"",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": "{\"page_count\":1}",
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": null,
+              "coverage": null,
+              "created": null,
+              "date": null,
+              "download_link": null,
+              "explicit": null,
+              "extent": null,
+              "extracted_text": null,
+              "format": [
+                "image/tiff"
+              ],
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": null,
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://img.cloud.lib.vt.edu/swva/TAU_ART/TAU_ART_000061_0001/manifest.json",
+              "medium": [
+                "Gelatin silver print"
+              ],
+              "other_identifier": null,
+              "publisher": null,
+              "references": null,
+              "repository": [
+                "Taubman Museum of Art",
+                "2004.017",
+                "Gift of Ray Kass"
+              ],
+              "tags": null,
+              "taxonomy": null,
+              "temporal": null,
+              "type": [
+                "Image"
+              ],
+              "visual_description": null,
+              "createdAt": "2022-12-22T18:58:18.292Z",
+              "updatedAt": "2026-03-25T18:07:51.537Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": [
+                "Researchers wishing to cite this collection should include the following information: \"A Minimum Work Retreat for Three Months of the Year,\" Patterson Residence, Indianola, Washington, n.d. Portfolio (Ms1998-022) - Special Collections, Virginia Polytechnic Institute and State University, Blacksburg, Va."
+              ],
+              "create_date": null,
+              "creator": [
+                "Young, Jean Linden, 1922-1997"
+              ],
+              "custom_key": "ark:/53696/v824wn65",
+              "description": [
+                "Detailed floor and site plans with property description, section and elevation drawings and black-and-white photographs of the house exterior."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "heirarchy_path": [
+                "252dadd0-3a8d-45e5-a61f-dbd7358d4d6c",
+                "d485b2f2-ab14-47e4-9b24-b3de891c35e0",
+                "85890e49-4314-489f-897c-89e9ff86bccd"
+              ],
+              "id": "da3fc211-f067-46ae-9d9c-c0a81c501dcc",
+              "identifier": "Ms1998_022_B003_F015_001_Patterson_Scrap",
+              "is_part_of": [
+                "Ms1998-022",
+                "Ms1998-022, Box 3, Folder 15",
+                "Patterson Residence"
+              ],
+              "language": [
+                "en"
+              ],
+              "location": [
+                "Indianola, Washington"
+              ],
+              "modified_date": null,
+              "parent_collection": [
+                "85890e49-4314-489f-897c-89e9ff86bccd"
+              ],
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "Special Collections, University Libraries, Virginia Tech"
+              ],
+              "rights": [
+                "Permission to publish material from the \"A Minimum Work Retreat for Three Months of the Year,\" Patterson Residence, Indianola, Washington, n.d. Portfolio (Ms1998-022) must be obtained from University Libraries Special Collections, Virginia Tech./"
+              ],
+              "source": [
+                "Please consult the <a href=\"http://ead.lib.virginia.edu/vivaxtf/view?docId=vt/viblbv00530.xml\">Guide to the Jean Linden Young Papers</a> for more information."
+              ],
+              "spatial": [
+                "Indianola, Washington"
+              ],
+              "start_date": null,
+              "subject": null,
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/iawa/Ms1998_022_Young/Ms1998_022_Box3/Ms1998_022_B3_Folder15/tiles/Ms1998_022_B003_F015_001_Patterson_Scrap-1/full/207,/0/default.jpg",
+              "title": "\"A Minimum Work Retreat for Three Months of the Year,\" Patterson Residence, Indianola, Washington, n.d. Portfolio (Ms1998-022)",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": "{\"page_count\":7}",
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": null,
+              "coverage": null,
+              "created": null,
+              "date": null,
+              "download_link": null,
+              "explicit": null,
+              "extent": null,
+              "extracted_text": null,
+              "format": [
+                "3 in. x 4.25 in.",
+                "7.62 cm x 10.795 cm"
+              ],
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": null,
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://img.cloud.lib.vt.edu/iawa/Ms1998_022_Young/Ms1998_022_Box3/Ms1998_022_B3_Folder15/Ms1998_022_B003_F015_001_Patterson_Scrap/manifest.json",
+              "medium": [
+                "Photographic Print - Black and White"
+              ],
+              "other_identifier": null,
+              "publisher": null,
+              "references": null,
+              "repository": null,
+              "tags": [
+                "Project records",
+                "Residential"
+              ],
+              "taxonomy": null,
+              "temporal": null,
+              "type": [
+                "Architectural drawings (visual works)",
+                "Photographs",
+                "Floor plans (orthographic projections)",
+                "Site plans",
+                "Elevations (orthographic projections)"
+              ],
+              "visual_description": null,
+              "createdAt": "2022-08-17T20:00:58.432Z",
+              "updatedAt": "2026-03-25T18:08:10.616Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": [
+                "Researchers wishing to cite this collection should include the following information: \"A Northwest Residence,\" Residence for Mr. and Mrs. Howard Tuttle, Guemes Island, Washington, n.d. Portfolio (Ms1998-022) - Special Collections, Virginia Polytechnic Institute and State University, Blacksburg, Va."
+              ],
+              "create_date": null,
+              "creator": [
+                "Young, Jean Linden, 1922-1997"
+              ],
+              "custom_key": "ark:/53696/qc96ng73",
+              "description": [
+                "Display mount with one site photograph and two elevation drawings, one folder containing a floor plan drawing and two black-and-white photographs of exterior views of the property."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "heirarchy_path": [
+                "252dadd0-3a8d-45e5-a61f-dbd7358d4d6c",
+                "b0048f1e-fad2-432e-9daa-a55455bfd83a"
+              ],
+              "id": "e3f46bb1-5a15-4284-ba07-f6b17bca5537",
+              "identifier": "Ms1998_022_B004_001_Tuttle_Ph",
+              "is_part_of": [
+                "Ms1998-022",
+                "Ms1998-022, Box 4",
+                "Tuttle Residence"
+              ],
+              "language": [
+                "en"
+              ],
+              "location": [
+                "Guemes Island, Washington"
+              ],
+              "modified_date": null,
+              "parent_collection": [
+                "b0048f1e-fad2-432e-9daa-a55455bfd83a"
+              ],
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "Special Collections, University Libraries, Virginia Tech"
+              ],
+              "rights": [
+                "Permission to publish material from the \"A Northwest Residence,\" Residence for Mr. and Mrs. Howard Tuttle, Guemes Island, Washington, n.d. Portfolio (Ms1998-022) must be obtained from University Libraries Special Collections, Virginia Tech./"
+              ],
+              "source": [
+                "Please consult the <a href=\"http://ead.lib.virginia.edu/vivaxtf/view?docId=vt/viblbv00530.xml\">Guide to the Jean Linden Young Papers</a> for more information."
+              ],
+              "spatial": [
+                "Guemes Island, Washington"
+              ],
+              "start_date": null,
+              "subject": null,
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/iawa/Ms1998_022_Young/Ms1998_022_Box4/tiles/Ms1998_022_B004_001_Tuttle_Ph-1/full/250,/0/default.jpg",
+              "title": "\"A Northwest Residence,\" Residence for Mr. and Mrs. Howard Tuttle, Guemes Island, Washington, n.d. Portfolio (Ms1998-022)",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": "{\"page_count\":4}",
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": null,
+              "coverage": null,
+              "created": null,
+              "date": null,
+              "download_link": null,
+              "explicit": null,
+              "extent": null,
+              "extracted_text": null,
+              "format": [
+                "Mount board: 10.5 in. x 19.75 in.",
+                "26.67 cm x 50.165 cm"
+              ],
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": null,
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://img.cloud.lib.vt.edu/iawa/Ms1998_022_Young/Ms1998_022_Box4/Ms1998_022_B004_001_Tuttle_Ph/manifest.json",
+              "medium": [
+                "Ink",
+                "Photographic Print - Black and White"
+              ],
+              "other_identifier": null,
+              "publisher": null,
+              "references": null,
+              "repository": null,
+              "tags": [
+                "Project records",
+                "Residential"
+              ],
+              "taxonomy": null,
+              "temporal": null,
+              "type": [
+                "Architectural drawings (visual works)",
+                "Photographs",
+                "Elevations (orthographic projections)",
+                "Floor plans (orthographic projections)"
+              ],
+              "visual_description": null,
+              "createdAt": "2022-08-17T20:01:07.397Z",
+              "updatedAt": "2026-03-25T18:07:08.455Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "create_date": null,
+              "creator": [
+                "(English)"
+              ],
+              "custom_key": "ark:/53696/mb18sx06",
+              "description": [
+                "Recto"
+              ],
+              "display_date": [
+                "no date"
+              ],
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "heirarchy_path": [
+                "eab14157-2c87-4a1b-ad2a-eab17954d11f"
+              ],
+              "id": "7286a249-7a67-40f5-912d-3627b361ee3d",
+              "identifier": "TAU_ART_000389_0001",
+              "is_part_of": [
+                "Taubman Museum of Art"
+              ],
+              "language": null,
+              "location": null,
+              "modified_date": null,
+              "parent_collection": [
+                "eab14157-2c87-4a1b-ad2a-eab17954d11f"
+              ],
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": [
+                "Virginia Polytechnic Institute and State University. University Libraries (Digital)"
+              ],
+              "relation": null,
+              "rights_holder": null,
+              "rights": [
+                "http://rightsstatements.org/vocab/InC-EDU/1.0/"
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": null,
+              "subject": [
+                "Virginia",
+                "Art",
+                "BOOK ARTS"
+              ],
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/swva/TAU_ART/tiles/TAU_ART_000389_0001-1/full/161,/0/default.jpg",
+              "title": "\"ACTS AND MONUMENTS OF THE CHRISTIAN MARTYRS, PAGE I\"",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": "{\"page_count\":1}",
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": null,
+              "coverage": null,
+              "created": null,
+              "date": null,
+              "download_link": null,
+              "explicit": null,
+              "extent": [
+                "13 3/4 x 8 7/8 in. (34.9 x 22.5 cm)"
+              ],
+              "extracted_text": null,
+              "format": [
+                "image/tiff"
+              ],
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": null,
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://img.cloud.lib.vt.edu/swva/TAU_ART/TAU_ART_000389_0001/manifest.json",
+              "medium": [
+                "woodcut"
+              ],
+              "other_identifier": null,
+              "publisher": null,
+              "references": null,
+              "repository": [
+                "Taubman Museum of Art",
+                "1985.153 recto",
+                "Gift of Doris E. Dunlavy in memory of Beryl F. and Dennis F. Dunlavy"
+              ],
+              "tags": null,
+              "taxonomy": null,
+              "temporal": null,
+              "type": [
+                "Image"
+              ],
+              "visual_description": null,
+              "createdAt": "2022-12-15T18:30:52.344Z",
+              "updatedAt": "2026-03-25T18:07:35.480Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "create_date": null,
+              "creator": [
+                "(English)"
+              ],
+              "custom_key": "ark:/53696/hh61gj7n",
+              "description": [
+                "Verso"
+              ],
+              "display_date": [
+                "no date"
+              ],
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "heirarchy_path": [
+                "eab14157-2c87-4a1b-ad2a-eab17954d11f"
+              ],
+              "id": "b470198e-410c-4b55-a8e6-914d893742e0",
+              "identifier": "TAU_ART_000389_0002",
+              "is_part_of": [
+                "Taubman Museum of Art"
+              ],
+              "language": null,
+              "location": null,
+              "modified_date": null,
+              "parent_collection": [
+                "eab14157-2c87-4a1b-ad2a-eab17954d11f"
+              ],
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": [
+                "Virginia Polytechnic Institute and State University. University Libraries (Digital)"
+              ],
+              "relation": null,
+              "rights_holder": null,
+              "rights": [
+                "http://rightsstatements.org/vocab/InC-EDU/1.0/"
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": null,
+              "subject": [
+                "Virginia",
+                "Art",
+                "BOOK ARTS"
+              ],
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/swva/TAU_ART/tiles/TAU_ART_000389_0002-1/full/161,/0/default.jpg",
+              "title": "\"ACTS AND MONUMENTS OF THE CHRISTIAN MARTYRS, PAGE I\"",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": "{\"page_count\":1}",
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": null,
+              "coverage": null,
+              "created": null,
+              "date": null,
+              "download_link": null,
+              "explicit": null,
+              "extent": [
+                "13 3/4 x 8 7/8 in. (34.9 x 22.5 cm)"
+              ],
+              "extracted_text": null,
+              "format": [
+                "image/tiff"
+              ],
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": null,
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://img.cloud.lib.vt.edu/swva/TAU_ART/TAU_ART_000389_0002/manifest.json",
+              "medium": [
+                "woodcut"
+              ],
+              "other_identifier": null,
+              "publisher": null,
+              "references": null,
+              "repository": [
+                "Taubman Museum of Art",
+                "1985.153 verso",
+                "Gift of Doris E. Dunlavy in memory of Beryl F. and Dennis F. Dunlavy"
+              ],
+              "tags": null,
+              "taxonomy": null,
+              "temporal": null,
+              "type": [
+                "Image"
+              ],
+              "visual_description": null,
+              "createdAt": "2022-12-15T18:30:52.789Z",
+              "updatedAt": "2026-03-25T18:08:09.903Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "create_date": null,
+              "creator": [
+                "AUDUBON, JOHN JAMES (French, born in Haiti, 1785 - 1851)"
+              ],
+              "custom_key": "ark:/53696/hg47289m",
+              "description": null,
+              "display_date": [
+                "no date"
+              ],
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "heirarchy_path": [
+                "eab14157-2c87-4a1b-ad2a-eab17954d11f"
+              ],
+              "id": "7c147d1b-9469-4c66-93e2-5e265b885197",
+              "identifier": "TAU_ART_001039_0001",
+              "is_part_of": [
+                "Taubman Museum of Art"
+              ],
+              "language": null,
+              "location": null,
+              "modified_date": null,
+              "parent_collection": [
+                "eab14157-2c87-4a1b-ad2a-eab17954d11f"
+              ],
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": [
+                "Virginia Polytechnic Institute and State University. University Libraries (Digital)"
+              ],
+              "relation": null,
+              "rights_holder": null,
+              "rights": [
+                "http://rightsstatements.org/vocab/InC-EDU/1.0/"
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": null,
+              "subject": [
+                "Virginia",
+                "Art",
+                "PRINTS"
+              ],
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/swva/TAU_ART/tiles/TAU_ART_001039_0001-1/full/250,/0/default.jpg",
+              "title": "\"AMERICAN AVOCET, YOUNG IN FIRST WINTER PLUMAGE, ADULT IN THE DISTANCE\"",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": "{\"page_count\":1}",
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": null,
+              "coverage": null,
+              "created": null,
+              "date": null,
+              "download_link": null,
+              "explicit": null,
+              "extent": [
+                "Octavo print: 7 x 10 in. (17.8 x 25.4 cm)"
+              ],
+              "extracted_text": null,
+              "format": [
+                "image/tiff"
+              ],
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": null,
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://img.cloud.lib.vt.edu/swva/TAU_ART/TAU_ART_001039_0001/manifest.json",
+              "medium": [
+                "hand-colored lithograph"
+              ],
+              "other_identifier": null,
+              "publisher": null,
+              "references": null,
+              "repository": [
+                "Taubman Museum of Art",
+                "2002.140",
+                "Gift of M. Rupert and Gladys F. Cutler"
+              ],
+              "tags": null,
+              "taxonomy": null,
+              "temporal": null,
+              "type": [
+                "Image"
+              ],
+              "visual_description": null,
+              "createdAt": "2022-12-15T18:41:57.830Z",
+              "updatedAt": "2026-03-25T18:07:20.377Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            }
+          ],
+          "nextToken": "\"AMERICAN AVOCET, YOUNG IN FIRST WINTER PLUMAGE, ADULT IN THE DISTANCE\"",
+          "total": 10000,
+          "__typename": "SearchableObjectConnection"
+        }
+      }
+    }
+  },
+  {
+    "variables": {
+      "filter": {
+        "or": [
+          {
+            "collection_category": {
+              "eq": "federated"
+            },
+            "visibility": {
+              "eq": true
+            },
+            "parent_collection": {
+              "exists": false
+            }
+          },
+          {
+            "item_category": {
+              "eq": "federated"
+            },
+            "visibility": {
+              "eq": true
+            }
+          }
+        ]
+      },
+      "sort": {
+        "field": "title",
+        "direction": "asc"
+      },
+      "limit": 10,
+      "allFields": "Additions"
+    },
+    "response": {
+      "data": {
+        "searchObjects": {
+          "items": [
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "create_date": null,
+              "creator": null,
+              "custom_key": "ark:/53696/qx979n28",
+              "description": [
+                "1316_N_Nancy Hall 016; One of a series of photographs taken by Miss Hall prior and during the demolition of the 1851 courthouse"
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "heirarchy_path": [
+                "0d792024-7ac5-4ec2-9a0f-85b0d88acc47",
+                "bcbb7152-2fdc-4a88-b200-92bd1be752fe"
+              ],
+              "id": "0275ac4b-6504-4266-a3fa-bcf6a865b680",
+              "identifier": "fchs_2007_001_1316",
+              "is_part_of": null,
+              "language": null,
+              "location": null,
+              "modified_date": null,
+              "parent_collection": [
+                "bcbb7152-2fdc-4a88-b200-92bd1be752fe"
+              ],
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": [
+                "Estate of Nancy Hall"
+              ],
+              "relation": null,
+              "rights_holder": null,
+              "rights": [
+                "http://rightsstatements.org/vocab/InC-NC/1.0/"
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": null,
+              "subject": [
+                "Courthouses"
+              ],
+              "thumbnail_path": "https://d21nnzi4oh5qvs.cloudfront.net/federated/FCHS/FCHS_PHO/tiles/fchs_2007_001_1316-1/full/250,/0/default.jpg",
+              "title": "1851 Floyd Courthouse and Jail",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": null,
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": null,
+              "coverage": null,
+              "created": null,
+              "date": null,
+              "download_link": null,
+              "explicit": null,
+              "extent": null,
+              "extracted_text": null,
+              "format": null,
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": null,
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://d21nnzi4oh5qvs.cloudfront.net/federated/FCHS/FCHS_PHO/fchs_2007_001_1316/manifest.json",
+              "medium": [
+                "photographs"
+              ],
+              "other_identifier": [
+                "Object Id: 1316",
+                "Accession No: 2007.001"
+              ],
+              "publisher": null,
+              "references": null,
+              "repository": [
+                "Floyd County Historical Society (Floyd County, Va.)"
+              ],
+              "tags": [
+                "additions",
+                "brick",
+                "cement edging",
+                "garage",
+                "landmark courthouse and jail"
+              ],
+              "taxonomy": null,
+              "temporal": null,
+              "type": null,
+              "visual_description": null,
+              "createdAt": "2024-10-11T15:35:57.442Z",
+              "updatedAt": "2024-10-11T15:35:57.442Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": [
+                "Researchers wishing to cite this collection should include the following information: Additions to house for Joseph H. Schaffner, Santa Barbara, California, July 10, 1964 - January 26, 1965. Plans, elevations, and details (Ms2008-089) - Special Collections, Virginia Polytechnic Institute and State University, Blacksburg, Va."
+              ],
+              "create_date": null,
+              "creator": [
+                "Alexander, Dorothy Baxter"
+              ],
+              "custom_key": "ark:/53696/j053630t",
+              "description": [
+                "Drawings and sketches showing entry door, archway, and window grille as plans, elevations, and details."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": "1965/01/26",
+              "heirarchy_path": [
+                "7b7673a8-c4de-444c-9682-fa24b11a8583",
+                "2cb4b6ba-ee45-4599-af25-a94f8447b2db"
+              ],
+              "id": "a110cb5e-1f36-47ce-9356-927692e54291",
+              "identifier": "Ms2008_089_B001_F004_001_Schaffner_Dr",
+              "is_part_of": [
+                "Ms2008-089, Box 1, Folder 4",
+                "Schaffner House"
+              ],
+              "language": [
+                "en"
+              ],
+              "location": [
+                "Santa Barbara, California"
+              ],
+              "modified_date": null,
+              "parent_collection": [
+                "2cb4b6ba-ee45-4599-af25-a94f8447b2db"
+              ],
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "Special Collections, University Libraries, Virginia Tech"
+              ],
+              "rights": [
+                "Permission to publish material from the Additions to house for Joseph H. Schaffner, Santa Barbara, California, July 10, 1964 - January 26, 1965. Plans, elevations, and details (Ms2008-089) must be obtained from University Libraries Special Collections, Virginia Tech./"
+              ],
+              "source": [
+                "See the Finding Aid for the <a href=\"http://search.vaheritage.org/vivaxtf/view?docId=vt/viblbv00329.xml\">Dorothy Alexander Architectural Collection</a> for more information."
+              ],
+              "spatial": [
+                "Santa Barbara, California"
+              ],
+              "start_date": "1964/07/10",
+              "subject": null,
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/iawa/Ms2008_089_Alexander/Ms2008_089_Box1/tiles/Ms2008_089_B001_F004_001_Schaffner_Dr-1/full/250,/0/default.jpg",
+              "title": "Additions to house for Joseph H. Schaffner, Santa Barbara, California, July 10, 1964 - January 26, 1965. Plans, elevations, and details (Ms2008-089)",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": "{\"page_count\":8}",
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": null,
+              "coverage": null,
+              "created": null,
+              "date": null,
+              "download_link": null,
+              "explicit": null,
+              "extent": null,
+              "extracted_text": null,
+              "format": null,
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": null,
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://img.cloud.lib.vt.edu/iawa/Ms2008_089_Alexander/Ms2008_089_Box1/Ms2008_089_B001_F004_001_Schaffner_Dr/manifest.json",
+              "medium": [
+                "Graphite"
+              ],
+              "other_identifier": null,
+              "publisher": null,
+              "references": null,
+              "repository": null,
+              "tags": [
+                "Residential",
+                "Residential-single-family"
+              ],
+              "taxonomy": null,
+              "temporal": null,
+              "type": [
+                "Architectural drawings (visual works)",
+                "Detail drawings (drawings)"
+              ],
+              "visual_description": null,
+              "createdAt": "2022-08-17T20:17:14.225Z",
+              "updatedAt": "2026-03-25T18:08:20.177Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": [
+                "Researchers wishing to cite this collection should include the following information: Lois Davidson Gottlieb Architectural Collection, Ms1997-003, Special Collections and University Archives, Virginia Tech, Blacksburg, Va."
+              ],
+              "create_date": null,
+              "creator": [
+                "Gottlieb, Lois Davidson, 1926-2018"
+              ],
+              "custom_key": "ark:/53696/89196n2p",
+              "description": [
+                "Floor plans, sections, and elevations for additions to the Klein-Gottlieb residence."
+              ],
+              "display_date": [
+                "1990-08-17"
+              ],
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "heirarchy_path": [
+                "81b0d385-a595-4009-ab51-7d0710f4eb42",
+                "fba9c121-fc4d-40c3-a249-09257a5860d2",
+                "a8b17a54-f0f7-4187-a4e2-44dd84649c64",
+                "92634628-f9b3-4d9e-a980-e9d3b7e6b514"
+              ],
+              "id": "e689f29e-e54c-4905-8969-cfb958c687fa",
+              "identifier": "ldgst016005",
+              "is_part_of": [
+                "Ms1997-003, Folder 9",
+                "David Klein and Karen Gottlieb Addition"
+              ],
+              "language": [
+                "en"
+              ],
+              "location": [
+                "San Francisco, California"
+              ],
+              "modified_date": null,
+              "parent_collection": [
+                "92634628-f9b3-4d9e-a980-e9d3b7e6b514"
+              ],
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "Special Collections and University Archives, Virginia Tech"
+              ],
+              "rights": [
+                "https://rightsstatements.org/vocab/InC-EDU/1.0/"
+              ],
+              "source": [
+                "Please consult the <a href=\"https://ead.lib.virginia.edu/vivaxtf/view?docId=vt/viblbv00125.xml\">Guide to the Lois Davidson Gottlieb Architectural Collection</a> for more information."
+              ],
+              "spatial": [
+                "San Francisco, California"
+              ],
+              "start_date": "1990/01/01",
+              "subject": null,
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/iawa/Ms1997_003_Gottlieb/MapCap13/Drawer3/Folder9/tiles/ldgst016005-1/full/250,/0/default.jpg",
+              "title": "Klein-Gottlieb addition, San Francisco, California, 1990. Sections, floor plans, and elevations (Ms1997-003)",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": "{\"page_count\":5}",
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": null,
+              "coverage": null,
+              "created": null,
+              "date": null,
+              "download_link": null,
+              "explicit": null,
+              "extent": null,
+              "extracted_text": null,
+              "format": [
+                "15 in. x 21 in.",
+                "38.1 cm x 53.34 cm"
+              ],
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": null,
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://img.cloud.lib.vt.edu/iawa/Ms1997_003_Gottlieb/MapCap13/Drawer3/Folder9/ldgst016005/manifest.json",
+              "medium": [
+                "Diazotypes (copies)"
+              ],
+              "other_identifier": null,
+              "publisher": null,
+              "references": null,
+              "repository": null,
+              "tags": [
+                "Residential",
+                "Residential-single-family",
+                "Renovations"
+              ],
+              "taxonomy": null,
+              "temporal": null,
+              "type": [
+                "Architectural drawings (visual works)",
+                "Floor plans (orthographic projections)",
+                "Elevations (orthographic projections)",
+                "Sections (orthographic projections)"
+              ],
+              "visual_description": null,
+              "createdAt": "2022-08-17T21:09:28.508Z",
+              "updatedAt": "2026-03-25T18:08:27.046Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": [
+                "Researchers wishing to cite this collection should include the following information: Lois Davidson Gottlieb Architectural Collection, Ms1997-003, Special Collections and University Archives, Virginia Tech, Blacksburg, Va."
+              ],
+              "create_date": null,
+              "creator": [
+                "Gottlieb, Lois Davidson, 1926-2018"
+              ],
+              "custom_key": "ark:/53696/vf87ts4w",
+              "description": [
+                "Floor plans and elevations for cabinets and built-in furniture additions for the Roltner residence."
+              ],
+              "display_date": [
+                "n.d."
+              ],
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "heirarchy_path": [
+                "81b0d385-a595-4009-ab51-7d0710f4eb42",
+                "fba9c121-fc4d-40c3-a249-09257a5860d2",
+                "a8b17a54-f0f7-4187-a4e2-44dd84649c64",
+                "92634628-f9b3-4d9e-a980-e9d3b7e6b514"
+              ],
+              "id": "0b56a1f7-d041-4747-b01d-ff7aff61fba6",
+              "identifier": "ldgst016004",
+              "is_part_of": [
+                "Ms1997-003, Folder 9",
+                "Roltner Residence"
+              ],
+              "language": [
+                "en"
+              ],
+              "location": [
+                "San Francisco, California"
+              ],
+              "modified_date": null,
+              "parent_collection": [
+                "92634628-f9b3-4d9e-a980-e9d3b7e6b514"
+              ],
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "Special Collections and University Archives, Virginia Tech"
+              ],
+              "rights": [
+                "https://rightsstatements.org/vocab/InC-EDU/1.0/"
+              ],
+              "source": [
+                "Please consult the <a href=\"https://ead.lib.virginia.edu/vivaxtf/view?docId=vt/viblbv00125.xml\">Guide to the Lois Davidson Gottlieb Architectural Collection</a> for more information."
+              ],
+              "spatial": [
+                "San Francisco, California"
+              ],
+              "start_date": null,
+              "subject": null,
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/iawa/Ms1997_003_Gottlieb/MapCap13/Drawer3/Folder9/tiles/ldgst016004-1/full/250,/0/default.jpg",
+              "title": "Roltner cabinets and furniture, San Francisco, California, n.d. Floor plans and elevations (Ms1997-003)",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": "{\"page_count\":2}",
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": null,
+              "coverage": null,
+              "created": null,
+              "date": null,
+              "download_link": null,
+              "explicit": null,
+              "extent": null,
+              "extracted_text": null,
+              "format": [
+                "12 in. x 20 in.",
+                "30.48 cm x 50.8 cm"
+              ],
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": null,
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://img.cloud.lib.vt.edu/iawa/Ms1997_003_Gottlieb/MapCap13/Drawer3/Folder9/ldgst016004/manifest.json",
+              "medium": [
+                "Diazotypes (copies)"
+              ],
+              "other_identifier": null,
+              "publisher": null,
+              "references": null,
+              "repository": null,
+              "tags": [
+                "Residential",
+                "Residential-single-family",
+                "Renovations"
+              ],
+              "taxonomy": null,
+              "temporal": null,
+              "type": [
+                "Architectural drawings (visual works)",
+                "Floor plans (orthographic projections)",
+                "Elevations (orthographic projections)"
+              ],
+              "visual_description": null,
+              "createdAt": "2022-08-17T21:09:27.486Z",
+              "updatedAt": "2026-03-25T18:08:03.628Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            }
+          ],
+          "nextToken": "Roltner cabinets and furniture, San Francisco, California, n.d. Floor plans and elevations (Ms1997-003)",
+          "total": 4,
+          "__typename": "SearchableObjectConnection"
+        }
+      }
+    }
+  },
+  {
+    "variables": {
+      "filter": {
+        "or": [
+          {
+            "collection_category": {
+              "eq": "federated"
+            },
+            "visibility": {
+              "eq": true
+            },
+            "parent_collection": {
+              "exists": false
+            }
+          },
+          {
+            "item_category": {
+              "eq": "federated"
+            },
+            "visibility": {
+              "eq": true
+            }
+          }
+        ]
+      },
+      "sort": {
+        "field": "title",
+        "direction": "asc"
+      },
+      "limit": 10,
+      "allFields": "certificate"
+    },
+    "response": {
+      "data": {
+        "searchObjects": {
+          "items": [
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "create_date": null,
+              "creator": null,
+              "custom_key": "ark:/53696/2969nj0s",
+              "description": [
+                "Certificate of commission to Calohill M. Stigleman as Captain in the 130th Regiment of the Twenty-sixth Brigade and Fifth Division of the Virginia Militia 28th day of April, 1860 - signed by Governor of the Commonwealth John Letcher. 1 original piece front and back and 1 photocopy."
+              ],
+              "display_date": [
+                "1860-04-28"
+              ],
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "heirarchy_path": [
+                "0d792024-7ac5-4ec2-9a0f-85b0d88acc47",
+                "6282d06c-1559-4769-bc73-8fd8e4f01844"
+              ],
+              "id": "cf8eabc1-e4fc-46cd-81c8-873397c0bfa6",
+              "identifier": "fchs_2006_005_023",
+              "is_part_of": null,
+              "language": null,
+              "location": null,
+              "modified_date": null,
+              "parent_collection": [
+                "6282d06c-1559-4769-bc73-8fd8e4f01844"
+              ],
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": [
+                "Dr.C.M. Stigleman Collection CG 0004"
+              ],
+              "relation": null,
+              "rights_holder": null,
+              "rights": [
+                "https://rightsstatements.org/vocab/InC-NC/1.0/"
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": "1860/04/28",
+              "subject": [
+                "Records and correspondence"
+              ],
+              "thumbnail_path": "https://d21nnzi4oh5qvs.cloudfront.net/federated/FCHS/FCHS_ARC/tiles/fchs_2006_005_023-1/full/250,/0/default.jpg",
+              "title": "Certificate of Commission to Calohill M. Stigleman",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": null,
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": null,
+              "coverage": null,
+              "created": null,
+              "date": [
+                "1860-04-28"
+              ],
+              "download_link": null,
+              "explicit": null,
+              "extent": null,
+              "extracted_text": null,
+              "format": null,
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": null,
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://d21nnzi4oh5qvs.cloudfront.net/federated/FCHS/FCHS_ARC/fchs_2006_005_023/manifest.json",
+              "medium": [
+                "service records"
+              ],
+              "other_identifier": [
+                "Object Id: 2006.005.023",
+                "Accession No: 2006.005"
+              ],
+              "publisher": null,
+              "references": null,
+              "repository": [
+                "Floyd County Historical Society (Floyd County, Va.)"
+              ],
+              "tags": [
+                "Stigleman, C.M.",
+                "Letcher, John",
+                ""
+              ],
+              "taxonomy": null,
+              "temporal": null,
+              "type": null,
+              "visual_description": null,
+              "createdAt": "2024-10-13T20:28:38.619Z",
+              "updatedAt": "2024-10-13T20:28:38.619Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "create_date": null,
+              "creator": null,
+              "custom_key": "ark:/53696/96379z52",
+              "description": [
+                "Certificate of Subscription to the Art Union Society issued to Mr. C. M. Stigleman, undated. 1 original piece and a blank piece of paper."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "heirarchy_path": [
+                "0d792024-7ac5-4ec2-9a0f-85b0d88acc47",
+                "6282d06c-1559-4769-bc73-8fd8e4f01844"
+              ],
+              "id": "3235f245-7e3e-4a8a-9d75-a535b1083fd7",
+              "identifier": "fchs_2006_005_109",
+              "is_part_of": null,
+              "language": null,
+              "location": null,
+              "modified_date": null,
+              "parent_collection": [
+                "6282d06c-1559-4769-bc73-8fd8e4f01844"
+              ],
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": [
+                "Dr.C.M. Stigleman Collection CG 0004"
+              ],
+              "relation": null,
+              "rights_holder": null,
+              "rights": [
+                "https://rightsstatements.org/vocab/InC-NC/1.0/"
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": null,
+              "subject": [
+                "Records and correspondence"
+              ],
+              "thumbnail_path": "https://d21nnzi4oh5qvs.cloudfront.net/federated/FCHS/FCHS_ARC/tiles/fchs_2006_005_109-1/full/250,/0/default.jpg",
+              "title": "Certificate of Subscription to the Art Union Society issued to Mr. C. M. Stigleman",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": null,
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": null,
+              "coverage": null,
+              "created": null,
+              "date": null,
+              "download_link": null,
+              "explicit": null,
+              "extent": null,
+              "extracted_text": null,
+              "format": null,
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": null,
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://d21nnzi4oh5qvs.cloudfront.net/federated/FCHS/FCHS_ARC/fchs_2006_005_109/manifest.json",
+              "medium": [
+                "correspondence"
+              ],
+              "other_identifier": [
+                "Object Id: 2006.005.109",
+                "Accession No: 2006.005"
+              ],
+              "publisher": null,
+              "references": null,
+              "repository": [
+                "Floyd County Historical Society (Floyd County, Va.)"
+              ],
+              "tags": [
+                "Stigleman, C. M.",
+                "Art Union Society"
+              ],
+              "taxonomy": null,
+              "temporal": null,
+              "type": null,
+              "visual_description": null,
+              "createdAt": "2024-10-13T20:29:43.459Z",
+              "updatedAt": "2024-10-13T20:29:43.459Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "create_date": null,
+              "creator": null,
+              "custom_key": "ark:/53696/nf14c24q",
+              "description": [
+                "A Confederate States of America Civil War era [Registered] Bond paying 4% per annum in the amount of \"Twenty Two Hundred\" (2200) dollars."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "heirarchy_path": [
+                "0d792024-7ac5-4ec2-9a0f-85b0d88acc47",
+                "3d6812e5-13f9-4b79-9057-52449cdae939"
+              ],
+              "id": "3526cc1b-0ea2-4ed9-8647-12d59b96b6bc",
+              "identifier": "fchs_2017_015_003",
+              "is_part_of": null,
+              "language": null,
+              "location": null,
+              "modified_date": null,
+              "parent_collection": [
+                "3d6812e5-13f9-4b79-9057-52449cdae939"
+              ],
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": [
+                "Femrite, Mark"
+              ],
+              "relation": null,
+              "rights_holder": null,
+              "rights": [
+                "https://rightsstatements.org/vocab/InC-NC/1.0/?language=en"
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": null,
+              "subject": [
+                "United States--History--Civil War, 1861-1865",
+                "Savings bonds"
+              ],
+              "thumbnail_path": "https://d21nnzi4oh5qvs.cloudfront.net/federated/FCHS/FCHS_OBJ/tiles/fchs_2017_015_003-1/full/250,/0/default.jpg",
+              "title": "Confederate States of America Bond Certificate",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": null,
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": null,
+              "coverage": null,
+              "created": null,
+              "date": null,
+              "download_link": null,
+              "explicit": null,
+              "extent": null,
+              "extracted_text": null,
+              "format": null,
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": null,
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://d21nnzi4oh5qvs.cloudfront.net/federated/FCHS/FCHS_OBJ/fchs_2017_015_003/manifest.json",
+              "medium": [
+                "war bonds"
+              ],
+              "other_identifier": [
+                "Object Id: 2017.015.003",
+                "Accession No: 2017.015"
+              ],
+              "publisher": null,
+              "references": null,
+              "repository": [
+                "Floyd County Historical Society (Floyd County, Va.)"
+              ],
+              "tags": null,
+              "taxonomy": null,
+              "temporal": null,
+              "type": null,
+              "visual_description": null,
+              "createdAt": "2024-10-10T13:00:54.483Z",
+              "updatedAt": "2024-10-10T13:00:54.483Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "create_date": null,
+              "creator": null,
+              "custom_key": "ark:/53696/8d79hw4w",
+              "description": [
+                "Roanoke County Civilian Defense memorandum with a certificate included as its attachment."
+              ],
+              "display_date": [
+                "1945-12-31"
+              ],
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "heirarchy_path": [
+                "1139db02-577c-4c5c-aede-c95a13e289a0"
+              ],
+              "id": "5c483ffc-5229-4854-bfc7-19209841ee0f",
+              "identifier": "sfdst007054",
+              "is_part_of": null,
+              "language": [
+                "en"
+              ],
+              "location": null,
+              "modified_date": null,
+              "parent_collection": [
+                "1139db02-577c-4c5c-aede-c95a13e289a0"
+              ],
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": null,
+              "rights": [
+                "http://rightsstatements.org/vocab/InC-EDU/1.0/"
+              ],
+              "source": null,
+              "spatial": [
+                "Salem, Virginia, United States"
+              ],
+              "start_date": "1945/12/31",
+              "subject": [
+                "Fire departments",
+                "Virginia"
+              ],
+              "thumbnail_path": "https://d21nnzi4oh5qvs.cloudfront.net/federated/sfd/tiles/sfdst007054-1/full/196,/0/default.jpg",
+              "title": "County of Roanoke Office of Civilian Defense Memorandum and Certificate, December 31, 1945",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": null,
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": null,
+              "coverage": null,
+              "created": [
+                "1945-12-31"
+              ],
+              "date": [
+                "1945-12-31"
+              ],
+              "download_link": null,
+              "explicit": null,
+              "extent": [
+                "2 pages"
+              ],
+              "extracted_text": null,
+              "format": null,
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": null,
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://d21nnzi4oh5qvs.cloudfront.net/federated/sfd/sfdst007054/manifest.json",
+              "medium": [
+                "memorandums"
+              ],
+              "other_identifier": null,
+              "publisher": null,
+              "references": null,
+              "repository": [
+                "Salem (Va.). Fire Department"
+              ],
+              "tags": null,
+              "taxonomy": null,
+              "temporal": null,
+              "type": [
+                "Text"
+              ],
+              "visual_description": null,
+              "createdAt": "2024-06-03T20:49:57.725Z",
+              "updatedAt": "2024-06-03T20:49:57.725Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "create_date": null,
+              "creator": [
+                "Boy Scouts of America"
+              ],
+              "custom_key": "ark:/53696/2994943b",
+              "description": [
+                "A training certificate for Cub Scout Basic training issued to Helen Johnson by the Boy Scouts of America from the Blue Ridge Council dated March 30th, 1963."
+              ],
+              "display_date": [
+                "March 30th, 1963"
+              ],
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "heirarchy_path": [
+                "ba09dcae-e2aa-47e1-9a23-a0e0a97fbb0e",
+                "55c2a4b9-4c9a-4235-94ee-b0b78cbb4b34"
+              ],
+              "id": "331aa41b-c207-4a5c-ad49-800b2d092ed2",
+              "identifier": "CIDA_JFC_008",
+              "is_part_of": [
+                "Johnson Family Collection [1957-2000]"
+              ],
+              "language": [
+                "en"
+              ],
+              "location": null,
+              "modified_date": null,
+              "parent_collection": [
+                "55c2a4b9-4c9a-4235-94ee-b0b78cbb4b34"
+              ],
+              "parent_collection_identifier": [
+                "CIDA_JFC"
+              ],
+              "partner_id": null,
+              "provenance": [
+                "Copyright has been assigned to Christiansburg Institute Museum & Archives by Viola Charlton. For permission to publish materials created by the donor, contact CIMA@christiansburginstitute.com. Materials not created by Viola Charlton may still be under copyright."
+              ],
+              "relation": [
+                "Edwards Family Collection [1942-1953]. Christiansburg Institute Museum & Archives. Christiansburg, VA."
+              ],
+              "rights_holder": null,
+              "rights": [
+                "http://rightsstatements.org/vocab/InC-EDU/1.0/"
+              ],
+              "source": null,
+              "spatial": [
+                "Montgomery, Virginia, United States"
+              ],
+              "start_date": "1963-03-30",
+              "subject": [
+                "Christiansburg Institute--History",
+                "African Americans--Education--Virginia--Christiansburg--History",
+                "African Americans--Virginia--Montgomery County--History",
+                "African Americans--Virginia--Montgomery County--Biography",
+                "Montgomery County (Va.)--Biography",
+                "African Americans--Virginia--Pulaski County--History"
+              ],
+              "thumbnail_path": "https://d4qp6z580yvb5.cloudfront.net/federated/CIDA_JFC/tiles/CIDA_JFC_008-1/full/174,/0/default.jpg",
+              "title": "Cub Scout Training Certificate Mrs. Helen Johnson, 1963",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": null,
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": [
+                "Johnson Family",
+                "Johnson, Helen",
+                "Boy Scouts of America"
+              ],
+              "coverage": null,
+              "created": null,
+              "date": [
+                "1963-03-30"
+              ],
+              "download_link": null,
+              "explicit": null,
+              "extent": [
+                "1 image",
+                "2.5\" (L) x 4\" (H)"
+              ],
+              "extracted_text": null,
+              "format": [
+                "image/tiff"
+              ],
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": [
+                "https://hub.catalogit.app/8896/folder/a07ce160-5147-11ed-822b-5b63d46b5678/entry/b91cc1a0-514b-11ed-822b-5b63d46b5678"
+              ],
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://d4qp6z580yvb5.cloudfront.net/federated/CIDA_JFC/CIDA_JFC_008/manifest.json",
+              "medium": [
+                "certificates"
+              ],
+              "other_identifier": [
+                "JohnsonFam_8_HJCubScout00001"
+              ],
+              "publisher": null,
+              "references": null,
+              "repository": [
+                "Christiansburg Institute, Inc."
+              ],
+              "tags": [
+                "Cambria, Virginia, United States",
+                "1960s"
+              ],
+              "taxonomy": null,
+              "temporal": [
+                "1960's"
+              ],
+              "type": [
+                "Still Image"
+              ],
+              "visual_description": null,
+              "createdAt": "2026-08-28T20:58:00.498Z",
+              "updatedAt": "2026-08-28T20:58:00.498Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "create_date": null,
+              "creator": null,
+              "custom_key": "ark:/53696/9d50jw0t",
+              "description": [
+                "Firebird Gasoline Advertisement - 1966\nCertificate of Authenticity"
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "heirarchy_path": [
+                "0d792024-7ac5-4ec2-9a0f-85b0d88acc47",
+                "6282d06c-1559-4769-bc73-8fd8e4f01844"
+              ],
+              "id": "befb2e6f-a7a1-4b4e-a628-ed937bfdd6ae",
+              "identifier": "fchs_2021_030_12",
+              "is_part_of": null,
+              "language": null,
+              "location": null,
+              "modified_date": null,
+              "parent_collection": [
+                "6282d06c-1559-4769-bc73-8fd8e4f01844"
+              ],
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": [
+                "Via, Vicki W."
+              ],
+              "relation": null,
+              "rights_holder": null,
+              "rights": [
+                "https://rightsstatements.org/vocab/InC-NC/1.0/"
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": null,
+              "subject": [
+                "Automobile racing",
+                "Automobiles",
+                "Car racing",
+                "Programs",
+                "Racing"
+              ],
+              "thumbnail_path": "https://d21nnzi4oh5qvs.cloudfront.net/federated/FCHS/FCHS_ARC/tiles/fchs_2021_030_12-1/full/182,/0/default.jpg",
+              "title": "Firebird Gasoline Advertisement",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": null,
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": null,
+              "coverage": null,
+              "created": null,
+              "date": null,
+              "download_link": null,
+              "explicit": null,
+              "extent": null,
+              "extracted_text": null,
+              "format": null,
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": null,
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://d21nnzi4oh5qvs.cloudfront.net/federated/FCHS/FCHS_ARC/fchs_2021_030_12/manifest.json",
+              "medium": [
+                "magazine clippings"
+              ],
+              "other_identifier": [
+                "Object Id: 2021.030.12",
+                "Accession No: 2021.03"
+              ],
+              "publisher": null,
+              "references": null,
+              "repository": [
+                "Floyd County Historical Society (Floyd County, Va.)"
+              ],
+              "tags": [
+                "Automobile Racing"
+              ],
+              "taxonomy": null,
+              "temporal": null,
+              "type": null,
+              "visual_description": null,
+              "createdAt": "2024-10-13T20:34:14.934Z",
+              "updatedAt": "2024-10-13T20:34:14.934Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "create_date": null,
+              "creator": null,
+              "custom_key": "ark:/53696/wh147c22",
+              "description": [
+                "Commonwealth of Virginia State Board of Education and State Board of Health certificate awarded for achieving the \"Five Point Standard\" required for physical fitness."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "heirarchy_path": [
+                "0d792024-7ac5-4ec2-9a0f-85b0d88acc47",
+                "3d6812e5-13f9-4b79-9057-52449cdae939"
+              ],
+              "id": "29266f17-3b23-4842-b0ed-5590ce26652d",
+              "identifier": "fchs_2019_013_003",
+              "is_part_of": null,
+              "language": null,
+              "location": null,
+              "modified_date": null,
+              "parent_collection": [
+                "3d6812e5-13f9-4b79-9057-52449cdae939"
+              ],
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": [
+                "Hylton, Sharon H."
+              ],
+              "relation": null,
+              "rights_holder": null,
+              "rights": [
+                "https://rightsstatements.org/vocab/InC-NC/1.0/?language=en"
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": null,
+              "subject": [
+                "Awards"
+              ],
+              "thumbnail_path": "https://d21nnzi4oh5qvs.cloudfront.net/federated/FCHS/FCHS_OBJ/tiles/fchs_2019_013_003-1/full/250,/0/default.jpg",
+              "title": "Five Point Standard awarded to Edmon Sowers",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": null,
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": null,
+              "coverage": null,
+              "created": null,
+              "date": null,
+              "download_link": null,
+              "explicit": null,
+              "extent": null,
+              "extracted_text": null,
+              "format": null,
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": null,
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://d21nnzi4oh5qvs.cloudfront.net/federated/FCHS/FCHS_OBJ/fchs_2019_013_003/manifest.json",
+              "medium": [
+                "achievement certificates"
+              ],
+              "other_identifier": [
+                "Object Id: 2019.013.003",
+                "Accession No: 2019.013"
+              ],
+              "publisher": null,
+              "references": null,
+              "repository": [
+                "Floyd County Historical Society (Floyd County, Va.)"
+              ],
+              "tags": null,
+              "taxonomy": null,
+              "temporal": null,
+              "type": null,
+              "visual_description": null,
+              "createdAt": "2024-10-10T13:00:59.125Z",
+              "updatedAt": "2024-10-10T13:00:59.125Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "create_date": null,
+              "creator": null,
+              "custom_key": "ark:/53696/gm841v1j",
+              "description": [
+                "Floyd Riflemen certificate detail, in commemoration of Joseph Wickham, June 15, 1881"
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "heirarchy_path": [
+                "0d792024-7ac5-4ec2-9a0f-85b0d88acc47",
+                "bcbb7152-2fdc-4a88-b200-92bd1be752fe"
+              ],
+              "id": "cbc65456-fc91-4788-b0f8-7a8223de4144",
+              "identifier": "fchs_2006_007_0375",
+              "is_part_of": null,
+              "language": null,
+              "location": null,
+              "modified_date": null,
+              "parent_collection": [
+                "bcbb7152-2fdc-4a88-b200-92bd1be752fe"
+              ],
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": [
+                "Marguerite Tise"
+              ],
+              "relation": null,
+              "rights_holder": null,
+              "rights": [
+                "http://rightsstatements.org/vocab/InC-NC/1.0/"
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": null,
+              "subject": null,
+              "thumbnail_path": "https://d21nnzi4oh5qvs.cloudfront.net/federated/FCHS/FCHS_PHO/tiles/fchs_2006_007_0375-1/full/250,/0/default.jpg",
+              "title": "Floyd Riflemen Certificate Detail",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": null,
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": null,
+              "coverage": null,
+              "created": null,
+              "date": null,
+              "download_link": null,
+              "explicit": null,
+              "extent": null,
+              "extracted_text": null,
+              "format": null,
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": null,
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://d21nnzi4oh5qvs.cloudfront.net/federated/FCHS/FCHS_PHO/fchs_2006_007_0375/manifest.json",
+              "medium": [
+                "certificates"
+              ],
+              "other_identifier": [
+                "Object Id: 2006.007.0375",
+                "Accession No: 2006.007"
+              ],
+              "publisher": null,
+              "references": null,
+              "repository": [
+                "Floyd County Historical Society (Floyd County, Va.)"
+              ],
+              "tags": null,
+              "taxonomy": null,
+              "temporal": null,
+              "type": null,
+              "visual_description": null,
+              "createdAt": "2024-10-11T15:32:55.625Z",
+              "updatedAt": "2024-10-11T15:32:55.625Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "create_date": null,
+              "creator": null,
+              "custom_key": "ark:/53696/1566j08k",
+              "description": [
+                "Certificate awarded with the Hamlet Medal of Elsinore to Robert Breen for his performance of Hamlet with the cast of the State Theatre of Virginia at the National Open-Air Stage Festival at Kronborg Castle. Awarded by the Town Council of Elsinore, June 25, 1949."
+              ],
+              "display_date": [
+                "1949-06-25"
+              ],
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "heirarchy_path": [
+                "1cdabae9-928a-49ed-96ea-4152298b1115"
+              ],
+              "id": "fa5716d1-da47-458d-b617-98f9c1a541f4",
+              "identifier": "btrst311001",
+              "is_part_of": null,
+              "language": [
+                "en"
+              ],
+              "location": null,
+              "modified_date": null,
+              "parent_collection": [
+                "1cdabae9-928a-49ed-96ea-4152298b1115"
+              ],
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": [
+                "The original object is the property of the Barter Theatre in Abingdon, VA (https://www.bartertheatre.com/). This digital surrogate is made publicly available by the Barter Theatre for use in research, teaching, private study, and other educational purposes. Responsibility for any use of these materials rests exclusively with the user. When using this item, users should give proper credit to the owner of the original object as well as to Virginia Tech Libraries."
+              ],
+              "relation": null,
+              "rights_holder": null,
+              "rights": [
+                "http://rightsstatements.org/vocab/InC-EDU/1.0/"
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": "1949/06/25",
+              "subject": [
+                "Theater",
+                "Virginia"
+              ],
+              "thumbnail_path": "https://d21nnzi4oh5qvs.cloudfront.net/federated/BTR/tiles/btrst311001-1/full/169,/0/default.jpg",
+              "title": "Hamlet Medal Certificate",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": null,
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": [
+                "Barter Theatre (Organization : Abingdon, Va.)"
+              ],
+              "coverage": [
+                "\"Kronborg Castle, Hovedstaden, Denmark\""
+              ],
+              "created": null,
+              "date": null,
+              "download_link": null,
+              "explicit": null,
+              "extent": null,
+              "extracted_text": null,
+              "format": [
+                "image/tiff"
+              ],
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": null,
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://d21nnzi4oh5qvs.cloudfront.net/federated/BTR/btrst311001/manifest.json",
+              "medium": [
+                "awards"
+              ],
+              "other_identifier": [
+                "BTR_BTR_000311"
+              ],
+              "publisher": null,
+              "references": null,
+              "repository": [
+                "Barter Theatre (Organization : Abingdon, Va.)"
+              ],
+              "tags": null,
+              "taxonomy": null,
+              "temporal": null,
+              "type": [
+                "Still Image"
+              ],
+              "visual_description": null,
+              "createdAt": "2024-08-17T23:51:37.278Z",
+              "updatedAt": "2024-08-17T23:51:37.278Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "create_date": null,
+              "creator": [
+                "Booker T. Washington Memorial Trade School"
+              ],
+              "custom_key": "ark:/53696/d8693fca",
+              "description": [
+                "A certificate from the Booker T. Washington Memorial Trade School issued to James C. Edwards on May 30th, 1953."
+              ],
+              "display_date": [
+                "May 30th, 1953"
+              ],
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": "1953",
+              "heirarchy_path": [
+                "ba09dcae-e2aa-47e1-9a23-a0e0a97fbb0e",
+                "cb2ec20e-7295-4036-829c-ab9ec8e794dc"
+              ],
+              "id": "34f0fda8-c266-4da3-aebf-1b42faf72827",
+              "identifier": "CIDA_EFC_001",
+              "is_part_of": [
+                "Edwards Family Collection [1942-1953]"
+              ],
+              "language": [
+                "en"
+              ],
+              "location": null,
+              "modified_date": null,
+              "parent_collection": [
+                "cb2ec20e-7295-4036-829c-ab9ec8e794dc"
+              ],
+              "parent_collection_identifier": [
+                "CIDA_EFC"
+              ],
+              "partner_id": null,
+              "provenance": [
+                "Copyright has been assigned to Christiansburg Institute Museum & Archives by Viola Charlton. For permission to publish materials created by the donor, contact CIMA@christiansburginstitute.com. Materials not created by Viola Charlton may still be under copyright."
+              ],
+              "relation": [
+                "Johnson Family Collection [1948-1997]. Christiansburg Institute Museum & Archives. Christiansburg, VA."
+              ],
+              "rights_holder": null,
+              "rights": [
+                "http://rightsstatements.org/vocab/InC-EDU/1.0/"
+              ],
+              "source": null,
+              "spatial": [
+                "Roanoke, Virginia, United States"
+              ],
+              "start_date": "1953/05/30",
+              "subject": [
+                "Christiansburg Institute--History",
+                "African Americans--Education--Virginia--Christiansburg--History",
+                "African Americans--Virginia--Montgomery County--History",
+                "African Americans--Virginia--Montgomery County--Biography",
+                "Montgomery County (Va.)--Biography",
+                "African Americans--Virginia--Pulaski County--History"
+              ],
+              "thumbnail_path": "https://d4qp6z580yvb5.cloudfront.net/federated/CIDA_EFC/tiles/CIDA_EFC_001-1/full/250,/0/default.jpg",
+              "title": "James C. Edwards, Booker T. Washington Memorial Trade School certificate, 1953",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": null,
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": [
+                "Edwards, James C."
+              ],
+              "coverage": null,
+              "created": null,
+              "date": [
+                "5/30/1953"
+              ],
+              "download_link": null,
+              "explicit": null,
+              "extent": [
+                "1 image"
+              ],
+              "extracted_text": null,
+              "format": [
+                "image/jpeg"
+              ],
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": null,
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://d4qp6z580yvb5.cloudfront.net/federated/CIDA_EFC/CIDA_EFC_001/manifest.json",
+              "medium": [
+                "certificate"
+              ],
+              "other_identifier": [
+                "JEdwards1_BTWCert"
+              ],
+              "publisher": null,
+              "references": null,
+              "repository": [
+                "Christiansburg Institute, Inc."
+              ],
+              "tags": [
+                "Roanoke, Virginia, United States",
+                "1950s"
+              ],
+              "taxonomy": null,
+              "temporal": [
+                "1950's"
+              ],
+              "type": [
+                "Still Image"
+              ],
+              "visual_description": null,
+              "createdAt": "2026-08-10T18:14:25.459Z",
+              "updatedAt": "2026-08-25T20:02:19.030Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            }
+          ],
+          "nextToken": "James C. Edwards, Booker T. Washington Memorial Trade School certificate, 1953",
+          "total": 23,
+          "__typename": "SearchableObjectConnection"
+        }
+      }
+    }
+  },
+  {
+    "variables": {
+      "filter": {
+        "or": [
+          {
+            "collection_category": {
+              "eq": "federated"
+            },
+            "visibility": {
+              "eq": true
+            },
+            "parent_collection": {
+              "exists": false
+            }
+          },
+          {
+            "item_category": {
+              "eq": "federated"
+            },
+            "visibility": {
+              "eq": true
+            }
+          }
+        ]
+      },
+      "sort": {
+        "field": "title",
+        "direction": "asc"
+      },
+      "limit": 10,
+      "allFields": "Diazotypes (copies)"
+    },
+    "response": {
+      "data": {
+        "searchObjects": {
+          "items": [
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": [
+                "Researchers wishing to cite this collection should include the following information: \"Parents' Semi-Retirement Apartment and Boat Facilities,\" Bushnell residence, Liberty Bay, Washington, n.d. Portfolio (Ms1998-022) - Special Collections, Virginia Polytechnic Institute and State University, Blacksburg, Va."
+              ],
+              "create_date": null,
+              "creator": [
+                "Young, Jean Linden, 1922-1997"
+              ],
+              "custom_key": "ark:/53696/rm83gd5t",
+              "description": [
+                "One cut-out diazo print and several elevation drawings and floor plans"
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "heirarchy_path": [
+                "252dadd0-3a8d-45e5-a61f-dbd7358d4d6c",
+                "d485b2f2-ab14-47e4-9b24-b3de891c35e0",
+                "5509eabd-8c0c-4d56-9d04-2b7f0679a391"
+              ],
+              "id": "38764b64-c652-4258-a365-6830b5f0e654",
+              "identifier": "Ms1998_022_B003_F012_001_Bushnell_Dr",
+              "is_part_of": [
+                "Ms1998-022",
+                "Ms1998-022, Box 3, Folder 12",
+                "Bushnell Residence"
+              ],
+              "language": [
+                "en"
+              ],
+              "location": [
+                "Liberty Bay, Washington"
+              ],
+              "modified_date": null,
+              "parent_collection": [
+                "5509eabd-8c0c-4d56-9d04-2b7f0679a391"
+              ],
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "Special Collections, University Libraries, Virginia Tech"
+              ],
+              "rights": [
+                "Permission to publish material from the \"Parents' Semi-Retirement Apartment and Boat Facilities,\" Bushnell residence, Liberty Bay, Washington, n.d. Portfolio (Ms1998-022) must be obtained from University Libraries Special Collections, Virginia Tech./"
+              ],
+              "source": [
+                "Please consult the <a href=\"http://ead.lib.virginia.edu/vivaxtf/view?docId=vt/viblbv00530.xml\">Guide to the Jean Linden Young Papers</a> for more information."
+              ],
+              "spatial": [
+                "Liberty Bay, Washington"
+              ],
+              "start_date": null,
+              "subject": null,
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/iawa/Ms1998_022_Young/Ms1998_022_Box3/Ms1998_022_B3_Folder12/tiles/Ms1998_022_B003_F012_001_Bushnell_Dr-1/full/250,/0/default.jpg",
+              "title": "\"Parents' Semi-Retirement Apartment and Boat Facilities,\" Bushnell residence, Liberty Bay, Washington, n.d. Portfolio (Ms1998-022)",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": "{\"page_count\":4}",
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": null,
+              "coverage": null,
+              "created": null,
+              "date": null,
+              "download_link": null,
+              "explicit": null,
+              "extent": null,
+              "extracted_text": null,
+              "format": null,
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": null,
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://img.cloud.lib.vt.edu/iawa/Ms1998_022_Young/Ms1998_022_Box3/Ms1998_022_B3_Folder12/Ms1998_022_B003_F012_001_Bushnell_Dr/manifest.json",
+              "medium": [
+                "Diazotypes (copies)"
+              ],
+              "other_identifier": null,
+              "publisher": null,
+              "references": null,
+              "repository": null,
+              "tags": [
+                "Project records",
+                "Residential"
+              ],
+              "taxonomy": null,
+              "temporal": null,
+              "type": [
+                "Architectural drawings (visual works)",
+                "Elevations (orthographic projections)",
+                "Floor plans (orthographic projections)"
+              ],
+              "visual_description": null,
+              "createdAt": "2022-08-17T20:00:53.570Z",
+              "updatedAt": "2026-03-25T18:07:48.192Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": [
+                "Researchers wishing to cite this collection should include the following information: Assessor's Map no. 60-30, County of Santa Cruz, California, Pasatiempo, California, July 1954. Map (Ms2008-089) - Special Collections, Virginia Polytechnic Institute and State University, Blacksburg, Va."
+              ],
+              "create_date": null,
+              "creator": null,
+              "custom_key": "ark:/53696/1k79kf06",
+              "description": [
+                "Assessor's map with parcel and lot numbers."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "heirarchy_path": [
+                "7b7673a8-c4de-444c-9682-fa24b11a8583",
+                "a1043508-bd16-4858-aa64-c08e3fd27596"
+              ],
+              "id": "957e8734-d6bd-4934-9bf7-c5dac6d82ae2",
+              "identifier": "Ms2008_089_B002_002_Grover_Dr",
+              "is_part_of": [
+                "Ms2008-089",
+                "Ms2008-089, Box 2",
+                "L.C. Grover House"
+              ],
+              "language": [
+                "en"
+              ],
+              "location": [
+                "Pasatiempo, California"
+              ],
+              "modified_date": null,
+              "parent_collection": [
+                "a1043508-bd16-4858-aa64-c08e3fd27596"
+              ],
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "Special Collections, University Libraries, Virginia Tech"
+              ],
+              "rights": [
+                "Permission to publish material from the Assessor's Map no. 60-30, County of Santa Cruz, California, Pasatiempo, California, July 1954. Map (Ms2008-089) must be obtained from University Libraries Special Collections, Virginia Tech./"
+              ],
+              "source": [
+                "See the Finding Aid for the <a href=\"http://search.vaheritage.org/vivaxtf/view?docId=vt/viblbv00329.xml\">Dorothy Alexander Architectural Collection</a> for more information."
+              ],
+              "spatial": [
+                "Pasatiempo, California"
+              ],
+              "start_date": "1954/07/17",
+              "subject": null,
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/iawa/Ms2008_089_Alexander/Ms2008_089_Box2/tiles/Ms2008_089_B002_002_Grover_Dr-1/full/250,/0/default.jpg",
+              "title": "Assessor's Map no. 60-30, County of Santa Cruz, California, Pasatiempo, California, July 1954. Map (Ms2008-089)",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": "{\"page_count\":1}",
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": null,
+              "coverage": null,
+              "created": null,
+              "date": null,
+              "download_link": null,
+              "explicit": null,
+              "extent": null,
+              "extracted_text": null,
+              "format": [
+                "11 in. x 17 in.",
+                "28 cm x 43.18 cm"
+              ],
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": null,
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://img.cloud.lib.vt.edu/iawa/Ms2008_089_Alexander/Ms2008_089_Box2/Ms2008_089_B002_002_Grover_Dr/manifest.json",
+              "medium": [
+                "Diazotypes (copies)"
+              ],
+              "other_identifier": null,
+              "publisher": null,
+              "references": null,
+              "repository": null,
+              "tags": [
+                "Residential",
+                "Residential-single-family"
+              ],
+              "taxonomy": null,
+              "temporal": null,
+              "type": [
+                "Maps"
+              ],
+              "visual_description": null,
+              "createdAt": "2022-08-17T20:17:16.429Z",
+              "updatedAt": "2026-03-25T18:07:46.367Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": [
+                "Researchers wishing to cite this collection should include the following information: Bahamas Nursing School, Nassau, Bahamas, 1983-1988. Floor plan (Ms2013-023) - Special Collections, Virginia Polytechnic Institute and State University, Blacksburg, Va."
+              ],
+              "create_date": null,
+              "creator": [
+                "King, Dorothee Stelzer"
+              ],
+              "custom_key": "ark:/53696/w876rb6q",
+              "description": [
+                "Floor plan drawing at 1/4 inch scale showing detailed furniture and equipment layouts for the main lecture hall, library, and commons areas of the Bahamas Nursing School."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": "1988/08/17",
+              "heirarchy_path": [
+                "03936f4f-83d1-4314-a15a-650c53cb1b8b",
+                "3c830098-a26c-4c55-bfaf-3a0ded0d95e6"
+              ],
+              "id": "48efa32b-0170-4988-8a79-bbd282c2ed4d",
+              "identifier": "Ms2013_023_F006_004_Bahamas_Ms",
+              "is_part_of": [
+                "Ms2013-023",
+                "Ms2013-023, Folder 6",
+                "Bahamas Nursing School"
+              ],
+              "language": [
+                "en"
+              ],
+              "location": [
+                "Nassau, Bahamas"
+              ],
+              "modified_date": null,
+              "parent_collection": [
+                "3c830098-a26c-4c55-bfaf-3a0ded0d95e6"
+              ],
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "Special Collections, University Libraries, Virginia Tech"
+              ],
+              "rights": [
+                "Permission to publish material from the Bahamas Nursing School, Nassau, Bahamas, 1983-1988. Floor plan (Ms2013-023) must be obtained from University Libraries Special Collections, Virginia Tech./"
+              ],
+              "source": [
+                "<a href=\"http://search.vaheritage.org/vivaxtf/view?docId=vt/viblbv01152.xml\">See the Finding Aid for the Dorothee Stelzer King Architectural Collection</a>."
+              ],
+              "spatial": [
+                "Nassau, Bahamas"
+              ],
+              "start_date": "1983/08/17",
+              "subject": null,
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/iawa/Ms2013_023_King/Ms2013_023_Folder6/tiles/Ms2013_023_F006_004_Bahamas_Ms-1/full/250,/0/default.jpg",
+              "title": "Bahamas Nursing School, Nassau, Bahamas, 1983-1988. Floor plan (Ms2013-023)",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": "{\"page_count\":1}",
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": null,
+              "coverage": null,
+              "created": null,
+              "date": null,
+              "download_link": null,
+              "explicit": null,
+              "extent": null,
+              "extracted_text": null,
+              "format": [
+                "24 in. x 42 in.",
+                "60.96 cm x 106.68 cm",
+                "Scale: 1/4 in. = 1 ft."
+              ],
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": null,
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://img.cloud.lib.vt.edu/iawa/Ms2013_023_King/Ms2013_023_Folder6/Ms2013_023_F006_004_Bahamas_Ms/manifest.json",
+              "medium": [
+                "Diazotypes (copies)"
+              ],
+              "other_identifier": null,
+              "publisher": null,
+              "references": null,
+              "repository": null,
+              "tags": [
+                "Healthcare",
+                "Educational and research"
+              ],
+              "taxonomy": null,
+              "temporal": null,
+              "type": [
+                "Architectural drawings (visual works)",
+                "Floor plans (orthographic projections)"
+              ],
+              "visual_description": null,
+              "createdAt": "2022-08-17T20:13:52.899Z",
+              "updatedAt": "2026-03-25T18:07:15.749Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": [
+                "Researchers wishing to cite this collection should include the following information: Bahamas Nursing School, Nassau, Bahamas, 1985. Elevations, floor plan, sections, and detail (Ms2013-023) - Special Collections, Virginia Polytechnic Institute and State University, Blacksburg, Va."
+              ],
+              "create_date": null,
+              "creator": [
+                "King, Dorothee Stelzer"
+              ],
+              "custom_key": "ark:/53696/mq47vg1j",
+              "description": [
+                "Architectural drawings including floor plans, elevations, sections, and details for the entrance plaza of the Bahamas Nursing School."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "heirarchy_path": [
+                "03936f4f-83d1-4314-a15a-650c53cb1b8b",
+                "3c830098-a26c-4c55-bfaf-3a0ded0d95e6"
+              ],
+              "id": "82d3c143-7528-4e12-80eb-80588b7d063c",
+              "identifier": "Ms2013_023_F006_012_Bahamas_Ms",
+              "is_part_of": [
+                "Ms2013-023",
+                "Ms2013-023, Folder 6",
+                "Bahamas Nursing School"
+              ],
+              "language": [
+                "en"
+              ],
+              "location": [
+                "Nassau, Bahamas"
+              ],
+              "modified_date": null,
+              "parent_collection": [
+                "3c830098-a26c-4c55-bfaf-3a0ded0d95e6"
+              ],
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "Special Collections, University Libraries, Virginia Tech"
+              ],
+              "rights": [
+                "Permission to publish material from the Bahamas Nursing School, Nassau, Bahamas, 1985. Elevations, floor plan, sections, and detail (Ms2013-023) must be obtained from University Libraries Special Collections, Virginia Tech./"
+              ],
+              "source": [
+                "<a href=\"http://search.vaheritage.org/vivaxtf/view?docId=vt/viblbv01152.xml\">See the Finding Aid for the Dorothee Stelzer King Architectural Collection</a>."
+              ],
+              "spatial": [
+                "Nassau, Bahamas"
+              ],
+              "start_date": "1985/08/17",
+              "subject": null,
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/iawa/Ms2013_023_King/Ms2013_023_Folder6/tiles/Ms2013_023_F006_012_Bahamas_Ms-1/full/250,/0/default.jpg",
+              "title": "Bahamas Nursing School, Nassau, Bahamas, 1985. Elevations, floor plan, sections, and detail (Ms2013-023)",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": "{\"page_count\":1}",
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": null,
+              "coverage": null,
+              "created": null,
+              "date": null,
+              "download_link": null,
+              "explicit": null,
+              "extent": null,
+              "extracted_text": null,
+              "format": [
+                "30 in. x 42 in.",
+                "76.2 cm x 106.68 cm",
+                "Scale: 1/4 in. = 1 ft."
+              ],
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": null,
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://img.cloud.lib.vt.edu/iawa/Ms2013_023_King/Ms2013_023_Folder6/Ms2013_023_F006_012_Bahamas_Ms/manifest.json",
+              "medium": [
+                "Diazotypes (copies)"
+              ],
+              "other_identifier": null,
+              "publisher": null,
+              "references": null,
+              "repository": null,
+              "tags": [
+                "Healthcare",
+                "Educational and research"
+              ],
+              "taxonomy": null,
+              "temporal": null,
+              "type": [
+                "Detail drawings (drawings)",
+                "Elevations (orthographic projections)",
+                "Floor plans (orthographic projections)",
+                "Sections (orthographic projections)",
+                "Architectural drawings (visual works)"
+              ],
+              "visual_description": null,
+              "createdAt": "2022-08-17T20:13:57.779Z",
+              "updatedAt": "2026-03-25T18:08:06.296Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": [
+                "Researchers wishing to cite this collection should include the following information: Bahamas Nursing School, Nassau, Bahamas, April 16, 1985. Elevations (Ms2013-023) - Special Collections, Virginia Polytechnic Institute and State University, Blacksburg, Va."
+              ],
+              "create_date": null,
+              "creator": [
+                "King, Dorothee Stelzer"
+              ],
+              "custom_key": "ark:/53696/xs27km57",
+              "description": [
+                "North, south, east, and west exterior elevations for the Bahamas Nursing School."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "heirarchy_path": [
+                "03936f4f-83d1-4314-a15a-650c53cb1b8b",
+                "3c830098-a26c-4c55-bfaf-3a0ded0d95e6"
+              ],
+              "id": "dee58e47-3f49-4139-9007-297e256821b8",
+              "identifier": "Ms2013_023_F006_015_Bahamas_Ms",
+              "is_part_of": [
+                "Ms2013-023",
+                "Ms2013-023, Folder 6",
+                "Bahamas Nursing School"
+              ],
+              "language": [
+                "en"
+              ],
+              "location": [
+                "Nassau, Bahamas"
+              ],
+              "modified_date": null,
+              "parent_collection": [
+                "3c830098-a26c-4c55-bfaf-3a0ded0d95e6"
+              ],
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "Special Collections, University Libraries, Virginia Tech"
+              ],
+              "rights": [
+                "Permission to publish material from the Bahamas Nursing School, Nassau, Bahamas, April 16, 1985. Elevations (Ms2013-023) must be obtained from University Libraries Special Collections, Virginia Tech./"
+              ],
+              "source": [
+                "<a href=\"http://search.vaheritage.org/vivaxtf/view?docId=vt/viblbv01152.xml\">See the Finding Aid for the Dorothee Stelzer King Architectural Collection</a>."
+              ],
+              "spatial": [
+                "Nassau, Bahamas"
+              ],
+              "start_date": "1985/04/16",
+              "subject": null,
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/iawa/Ms2013_023_King/Ms2013_023_Folder6/tiles/Ms2013_023_F006_015_Bahamas_Ms-1/full/250,/0/default.jpg",
+              "title": "Bahamas Nursing School, Nassau, Bahamas, April 16, 1985. Elevations (Ms2013-023)",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": "{\"page_count\":1}",
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": null,
+              "coverage": null,
+              "created": null,
+              "date": null,
+              "download_link": null,
+              "explicit": null,
+              "extent": null,
+              "extracted_text": null,
+              "format": [
+                "30 in. x 42 in.",
+                "76.2 cm x 106.68 cm",
+                "Scale: 1/8 in. = 1 ft."
+              ],
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": null,
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://img.cloud.lib.vt.edu/iawa/Ms2013_023_King/Ms2013_023_Folder6/Ms2013_023_F006_015_Bahamas_Ms/manifest.json",
+              "medium": [
+                "Diazotypes (copies)"
+              ],
+              "other_identifier": null,
+              "publisher": null,
+              "references": null,
+              "repository": null,
+              "tags": [
+                "Healthcare",
+                "Educational and research"
+              ],
+              "taxonomy": null,
+              "temporal": null,
+              "type": [
+                "Elevations (orthographic projections)",
+                "Architectural drawings (visual works)"
+              ],
+              "visual_description": null,
+              "createdAt": "2022-08-17T20:13:59.537Z",
+              "updatedAt": "2026-03-25T18:08:21.972Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": [
+                "Researchers wishing to cite this collection should include the following information: Bahamas Nursing School, Nassau, Bahamas, April 16, 1985. Elevations and floor plans (Ms2013-023) - Special Collections, Virginia Polytechnic Institute and State University, Blacksburg, Va."
+              ],
+              "create_date": null,
+              "creator": [
+                "King, Dorothee Stelzer"
+              ],
+              "custom_key": "ark:/53696/bf86804d",
+              "description": [
+                "Floor plans and elevation drawings of bathroom areas for the Bahamas Nursing School."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "heirarchy_path": [
+                "03936f4f-83d1-4314-a15a-650c53cb1b8b",
+                "3c830098-a26c-4c55-bfaf-3a0ded0d95e6"
+              ],
+              "id": "783cd7ec-9d50-4077-b3fd-909236aa1c7d",
+              "identifier": "Ms2013_023_F006_037_Bahamas_Ms",
+              "is_part_of": [
+                "Ms2013-023",
+                "Ms2013-023, Folder 6",
+                "Bahamas Nursing School"
+              ],
+              "language": [
+                "en"
+              ],
+              "location": [
+                "Nassau, Bahamas"
+              ],
+              "modified_date": null,
+              "parent_collection": [
+                "3c830098-a26c-4c55-bfaf-3a0ded0d95e6"
+              ],
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "Special Collections, University Libraries, Virginia Tech"
+              ],
+              "rights": [
+                "Permission to publish material from the Bahamas Nursing School, Nassau, Bahamas, April 16, 1985. Elevations and floor plans (Ms2013-023) must be obtained from University Libraries Special Collections, Virginia Tech./"
+              ],
+              "source": [
+                "<a href=\"http://search.vaheritage.org/vivaxtf/view?docId=vt/viblbv01152.xml\">See the Finding Aid for the Dorothee Stelzer King Architectural Collection</a>."
+              ],
+              "spatial": [
+                "Nassau, Bahamas"
+              ],
+              "start_date": "1985/04/16",
+              "subject": null,
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/iawa/Ms2013_023_King/Ms2013_023_Folder6/tiles/Ms2013_023_F006_037_Bahamas_Ms-1/full/250,/0/default.jpg",
+              "title": "Bahamas Nursing School, Nassau, Bahamas, April 16, 1985. Elevations and floor plans (Ms2013-023)",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": "{\"page_count\":1}",
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": null,
+              "coverage": null,
+              "created": null,
+              "date": null,
+              "download_link": null,
+              "explicit": null,
+              "extent": null,
+              "extracted_text": null,
+              "format": [
+                "30 in. x 42 in.",
+                "76.2 cm x 106.68 cm",
+                "Scale: 1/4 in. = 1 ft."
+              ],
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": null,
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://img.cloud.lib.vt.edu/iawa/Ms2013_023_King/Ms2013_023_Folder6/Ms2013_023_F006_037_Bahamas_Ms/manifest.json",
+              "medium": [
+                "Diazotypes (copies)"
+              ],
+              "other_identifier": null,
+              "publisher": null,
+              "references": null,
+              "repository": null,
+              "tags": [
+                "Healthcare",
+                "Educational and research"
+              ],
+              "taxonomy": null,
+              "temporal": null,
+              "type": [
+                "Floor plans (orthographic projections)",
+                "Elevations (orthographic projections)",
+                "Architectural drawings (visual works)"
+              ],
+              "visual_description": null,
+              "createdAt": "2022-08-17T20:14:14.009Z",
+              "updatedAt": "2026-03-25T18:07:12.277Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": [
+                "Researchers wishing to cite this collection should include the following information: Bahamas Nursing School, Nassau, Bahamas, April 16, 1985. Elevations, details, and sections (Ms2013-023) - Special Collections, Virginia Polytechnic Institute and State University, Blacksburg, Va."
+              ],
+              "create_date": null,
+              "creator": [
+                "King, Dorothee Stelzer"
+              ],
+              "custom_key": "ark:/53696/4g432r66",
+              "description": [
+                "Partial elevation, plan, section, and details for the Bahamas Nursing School."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "heirarchy_path": [
+                "03936f4f-83d1-4314-a15a-650c53cb1b8b",
+                "3c830098-a26c-4c55-bfaf-3a0ded0d95e6"
+              ],
+              "id": "d38a0203-6ac1-4528-9b1e-c1301b4691dd",
+              "identifier": "Ms2013_023_F006_016_Bahamas_Ms",
+              "is_part_of": [
+                "Ms2013-023",
+                "Ms2013-023, Folder 6",
+                "Bahamas Nursing School"
+              ],
+              "language": [
+                "en"
+              ],
+              "location": [
+                "Nassau, Bahamas"
+              ],
+              "modified_date": null,
+              "parent_collection": [
+                "3c830098-a26c-4c55-bfaf-3a0ded0d95e6"
+              ],
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "Special Collections, University Libraries, Virginia Tech"
+              ],
+              "rights": [
+                "Permission to publish material from the Bahamas Nursing School, Nassau, Bahamas, April 16, 1985. Elevations, details, and sections (Ms2013-023) must be obtained from University Libraries Special Collections, Virginia Tech./"
+              ],
+              "source": [
+                "<a href=\"http://search.vaheritage.org/vivaxtf/view?docId=vt/viblbv01152.xml\">See the Finding Aid for the Dorothee Stelzer King Architectural Collection</a>."
+              ],
+              "spatial": [
+                "Nassau, Bahamas"
+              ],
+              "start_date": "1985/04/16",
+              "subject": null,
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/iawa/Ms2013_023_King/Ms2013_023_Folder6/tiles/Ms2013_023_F006_016_Bahamas_Ms-1/full/250,/0/default.jpg",
+              "title": "Bahamas Nursing School, Nassau, Bahamas, April 16, 1985. Elevations, details, and sections (Ms2013-023)",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": "{\"page_count\":1}",
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": null,
+              "coverage": null,
+              "created": null,
+              "date": null,
+              "download_link": null,
+              "explicit": null,
+              "extent": null,
+              "extracted_text": null,
+              "format": [
+                "30 in. x 42 in.",
+                "76.2 cm x 106.68 cm"
+              ],
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": null,
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://img.cloud.lib.vt.edu/iawa/Ms2013_023_King/Ms2013_023_Folder6/Ms2013_023_F006_016_Bahamas_Ms/manifest.json",
+              "medium": [
+                "Diazotypes (copies)"
+              ],
+              "other_identifier": null,
+              "publisher": null,
+              "references": null,
+              "repository": null,
+              "tags": [
+                "Healthcare",
+                "Educational and research"
+              ],
+              "taxonomy": null,
+              "temporal": null,
+              "type": [
+                "Elevations (orthographic projections)",
+                "Detail drawings (drawings)",
+                "Sections (orthographic projections)",
+                "Architectural drawings (visual works)"
+              ],
+              "visual_description": null,
+              "createdAt": "2022-08-17T20:14:00.197Z",
+              "updatedAt": "2026-03-25T18:07:14.570Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": [
+                "Researchers wishing to cite this collection should include the following information: Bahamas Nursing School, Nassau, Bahamas, April 16, 1985. Elevations, sections, details, and floor plans (Ms2013-023) - Special Collections, Virginia Polytechnic Institute and State University, Blacksburg, Va."
+              ],
+              "create_date": null,
+              "creator": [
+                "King, Dorothee Stelzer"
+              ],
+              "custom_key": "ark:/53696/3093xp98",
+              "description": [
+                "Floor plans, details, sections, and elevation drawings of bathroom and kitchen areas for the Bahamas Nursing School."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "heirarchy_path": [
+                "03936f4f-83d1-4314-a15a-650c53cb1b8b",
+                "3c830098-a26c-4c55-bfaf-3a0ded0d95e6"
+              ],
+              "id": "ba193433-b77e-44fa-be1a-f1976f864062",
+              "identifier": "Ms2013_023_F006_038_Bahamas_Ms",
+              "is_part_of": [
+                "Ms2013-023",
+                "Ms2013-023, Folder 6",
+                "Bahamas Nursing School"
+              ],
+              "language": [
+                "en"
+              ],
+              "location": [
+                "Nassau, Bahamas"
+              ],
+              "modified_date": null,
+              "parent_collection": [
+                "3c830098-a26c-4c55-bfaf-3a0ded0d95e6"
+              ],
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "Special Collections, University Libraries, Virginia Tech"
+              ],
+              "rights": [
+                "Permission to publish material from the Bahamas Nursing School, Nassau, Bahamas, April 16, 1985. Elevations, sections, details, and floor plans (Ms2013-023) must be obtained from University Libraries Special Collections, Virginia Tech./"
+              ],
+              "source": [
+                "<a href=\"http://search.vaheritage.org/vivaxtf/view?docId=vt/viblbv01152.xml\">See the Finding Aid for the Dorothee Stelzer King Architectural Collection</a>."
+              ],
+              "spatial": [
+                "Nassau, Bahamas"
+              ],
+              "start_date": "1985/04/16",
+              "subject": null,
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/iawa/Ms2013_023_King/Ms2013_023_Folder6/tiles/Ms2013_023_F006_038_Bahamas_Ms-1/full/250,/0/default.jpg",
+              "title": "Bahamas Nursing School, Nassau, Bahamas, April 16, 1985. Elevations, sections, details, and floor plans (Ms2013-023)",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": "{\"page_count\":1}",
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": null,
+              "coverage": null,
+              "created": null,
+              "date": null,
+              "download_link": null,
+              "explicit": null,
+              "extent": null,
+              "extracted_text": null,
+              "format": [
+                "30 in. x 42 in.",
+                "76.2 cm x 106.68 cm",
+                "Scale: 1/4 in. = 1 ft."
+              ],
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": null,
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://img.cloud.lib.vt.edu/iawa/Ms2013_023_King/Ms2013_023_Folder6/Ms2013_023_F006_038_Bahamas_Ms/manifest.json",
+              "medium": [
+                "Diazotypes (copies)"
+              ],
+              "other_identifier": null,
+              "publisher": null,
+              "references": null,
+              "repository": null,
+              "tags": [
+                "Healthcare",
+                "Educational and research"
+              ],
+              "taxonomy": null,
+              "temporal": null,
+              "type": [
+                "Floor plans (orthographic projections)",
+                "Elevations (orthographic projections)",
+                "Detail drawings (drawings)",
+                "Sections (orthographic projections)",
+                "Architectural drawings (visual works)"
+              ],
+              "visual_description": null,
+              "createdAt": "2022-08-17T20:14:14.693Z",
+              "updatedAt": "2026-03-25T18:07:43.466Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": [
+                "Researchers wishing to cite this collection should include the following information: Bahamas Nursing School, Nassau, Bahamas, April 16, 1985. Floor plan (Ms2013-023) - Special Collections, Virginia Polytechnic Institute and State University, Blacksburg, Va."
+              ],
+              "create_date": null,
+              "creator": [
+                "King, Dorothee Stelzer"
+              ],
+              "custom_key": "ark:/53696/q965q82g",
+              "description": [
+                "First floor plan for the Bahamas Nursing School."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "heirarchy_path": [
+                "03936f4f-83d1-4314-a15a-650c53cb1b8b",
+                "3c830098-a26c-4c55-bfaf-3a0ded0d95e6"
+              ],
+              "id": "5417c3e8-45a8-42b0-a852-2d7c0a324fe9",
+              "identifier": "Ms2013_023_F006_003_Bahamas_Ms",
+              "is_part_of": [
+                "Ms2013-023",
+                "Ms2013-023, Folder 6",
+                "Bahamas Nursing School"
+              ],
+              "language": [
+                "en"
+              ],
+              "location": [
+                "Nassau, Bahamas"
+              ],
+              "modified_date": null,
+              "parent_collection": [
+                "3c830098-a26c-4c55-bfaf-3a0ded0d95e6"
+              ],
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "Special Collections, University Libraries, Virginia Tech"
+              ],
+              "rights": [
+                "Permission to publish material from the Bahamas Nursing School, Nassau, Bahamas, April 16, 1985. Floor plan (Ms2013-023) must be obtained from University Libraries Special Collections, Virginia Tech./"
+              ],
+              "source": [
+                "<a href=\"http://search.vaheritage.org/vivaxtf/view?docId=vt/viblbv01152.xml\">See the Finding Aid for the Dorothee Stelzer King Architectural Collection</a>."
+              ],
+              "spatial": [
+                "Nassau, Bahamas"
+              ],
+              "start_date": "1985/04/16",
+              "subject": null,
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/iawa/Ms2013_023_King/Ms2013_023_Folder6/tiles/Ms2013_023_F006_003_Bahamas_Ms-1/full/250,/0/default.jpg",
+              "title": "Bahamas Nursing School, Nassau, Bahamas, April 16, 1985. Floor plan (Ms2013-023)",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": "{\"page_count\":1}",
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": null,
+              "coverage": null,
+              "created": null,
+              "date": null,
+              "download_link": null,
+              "explicit": null,
+              "extent": null,
+              "extracted_text": null,
+              "format": [
+                "30 in. x 42 in.",
+                "76.2 cm x 106.68 cm",
+                "Scale: 1/8 in. = 1 ft."
+              ],
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": null,
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://img.cloud.lib.vt.edu/iawa/Ms2013_023_King/Ms2013_023_Folder6/Ms2013_023_F006_003_Bahamas_Ms/manifest.json",
+              "medium": [
+                "Diazotypes (copies)"
+              ],
+              "other_identifier": null,
+              "publisher": null,
+              "references": null,
+              "repository": null,
+              "tags": [
+                "Healthcare",
+                "Educational and research"
+              ],
+              "taxonomy": null,
+              "temporal": null,
+              "type": [
+                "Floor plans (orthographic projections)",
+                "Architectural drawings (visual works)"
+              ],
+              "visual_description": null,
+              "createdAt": "2022-08-17T20:13:52.121Z",
+              "updatedAt": "2026-03-25T18:07:14.684Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": [
+                "Researchers wishing to cite this collection should include the following information: Bahamas Nursing School, Nassau, Bahamas, April 16, 1985. Floor plan (Ms2013-023) - Special Collections, Virginia Polytechnic Institute and State University, Blacksburg, Va."
+              ],
+              "create_date": null,
+              "creator": [
+                "King, Dorothee Stelzer"
+              ],
+              "custom_key": "ark:/53696/kn68q38r",
+              "description": [
+                "Partial ground floor plan drawing for the Bahamas Nursing School."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "heirarchy_path": [
+                "03936f4f-83d1-4314-a15a-650c53cb1b8b",
+                "3c830098-a26c-4c55-bfaf-3a0ded0d95e6"
+              ],
+              "id": "3ae6c84e-ec5e-48ae-bad2-559d51005662",
+              "identifier": "Ms2013_023_F006_011_Bahamas_Ms",
+              "is_part_of": [
+                "Ms2013-023",
+                "Ms2013-023, Folder 6",
+                "Bahamas Nursing School"
+              ],
+              "language": [
+                "en"
+              ],
+              "location": [
+                "Nassau, Bahamas"
+              ],
+              "modified_date": null,
+              "parent_collection": [
+                "3c830098-a26c-4c55-bfaf-3a0ded0d95e6"
+              ],
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "Special Collections, University Libraries, Virginia Tech"
+              ],
+              "rights": [
+                "Permission to publish material from the Bahamas Nursing School, Nassau, Bahamas, April 16, 1985. Floor plan (Ms2013-023) must be obtained from University Libraries Special Collections, Virginia Tech./"
+              ],
+              "source": [
+                "<a href=\"http://search.vaheritage.org/vivaxtf/view?docId=vt/viblbv01152.xml\">See the Finding Aid for the Dorothee Stelzer King Architectural Collection</a>."
+              ],
+              "spatial": [
+                "Nassau, Bahamas"
+              ],
+              "start_date": "1985/04/16",
+              "subject": null,
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/iawa/Ms2013_023_King/Ms2013_023_Folder6/tiles/Ms2013_023_F006_011_Bahamas_Ms-1/full/250,/0/default.jpg",
+              "title": "Bahamas Nursing School, Nassau, Bahamas, April 16, 1985. Floor plan (Ms2013-023)",
+              "title_template": null,
+              "visibility": true,
+              "age": null,
+              "alternative": null,
+              "archiveOptions": "{\"page_count\":1}",
+              "basis_of_record": null,
+              "conforms_to": null,
+              "contributor": null,
+              "coverage": null,
+              "created": null,
+              "date": null,
+              "download_link": null,
+              "explicit": null,
+              "extent": null,
+              "extracted_text": null,
+              "format": [
+                "30 in. x 42 in.",
+                "76.2 cm x 106.68 cm",
+                "Scale: 1/4 in. = 1 ft."
+              ],
+              "format_physical": null,
+              "has_format": null,
+              "has_part": null,
+              "has_version": null,
+              "is_format_of": null,
+              "is_version_of": null,
+              "item_category": "federated",
+              "license": null,
+              "manifest_file_characterization": null,
+              "manifest_url": "https://img.cloud.lib.vt.edu/iawa/Ms2013_023_King/Ms2013_023_Folder6/Ms2013_023_F006_011_Bahamas_Ms/manifest.json",
+              "medium": [
+                "Diazotypes (copies)"
+              ],
+              "other_identifier": null,
+              "publisher": null,
+              "references": null,
+              "repository": null,
+              "tags": [
+                "Healthcare",
+                "Educational and research"
+              ],
+              "taxonomy": null,
+              "temporal": null,
+              "type": [
+                "Floor plans (orthographic projections)",
+                "Architectural drawings (visual works)"
+              ],
+              "visual_description": null,
+              "createdAt": "2022-08-17T20:13:57.267Z",
+              "updatedAt": "2026-03-25T18:07:33.967Z",
+              "collectionArchivesId": null,
+              "archiveCollectionId": null,
+              "archivePartnerId": null
+            }
+          ],
+          "nextToken": "Bahamas Nursing School, Nassau, Bahamas, April 16, 1985. Floor plan (Ms2013-023)",
+          "total": 291,
+          "__typename": "SearchableObjectConnection"
+        }
+      }
+    }
+  },
+  {
+    "variables": {
+      "filter": {
+        "or": [
+          {
+            "collection_category": {
+              "eq": "federated"
+            },
+            "visibility": {
+              "eq": true
+            },
+            "parent_collection": {
+              "exists": false
+            }
+          },
+          {
+            "item_category": {
+              "eq": "federated"
+            },
+            "visibility": {
+              "eq": true
+            }
+          }
+        ],
+        "and": [
+          {
+            "medium": {
+              "eq": "Colored Pencil"
+            }
+          }
+        ]
+      },
+      "sort": {
+        "field": "title",
+        "direction": "asc"
+      },
+      "limit": 10
+    },
+    "response": {
+      "data": {
+        "searchObjects": {
+          "items": [],
+          "nextToken": null,
+          "total": 0,
+          "__typename": "SearchableObjectConnection"
+        }
+      }
+    }
+  }
+]

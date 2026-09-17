@@ -1,31 +1,29 @@
 describe('show_all_less_buttons: Search Facet field with more than 5 selectable values', () => {
   beforeEach(() => {
-    // The live site's configured facets (category, language) only have a
-    // couple of values each, so a synthetic "medium" facet with 9 values is
-    // stubbed onto the site config response to exercise the show all/less
+    // The site's configured facets (category, language) only have a couple of
+    // values each, so a synthetic "medium" facet with 9 values is stubbed
+    // onto the mocked site config response to exercise the show all/less
     // behavior in Collapsible.js.
-    cy.intercept("POST", "**/graphql", (req) => {
-      if (req.body?.query?.includes("siteBySiteId")) {
-        req.continue((res) => {
-          const site = res.body.data.siteBySiteId.items[0];
-          const searchPage = JSON.parse(site.searchPage);
-          searchPage.facets.medium = {
-            label: "Medium",
-            values: [
-              "Colored Pencil",
-              "Ink",
-              "Charcoal",
-              "Oil Paint",
-              "Watercolor",
-              "Pastel",
-              "Graphite",
-              "Pen and Ink",
-              "Mixed Media"
-            ]
-          };
-          site.searchPage = JSON.stringify(searchPage);
-        });
-      }
+    cy.fixture("graphql/captures/SiteBySiteId.json").then((entries) => {
+      const entry = JSON.parse(JSON.stringify(entries[0]));
+      const site = entry.response.data.siteBySiteId.items[0];
+      const searchPage = JSON.parse(site.searchPage);
+      searchPage.facets.medium = {
+        label: "Medium",
+        values: [
+          "Colored Pencil",
+          "Ink",
+          "Charcoal",
+          "Oil Paint",
+          "Watercolor",
+          "Pastel",
+          "Graphite",
+          "Pen and Ink",
+          "Mixed Media"
+        ]
+      };
+      site.searchPage = JSON.stringify(searchPage);
+      cy.mockGraphQL({ SiteBySiteId: [entry] });
     });
     cy.visit('/search');
     cy.get('button#medium')

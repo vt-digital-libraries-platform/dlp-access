@@ -1,0 +1,221 @@
+[
+  {
+    "variables": {
+      "parent_id": "3538665a-da0c-4841-a9b3-caadc82756ee",
+      "limit": 10,
+      "sort": [
+        {
+          "field": "title",
+          "direction": "asc"
+        }
+      ],
+      "nextToken": null
+    },
+    "response": {
+      "data": {
+        "searchArchives": {
+          "items": [
+            {
+              "title": "A day like any other way",
+              "archiveOptions": null,
+              "description": [
+                "A drawing from the \"Faith\" series featuring various stencils in mixed medium on paper."
+              ],
+              "start_date": "1991",
+              "thumbnail_path": "https://d4qp6z580yvb5.cloudfront.net/federated/cbcst001/tiles/cbcst001008-1/full/192,/0/default.jpg",
+              "custom_key": "ark:/53696/ab6369cd",
+              "identifier": "cbcst001008",
+              "tags": [
+                "Charlie Brouwer",
+                "Virginia artist",
+                "art"
+              ],
+              "creator": [
+                "Brouwer, Charlie, 1946 -"
+              ]
+            },
+            {
+              "title": "All I can do…",
+              "archiveOptions": null,
+              "description": [
+                "A drawing from the \"Today\" series before being merged with the \"Sometimes…\" series featuring mixed medium on paper. This piece depicts the Islip Art Museum building in Islip, NY where the exhibit took place. The building was once an orphanage, inspiring the text.",
+                "Today #2"
+              ],
+              "start_date": "2008",
+              "thumbnail_path": "https://d4qp6z580yvb5.cloudfront.net/federated/cbcst003/tiles/cbcst003009-1/full/179,/0/default.jpg",
+              "custom_key": "ark:/53696/7d656a85",
+              "identifier": "cbcst003009",
+              "tags": [
+                "Charlie Brouwer",
+                "Virginia artist",
+                "art"
+              ],
+              "creator": [
+                "Brouwer, Charlie, 1946 -"
+              ]
+            },
+            {
+              "title": "And now - at this late date",
+              "archiveOptions": null,
+              "description": [
+                "A drawing from the \"From the Silence of That Place\" series before merging with the \"Two Worlds\" series featuring mixed medium on paper.",
+                "From the Silence of That Place #2"
+              ],
+              "start_date": "2005",
+              "thumbnail_path": "https://d4qp6z580yvb5.cloudfront.net/federated/cbcst004/tiles/cbcst004008-1/full/189,/0/default.jpg",
+              "custom_key": "ark:/53696/f51cb0a1",
+              "identifier": "cbcst004008",
+              "tags": [
+                "Charlie Brouwer",
+                "Virginia artist",
+                "art"
+              ],
+              "creator": [
+                "Brouwer, Charlie, 1946 -"
+              ]
+            },
+            {
+              "title": "As above…so below",
+              "archiveOptions": null,
+              "description": [
+                "A drawing from the \"Today\" series before being merged with the \"Sometimes…\" series featuring mixed medium on paper.",
+                "Today #1"
+              ],
+              "start_date": "2008",
+              "thumbnail_path": "https://d4qp6z580yvb5.cloudfront.net/federated/cbcst003/tiles/cbcst003008-1/full/179,/0/default.jpg",
+              "custom_key": "ark:/53696/3bb93ac1",
+              "identifier": "cbcst003008",
+              "tags": [
+                "Charlie Brouwer",
+                "Virginia artist",
+                "art"
+              ],
+              "creator": [
+                "Brouwer, Charlie, 1946 -"
+              ]
+            },
+            {
+              "title": "At Home in the Woods",
+              "archiveOptions": "{\"assets\":{\"thumbnail\":\"https://d4qp6z580yvb5.cloudfront.net/federated/cbc006/cbc006001/3D/GLB/cbc006001_thumbnail.jpg\",\"gltf_config\":\"https://d4qp6z580yvb5.cloudfront.net/federated/cbc006/cbc006001/3D/GLB/cbc006001_web.glb\",\"media_type\":\"3d-model/gltf\",\"scale_factor\":\"25\",\"env_config\":\"https://d4qp6z580yvb5.cloudfront.net/federated/3d/gltf/studio.env\"},\"config\":{\"_3d\":{\"rotation\":{\"horizontal\":\"\",\"vertical\":\"\"},\"scale_factor\":\"25\"}}}",
+              "description": [
+                "A sculpture from the \"Homebodies\" series of sculptures featuring  figures with human appendages and house-shaped torsos. This sculpture is a house with arms and legs sitting on a stump and holding a staff."
+              ],
+              "start_date": "2003",
+              "thumbnail_path": "https://d4qp6z580yvb5.cloudfront.net/federated/cbc006/cbc006001/3D/GLB/cbc006001_thumbnail.jpg",
+              "custom_key": "ark:/53696/4339dbe9",
+              "identifier": "cbc006001",
+              "tags": [
+                "Charlie Brouwer",
+                "Virginia artist",
+                "sculpture",
+                "art"
+              ],
+              "creator": [
+                "Brouwer, Charlie, 1946 -"
+              ]
+            },
+            {
+              "title": "Being Home",
+              "archiveOptions": "{\"assets\":{\"thumbnail\":\"https://d4qp6z580yvb5.cloudfront.net/federated/cbc006/cbc006002/3D/GLB/cbc006002_thumbnail.jpg\",\"gltf_config\":\"https://d4qp6z580yvb5.cloudfront.net/federated/cbc006/cbc006002/3D/GLB/cbc006002_web.glb\",\"media_type\":\"3d-model/gltf\",\"env_config\":\"https://d4qp6z580yvb5.cloudfront.net/federated/3d/gltf/studio.env\",\"scale_factor\":\"25\"},\"config\":{\"_3d\":{\"rotation\":{\"horizontal\":\"\",\"vertical\":\"\"},\"scale_factor\":\"25\"}}}",
+              "description": [
+                "A sculpture from the \"Homebodies\" series of sculptures featuring  figures with human appendages and house-shaped torsos. This sculpture is a house standing upright on two legs."
+              ],
+              "start_date": "2003",
+              "thumbnail_path": "https://d4qp6z580yvb5.cloudfront.net/federated/cbc006/cbc006002/3D/GLB/cbc006002_thumbnail.jpg",
+              "custom_key": "ark:/53696/562b881c",
+              "identifier": "cbc006002",
+              "tags": [
+                "Charlie Brouwer",
+                "Virginia artist",
+                "sculpture",
+                "art"
+              ],
+              "creator": [
+                "Brouwer, Charlie, 1946 -"
+              ]
+            },
+            {
+              "title": "Between Now and Then… sometimes…",
+              "archiveOptions": null,
+              "description": [
+                "A drawing from the \"Sometimes…\" series featuring mixed medium on paper.",
+                "Sometimes…#7"
+              ],
+              "start_date": "2008",
+              "thumbnail_path": "https://d4qp6z580yvb5.cloudfront.net/federated/cbcst003/tiles/cbcst003007-1/full/178,/0/default.jpg",
+              "custom_key": "ark:/53696/7f80e526",
+              "identifier": "cbcst003007",
+              "tags": [
+                "Charlie Brouwer",
+                "Virginia artist",
+                "art"
+              ],
+              "creator": [
+                "Brouwer, Charlie, 1946 -"
+              ]
+            },
+            {
+              "title": "Days were long on overland passages",
+              "archiveOptions": null,
+              "description": [
+                "A drawing from the \"Lifeboats\" series featuring mixed medium on paper."
+              ],
+              "start_date": "2018",
+              "thumbnail_path": "https://d4qp6z580yvb5.cloudfront.net/federated/cbcst005/tiles/cbcst005007-1/full/183,/0/default.jpg",
+              "custom_key": "ark:/53696/ca37e821",
+              "identifier": "cbcst005007",
+              "tags": [
+                "Charlie Brouwer",
+                "Virginia artist",
+                "art"
+              ],
+              "creator": [
+                "Brouwer, Charlie, 1946 -"
+              ]
+            },
+            {
+              "title": "Everyone took a turn keeping watch",
+              "archiveOptions": null,
+              "description": [
+                "A drawing from the \"Lifeboats\" series featuring mixed medium on paper."
+              ],
+              "start_date": "2018",
+              "thumbnail_path": "https://d4qp6z580yvb5.cloudfront.net/federated/cbcst005/tiles/cbcst005002-1/full/178,/0/default.jpg",
+              "custom_key": "ark:/53696/b83f5f53",
+              "identifier": "cbcst005002",
+              "tags": [
+                "Charlie Brouwer",
+                "Virginia artist",
+                "art"
+              ],
+              "creator": [
+                "Brouwer, Charlie, 1946 -"
+              ]
+            },
+            {
+              "title": "Following the dark night",
+              "archiveOptions": null,
+              "description": [
+                "A drawing from the \"Faith\" series featuring various stencils in mixed medium on paper."
+              ],
+              "start_date": "1991",
+              "thumbnail_path": "https://d4qp6z580yvb5.cloudfront.net/federated/cbcst001/tiles/cbcst001002-1/full/189,/0/default.jpg",
+              "custom_key": "ark:/53696/465fcdb6",
+              "identifier": "cbcst001002",
+              "tags": [
+                "Charlie Brouwer",
+                "Virginia artist",
+                "art"
+              ],
+              "creator": [
+                "Brouwer, Charlie, 1946 -"
+              ]
+            }
+          ],
+          "total": 64,
+          "nextToken": "Following the dark night::key::ark:/53696/465fcdb6"
+        }
+      }
+    }
+  }
+]

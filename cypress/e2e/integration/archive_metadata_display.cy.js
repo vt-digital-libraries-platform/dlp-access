@@ -1,5 +1,6 @@
 describe('archive_metadata_display: A single Archive Show page "About" metadata card', () => {
   beforeEach(() => {
+    cy.mockGraphQL();
     cy.visit('/archive/67474c70').wait(1000);
     cy.get('.collapsible-cards-container details.card-details', { timeout: 5000 })
       .first()

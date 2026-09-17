@@ -1,0 +1,24 @@
+[
+  {
+    "variables": {
+      "id": "045994a0-2a81-48fa-805a-91cec6482811"
+    },
+    "response": {
+      "data": {
+        "getCollectionmap": {
+          "collectionmap_category": "federated",
+          "collection_id": "3538665a-da0c-4841-a9b3-caadc82756ee",
+          "create_date": null,
+          "id": "045994a0-2a81-48fa-805a-91cec6482811",
+          "map_object": "{\"id\": \"3538665a-da0c-4841-a9b3-caadc82756ee\", \"name\": \"Charlie Brouwer Collection\", \"custom_key\": \"0f04aba5\", \"children\": [{\"id\": \"95dc55ce-9ddb-4624-b905-ca57a89728e7\", \"name\": \"Lifeboats\", \"custom_key\": \"e1c24fc2\"}, {\"id\": \"7c9301fb-2858-4b73-9e11-0874a6a06cc8\", \"name\": \"Now I Lay Me...\", \"custom_key\": \"36c4454b\"}, {\"id\": \"0fbc36d3-4805-40ea-af0b-3c65959cc268\", \"name\": \"Sometimes\\u2026\", \"custom_key\": \"feabfb84\"}, {\"id\": \"6a354e0e-b576-4864-bf6f-529b4cc42e1c\", \"name\": \"Two Worlds\", \"custom_key\": \"85c003f7\"}, {\"id\": \"acaa7900-0685-4296-ad00-d662805e4477\", \"name\": \"Faith\", \"custom_key\": \"752a2fc1\"}, {\"id\": \"64acfa5b-ac89-4bfd-a70f-3d336d0da053\", \"name\": \"Out There Sculpture Trail\", \"custom_key\": \"bf4dd0ad\"}]}",
+          "modified_date": null,
+          "collection": null,
+          "createdAt": "2026-04-06T21:49:49.110Z",
+          "updatedAt": "2026-05-15T13:58:50.489Z",
+          "collectionmapCollectionId": null,
+          "__typename": "Collectionmap"
+        }
+      }
+    }
+  }
+]
