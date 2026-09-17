@@ -1,5 +1,6 @@
 describe('linked_metadata: Archive metadata', () => {
   beforeEach(() => {
+    cy.mockGraphQL();
     cy.visit('/archive/67474c70').wait(1000);
     cy.get('.collapsible-cards-container details.card-details')
       .first()
@@ -29,6 +30,7 @@ describe('linked_metadata: Archive metadata', () => {
 
 describe('linked_metadata: Collection metadata', () => {
   it('lands on search facet by the metadata field', () => {
+    cy.mockGraphQL();
     cy.visit('/collection/0f04aba5');
     cy.wait(1500);
     cy.get('tr.language td.collection-detail-value a')

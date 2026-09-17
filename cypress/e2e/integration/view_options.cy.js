@@ -1,5 +1,6 @@
 describe("view_options: Interaction", () => {
   beforeEach(() => {
+    cy.mockGraphQL();
     cy.visit("/collections");
   });
 

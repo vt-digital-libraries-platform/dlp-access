@@ -1,5 +1,6 @@
 describe("language_config: Selecting English filters search results", () => {
   it("Language checkbox exists and updates url", () => {
+    cy.mockGraphQL();
     cy.visit("/search");
     cy.wait(1000);
     cy.get("[data-cy=filter-collapsibles]")
@@ -19,6 +20,7 @@ describe("language_config: Selecting English filters search results", () => {
   });
 
   it("Items should now be tagged with English as the language", () => {
+    cy.mockGraphQL();
     cy.visit("/search");
     cy.wait(1000);
     cy.get("[data-cy=filter-collapsibles]")

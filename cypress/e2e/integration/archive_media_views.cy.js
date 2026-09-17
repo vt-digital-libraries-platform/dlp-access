@@ -7,6 +7,7 @@
 
 describe("archive_media_views: Archive Mirador/IIIF viewer", () => {
   it("renders the Mirador viewer for an item with a IIIF manifest", () => {
+    cy.mockGraphQL();
     cy.visit("/archive/b728f982");
     cy.get("#mirador_viewer main", { timeout: 10000 })
       .should("have.class", "mirador-viewer")
@@ -17,6 +18,7 @@ describe("archive_media_views: Archive Mirador/IIIF viewer", () => {
 
 describe("archive_media_views: Archive pdf embed", () => {
   it("renders pdf file inside an object element", () => {
+    cy.mockGraphQL();
     cy.visit("/archive/d98abeb2");
     cy.get("#item-media-col > object", { timeout: 20000 })
       .eq(0)
@@ -27,6 +29,7 @@ describe("archive_media_views: Archive pdf embed", () => {
 
 describe("archive_media_views: Archive 3D model viewer", () => {
   it("renders the Babylon.js viewer for a gltf record", () => {
+    cy.mockGraphQL();
     cy.visit("/archive/4339dbe9");
     cy.get(".babylon-viewer-section #canvas-wrapper canvas", { timeout: 15000 })
       .should("be.visible");

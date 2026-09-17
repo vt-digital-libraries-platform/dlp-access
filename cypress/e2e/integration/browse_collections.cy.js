@@ -1,5 +1,6 @@
 describe("browse_collections: Browse collections page", () => {
   beforeEach(() => {
+    cy.mockGraphQL();
     cy.visit("/collections");
   });
 
@@ -19,6 +20,6 @@ describe("browse_collections: Browse collections page", () => {
 
   it("renders all the collections if increasing the number of results to be showed", () => {
     cy.get("#results-number-dropdown").select("50");
-    cy.get(".gallery-item").should("have.length", 11);
+    cy.get(".gallery-item").should("have.length", 10);
   });
 });

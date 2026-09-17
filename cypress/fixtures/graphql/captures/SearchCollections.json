@@ -1,0 +1,708 @@
+[
+  {
+    "variables": {
+      "filter": {
+        "or": [
+          {
+            "id": {
+              "eq": "ba09dcae-e2aa-47e1-9a23-a0e0a97fbb0e"
+            }
+          },
+          {
+            "id": {
+              "eq": "22f540ed-2e9a-4e39-8273-ba4bc1782bee"
+            }
+          }
+        ]
+      }
+    },
+    "response": {
+      "data": {
+        "searchCollections": {
+          "items": [
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": "32f5fb7a-ff7c-405d-b635-18e6ec7991a4",
+              "collectionOptions": null,
+              "create_date": null,
+              "creator": null,
+              "custom_key": "ark:/53696/6997b595",
+              "description": [
+                "The Christiansburg Institute's Digital Archives is a public, searchable archive of digital materials related to the history of Christiansburg Industrial Institute and broader African American history in Southwest Virginia.  This archive was made possible through a 2022 grant from the Council on Library and Information Resources. This archive was created by Christiansburg Institute, Inc.  Items in the archive are sourced from Christiansburg Institute Museum & Archives and community members who donated digital copies to the digital archive.  Christiansburg Institute, Inc., is a grassroots African American cultural heritage and historic preservation nonprofit with a mission of community education, intergenerational empowerment, and the equitable stewardship of African American history, stories, and culture. This archive is under construction.  Check back frequently as we work to digitize and describe more collections."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "explicit_content": null,
+              "heirarchy_path": [
+                "ba09dcae-e2aa-47e1-9a23-a0e0a97fbb0e"
+              ],
+              "id": "ba09dcae-e2aa-47e1-9a23-a0e0a97fbb0e",
+              "identifier": "CIDA",
+              "is_part_of": null,
+              "language": [
+                "en"
+              ],
+              "location": null,
+              "modified_date": null,
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "Christiansburg Institute, Inc."
+              ],
+              "rights": [
+                "http://rightsstatements.org/vocab/InC-EDU/1.0/"
+              ],
+              "source": [
+                "Christiansburg Institute, Inc"
+              ],
+              "spatial": null,
+              "start_date": null,
+              "subject": null,
+              "thumbnail_path": "https://d4qp6z580yvb5.cloudfront.net/federated/CIDA/representative.jpg",
+              "title": "Christiansburg Institute Digital Archive",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2026-02-27T17:52:15.643Z",
+              "updatedAt": "2026-02-27T17:52:15.643Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": null,
+              "collectionOptions": null,
+              "create_date": null,
+              "creator": null,
+              "custom_key": "ark:/53696/2fe368a9",
+              "description": [
+                "The Tillman R. Sease Collection contains materials related to Christiansburg Institute sports coach, Tillman R. Sease including; event programs, photographs, newspaper clippings, and correspondences. The material spans from 1948-1997."
+              ],
+              "display_date": [
+                "1948-1997"
+              ],
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": "1997",
+              "explicit_content": null,
+              "heirarchy_path": [
+                "ba09dcae-e2aa-47e1-9a23-a0e0a97fbb0e",
+                "22f540ed-2e9a-4e39-8273-ba4bc1782bee"
+              ],
+              "id": "22f540ed-2e9a-4e39-8273-ba4bc1782bee",
+              "identifier": "CIDA_TSC",
+              "is_part_of": null,
+              "language": [
+                "en"
+              ],
+              "location": null,
+              "modified_date": null,
+              "ownerinfo": null,
+              "parent_collection": [
+                "ba09dcae-e2aa-47e1-9a23-a0e0a97fbb0e"
+              ],
+              "parent_collection_identifier": [
+                "CIDA"
+              ],
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": [
+                "Christiansburg Institute, Inc"
+              ],
+              "rights": [
+                "http://rightsstatements.org/vocab/InC-EDU/1.0/"
+              ],
+              "source": [
+                "Tillman R. Sease Collection"
+              ],
+              "spatial": null,
+              "start_date": "1948",
+              "subject": null,
+              "thumbnail_path": "https://d4qp6z580yvb5.cloudfront.net/federated/CIDA_TSC/representative.jpg",
+              "title": "Tillman R. Sease Collection [1948-1997]",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2026-04-01T16:18:47.353Z",
+              "updatedAt": "2026-04-01T16:18:47.353Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            }
+          ],
+          "nextToken": "Tillman R. Sease Collection [1948-1997]",
+          "total": 2,
+          "__typename": "SearchableCollectionConnection"
+        }
+      }
+    }
+  },
+  {
+    "variables": {
+      "filter": {
+        "or": [
+          {
+            "id": {
+              "eq": "eab14157-2c87-4a1b-ad2a-eab17954d11f"
+            }
+          }
+        ]
+      }
+    },
+    "response": {
+      "data": {
+        "searchCollections": {
+          "items": [
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "swva",
+              "collectionmap_id": "a3624e05-c608-4a6f-815a-bc4a60ab00d3",
+              "collectionOptions": null,
+              "create_date": null,
+              "creator": null,
+              "custom_key": "ark:/53696/8n449w6w",
+              "description": [
+                "The Museum is home to a highly regarded permanent collection totaling around 2,400 works. The collection includes American, Southeast American Contemporary, Folk, Regional and Visionary artwork featuring the work of artists such as Thomas Cowperthwaite Eakins, John Singer Sargent, Purvis Young, Petah Coyne and John Cage, to name just a few."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "explicit_content": null,
+              "heirarchy_path": [
+                "eab14157-2c87-4a1b-ad2a-eab17954d11f"
+              ],
+              "id": "eab14157-2c87-4a1b-ad2a-eab17954d11f",
+              "identifier": "TAU_ART",
+              "is_part_of": null,
+              "language": null,
+              "location": null,
+              "modified_date": null,
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": [
+                "<a href=\"https://www.taubmanmuseum.org/\">Taubman Museum of Art official site</a>"
+              ],
+              "rights_holder": null,
+              "rights": [
+                "http://rightsstatements.org/vocab/InC-EDU/1.0/"
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": null,
+              "subject": null,
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/swva/TAU_ART/representative.jpg",
+              "title": "Taubman Museum of Art",
+              "title_template": null,
+              "visibility": false,
+              "createdAt": "2021-11-17T22:30:39.718Z",
+              "updatedAt": "2022-12-20T20:05:05.774Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            }
+          ],
+          "nextToken": "Taubman Museum of Art",
+          "total": 1,
+          "__typename": "SearchableCollectionConnection"
+        }
+      }
+    }
+  },
+  {
+    "variables": {
+      "order": "ASC",
+      "limit": 1,
+      "filter": {
+        "custom_key": {
+          "matchPhrase": "0f04aba5"
+        }
+      }
+    },
+    "response": {
+      "data": {
+        "searchCollections": {
+          "items": [
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": "045994a0-2a81-48fa-805a-91cec6482811",
+              "collectionOptions": null,
+              "create_date": null,
+              "creator": [
+                "Brouwer, Charlie, 1946"
+              ],
+              "custom_key": "ark:/53696/0f04aba5",
+              "description": [
+                "Charlie Brouwer is a Virginia artist known for his sculptures, installations, and mixed media drawings. He previously taught at Radford University from 1987 - 2008 before transitioning to a full-time artist, exhibiting over 300 times in his career. This collection highlights select drawings and models from various exhibits that are currently housed at his studio in Floyd, Virginia. His studio website can be visited at https://www.charliebrouwer.com/."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "explicit_content": null,
+              "heirarchy_path": [
+                "3538665a-da0c-4841-a9b3-caadc82756ee"
+              ],
+              "id": "3538665a-da0c-4841-a9b3-caadc82756ee",
+              "identifier": "cbcst",
+              "is_part_of": null,
+              "language": [
+                "en"
+              ],
+              "location": null,
+              "modified_date": null,
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": null,
+              "rights": [
+                "http://rightsstatements.org/vocab/InC-EDU/1.0/"
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": null,
+              "subject": null,
+              "thumbnail_path": "https://d4qp6z580yvb5.cloudfront.net/federated/cbcst/representative.jpg",
+              "title": "Charlie Brouwer Collection",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2026-04-06T21:49:49.057Z",
+              "updatedAt": "2026-04-06T21:49:49.057Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            }
+          ],
+          "nextToken": "Charlie Brouwer Collection",
+          "total": 1,
+          "__typename": "SearchableCollectionConnection"
+        }
+      }
+    }
+  },
+  {
+    "variables": {
+      "order": "ASC",
+      "limit": 1,
+      "filter": {
+        "collection_category": {
+          "eq": "federated"
+        },
+        "visibility": {
+          "eq": true
+        },
+        "custom_key": {
+          "matchPhrase": "0f04aba5"
+        }
+      }
+    },
+    "response": {
+      "data": {
+        "searchCollections": {
+          "items": [
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": "045994a0-2a81-48fa-805a-91cec6482811",
+              "collectionOptions": null,
+              "create_date": null,
+              "creator": [
+                "Brouwer, Charlie, 1946"
+              ],
+              "custom_key": "ark:/53696/0f04aba5",
+              "description": [
+                "Charlie Brouwer is a Virginia artist known for his sculptures, installations, and mixed media drawings. He previously taught at Radford University from 1987 - 2008 before transitioning to a full-time artist, exhibiting over 300 times in his career. This collection highlights select drawings and models from various exhibits that are currently housed at his studio in Floyd, Virginia. His studio website can be visited at https://www.charliebrouwer.com/."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "explicit_content": null,
+              "heirarchy_path": [
+                "3538665a-da0c-4841-a9b3-caadc82756ee"
+              ],
+              "id": "3538665a-da0c-4841-a9b3-caadc82756ee",
+              "identifier": "cbcst",
+              "is_part_of": null,
+              "language": [
+                "en"
+              ],
+              "location": null,
+              "modified_date": null,
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": null,
+              "rights": [
+                "http://rightsstatements.org/vocab/InC-EDU/1.0/"
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": null,
+              "subject": null,
+              "thumbnail_path": "https://d4qp6z580yvb5.cloudfront.net/federated/cbcst/representative.jpg",
+              "title": "Charlie Brouwer Collection",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2026-04-06T21:49:49.057Z",
+              "updatedAt": "2026-04-06T21:49:49.057Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            }
+          ],
+          "nextToken": "Charlie Brouwer Collection",
+          "total": 1,
+          "__typename": "SearchableCollectionConnection"
+        }
+      }
+    }
+  },
+  {
+    "variables": {
+      "filter": {
+        "or": [
+          {
+            "id": {
+              "eq": "3538665a-da0c-4841-a9b3-caadc82756ee"
+            }
+          }
+        ]
+      }
+    },
+    "response": {
+      "data": {
+        "searchCollections": {
+          "items": [
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": "045994a0-2a81-48fa-805a-91cec6482811",
+              "collectionOptions": null,
+              "create_date": null,
+              "creator": [
+                "Brouwer, Charlie, 1946"
+              ],
+              "custom_key": "ark:/53696/0f04aba5",
+              "description": [
+                "Charlie Brouwer is a Virginia artist known for his sculptures, installations, and mixed media drawings. He previously taught at Radford University from 1987 - 2008 before transitioning to a full-time artist, exhibiting over 300 times in his career. This collection highlights select drawings and models from various exhibits that are currently housed at his studio in Floyd, Virginia. His studio website can be visited at https://www.charliebrouwer.com/."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "explicit_content": null,
+              "heirarchy_path": [
+                "3538665a-da0c-4841-a9b3-caadc82756ee"
+              ],
+              "id": "3538665a-da0c-4841-a9b3-caadc82756ee",
+              "identifier": "cbcst",
+              "is_part_of": null,
+              "language": [
+                "en"
+              ],
+              "location": null,
+              "modified_date": null,
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": null,
+              "rights": [
+                "http://rightsstatements.org/vocab/InC-EDU/1.0/"
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": null,
+              "subject": null,
+              "thumbnail_path": "https://d4qp6z580yvb5.cloudfront.net/federated/cbcst/representative.jpg",
+              "title": "Charlie Brouwer Collection",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2026-04-06T21:49:49.057Z",
+              "updatedAt": "2026-04-06T21:49:49.057Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            }
+          ],
+          "nextToken": "Charlie Brouwer Collection",
+          "total": 1,
+          "__typename": "SearchableCollectionConnection"
+        }
+      }
+    }
+  },
+  {
+    "variables": {
+      "filter": {
+        "or": [
+          {
+            "id": {
+              "eq": "ad501292-bdd9-4a11-ab3a-ca539b4530fe"
+            }
+          }
+        ]
+      }
+    },
+    "response": {
+      "data": {
+        "searchCollections": {
+          "items": [
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": "ae5ea6c8-2798-430b-9797-9894e64e2263",
+              "collectionOptions": null,
+              "create_date": "2025/04/11 19:26:30",
+              "creator": [
+                "Virginia Polytechnic Institute and State University"
+              ],
+              "custom_key": "ark:/53696/5fdbcd33",
+              "description": [
+                "Annual undergraduate and graduate course catalogs of Virginia Polytechnic University: including campus maps; facility descriptions; lists of courses, schedules, students, and faculty; and other information relating to the operations of the institution. Virginia Polytechnic Institute published its annual catalog as an issue of the Bulletin of the Virginia Polytechnic Institute from April 1908 - October 1989 inclusive. The University Libraries at Virginia Tech recognizes that some issues of the Virginia Tech Course Catalogs contain offensive content that does not reflect the University’s <a href=\"https://www.inclusive.vt.edu/Programs/vtpoc0.html\" target=\"_blank\">“Principles of Community”</a> and its commitment to inclusion and diversity. The University Libraries present the following content in its original and unaltered form for the purpose of research, study, and personal reading. Providing online access to these historical records does not endorse any attitudes, prejudices, or behaviors depicted in the pages of the Virginia Tech Course Catalogs. The University Libraries is committed to upholding the principle of equal and free access to unaltered historical information and supports the<a href=\"https://vtx.vt.edu/campus-news/statements/unirel-statement-040919.html\" target=\"_blank\"> University’s statement on offensive photographs.</a>"
+              ],
+              "display_date": [
+                "1872-2004"
+              ],
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": "2004",
+              "explicit_content": false,
+              "heirarchy_path": [
+                "ad501292-bdd9-4a11-ab3a-ca539b4530fe"
+              ],
+              "id": "ad501292-bdd9-4a11-ab3a-ca539b4530fe",
+              "identifier": "LD5655.A3.C3",
+              "is_part_of": null,
+              "language": [
+                "en"
+              ],
+              "location": null,
+              "modified_date": null,
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": null,
+              "rights": [
+                "http://rightsstatements.org/vocab/InC-EDU/1.0/"
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": "1872",
+              "subject": [
+                "University Archives"
+              ],
+              "thumbnail_path": "https://img.cloud.lib.vt.edu/federated/LD5655.A3.C3/representative.jpg",
+              "title": "Virginia Tech Course Catalogs",
+              "title_template": null,
+              "visibility": false,
+              "createdAt": "2025-04-11T13:26:30.259Z",
+              "updatedAt": "2025-04-11T13:26:30.259Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            }
+          ],
+          "nextToken": "Virginia Tech Course Catalogs",
+          "total": 1,
+          "__typename": "SearchableCollectionConnection"
+        }
+      }
+    }
+  },
+  {
+    "variables": {
+      "filter": {
+        "or": [
+          {
+            "id": {
+              "eq": "3538665a-da0c-4841-a9b3-caadc82756ee"
+            }
+          },
+          {
+            "id": {
+              "eq": "64acfa5b-ac89-4bfd-a70f-3d336d0da053"
+            }
+          }
+        ]
+      }
+    },
+    "response": {
+      "data": {
+        "searchCollections": {
+          "items": [
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": "045994a0-2a81-48fa-805a-91cec6482811",
+              "collectionOptions": null,
+              "create_date": null,
+              "creator": [
+                "Brouwer, Charlie, 1946"
+              ],
+              "custom_key": "ark:/53696/0f04aba5",
+              "description": [
+                "Charlie Brouwer is a Virginia artist known for his sculptures, installations, and mixed media drawings. He previously taught at Radford University from 1987 - 2008 before transitioning to a full-time artist, exhibiting over 300 times in his career. This collection highlights select drawings and models from various exhibits that are currently housed at his studio in Floyd, Virginia. His studio website can be visited at https://www.charliebrouwer.com/."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "explicit_content": null,
+              "heirarchy_path": [
+                "3538665a-da0c-4841-a9b3-caadc82756ee"
+              ],
+              "id": "3538665a-da0c-4841-a9b3-caadc82756ee",
+              "identifier": "cbcst",
+              "is_part_of": null,
+              "language": [
+                "en"
+              ],
+              "location": null,
+              "modified_date": null,
+              "ownerinfo": null,
+              "parent_collection": null,
+              "parent_collection_identifier": null,
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": null,
+              "rights": [
+                "http://rightsstatements.org/vocab/InC-EDU/1.0/"
+              ],
+              "source": null,
+              "spatial": null,
+              "start_date": null,
+              "subject": null,
+              "thumbnail_path": "https://d4qp6z580yvb5.cloudfront.net/federated/cbcst/representative.jpg",
+              "title": "Charlie Brouwer Collection",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2026-04-06T21:49:49.057Z",
+              "updatedAt": "2026-04-06T21:49:49.057Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            },
+            {
+              "alt_text": null,
+              "archived": true,
+              "bibliographic_citation": null,
+              "collection_category": "federated",
+              "collectionmap_id": null,
+              "collectionOptions": null,
+              "create_date": null,
+              "creator": [
+                "Brouwer, Charlie, 1946 -"
+              ],
+              "custom_key": "ark:/53696/bf4dd0ad",
+              "description": [
+                "The \"Out There\" Sculpture Trail is nine acres of land in Floyd County, Virginia featuring 20-30 wooden sculptures on a one-mile trail through fields and woods on the grounds."
+              ],
+              "display_date": null,
+              "embargo_end_date": null,
+              "embargo_note": null,
+              "embargo_start_date": null,
+              "end_date": null,
+              "explicit_content": null,
+              "heirarchy_path": [
+                "3538665a-da0c-4841-a9b3-caadc82756ee",
+                "64acfa5b-ac89-4bfd-a70f-3d336d0da053"
+              ],
+              "id": "64acfa5b-ac89-4bfd-a70f-3d336d0da053",
+              "identifier": "cbc006",
+              "is_part_of": null,
+              "language": [
+                "en"
+              ],
+              "location": null,
+              "modified_date": null,
+              "ownerinfo": null,
+              "parent_collection": [
+                "3538665a-da0c-4841-a9b3-caadc82756ee"
+              ],
+              "parent_collection_identifier": [
+                "cbcst"
+              ],
+              "partner_id": null,
+              "provenance": null,
+              "relation": null,
+              "rights_holder": null,
+              "rights": null,
+              "source": null,
+              "spatial": null,
+              "start_date": null,
+              "subject": [
+                "Art",
+                "Art exhibitions",
+                "Sculpture",
+                "Wood sculpture",
+                "Virginia"
+              ],
+              "thumbnail_path": "https://d4qp6z580yvb5.cloudfront.net/federated/cbc006/representative.jpg",
+              "title": "Out There Sculpture Trail",
+              "title_template": null,
+              "visibility": true,
+              "createdAt": "2026-05-15T13:58:50.362Z",
+              "updatedAt": "2026-05-15T13:58:50.362Z",
+              "collectionCollectionmapId": null,
+              "collectionPartnerId": null,
+              "__typename": "Collection"
+            }
+          ],
+          "nextToken": "Out There Sculpture Trail",
+          "total": 2,
+          "__typename": "SearchableCollectionConnection"
+        }
+      }
+    }
+  }
+]

@@ -1,5 +1,6 @@
 describe('search_bar: Search by clicking the search button', () => {
   beforeEach(() => {
+    cy.mockGraphQL();
     cy.visit('/search');
     cy.get('#searchbar-text-input').clear().type('Additions');
     cy.get('.searchbar-wrapper button[type=submit]').click();
@@ -11,15 +12,16 @@ describe('search_bar: Search by clicking the search button', () => {
       .should('eq', 'http://localhost:3000/search?field=all&q=Additions&view=Gallery');
     cy.get('.pagination-text', { timeout: 5000 }).first()
       .invoke('text')
-      .should('equal', 'Search Results: 1 - 10 of 63');
+      .should('equal', 'Search Results: 1 - 4 of 4');
 
     cy.get('#search-results .gallery-item')
-      .should('have.length', 10);
+      .should('have.length', 4);
   });
 });
 
 describe('search_bar: Search by hitting enter key', () => {
   beforeEach(() => {
+    cy.mockGraphQL();
     cy.visit('/search');
     cy.get('#searchbar-text-input').clear().type('certificate{enter}');
     cy.wait(1000);
@@ -30,7 +32,7 @@ describe('search_bar: Search by hitting enter key', () => {
       .should('eq', 'http://localhost:3000/search?field=all&q=certificate&view=Gallery');
     cy.get('.pagination-text', { timeout: 5000 }).first()
       .invoke('text')
-      .should('equal', 'Search Results: 1 - 10 of 20');
+      .should('equal', 'Search Results: 1 - 10 of 23');
 
     cy.get('#search-results .gallery-item')
       .should('have.length', 10);
@@ -39,6 +41,7 @@ describe('search_bar: Search by hitting enter key', () => {
 
 describe('search_bar: Search with parentheses in the query', () => {
   beforeEach(() => {
+    cy.mockGraphQL();
     cy.visit('/search');
     cy.get('#searchbar-text-input')
       .clear()

@@ -16,6 +16,7 @@ src/ui-components
 cypress/screenshots/
 cypress/videos/
 cypress/downloads/
+cypress.env.json
 
 # production
 /build

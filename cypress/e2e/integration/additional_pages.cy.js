@@ -1,5 +1,6 @@
 describe('additional_pages: Site nav menu', () => {
   it('shows generated About link', () => {
+    cy.mockGraphQL();
     cy.visit('/');
     cy.get('.top-navbar .navbar-nav')
       .contains('a', 'ABOUT')
@@ -9,6 +10,7 @@ describe('additional_pages: Site nav menu', () => {
 
 describe('additional_pages: About link', () => {
   it('links to correct About page', () => {
+    cy.mockGraphQL();
     cy.visit('/');
     cy.get('.top-navbar .navbar-nav')
       .contains('a', 'ABOUT')
