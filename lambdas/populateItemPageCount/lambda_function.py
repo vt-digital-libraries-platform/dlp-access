@@ -11,6 +11,7 @@ logger.setLevel(logging.INFO)
 start_time = None
 
 MAX_DURATION = 890  # timeout in 14 minutes and 50 seconds
+REQUEST_TIMEOUT = 10  # per-manifest HTTP timeout, so one slow host can't stall the run
 dynamodb = boto3.client("dynamodb")
 
 
@@ -18,6 +19,10 @@ def lambda_handler(event, context):
 
     validate_input_event(event)
     archive_table = event["archive_table"]
+
+    # force=True recounts items that already have a page_count, so a count that
+    # went stale (pages added since it was last counted) gets refreshed
+    force = bool(event.get("force", False))
 
     global start_time
     start_time = time.time()
@@ -34,13 +39,14 @@ def lambda_handler(event, context):
 
     total_items = 0
     total_processed = 0
-    last_evaluated_key = None
+    # resume from where a previous run stopped, if it ran out of time
+    last_evaluated_key = event.get("start_key")
     timeout = False
     try:
         while True and not timeout:
             (items, last_evaluated_key) = get_batch(scan_params, last_evaluated_key)
             total_items += len(items)
-            processed = process_batch(items, archive_table)
+            processed = process_batch(items, archive_table, force)
             total_processed += processed
             logger.info(
                 f"processed batch with {len(items)} items | total processed: {total_processed}"
@@ -49,13 +55,19 @@ def lambda_handler(event, context):
             if not last_evaluated_key:
                 break
         if timeout:
-            logger.warn("Exceed max duration, you may need to run me again...")
+            logger.warning(
+                "Exceeded max duration; re-invoke with the returned start_key to resume"
+            )
         return {
             "msg": f"total processed: {total_processed}, total items: {total_items}",
             "timeout": timeout,
+            # pass this back in as "start_key" to continue where this run stopped.
+            # absent means the whole table was covered.
+            "start_key": last_evaluated_key if timeout else None,
         }
     except Exception as e:
         logger.exception(f"Error:{e}")
+        raise
 
 
 def get_scan_filter_expression(event):
@@ -81,7 +93,7 @@ def get_scan_filter_expression(event):
         return None
 
 
-def process_batch(items, table) -> int:
+def process_batch(items, table, force=False) -> int:
     processed = 0
     for item in items:
         if has_timeout():
@@ -91,9 +103,12 @@ def process_batch(items, table) -> int:
         archive_options = item.get("archiveOptions", {}).get("M")
         if not manifest_url or "manifest.json" not in manifest_url:
             continue
-        # skip if page count exists
-        # if archive_options and "page_count" in archive_options:
-        #     continue
+        if is_3d_item(archive_options):
+            logger.info(f"{id} skipped: 3D item")
+            continue
+        # skip items already counted, unless force asks for a refresh
+        if not force and archive_options and "page_count" in archive_options:
+            continue
         page_cnt = get_page_count_from_manifest(manifest_url)
         if page_cnt > 0:
             if archive_options:
@@ -112,6 +127,17 @@ def process_batch(items, table) -> int:
     return processed
 
 
+def is_3d_item(archive_options) -> bool:
+    """A 3D item's manifest describes only a flat photo of the object; the model
+    itself (.glb) is stored here in archiveOptions, not in the manifest. Counting
+    manifest canvases would therefore measure the photo, not the item."""
+    if not archive_options:
+        return False
+    assets = archive_options.get("assets", {}).get("M", {})
+    media_type = assets.get("media_type", {}).get("S", "")
+    return "gltf_config" in assets or media_type.startswith("3d")
+
+
 def get_batch(scan_params, last_evaluated_key=None):
     if last_evaluated_key:
         scan_params["ExclusiveStartKey"] = last_evaluated_key
@@ -123,7 +149,7 @@ def get_batch(scan_params, last_evaluated_key=None):
 
 
 def get_page_count_from_manifest(manifest_url):
-    res = requests.get(manifest_url)
+    res = requests.get(manifest_url, timeout=REQUEST_TIMEOUT)
     res.raise_for_status()
     manifest = res.json()
     if "sequences" in manifest and manifest["sequences"]:
@@ -155,9 +181,11 @@ def has_timeout():
 
 
 def validate_input_event(e: dict):
-    required_keys = {"archive_table", "parent_collection_id"}
+    # parent_collection_id and item_category are optional filters; with neither,
+    # the whole table is processed (see get_scan_filter_expression)
+    required_keys = {"archive_table"}
     if not required_keys.issubset(e.keys()):
-        raise (f"Missing required keys: {required_keys}")
+        raise ValueError(f"Missing required keys: {required_keys}")
 
 
 # def delete_page_count(itemId):
