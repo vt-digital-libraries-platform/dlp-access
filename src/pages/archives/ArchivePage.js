@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
-import { API, graphqlOperation } from "aws-amplify";
+import { generateClient } from "aws-amplify/api";
 import PDFViewer from "../../components/PDFViewer";
 import { KalturaPlayer } from "../../components/KalturaPlayer";
 import { MinervaPlayer } from "../../components/MinervaPlayer";
@@ -33,6 +33,8 @@ import "../../css/ArchivePage.scss";
 import { NotFound } from "../NotFound";
 import BabylonElement from "src/components/Babylon/BabylonElement";
 import BabylonController from "src/components/Babylon/BabylonController";
+
+const client = generateClient();
 
 class ArchivePage extends Component {
   constructor(props) {
@@ -74,9 +76,10 @@ class ArchivePage extends Component {
         }
       }
     };
-    const response = await API.graphql(
-      graphqlOperation(searchArchives, options)
-    );
+    const response = await client.graphql({
+      query: searchArchives,
+      variables: options
+    });
     try {
       const item = response.data.searchArchives.items[0];
       if (!item) {

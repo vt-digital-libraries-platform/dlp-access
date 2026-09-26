@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { API, graphqlOperation } from "aws-amplify";
+import { generateClient } from "aws-amplify/api";
 import * as queries from "../graphql/queries";
 import { arkLinkFormatted } from "../lib/MetadataRenderer";
 import { NavLink } from "react-router-dom";
@@ -10,6 +10,8 @@ import "slick-carousel/slick/slick-theme.css";
 import { Thumbnail } from "./Thumbnail";
 import "../css/RelatedItems.scss";
 
+const client = generateClient();
+
 class RelatedItems extends Component {
   constructor(props) {
     super(props);
@@ -19,8 +21,9 @@ class RelatedItems extends Component {
   }
 
   async getItems(collection_id, item_limit) {
-    const items = await API.graphql(
-      graphqlOperation(queries.searchArchives, {
+    const items = await client.graphql({
+      query: queries.searchArchives,
+      variables: {
         filter: {
           heirarchy_path: { eq: collection_id },
           visibility: { eq: true }
@@ -30,17 +33,18 @@ class RelatedItems extends Component {
           direction: "asc"
         },
         limit: item_limit
-      })
-    );
+      }
+    });
     return items.data.searchArchives.items;
   }
 
   formatArray(item_list) {
     let uniqueItems = item_list
       .filter(
-        (item, index, array) => array.findIndex(i => i.id === item.id) === index
+        (item, index, array) =>
+          array.findIndex((i) => i.id === item.id) === index
       )
-      .filter(value => value.identifier !== this.props.collection.identifier);
+      .filter((value) => value.identifier !== this.props.collection.identifier);
     return uniqueItems;
   }
 

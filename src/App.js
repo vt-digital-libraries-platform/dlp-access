@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Storage } from "aws-amplify";
 import { Route, Routes } from "react-router-dom";
 import {
   ThemeProvider,
@@ -82,14 +81,6 @@ class App extends Component {
     this.setState({ siteChanged: changed });
   };
 
-  configureStorage = () => {
-    Storage.configure({
-      customPrefix: {
-        public: ""
-      }
-    });
-  };
-
   getCustomKeyFromURL = () => {
     return this.props.location.pathname.split("/").pop();
   };
@@ -102,7 +93,6 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.configureStorage();
     this.loadSite();
   }
 

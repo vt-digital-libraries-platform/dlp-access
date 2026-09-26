@@ -1,7 +1,11 @@
 import React, { Component } from "react";
-import { API, Auth, Storage } from "aws-amplify";
+import { generateClient } from "aws-amplify/api";
+import { getCurrentUserInfo } from "../lib/authTools";
+import { uploadData } from "aws-amplify/storage";
 import * as mutations from "../graphql/mutations";
 import { v4 as uuidv4 } from "uuid";
+
+const client = generateClient();
 
 class FileUploadField extends Component {
   constructor(props) {
@@ -68,7 +72,7 @@ class FileUploadField extends Component {
     return foldername;
   }
 
-  setFile = e => {
+  setFile = (e) => {
     if (!e.target.files[0]) return;
     const file = e.target.files[0];
     if (this.validFileType(this.props.fileType, file)) {
@@ -85,9 +89,11 @@ class FileUploadField extends Component {
       const prefixFolder = this.props.filepath ? `${this.props.filepath}/` : "";
       const s3Key = `${pathPrefix}${prefixFolder}${this.state.file.name}`;
 
-      await Storage.put(s3Key, this.state.file, {
-        contentType: this.state.file.type
-      });
+      await uploadData({
+        path: s3Key,
+        data: this.state.file,
+        options: { contentType: this.state.file.type }
+      }).result;
       const evt = {
         target: {
           name: this.props.name,
@@ -128,29 +134,28 @@ class FileUploadField extends Component {
         }
       };
 
-      const userInfo = await Auth.currentUserPoolUser();
+      const userInfo = await getCurrentUserInfo();
       let newID = uuidv4();
       let historyInfo = {
         id: newID,
-        groups:
-          userInfo.signInUserSession.accessToken.payload["cognito:groups"],
-        userEmail: userInfo.attributes.email,
+        groups: userInfo.groups,
+        userEmail: userInfo.email,
         siteID: this.props.siteID,
         event: JSON.stringify(eventInfo)
       };
       try {
-        await API.graphql({
+        await client.graphql({
           query: mutations.createHistory,
-          variables: { 
+          variables: {
             id: newID,
-            input: historyInfo },
-          authMode: "AMAZON_COGNITO_USER_POOLS"
+            input: historyInfo
+          },
+          authMode: "userPool"
         });
       } catch (error) {
-        console.error(error)
-        console.log("error creating history record")
+        console.error(error);
+        console.log("error creating history record");
       }
-      
     } else {
       this.setState({ isUploaded: false });
     }

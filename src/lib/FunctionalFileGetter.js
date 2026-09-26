@@ -1,4 +1,5 @@
-import { Storage } from "aws-amplify";
+import { getUrl } from "aws-amplify/storage";
+import { getStorageBucket } from "./storageTools";
 
 const getURLType = (url) => {
   let type = {};
@@ -17,7 +18,7 @@ const getURLType = (url) => {
   } else {
     type["fullURL"] = false;
   }
-  if (url?.indexOf(Storage._config.AWSS3.bucket) !== -1) {
+  if (url?.indexOf(getStorageBucket()) !== -1) {
     type["correctBucket"] = true;
   } else {
     type["correctBucket"] = false;
@@ -86,9 +87,11 @@ export const getFile = async (
   }
   if (!urlType.undefined && !urlType.externalURL) {
     try {
-      signedURL = await Storage.get(`${prefix}/${filename}`, {
-        validateObjectExistence: true,
+      const { url } = await getUrl({
+        path: `${prefix}/${filename}`,
+        options: { validateObjectExistence: true }
       });
+      signedURL = url.toString();
     } catch (e) {
       console.error(e);
     }
@@ -113,7 +116,7 @@ const removeIncorrectBucket = (copyURL) => {
 };
 
 const handleCorrectBucket = (copyURL) => {
-  const domain = `https://${Storage._config.AWSS3.bucket}.s3.us-east-1.amazonaws.com/`;
+  const domain = `https://${getStorageBucket()}.s3.us-east-1.amazonaws.com/`;
   copyURL = copyURL.replace(domain, "");
   const filename = copyURL.split("/").pop();
   let prefix = copyURL.replace(filename, "");

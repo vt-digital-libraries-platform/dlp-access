@@ -1,7 +1,11 @@
-import { API, graphqlOperation, Storage } from "aws-amplify";
+import { generateClient } from "aws-amplify/api";
+import { downloadData, getUrl } from "aws-amplify/storage";
+import { getStorageBucket } from "./storageTools";
 import * as queries from "../graphql/queries";
 import { language_codes } from "./language_codes";
 import { available_attributes } from "./available_attributes";
+
+const client = generateClient();
 
 export const downloadFile = async (filePath, type = "download") => {
   await getFileContent(filePath, type).then((resp) => {
@@ -36,7 +40,7 @@ export const getFileContent = async (
     if (
       copyURL &&
       copyURL.indexOf("http") === 0 &&
-      copyURL.indexOf(Storage._config.AWSS3.bucket) === -1
+      copyURL.indexOf(getStorageBucket()) === -1
     ) {
       if (component) {
         stateObj[stateAttr] = copyURL;
@@ -65,17 +69,17 @@ export const getFileContent = async (
       }
       try {
         const s3Key = `${prefix}/${filename}`;
-        let copyLink = await Storage.get(s3Key);
+        let copyLink = (await getUrl({ path: s3Key })).url.toString();
         if (type === "audio") {
           copyLink = copyLink.replace(/%20/g, "+");
         }
         if (type === "html") {
-          const copy = await Storage.get(s3Key, { download: true });
-          copyLink = await new Response(copy.Body).text();
+          const { body } = await downloadData({ path: s3Key }).result;
+          copyLink = await body.text();
         }
         if (type === "download") {
-          const copy = await Storage.get(s3Key, { download: true });
-          return copy.Body;
+          const { body } = await downloadData({ path: s3Key }).result;
+          return await body.blob();
         }
         if (component) {
           stateObj[stateAttr] = copyLink;
@@ -99,7 +103,7 @@ export const getFileContent = async (
 
 export const fetchSignedLink = async (objLink) => {
   let filename = objLink.split("/").pop();
-  const bucket = Storage._config.AWSS3.bucket;
+  const bucket = getStorageBucket();
   let prefix = objLink
     .replace(`https://${bucket}.s3.amazonaws.com/`, "")
     .replace(filename, "");
@@ -111,7 +115,7 @@ export const fetchSignedLink = async (objLink) => {
 
   try {
     const s3Key = `${prefix}${filename}`;
-    signedLink = await Storage.get(s3Key);
+    signedLink = (await getUrl({ path: s3Key })).url.toString();
     console.log(`fetching signedURL for: ${filename}`);
   } catch (error) {
     console.error(`Error fetching signedLink for ${filename}`);
@@ -357,21 +361,23 @@ const fetchObjects = async (
   gqlQuery,
   { filter, sort, limit, nextToken, otherArgs }
 ) => {
-  const Objects = await API.graphql(
-    graphqlOperation(gqlQuery, {
+  const Objects = await client.graphql({
+    query: gqlQuery,
+    variables: {
       filter: filter,
       sort: sort,
       limit: limit,
       nextToken: nextToken,
       ...otherArgs
-    })
-  );
+    }
+  });
   return Objects;
 };
 
 const getCollectionIDByTitle = async (title) => {
-  const Results = await API.graphql(
-    graphqlOperation(queries.searchCollections, {
+  const Results = await client.graphql({
+    query: queries.searchCollections,
+    variables: {
       order: "ASC",
       limit: 1,
       filter: {
@@ -379,8 +385,8 @@ const getCollectionIDByTitle = async (title) => {
           eq: title
         }
       }
-    })
-  );
+    }
+  });
   let id = null;
   try {
     id = Results.data.searchCollections.items[0].id;
@@ -392,16 +398,17 @@ const getCollectionIDByTitle = async (title) => {
 
 export const getPodcastCollections = async () => {
   let items = null;
-  const results = await API.graphql(
-    graphqlOperation(queries.searchCollections, {
+  const results = await client.graphql({
+    query: queries.searchCollections,
+    variables: {
       order: "ASC",
       filter: {
         collection_category: {
           eq: "podcasts"
         }
       }
-    })
-  );
+    }
+  });
   try {
     items = results.data.searchCollections.items;
   } catch (error) {
@@ -416,11 +423,12 @@ export const getParentCollectionForItem = async (item) => {
 
   try {
     if (item?.parent_collection && item?.parent_collection.length > 0) {
-      response = await API.graphql(
-        graphqlOperation(queries.getCollection, {
+      response = await client.graphql({
+        query: queries.getCollection,
+        variables: {
           id: item.parent_collection[0]
-        })
-      );
+        }
+      });
     }
   } catch (error) {
     console.error(error);
@@ -442,11 +450,12 @@ export const getTopLevelParentForCollection = async (collection) => {
   let response = null;
 
   try {
-    response = await API.graphql(
-      graphqlOperation(queries.getCollection, {
+    response = await client.graphql({
+      query: queries.getCollection,
+      variables: {
         id: topLevelId
-      })
-    );
+      }
+    });
   } catch (error) {
     console.error(`Error fetching top level parent for: ${collection.id}`);
   }
@@ -467,11 +476,12 @@ export const fetchHeirarchyPathMembers = async (collection) => {
   for (var idx in collection.heirarchy_path) {
     orArray.push({ id: { eq: collection.heirarchy_path[idx] } });
   }
-  const response = await API.graphql(
-    graphqlOperation(queries.searchCollections, {
+  const response = await client.graphql({
+    query: queries.searchCollections,
+    variables: {
       filter: { or: orArray }
-    })
-  );
+    }
+  });
   try {
     retVal = response.data.searchCollections.items;
   } catch (error) {
@@ -483,7 +493,7 @@ export const fetchHeirarchyPathMembers = async (collection) => {
 
 export const getSite = async () => {
   const REP_TYPE = process.env.REACT_APP_REP_TYPE.toLowerCase();
-  const apiData = await API.graphql({
+  const apiData = await client.graphql({
     query: queries.siteBySiteId,
     variables: { siteId: REP_TYPE, limit: 1 }
   });
@@ -498,11 +508,12 @@ export const getSite = async () => {
 
 export const getPageContentById = async (pageContentId) => {
   let resp = null;
-  const data = await API.graphql(
-    graphqlOperation(queries.getPageContent, {
+  const data = await client.graphql({
+    query: queries.getPageContent,
+    variables: {
       id: pageContentId
-    })
-  );
+    }
+  });
   try {
     resp = data.data.getPageContent.content;
   } catch {
@@ -513,7 +524,7 @@ export const getPageContentById = async (pageContentId) => {
 
 export const getArchiveByIdentifier = async (identifier) => {
   const REP_TYPE = process.env.REACT_APP_REP_TYPE.toLowerCase();
-  const apiData = await API.graphql({
+  const apiData = await client.graphql({
     query: queries.archiveByIdentifier,
     variables: {
       identifier: identifier,
@@ -534,7 +545,7 @@ export const getArchiveByIdentifier = async (identifier) => {
 
 export const getCollectionByIdentifier = async (identifier) => {
   const REP_TYPE = process.env.REACT_APP_REP_TYPE.toLowerCase();
-  const apiData = await API.graphql({
+  const apiData = await client.graphql({
     query: queries.collectionByIdentifier,
     variables: {
       identifier: identifier,
@@ -590,24 +601,26 @@ export const getCollectionItems = async (
       nextToken
     }
   }`;
-  const items = await API.graphql(
-    graphqlOperation(queryGetCollectionItems, {
+  const items = await client.graphql({
+    query: queryGetCollectionItems,
+    variables: {
       parent_id: collectionID,
       limit: limit,
       sort: [{ field: sortOpt.field, direction: sortOpt.direction }],
       nextToken: nextToken
-    })
-  );
+    }
+  });
   return items.data.searchArchives;
 };
 
 export const getCollectionMap = async (mapIdentifier) => {
   try {
-    const response = await API.graphql(
-      graphqlOperation(queries.getCollectionmap, {
+    const response = await client.graphql({
+      query: queries.getCollectionmap,
+      variables: {
         id: mapIdentifier
-      })
-    );
+      }
+    });
     return response.data.getCollectionmap.map_object;
   } catch (error) {
     console.error("Error fetching collection tree map");
@@ -630,9 +643,10 @@ export const getCollectionFromCustomKey = async (customKey) => {
     }
   };
   try {
-    const response = await API.graphql(
-      graphqlOperation(queries.searchCollections, options)
-    );
+    const response = await client.graphql({
+      query: queries.searchCollections,
+      variables: options
+    });
     return response.data.searchCollections.items[0];
   } catch (error) {
     console.error(`Error fetching collection: ${customKey}`);

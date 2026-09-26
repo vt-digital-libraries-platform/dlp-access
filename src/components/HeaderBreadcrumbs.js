@@ -1,8 +1,10 @@
 import React from "react";
-import { API, graphqlOperation } from "aws-amplify";
+import { generateClient } from "aws-amplify/api";
 import * as queries from "../graphql/queries";
 
 import Breadcrumbs from "./Breadcrumbs";
+
+const client = generateClient();
 
 class HeaderBreadcrumbs extends Breadcrumbs {
   constructor(props) {
@@ -36,7 +38,7 @@ class HeaderBreadcrumbs extends Breadcrumbs {
       dataRecord = "searchArchives";
     }
     if (query) {
-      const item = await API.graphql(graphqlOperation(query, options));
+      const item = await client.graphql({ query: query, variables: options });
       try {
         title = item.data[dataRecord].items[0].title;
       } catch (error) {
@@ -44,7 +46,7 @@ class HeaderBreadcrumbs extends Breadcrumbs {
       }
     }
     if (title) {
-      this.setState({ title: title }, function() {
+      this.setState({ title: title }, function () {
         this.buildList(pathname, path_array);
       });
     } else {

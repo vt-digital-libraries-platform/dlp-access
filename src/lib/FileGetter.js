@@ -1,7 +1,8 @@
-import { Storage } from "aws-amplify";
+import { getUrl } from "aws-amplify/storage";
+import { getStorageBucket } from "./storageTools";
 
 export default class FileGetter {
-  getURLType = url => {
+  getURLType = (url) => {
     let type = {};
     if (!url?.length) {
       type["undefined"] = true;
@@ -18,7 +19,7 @@ export default class FileGetter {
     } else {
       type["fullURL"] = false;
     }
-    if (url?.indexOf(Storage._config.AWSS3.bucket) !== -1) {
+    if (url?.indexOf(getStorageBucket()) !== -1) {
       type["correctBucket"] = true;
     } else {
       type["correctBucket"] = false;
@@ -101,7 +102,8 @@ export default class FileGetter {
     }
     if (!urlType.undefined && !urlType.externalURL) {
       try {
-        signedURL = await Storage.get(`${prefix}/${filename}`);
+        const { url } = await getUrl({ path: `${prefix}/${filename}` });
+        signedURL = url.toString();
         // if (type === "audio") {
         //   signedURL = signedURL.replace(/%20/g, "+");
         // }
@@ -116,7 +118,7 @@ export default class FileGetter {
     return signedURL;
   };
 
-  removeIncorrectBucket = copyURL => {
+  removeIncorrectBucket = (copyURL) => {
     const domain = "amazonaws.com/";
     const start = copyURL.indexOf(domain);
     const length = start + domain.length;
@@ -132,8 +134,8 @@ export default class FileGetter {
     return [filename, prefix];
   };
 
-  handleCorrectBucket = copyURL => {
-    const domain = `https://${Storage._config.AWSS3.bucket}.s3.us-east-1.amazonaws.com/`;
+  handleCorrectBucket = (copyURL) => {
+    const domain = `https://${getStorageBucket()}.s3.us-east-1.amazonaws.com/`;
     copyURL = copyURL.replace(domain, "");
     const filename = copyURL.split("/").pop();
     let prefix = copyURL.replace(filename, "");

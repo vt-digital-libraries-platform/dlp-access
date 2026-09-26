@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { API } from "aws-amplify";
+import { post } from "aws-amplify/api";
 import DOMPurify from "dompurify";
 import { SiteTitle } from "../components/SiteTitle";
 
@@ -161,18 +161,24 @@ class FeedbackPage extends Component {
 
     try {
       // Call Lambda function with sanitized values
-      const response = await API.post("feedbackapi", "/submit", {
-        body: {
-          feedbackType,
-          message: sanitizeMessage(feedbackMessage),
-          siteName,
-          emailTo: feedbackEmail,
-          // Send empty string when no email provided — the Lambda handles
-          // the "Anonymous" fallback so we don't send a non-email string
-          // that would fail the Lambda's email format validation
-          submittedBy: sanitizeEmail(submittedBy)
+      const restOperation = post({
+        apiName: "feedbackapi",
+        path: "/submit",
+        options: {
+          body: {
+            feedbackType,
+            message: sanitizeMessage(feedbackMessage),
+            siteName,
+            emailTo: feedbackEmail,
+            // Send empty string when no email provided — the Lambda handles
+            // the "Anonymous" fallback so we don't send a non-email string
+            // that would fail the Lambda's email format validation
+            submittedBy: sanitizeEmail(submittedBy)
+          }
         }
       });
+      const { body } = await restOperation.response;
+      const response = await body.json();
 
       if (response.success) {
         // Show success message and clear form

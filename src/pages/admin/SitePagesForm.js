@@ -3,7 +3,8 @@ import { withAuthenticator } from "@aws-amplify/ui-react";
 import { NavLink } from "react-router-dom";
 import { Form, Button, Label } from "semantic-ui-react";
 import { updatedDiff } from "deep-object-diff";
-import { API, Auth } from "aws-amplify";
+import { generateClient } from "aws-amplify/api";
+import { getCurrentUserInfo } from "../../lib/authTools";
 import {
   getSite,
   getFileContent,
@@ -18,6 +19,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Editor from "../../components/Editor";
 
 import "../../css/adminForms.scss";
+
+const client = generateClient();
 
 const initialFormState = [];
 
@@ -132,10 +135,10 @@ class SitePagesForm extends Component {
     const siteID = this.state.site.id;
     const siteInfo = { id: siteID, sitePages: JSON.stringify(pagesObj) };
 
-    await API.graphql({
+    await client.graphql({
       query: mutations.updateSite,
       variables: { input: siteInfo },
-      authMode: "AMAZON_COGNITO_USER_POOLS"
+      authMode: "userPool"
     });
     const newData = updatedDiff(this.state.prevFormState, this.state.formState);
     const oldData = updatedDiff(this.state.formState, this.state.prevFormState);
@@ -189,17 +192,17 @@ class SitePagesForm extends Component {
       }
     }
 
-    const userInfo = await Auth.currentUserPoolUser();
+    const userInfo = await getCurrentUserInfo();
     let historyInfo = {
-      groups: userInfo.signInUserSession.accessToken.payload["cognito:groups"],
-      userEmail: userInfo.attributes.email,
+      groups: userInfo.groups,
+      userEmail: userInfo.email,
       siteID: siteID,
       event: JSON.stringify(eventInfo)
     };
-    await API.graphql({
+    await client.graphql({
       query: mutations.createHistory,
       variables: { input: historyInfo },
-      authMode: "AMAZON_COGNITO_USER_POOLS"
+      authMode: "userPool"
     });
     if (typeof this.props.siteChanged === "function") {
       this.props.siteChanged(true);
@@ -228,10 +231,10 @@ class SitePagesForm extends Component {
           let pageContent = {
             id: pages[idx].pageContentId
           };
-          await API.graphql({
+          await client.graphql({
             query: mutations.deletePageContent,
             variables: { input: pageContent },
-            authMode: "AMAZON_COGNITO_USER_POOLS"
+            authMode: "userPool"
           });
         }
         pages.splice(idx, 1);
@@ -284,7 +287,7 @@ class SitePagesForm extends Component {
     if (htmlUrl && useDataUrl) {
       await getFileContent(htmlUrl, "html", this);
     } else if (pageContentId) {
-      await getPageContentById(pageContentId).then(resp => {
+      await getPageContentById(pageContentId).then((resp) => {
         this.setState({
           copy: resp,
           pageContentId: pageContentId
@@ -305,12 +308,12 @@ class SitePagesForm extends Component {
     if (!this.state.pageContentId) {
       page.id = uuidv4();
       page.page_content_category = process.env.REACT_APP_REP_TYPE.toLowerCase();
-      await API.graphql({
+      await client.graphql({
         query: mutations.createPageContent,
         variables: { input: page },
-        authMode: "AMAZON_COGNITO_USER_POOLS"
+        authMode: "userPool"
       });
-      temp.forEach(item => {
+      temp.forEach((item) => {
         if (item.pageName === this.state.pageId) {
           item.pageContentId = page.id;
           item.useDataUrl = false;
@@ -318,12 +321,12 @@ class SitePagesForm extends Component {
       });
     } else {
       page.id = this.state.pageContentId;
-      await API.graphql({
+      await client.graphql({
         query: mutations.updatePageContent,
         variables: { input: page },
-        authMode: "AMAZON_COGNITO_USER_POOLS"
+        authMode: "userPool"
       });
-      temp.forEach(item => {
+      temp.forEach((item) => {
         if (item.pageName === this.state.pageId) {
           item.useDataUrl = false;
         }
@@ -496,7 +499,7 @@ class SitePagesForm extends Component {
   viewSitePages() {
     return (
       <ul>
-        {this.state.formState.map(page => {
+        {this.state.formState.map((page) => {
           return (
             <li key={page.pageName}>
               <div>

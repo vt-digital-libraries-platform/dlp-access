@@ -1,30 +1,28 @@
-const Auth = require("aws-amplify").Auth;
 import "cypress-file-upload";
 import "cypress-localstorage-commands";
 import { Amplify } from "aws-amplify";
-import config from "../../src/aws-exports";
+import { fetchAuthSession, getCurrentUser, signIn } from "aws-amplify/auth";
+import config from "../../src/amplifyconfiguration.json";
 const username = "devtest";
 const password = Cypress.env("password");
 
 Amplify.configure(config);
-const awsconfig = {
-  aws_user_pools_id: Amplify.Auth._config.aws_user_pools_id,
-  aws_user_pools_web_client_id:
-    Amplify.Auth._config.aws_user_pools_web_client_id
-};
-Auth.configure(awsconfig);
 
 Cypress.Commands.add("signIn", () => {
-  cy.then(() => Auth.signIn(username, password)).then((cognitoUser) => {
-    const idToken = cognitoUser.signInUserSession.idToken.jwtToken;
-    const accessToken = cognitoUser.signInUserSession.accessToken.jwtToken;
+  cy.then(async () => {
+    await signIn({ username, password });
+    const { tokens } = await fetchAuthSession();
+    const user = await getCurrentUser();
+    return { tokens, user };
+  }).then(({ tokens, user }) => {
+    const clientId = config.aws_user_pools_web_client_id;
     const makeKey = (name) =>
-      `CognitoIdentityServiceProvider.${cognitoUser.pool.clientId}.${cognitoUser.username}.${name}`;
-    cy.setLocalStorage(makeKey("accessToken"), accessToken);
-    cy.setLocalStorage(makeKey("idToken"), idToken);
+      `CognitoIdentityServiceProvider.${clientId}.${user.username}.${name}`;
+    cy.setLocalStorage(makeKey("accessToken"), tokens.accessToken.toString());
+    cy.setLocalStorage(makeKey("idToken"), tokens.idToken.toString());
     cy.setLocalStorage(
-      `CognitoIdentityServiceProvider.${cognitoUser.pool.clientId}.LastAuthUser`,
-      cognitoUser.username
+      `CognitoIdentityServiceProvider.${clientId}.LastAuthUser`,
+      user.username
     );
   });
   cy.saveLocalStorage();

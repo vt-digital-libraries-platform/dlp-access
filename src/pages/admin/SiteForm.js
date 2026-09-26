@@ -2,10 +2,13 @@ import React, { Component } from "react";
 import { withAuthenticator } from "@aws-amplify/ui-react";
 import { Form, Checkbox } from "semantic-ui-react";
 import { updatedDiff } from "deep-object-diff";
-import { API, Auth } from "aws-amplify";
+import { generateClient } from "aws-amplify/api";
+import { getCurrentUserInfo } from "../../lib/authTools";
 import { getSite } from "../../lib/fetchTools";
 import * as mutations from "../../graphql/mutations";
 import { ContactForm, Contacts } from "./ContactFields";
+
+const client = generateClient();
 
 const initialFormState = {
   analyticsID: "",
@@ -45,7 +48,7 @@ class SiteForm extends Component {
         siteOptions: options,
         siteTitle: site.siteTitle,
         contact: site.contact.length
-          ? site.contact.map(contact => {
+          ? site.contact.map((contact) => {
               return JSON.parse(contact);
             })
           : [],
@@ -83,7 +86,7 @@ class SiteForm extends Component {
       } else {
         array.push(data.value);
       }
-      this.setState(prevState => {
+      this.setState((prevState) => {
         return {
           formState: { ...prevState.formState, socialMedia: array }
         };
@@ -92,13 +95,13 @@ class SiteForm extends Component {
       data.name === "collectionViewOption" ||
       data.name === "collectionItemsPosition"
     ) {
-      this.setState(prevState => {
+      this.setState((prevState) => {
         return {
           formState: { ...prevState.formState, [data.name]: data.value }
         };
       });
     } else {
-      this.setState(prevState => {
+      this.setState((prevState) => {
         return {
           formState: { ...prevState.formState, [name]: value }
         };
@@ -106,9 +109,9 @@ class SiteForm extends Component {
     }
   };
 
-  formatData = siteInfo => {
+  formatData = (siteInfo) => {
     let site = siteInfo;
-    site.contact = site.contact.map(contact => {
+    site.contact = site.contact.map((contact) => {
       return JSON.stringify(contact);
     });
     site.siteOptions = JSON.stringify(site.siteOptions);
@@ -121,14 +124,17 @@ class SiteForm extends Component {
 
     if (this.state.formState.siteOptions) {
       const options = this.state.formState.siteOptions;
-      options.collectionPageSettings = this.state.formState.collectionPageSettings;
+      options.collectionPageSettings =
+        this.state.formState.collectionPageSettings;
       if (this.state.formState.redirectURL.length) {
         options.redirectURL = this.state.formState.redirectURL;
       }
       options.socialMedia = this.state.formState.socialMedia;
-      options.collectionPageSettings.itemsPosition = this.state.formState.collectionItemsPosition;
-      options.collectionPageSettings.viewOption = this.state.formState.collectionViewOption;
-      this.setState(prevState => {
+      options.collectionPageSettings.itemsPosition =
+        this.state.formState.collectionItemsPosition;
+      options.collectionPageSettings.viewOption =
+        this.state.formState.collectionViewOption;
+      this.setState((prevState) => {
         return {
           formState: { ...prevState.formState, siteOptions: options }
         };
@@ -145,10 +151,10 @@ class SiteForm extends Component {
     delete siteInfo.collectionViewOption;
     delete siteInfo.collectionPageSettings;
 
-    await API.graphql({
+    await client.graphql({
       query: mutations.updateSite,
       variables: { input: siteInfo },
-      authMode: "AMAZON_COGNITO_USER_POOLS"
+      authMode: "userPool"
     });
     const newData = updatedDiff(this.state.prevFormState, this.state.formState);
     const oldData = updatedDiff(this.state.formState, this.state.prevFormState);
@@ -161,17 +167,17 @@ class SiteForm extends Component {
         }
       };
     }, {});
-    const userInfo = await Auth.currentUserPoolUser();
+    const userInfo = await getCurrentUserInfo();
     let historyInfo = {
-      groups: userInfo.signInUserSession.accessToken.payload["cognito:groups"],
-      userEmail: userInfo.attributes.email,
+      groups: userInfo.groups,
+      userEmail: userInfo.email,
       siteID: siteID,
       event: JSON.stringify(eventInfo)
     };
-    await API.graphql({
+    await client.graphql({
       query: mutations.createHistory,
       variables: { input: historyInfo },
-      authMode: "AMAZON_COGNITO_USER_POOLS"
+      authMode: "userPool"
     });
     if (typeof this.props.siteChanged === "function") {
       this.props.siteChanged(true);
@@ -182,10 +188,10 @@ class SiteForm extends Component {
     this.setState({ viewState: value });
   };
 
-  updateContactValue = event => {
+  updateContactValue = (event) => {
     const { name, value, dataset } = event.target;
     const index = dataset.index;
-    this.setState(prevState => {
+    this.setState((prevState) => {
       let contactArray = [...prevState.formState.contact];
       let contact = { ...contactArray[index], [name]: value };
       contactArray[index] = contact;
@@ -212,7 +218,7 @@ class SiteForm extends Component {
   };
 
   addContact = () => {
-    this.setState(prevState => {
+    this.setState((prevState) => {
       let contactArray = [...prevState.formState.contact];
       let newContact = {
         title: "",
@@ -230,9 +236,9 @@ class SiteForm extends Component {
     });
   };
 
-  removeContact = event => {
+  removeContact = (event) => {
     const index = event.target.dataset.index;
-    this.setState(prevState => {
+    this.setState((prevState) => {
       let contactArray = [...prevState.formState.contact];
       contactArray.splice(index, 1);
       return {
@@ -381,7 +387,7 @@ class SiteForm extends Component {
             <p>Sharing Options:</p>
             <ul className="sharing-options">
               {this.state.formState.socialMedia.length ? (
-                this.state.formState.socialMedia.map(item => {
+                this.state.formState.socialMedia.map((item) => {
                   return <li key={`${item}`}>{`${item}`}</li>;
                 })
               ) : (

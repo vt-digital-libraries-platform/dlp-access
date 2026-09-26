@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
-import { API, graphqlOperation } from "aws-amplify";
+import { generateClient } from "aws-amplify/api";
 import { SiteTitle } from "../components/SiteTitle";
 import { buildHeaderSchema } from "../lib/richSchemaTools";
 import { listMetadataFields } from "../graphql/queries";
@@ -9,6 +9,8 @@ import metadataFieldInfo from "../data/metadataFieldInfo.json";
 import "../css/Editor.scss";
 import "../css/MetadataPage.scss";
 import "../css/Typography.scss";
+
+const client = generateClient();
 
 class MetadataPage extends Component {
   constructor(props) {
@@ -27,12 +29,13 @@ class MetadataPage extends Component {
       let allItems = [];
       let nextToken = null;
       do {
-        const result = await API.graphql(
-          graphqlOperation(listMetadataFields, {
+        const result = await client.graphql({
+          query: listMetadataFields,
+          variables: {
             limit: 500,
             nextToken
-          })
-        );
+          }
+        });
         const { items, nextToken: newToken } = result.data.listMetadataFields;
         allItems = allItems.concat(items);
         nextToken = newToken;

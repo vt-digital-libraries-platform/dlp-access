@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Form } from "semantic-ui-react";
-import { Storage } from "aws-amplify";
+import { uploadData } from "aws-amplify/storage";
 
 class ContentUpload extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class ContentUpload extends Component {
     };
   }
 
-  setFile = e => {
+  setFile = (e) => {
     if (!e.target.files[0]) return;
     const file = e.target.files[0];
     if (file.type.match(/\/(jpeg|jpg|gif|png|html|csv)$/g)) {
@@ -22,7 +22,7 @@ class ContentUpload extends Component {
     }
   };
 
-  folderNameByFileType = fileType => {
+  folderNameByFileType = (fileType) => {
     const fileTypeArray = fileType.split("/");
     const prefix = fileTypeArray[0];
     let type = "";
@@ -48,7 +48,7 @@ class ContentUpload extends Component {
     return folderName;
   };
 
-  getS3Key = prefix => {
+  getS3Key = (prefix) => {
     let fileName = this.state.file.name;
     if (
       this.props?.contentType === "metadata" &&
@@ -76,9 +76,11 @@ class ContentUpload extends Component {
       const prefix = `public/sitecontent/${folder}/${process.env.REACT_APP_REP_TYPE.toLowerCase()}`;
       const s3Key = this.getS3Key(prefix);
 
-      await Storage.put(s3Key, this.state.file, {
-        contentType: this.state.file.type
-      });
+      await uploadData({
+        path: s3Key,
+        data: this.state.file,
+        options: { contentType: this.state.file.type }
+      }).result;
       const eventInfo = {
         upload_content: {
           name: this.state.file.name,

@@ -7,21 +7,24 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
 import { Amplify } from "aws-amplify";
-import config from "./aws-exports";
+import config from "./amplifyconfiguration.json";
 
 import "bootstrap/dist/css/bootstrap.css";
 import "semantic-ui-css/semantic.min.css";
 
 console.clear();
+Amplify.configure(config);
+const amplifyConfig = Amplify.getConfig();
 Amplify.configure({
-  ...config,
+  ...amplifyConfig,
   API: {
-    endpoints: [
-      {
-        name: "feedbackapi",
-        endpoint: process.env.REACT_APP_FEEDBACK_API_ENDPOINT
+    ...amplifyConfig.API,
+    REST: {
+      feedbackapi: {
+        endpoint: process.env.REACT_APP_FEEDBACK_API_ENDPOINT,
+        region: config.aws_project_region
       }
-    ]
+    }
   }
 });
 

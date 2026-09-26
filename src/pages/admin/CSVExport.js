@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { CSVLink } from "react-csv";
 import { csv_metadataFields } from "../../lib/available_attributes";
-import { API, graphqlOperation } from "aws-amplify";
+import { generateClient } from "aws-amplify/api";
 import * as queries from "../../graphql/queries.js";
 import { Checkbox, Button, Form } from "semantic-ui-react";
+
+const client = generateClient();
 
 const REP_TYPE = process.env.REACT_APP_REP_TYPE.toLowerCase();
 
@@ -59,28 +61,30 @@ function CSVExport() {
     let nextToken = "";
     let results = [];
     do {
-      const collections = await API.graphql(
-        graphqlOperation(GetCollections, {
+      const collections = await client.graphql({
+        query: GetCollections,
+        variables: {
           filter: REP_TYPE,
           nextToken: nextToken
-        })
-      );
+        }
+      });
       results.push(...collections.data.searchCollections.items);
       nextToken = collections.data.searchCollections.nextToken;
     } while (nextToken);
     return results;
   };
 
-  const getItems = async filter => {
+  const getItems = async (filter) => {
     let searchResults = [];
     let nextToken = null;
     do {
-      const archives = await API.graphql(
-        graphqlOperation(GetArchives, {
+      const archives = await client.graphql({
+        query: GetArchives,
+        variables: {
           filter: filter,
           nextToken: nextToken
-        })
-      );
+        }
+      });
       searchResults.push(...archives.data.searchArchives.items);
       nextToken = archives.data.searchArchives.nextToken;
     } while (nextToken);
@@ -92,16 +96,17 @@ function CSVExport() {
       let nextToken = "";
       let results = [];
       do {
-        const collections = await API.graphql(
-          graphqlOperation(queries.searchCollections, {
+        const collections = await client.graphql({
+          query: queries.searchCollections,
+          variables: {
             filter: {
               collection_category: {
                 eq: REP_TYPE
               }
             },
             nextToken: nextToken
-          })
-        );
+          }
+        });
         results.push(...collections.data.searchCollections.items);
         nextToken = collections.data.searchCollections.nextToken;
       } while (nextToken);
@@ -110,17 +115,17 @@ function CSVExport() {
     load();
   }, []);
 
-  const handleCheck = id => {
+  const handleCheck = (id) => {
     let arr = [];
     if (searches.length > 0 && searches.includes(id)) {
-      arr = searches.filter(el => el !== id);
+      arr = searches.filter((el) => el !== id);
       setSearches(arr);
     } else {
       if (id === "allItems" || id === "allCollections") {
         setSearches([id]);
       } else {
         arr = searches.filter(
-          el => el !== "allItems" && el !== "allCollections"
+          (el) => el !== "allItems" && el !== "allCollections"
         );
         arr.push(id);
         setSearches(arr);
@@ -129,7 +134,7 @@ function CSVExport() {
   };
 
   const getLinks = () => {
-    const links = allCollections.map(col => {
+    const links = allCollections.map((col) => {
       if (col.parent_collection === null) {
         return (
           <div key={col.identifier}>
@@ -151,7 +156,7 @@ function CSVExport() {
   const getCSV = () => {
     let filter = null;
     if (searches.includes("allCollections")) {
-      getCollections().then(resp => {
+      getCollections().then((resp) => {
         setCsvData(resp);
         setVisibleLink(true);
       });
@@ -159,12 +164,12 @@ function CSVExport() {
       filter = {
         item_category: { eq: REP_TYPE }
       };
-      getItems(filter).then(resp => {
+      getItems(filter).then((resp) => {
         setCsvData(resp);
         setVisibleLink(true);
       });
     } else {
-      let searchIds = searches.map(id => {
+      let searchIds = searches.map((id) => {
         let obj = {};
         obj.heirarchy_path = { eq: id };
         return obj;
@@ -172,7 +177,7 @@ function CSVExport() {
       filter = {
         or: searchIds
       };
-      getItems(filter).then(resp => {
+      getItems(filter).then((resp) => {
         setCsvData(resp);
         setVisibleLink(true);
       });

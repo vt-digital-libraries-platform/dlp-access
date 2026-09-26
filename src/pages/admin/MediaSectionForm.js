@@ -3,8 +3,11 @@ import { withAuthenticator } from "@aws-amplify/ui-react";
 import { Form } from "semantic-ui-react";
 import { getSite } from "../../lib/fetchTools";
 import { updatedDiff } from "deep-object-diff";
-import { API, Auth } from "aws-amplify";
+import { generateClient } from "aws-amplify/api";
+import { getCurrentUserInfo } from "../../lib/authTools";
 import * as mutations from "../../graphql/mutations";
+
+const client = generateClient();
 
 const initialFormState = {
   link: "",
@@ -51,11 +54,11 @@ class MediaSectionForm extends Component {
     }
   }
 
-  updateInputValue = event => {
+  updateInputValue = (event) => {
     const target = event.target;
     const value = target.value;
     const name = target.name;
-    this.setState(prevState => {
+    this.setState((prevState) => {
       return {
         formState: { ...prevState.formState, [name]: value }
       };
@@ -68,10 +71,10 @@ class MediaSectionForm extends Component {
     let homePage = JSON.parse(this.state.site.homePage);
     homePage.mediaSection = this.state.formState;
     let siteInfo = { id: siteID, homePage: JSON.stringify(homePage) };
-    await API.graphql({
+    await client.graphql({
       query: mutations.updateSite,
       variables: { input: siteInfo },
-      authMode: "AMAZON_COGNITO_USER_POOLS"
+      authMode: "userPool"
     });
     const newData = updatedDiff(this.state.prevFormState, this.state.formState);
     const oldData = updatedDiff(this.state.formState, this.state.prevFormState);
@@ -84,18 +87,18 @@ class MediaSectionForm extends Component {
         }
       };
     }, {});
-    const userInfo = await Auth.currentUserPoolUser();
+    const userInfo = await getCurrentUserInfo();
     let historyInfo = {
-      groups: userInfo.signInUserSession.accessToken.payload["cognito:groups"],
-      userEmail: userInfo.attributes.email,
+      groups: userInfo.groups,
+      userEmail: userInfo.email,
       siteID: siteID,
       event: JSON.stringify(eventInfo)
     };
 
-    await API.graphql({
+    await client.graphql({
       query: mutations.createHistory,
       variables: { input: historyInfo },
-      authMode: "AMAZON_COGNITO_USER_POOLS"
+      authMode: "userPool"
     });
     if (typeof this.props.siteChanged === "function") {
       this.props.siteChanged(true);
@@ -106,7 +109,7 @@ class MediaSectionForm extends Component {
     this.setState({ viewState: value });
   };
 
-  clearValues = event => {
+  clearValues = (event) => {
     event.preventDefault();
     this.setState({
       formState: initialFormState

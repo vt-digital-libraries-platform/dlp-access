@@ -2,7 +2,8 @@ import React, { useEffect, useState, useContext } from "react";
 import { Form } from "semantic-ui-react";
 import ViewMetadata from "./ViewMetadata";
 import EditMetadata from "./EditMetadata";
-import { API, graphqlOperation, Storage } from "aws-amplify";
+import { generateClient } from "aws-amplify/api";
+import { getStorageBucket, getStorageRegion } from "../../../lib/storageTools";
 import * as queries from "../../../graphql/queries";
 import { getCollectionByIdentifier, mintNOID } from "../../../lib/fetchTools";
 import { validEmbargo, toTitleCase } from "../../../lib/EmbargoTools";
@@ -16,6 +17,8 @@ import {
   collection_multiFields,
   collection_singleFields
 } from "../../../lib/available_attributes";
+
+const client = generateClient();
 
 const collectionOptions = ["podcast_links"];
 
@@ -253,9 +256,7 @@ const CollectionForm = React.memo((props) => {
       const custom_key = newCollection
         ? collection.custom_key
         : fullCollection.custom_key;
-      const rssDirectory = `https://${Storage._config.AWSS3.bucket}.s3.${
-        Storage._config.AWSS3.region
-      }.amazonaws.com/public/sitecontent/text/${process.env.REACT_APP_REP_TYPE.toLowerCase()}/rss`;
+      const rssDirectory = `https://${getStorageBucket()}.s3.${getStorageRegion()}.amazonaws.com/public/sitecontent/text/${process.env.REACT_APP_REP_TYPE.toLowerCase()}/rss`;
       webFeed = `${rssDirectory}/${custom_key.replace("ark:/53696/", "")}.rss`;
     }
 
@@ -284,27 +285,28 @@ const CollectionForm = React.memo((props) => {
 
       const collectionMap = createCollectionMap(collection);
 
-      await API.graphql({
+      await client.graphql({
         query: mutations.createCollectionmap,
         variables: { input: collectionMap },
-        authMode: "AMAZON_COGNITO_USER_POOLS"
+        authMode: "userPool"
       });
       collectionInfo.collectionmap_id = collectionMap.id;
     }
 
-    await API.graphql({
+    await client.graphql({
       query: mutation,
       variables: { input: collectionInfo },
-      authMode: "AMAZON_COGNITO_USER_POOLS"
+      authMode: "userPool"
     });
 
     const newTitle = titleChanged(collection.title);
     if (newTitle) {
-      const response = await API.graphql(
-        graphqlOperation(queries.getCollectionmap, {
+      const response = await client.graphql({
+        query: queries.getCollectionmap,
+        variables: {
           id: fullCollection.collectionmap_id
-        })
-      );
+        }
+      });
       let updatedMap = null;
       let map_object_string = null;
       let collectionmap_object = null;
@@ -322,10 +324,10 @@ const CollectionForm = React.memo((props) => {
       }
 
       if (updatedMap && collectionmap_object) {
-        await API.graphql({
+        await client.graphql({
           query: mutations.updateCollectionmap,
           variables: { input: updatedMap },
-          authMode: "AMAZON_COGNITO_USER_POOLS"
+          authMode: "userPool"
         });
       }
     }

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { API, Auth } from "aws-amplify";
+import { generateClient } from "aws-amplify/api";
+import { getCurrentUserInfo } from "../../lib/authTools";
 import * as mutations from "../../graphql/mutations";
 import { Authenticator, withAuthenticator } from "@aws-amplify/ui-react";
 import { Link } from "react-router-dom";
@@ -20,6 +21,8 @@ import { MetadataUpload } from "./MetadataUpload";
 import "@aws-amplify/ui-react/styles.css";
 import "../../css/SiteAdmin.scss";
 
+const client = generateClient();
+
 class SiteAdmin extends Component {
   constructor(props) {
     super(props);
@@ -34,12 +37,10 @@ class SiteAdmin extends Component {
 
   async checkGroup() {
     try {
-      const data = await Auth.currentUserPoolUser();
-      const groups = data.signInUserSession.accessToken.payload[
-        "cognito:groups"
-      ]?.map(group => group.toLowerCase());
+      const data = await getCurrentUserInfo();
+      const groups = data.groups?.map((group) => group.toLowerCase());
       this.setState({ groups: groups });
-      this.setState({ userEmail: data.attributes.email });
+      this.setState({ userEmail: data.email });
       const repo_type = process.env.REACT_APP_REP_TYPE.toLowerCase();
       if (groups && groups.indexOf(repo_type) !== -1) {
         this.setAuthorized(true);
@@ -65,7 +66,7 @@ class SiteAdmin extends Component {
     this.setState({ authorized: authorized });
   }
 
-  setForm = form => {
+  setForm = (form) => {
     this.setState({ form: form });
   };
 
@@ -109,7 +110,7 @@ class SiteAdmin extends Component {
 
   updateSiteHandler = async (updateEvent, field = null, content = null) => {
     if (field) {
-      this.setState(prevState => {
+      this.setState((prevState) => {
         return {
           site: { ...prevState.site, [field]: content }
         };
@@ -118,10 +119,10 @@ class SiteAdmin extends Component {
         id: this.state.site.id,
         [field]: content
       };
-      await API.graphql({
+      await client.graphql({
         query: mutations.updateSite,
         variables: { input: siteConfig },
-        authMode: "AMAZON_COGNITO_USER_POOLS"
+        authMode: "userPool"
       });
     }
 
@@ -131,10 +132,10 @@ class SiteAdmin extends Component {
       siteID: this.state.site.id,
       event: JSON.stringify(updateEvent)
     };
-    await API.graphql({
+    await client.graphql({
       query: mutations.createHistory,
       variables: { input: historyInfo },
-      authMode: "AMAZON_COGNITO_USER_POOLS"
+      authMode: "userPool"
     });
     if (typeof this.props.siteChanged === "function") {
       this.props.siteChanged(true);

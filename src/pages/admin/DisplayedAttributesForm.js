@@ -3,7 +3,8 @@ import { withAuthenticator } from "@aws-amplify/ui-react";
 import { NavLink } from "react-router-dom";
 import { Form } from "semantic-ui-react";
 import { updatedDiff } from "deep-object-diff";
-import { API, Auth } from "aws-amplify";
+import { generateClient } from "aws-amplify/api";
+import { getCurrentUserInfo } from "../../lib/authTools";
 import {
   getSite,
   fetchAvailableDisplayedAttributes
@@ -15,6 +16,8 @@ import {
 } from "../../lib/available_attributes";
 
 import "../../css/adminForms.scss";
+
+const client = generateClient();
 
 const initialFormState = [];
 
@@ -57,7 +60,7 @@ class DisplayedAttributesForm extends Component {
     this.loadSiteAndAvailableAttributes();
   }
 
-  updateInputValue = event => {
+  updateInputValue = (event) => {
     let { name, value } = event.target;
     const nameArray = name.split("#");
     const type = nameArray[0];
@@ -70,7 +73,7 @@ class DisplayedAttributesForm extends Component {
         collection_multiFields.includes(attributes[type][index].field))
     ) {
       if (value.includes(",")) {
-        value = value.split(",").map(el => el.trim());
+        value = value.split(",").map((el) => el.trim());
       }
     }
     attributes[type][index].label = value;
@@ -104,10 +107,10 @@ class DisplayedAttributesForm extends Component {
         };
       }
       historyInfo.event = JSON.stringify(eventInfo);
-      await API.graphql({
+      await client.graphql({
         query: mutations.createHistory,
         variables: { input: historyInfo },
-        authMode: "AMAZON_COGNITO_USER_POOLS"
+        authMode: "userPool"
       });
     }
   }
@@ -119,17 +122,17 @@ class DisplayedAttributesForm extends Component {
       id: siteID,
       displayedAttributes: JSON.stringify(this.state.formState)
     };
-    await API.graphql({
+    await client.graphql({
       query: mutations.updateSite,
       variables: { input: siteInfo },
-      authMode: "AMAZON_COGNITO_USER_POOLS"
+      authMode: "userPool"
     });
     let newData = updatedDiff(this.state.prevFormState, this.state.formState);
     const oldData = updatedDiff(this.state.formState, this.state.prevFormState);
 
     newData = this.addNewAttributes(newData);
 
-    const userInfo = await Auth.currentUserPoolUser();
+    const userInfo = await getCurrentUserInfo();
     let eventInfo = {};
     eventInfo = Object.keys(newData).reduce((acc, key) => {
       return {
@@ -142,15 +145,15 @@ class DisplayedAttributesForm extends Component {
     }, {});
 
     let historyInfo = {
-      groups: userInfo.signInUserSession.accessToken.payload["cognito:groups"],
-      userEmail: userInfo.attributes.email,
+      groups: userInfo.groups,
+      userEmail: userInfo.email,
       siteID: siteID,
       event: JSON.stringify(eventInfo)
     };
-    await API.graphql({
+    await client.graphql({
       query: mutations.createHistory,
       variables: { input: historyInfo },
-      authMode: "AMAZON_COGNITO_USER_POOLS"
+      authMode: "userPool"
     });
 
     this.recordDeletedAttributes(historyInfo);
@@ -200,7 +203,7 @@ class DisplayedAttributesForm extends Component {
           onSubmit={this.handleSubmit}
           className="displayedAttributesForm"
         >
-          {Object.entries(this.state.formState).map(item => {
+          {Object.entries(this.state.formState).map((item) => {
             return this.editSitePagesSection(item);
           })}
           <Form.Button>Update Attributes</Form.Button>
@@ -226,7 +229,7 @@ class DisplayedAttributesForm extends Component {
 
     for (const type in displayedAttributes) {
       const typeAttributes = this.state.formState[type].map(
-        attribute => attribute.field
+        (attribute) => attribute.field
       );
       selectAttributes[type] = [];
 
@@ -244,7 +247,7 @@ class DisplayedAttributesForm extends Component {
     this.setState({ selectAttributes: selectAttributes });
   }
 
-  onDropdownSelect = e => {
+  onDropdownSelect = (e) => {
     const eventValue = e.target.value;
     let copy = JSON.parse(JSON.stringify(this.state.tempAttributes));
     const type = eventValue.split("#")[0];
@@ -267,7 +270,7 @@ class DisplayedAttributesForm extends Component {
     return required;
   }
 
-  editSitePagesSection = item => {
+  editSitePagesSection = (item) => {
     return (
       <section id={item[0]} key={item[0]}>
         <fieldset>
@@ -321,7 +324,7 @@ class DisplayedAttributesForm extends Component {
               onChange={this.onDropdownSelect}
             >
               {this.state.selectAttributes[item[0]] &&
-                this.state.selectAttributes[item[0]].map(attr => (
+                this.state.selectAttributes[item[0]].map((attr) => (
                   <option
                     key={`${item[0]}_${attr}`}
                     value={`${item[0]}#${attr}`}
@@ -347,12 +350,12 @@ class DisplayedAttributesForm extends Component {
   viewSitePages() {
     return (
       <div className="view-section">
-        {Object.entries(this.state.formState).map(type => {
+        {Object.entries(this.state.formState).map((type) => {
           return (
             <section key={type[0]}>
               <h3>{type[0]}</h3>
               <ul>
-                {type[1].map(attribute => {
+                {type[1].map((attribute) => {
                   return (
                     <li key={`${type[0]}#${attribute.field}`}>
                       <span className="entry">

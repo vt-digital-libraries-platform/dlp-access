@@ -3,7 +3,7 @@ import { Form, Input } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import ViewMetadata from "./ViewMetadata";
 import EditMetadata from "./EditMetadata";
-import { API } from "aws-amplify";
+import { generateClient } from "aws-amplify/api";
 import {
   getArchiveByIdentifier,
   getAllCollections,
@@ -20,6 +20,8 @@ import {
   archive_multiFields,
   archive_singleFields
 } from "../../../lib/available_attributes";
+
+const client = generateClient();
 
 const multiFields = archive_multiFields;
 
@@ -177,10 +179,10 @@ const ArchiveForm = React.memo((props) => {
     if (deleteConfirm) {
       const archiveId = { id: fullArchive.id };
 
-      await API.graphql({
+      await client.graphql({
         query: mutations.deleteArchive,
         variables: { input: archiveId },
-        authMode: "AMAZON_COGNITO_USER_POOLS"
+        authMode: "userPool"
       });
       resetForm();
     }
@@ -256,10 +258,10 @@ const ArchiveForm = React.memo((props) => {
     const mutation = newArchive
       ? mutations.createArchive
       : mutations.updateArchive;
-    await API.graphql({
+    await client.graphql({
       query: mutation,
       variables: { input: archiveInfo },
-      authMode: "AMAZON_COGNITO_USER_POOLS"
+      authMode: "userPool"
     });
 
     const addedData = addedDiff(oldArchive, archive);
