@@ -32,19 +32,8 @@ class AboutPage extends Component {
     }
   }
 
-  getGitCommitHash() {
-    const fullGitCommitHash = process.env.REACT_APP_GIT_COMMIT;
-    if (!fullGitCommitHash) {
-      return null;
-    }
-    return fullGitCommitHash.length > 8
-      ? fullGitCommitHash.substring(0, 7)
-      : fullGitCommitHash;
-  }
-
   render() {
     const title = "About ".concat(this.props.site.siteTitle);
-    const gitCommitHash = this.getGitCommitHash();
 
     return (
       <>

@@ -10,8 +10,8 @@ import "../css/Typography.scss";
 // Keeps \n so the user's line breaks and paragraphs are preserved.
 // \r is stripped because email parsers use \r\n as a header separator.
 const sanitizeMessage = (value) => {
-  // eslint-disable-next-line no-control-regex
   return DOMPurify.sanitize(value).replace(
+    // eslint-disable-next-line no-control-regex
     /[\r\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g,
     ""
   );
@@ -21,8 +21,8 @@ const sanitizeMessage = (value) => {
 // Email addresses should never contain line breaks — any \r or \n in an email
 // field is either a mistake or a header injection attempt.
 const sanitizeEmail = (value) => {
-  // eslint-disable-next-line no-control-regex
   return DOMPurify.sanitize(value).replace(
+    // eslint-disable-next-line no-control-regex
     /[\r\n\x00-\x08\x0B\x0C\x0E-\x1F\x7F]/g,
     ""
   );

@@ -58,6 +58,9 @@ export const BrowseCollections: FC<Props> = ({ scrollUp, site }) => {
 
   useEffect(() => {
     setCollectionDetails();
+    // setCollectionDetails reads and then updates tokns, so depending on it
+    // would reload in a loop; reload only when the query inputs change.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pg, filtr, sort, limt]);
 
   if (!site || !browseCollections) {

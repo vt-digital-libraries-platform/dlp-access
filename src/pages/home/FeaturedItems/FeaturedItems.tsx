@@ -1,7 +1,5 @@
-import { FC, useState, useEffect } from "react";
+import { FC, useState } from "react";
 import { FeaturedItem } from "./FeaturedItem";
-import { Controls } from "./Controls";
-import { v4 as uuid } from "uuid";
 
 import "../../../css/FeaturedItems.scss";
 
@@ -21,7 +19,7 @@ type Props = {
 };
 
 export const FeaturedItems: FC<Props> = ({ featuredItems, site }) => {
-  const [multiplier, setMultiplier] = useState(4);
+  const multiplier = 4;
   const heading = site.siteId === "federated" ? "Browse" : "Our Featured Items";
   const [showMore, setShowMore] = useState(false);
 

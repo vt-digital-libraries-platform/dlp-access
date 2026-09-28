@@ -29,7 +29,7 @@ describe("SubCollectionsTree component", () => {
     expect(
       await screen.findByRole("heading", { name: /Collection Organization/i })
     ).toBeVisible();
-    const folder = await screen.findByRole("link", { name: /Folder/i });
+    await screen.findByRole("link", { name: /Folder/i });
     const links = screen.getAllByRole("link");
     expect(links[0]).toHaveTextContent("Test Collection");
     expect(links[1]).toHaveTextContent("Folder");

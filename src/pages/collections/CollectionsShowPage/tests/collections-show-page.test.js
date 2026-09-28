@@ -92,7 +92,7 @@ describe("CollectionsShowPage component", () => {
     const listSite = { ...mock_site };
     listSite.siteOptions = JSON.stringify(listOption);
     setup(undefined, listSite);
-    const heading = await screen.findByRole("heading", {
+    await screen.findByRole("heading", {
       name: /Items in Collection \(1\)/i
     });
     const shareSection = screen.getAllByText("Share");
@@ -108,7 +108,7 @@ describe("CollectionsShowPage component", () => {
     const positionSite = { ...mock_site };
     positionSite.siteOptions = JSON.stringify(positionOption);
     setup(undefined, positionSite);
-    const heading = await screen.findByRole("heading", {
+    await screen.findByRole("heading", {
       name: /Items in Collection \(1\)/i
     });
     const regions = screen.getAllByRole("region");

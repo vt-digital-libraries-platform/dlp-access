@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom";
-import { queryByRole, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import * as FunctionalFileGetter from "src/lib/FunctionalFileGetter";
 import * as FetchTools from "src/lib/fetchTools";
 import { RSSFeeds } from "../RSSFeeds";

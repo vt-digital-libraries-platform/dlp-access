@@ -7,19 +7,13 @@ const BabylonElement = (props) => {
   const [controller, setController] = useState(null);
   const [autoRotate, setAutoRotate] = useState(true);
 
-  const handleCameraChange = (event) => {
-    const selectedCamera = event.target.value;
-    controller.switchCameraByName(selectedCamera);
-  };
-
   useEffect(() => {
-    setController(new BabylonController(props));
+    const newController = new BabylonController(props);
+    setController(newController);
 
     return () => {
-      if (controller) {
-        controller.removeListeners();
-        controller.engineDispose();
-      }
+      newController.removeListeners();
+      newController.engineDispose();
     };
   }, [props]);
 

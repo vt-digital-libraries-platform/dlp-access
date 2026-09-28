@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "../lib/WithRouter.js";
 import qs from "query-string";
-import { labelAttr } from "../lib/MetadataRenderer";
 
 import "../css/searchBar.scss";
 

@@ -79,7 +79,7 @@ class BabylonController {
     ).getLoadingScreen();
 
     // Create the environment around the subject
-    const environment = new Environment(this.scene, this.props.env);
+    new Environment(this.scene, this.props.env);
 
     // for debugging
     // this.axesViewer = new BABYLON.AxesViewer(this.scene, 0.5);
@@ -150,7 +150,7 @@ class BabylonController {
   handleAddOn(addOn) {
     switch (addOn.type) {
       case "flash_card":
-        const flashCard = new FlashCard(this.scene, this.props, addOn);
+        new FlashCard(this.scene, this.props, addOn);
         break;
       default:
         console.warn(`Unknown add-on type: ${addOn.type}`);

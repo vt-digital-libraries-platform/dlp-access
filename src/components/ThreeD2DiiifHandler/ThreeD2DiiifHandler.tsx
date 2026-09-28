@@ -1,4 +1,4 @@
-import { FC, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import MiradorViewer from "src/components/MiradorViewer";
 import X3DElement from "src/components/X3DElement";
 import "../../css/3D2Diiif.scss";
@@ -25,23 +25,7 @@ export const ThreeD2DiiifHandler: FC<Props> = ({ item, site }) => {
   const [threeD, setThreeD] = useState(
     options?.assets?.media_type === "3d_2diiif" ? "primary" : "secondary"
   );
-  const [fullScreen, setFullScreen] = useState(false);
-  const [optionsWrapperHeight, setOptWrapperHeight] = useState(0);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const optionsRef = useRef<HTMLDivElement>(null);
   const imageWrapperHeight = 900;
-
-  const handleFullscreen = () => {
-    if (containerRef.current) {
-      if (document.fullscreenElement) {
-        setFullScreen(false);
-        document.exitFullscreen();
-      } else {
-        containerRef.current.requestFullscreen();
-        setFullScreen(true);
-      }
-    }
-  };
 
   const [showImage, setShowImage] = useState(true);
 
@@ -71,22 +55,6 @@ export const ThreeD2DiiifHandler: FC<Props> = ({ item, site }) => {
       x3dom.reload();
     }
   }, [item, threeD]);
-
-  useLayoutEffect(() => {
-    const updateHeight = () => {
-      const newOptWrapperHeight = optionsRef.current?.offsetHeight ?? 0;
-      setOptWrapperHeight((prev) =>
-        prev === newOptWrapperHeight ? prev : newOptWrapperHeight
-      );
-    };
-
-    updateHeight();
-    window.addEventListener("resize", updateHeight);
-
-    return () => {
-      window.removeEventListener("resize", updateHeight);
-    };
-  }, [threeD, fullScreen, item.title]);
 
   const getThreeDThumb = () => {
     return (
@@ -248,11 +216,7 @@ export const ThreeD2DiiifHandler: FC<Props> = ({ item, site }) => {
   };
 
   return (
-    <div
-      className="multimedia-section"
-      id="multimedia-section"
-      ref={containerRef}
-    >
+    <div className="multimedia-section" id="multimedia-section">
       <div
         className="image-wrapper"
         id="image-wrapper"
