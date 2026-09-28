@@ -113,22 +113,10 @@ REACT_APP_REP_TYPE=Default
 
 | Variable | Description |
 | --- | --- |
-| REACT_APP_MINT_LINK | [Mint service](https://github.com/vt-digital-libraries-platform/mint) API URL |
-| REACT_APP_MINT_API_KEY | Mint service API key |
 | USER_DISABLE_TESTS | Enable/disable Amplify tests |
-
-If deploying an instance of the Podcast Repository he site must be able to authenticate itself with the NOID minting servicein order to support creating Podcast episode records through the site admin interface. So two additional environment variables are required. The values to be assigned to these variables can be found in the AWS API Gateway console.
-
-```
-REACT_APP_REP_TYPE=podcasts
-REACT_APP_MINT_LINK=https://<api id here>.execute-api.us-east-1.amazonaws.com/Prod/mint
-REACT_APP_MINT_API_KEY=<your api key here>
-```
 
 ## Amplify Build settings
 * Use [amplify.yml](examples/amplify.yml) for version after v1.3.2
-
-
 
 ## Site custom images and HTML files
 We put custom static images (e.g., site cover image) and HTML files (e.g, about page) in a S3 bucket with Cloudfront setup.
@@ -147,11 +135,7 @@ See instruction and various site content examples below:
 
   0. Put your configuration json files to a S3 bucket and enable CORS and make the config file public. 
   1. Start local server using ```REACT_APP_REP_TYPE=Default npm start```
-  2. Launch the Cypress app ```CYPRESS_password=<secret> CYPRESS_userPoolId=<your user pool Id> CYPRESS_clientId=<your user pool client Id> yarn run cypress open``` Note: Environment varibles in the above command beginning with `CYPRESS_` must be updated with your actual account values
-
-  * The username for authentication is: `devtest`. You can create this `devtest` account through account creation page.
-  * You can create your own testing account and password, and update the username. E.g., [an example here](https://github.com/VTUL/dlp-access/blob/dev/cypress/integration/admin_page_sitepages_config.spec.js#L1)
-
+  2. Launch the Cypress app ```npx cypress open```
 
 ## Cleanup
 If you'd like to tear down the project & delete all of the resources created by this project, you can run the following:

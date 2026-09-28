@@ -3,7 +3,6 @@ import { downloadData, getUrl } from "aws-amplify/storage";
 import { getStorageBucket } from "./storageTools";
 import * as queries from "../graphql/queries";
 import { language_codes } from "./language_codes";
-import { available_attributes } from "./available_attributes";
 
 const client = generateClient();
 
@@ -126,72 +125,6 @@ export const fetchSignedLink = async (objLink) => {
     success = true;
   }
   return { success: success, data: signedLink };
-};
-
-export const mintNOID = async () => {
-  const apiKey = process.env.REACT_APP_MINT_API_KEY;
-  const noidLink = process.env.REACT_APP_MINT_LINK;
-  const headers = new Headers({
-    "X-Api-Key": apiKey
-  });
-  let response = null;
-  try {
-    response = await fetch(noidLink, {
-      method: "GET",
-      mode: "cors",
-      headers: headers
-    }).then((resp) => {
-      return resp.json();
-    });
-  } catch (error) {
-    console.error("Error minting noid -- ", error);
-  }
-  let retVal = null;
-  if (response) {
-    try {
-      retVal = response.message.match(/^New NOID: ([a-zA-Z0-9]+)/)[1];
-    } catch (error) {
-      console.error("Error extracting noid from response -- ", error);
-    }
-  }
-  return retVal;
-};
-
-export const fetchSubjectValues = async () => {
-  let sites = [];
-  let subjects = [];
-  let nextToken = null;
-  let items = null;
-  do {
-    try {
-      const results = await fetchObjects(queries.listSites, {
-        nextToken: nextToken
-      });
-      items = results.data.listSites.items;
-      nextToken = results.data.listSites.nextToken;
-    } catch (error) {
-      console.error(`Error fetching sites: ${error}`);
-    }
-    if (items) {
-      sites = sites.concat(items);
-    }
-  } while (nextToken);
-  for (const idx in sites) {
-    try {
-      const site = sites[idx];
-      const subjectList = JSON.parse(site.searchPage).facets.subject.values;
-      for (const i in subjectList) {
-        if (subjects.indexOf(subjectList[i]) === -1) {
-          subjects.push(subjectList[i]);
-        }
-      }
-    } catch (error) {}
-  }
-  return subjects.sort();
-};
-
-export const fetchAvailableDisplayedAttributes = async () => {
-  return available_attributes;
 };
 
 export const fetchLanguages = async (component, site, key, callback) => {
@@ -328,35 +261,6 @@ export const fetchSearchResults = async (
   return searchResults;
 };
 
-export const getAllCollections = async (filter) => {
-  let collections = [];
-  let nextToken = null;
-  let items = null;
-
-  do {
-    let myFilter = {};
-    myFilter["nextToken"] = nextToken;
-    if (filter) {
-      for (const entry in filter) {
-        if (!myFilter.hasOwnProperty(entry)) {
-          myFilter[entry] = filter[entry];
-        }
-      }
-    }
-    try {
-      const results = await fetchObjects(queries.listCollections, myFilter);
-      items = results.data.listCollections.items;
-      nextToken = results.data.listCollections.nextToken;
-    } catch (error) {
-      console.error(`Error fetching all collections: ${error}`);
-    }
-    if (items) {
-      collections = collections.concat(items);
-    }
-  } while (nextToken);
-  return collections;
-};
-
 const fetchObjects = async (
   gqlQuery,
   { filter, sort, limit, nextToken, otherArgs }
@@ -394,27 +298,6 @@ const getCollectionIDByTitle = async (title) => {
     console.error(`Error getting id for collection title: ${title}`);
   }
   return id;
-};
-
-export const getPodcastCollections = async () => {
-  let items = null;
-  const results = await client.graphql({
-    query: queries.searchCollections,
-    variables: {
-      order: "ASC",
-      filter: {
-        collection_category: {
-          eq: "podcasts"
-        }
-      }
-    }
-  });
-  try {
-    items = results.data.searchCollections.items;
-  } catch (error) {
-    console.error(`Error getting podcast collections`);
-  }
-  return items;
 };
 
 export const getParentCollectionForItem = async (item) => {
@@ -520,48 +403,6 @@ export const getPageContentById = async (pageContentId) => {
     console.error("Error fetching page contents");
   }
   return resp;
-};
-
-export const getArchiveByIdentifier = async (identifier) => {
-  const REP_TYPE = process.env.REACT_APP_REP_TYPE.toLowerCase();
-  const apiData = await client.graphql({
-    query: queries.archiveByIdentifier,
-    variables: {
-      identifier: identifier,
-      filter: {
-        item_category: { eq: REP_TYPE }
-      },
-      limit: 1
-    }
-  });
-  const {
-    data: {
-      archiveByIdentifier: { items }
-    }
-  } = apiData;
-  const archive = items[0];
-  return archive;
-};
-
-export const getCollectionByIdentifier = async (identifier) => {
-  const REP_TYPE = process.env.REACT_APP_REP_TYPE.toLowerCase();
-  const apiData = await client.graphql({
-    query: queries.collectionByIdentifier,
-    variables: {
-      identifier: identifier,
-      filter: {
-        collection_category: { eq: REP_TYPE }
-      },
-      limit: 1
-    }
-  });
-  const {
-    data: {
-      collectionByIdentifier: { items }
-    }
-  } = apiData;
-  const collection = items[0];
-  return collection;
 };
 
 export const getCollectionItems = async (
