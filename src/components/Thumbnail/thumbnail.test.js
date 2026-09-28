@@ -50,7 +50,7 @@ describe("Thumbnail component", () => {
 
   it("displays image with attributes", async () => {
     const url = setup();
-    const img = await screen.findByRole("img");
+    const img = await screen.findByRole("presentation");
     expect(img).toBeVisible();
     expect(img).toHaveProperty("alt", "");
     expect(img).toHaveProperty("src", url);

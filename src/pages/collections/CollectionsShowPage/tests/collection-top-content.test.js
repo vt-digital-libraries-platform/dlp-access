@@ -33,7 +33,7 @@ describe("CollectionsTopContent component", () => {
   };
   it("displays CollectionsTopContent page with collection description", async () => {
     setup();
-    expect(await screen.findByRole("img")).toHaveAttribute(
+    expect(await screen.findByRole("presentation")).toHaveAttribute(
       "src",
       mock_collection.thumbnail_path
     );
@@ -41,9 +41,7 @@ describe("CollectionsTopContent component", () => {
       screen.getByRole("heading", { name: "Test Collection" })
     ).toBeInTheDocument();
     expect(screen.getByText(/Created by: Test Creator/i)).toBeInTheDocument();
-    expect(
-      screen.getByText(/Last updated:/i)
-    ).toBeInTheDocument();
+    expect(screen.getByText(/Last updated:/i)).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { name: "Description" })
     ).toBeInTheDocument();

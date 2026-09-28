@@ -44,7 +44,7 @@ describe("CollectionsListView component", () => {
   };
   it("displays CollectionsListView page with collections", async () => {
     setup();
-    const images = await screen.findAllByRole("img");
+    const images = await screen.findAllByRole("presentation");
     expect(images).toHaveLength(1);
     const shareSection = screen.getAllByText("Share");
     expect(shareSection[0]).toHaveClass("active title");
@@ -66,7 +66,7 @@ describe("CollectionsListView component", () => {
 
   it("Doesn't display Sharing section if socialButtons is empty array", async () => {
     setup([]);
-    const images = await screen.findAllByRole("img");
+    const images = await screen.findAllByRole("presentation");
     expect(images).toHaveLength(1);
     expect(screen.queryByText("Share")).toBeNull();
   });

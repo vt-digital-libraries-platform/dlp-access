@@ -37,7 +37,7 @@ describe("CollectionItems component", () => {
 
   it("displays CollectionItems component", async () => {
     setup();
-    const images = await screen.findAllByRole("img");
+    const images = await screen.findAllByRole("presentation");
     expect(images).toHaveLength(1);
     expect(
       screen.getByRole("region", { name: /Items in Collection/i })
@@ -58,7 +58,7 @@ describe("CollectionItems component", () => {
 
   it("displays CollectionItems component with list view option", async () => {
     setup(undefined, undefined, "list");
-    const images = await screen.findAllByRole("img");
+    const images = await screen.findAllByRole("presentation");
     expect(images).toHaveLength(1);
     expect(
       screen.getByRole("region", { name: /Items in Collection/i })
@@ -74,7 +74,7 @@ describe("CollectionItems component", () => {
     const podcasts_site = mock_site;
     podcasts_site.siteId = "podcasts";
     setup(undefined, undefined, "list", podcasts_site);
-    const images = await screen.findAllByRole("img");
+    const images = await screen.findAllByRole("presentation");
     expect(images).toHaveLength(1);
     const sort = screen.getByRole("listbox", { name: /Sort/ });
     expect(sort).toBeVisible();

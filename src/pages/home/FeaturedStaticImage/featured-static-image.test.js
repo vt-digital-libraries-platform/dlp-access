@@ -14,11 +14,11 @@ describe("Featured static image", () => {
           altText: "",
           textStyle: "capitalize",
           titleFont: "Acherus, sans-serif",
-          titleSize: "60px",
+          titleSize: "60px"
         }}
         site={{
           siteId: "default",
-          siteName: "Demo Site",
+          siteName: "Demo Site"
         }}
       />
     );
@@ -26,7 +26,7 @@ describe("Featured static image", () => {
 
   it("displays static image", async () => {
     setup();
-    const image = await screen.findByRole("img");
+    const image = await screen.findByRole("presentation");
     expect(image).toBeVisible();
     expect(image).toHaveProperty("alt", "");
     await waitFor(() => expect(image).toHaveProperty("src", imgSrc));
@@ -34,7 +34,7 @@ describe("Featured static image", () => {
 
   it("displays site title", async () => {
     setup();
-    await screen.findByRole("img");
+    await screen.findByRole("presentation");
     const title = screen.getByRole("heading", { level: 1 });
     expect(title).toBeVisible();
     expect(title).toHaveTextContent("Demo Site");
