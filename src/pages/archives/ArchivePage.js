@@ -7,13 +7,9 @@ import { MinervaPlayer } from "../../components/MinervaPlayer";
 import MiradorViewer from "../../components/MiradorViewer";
 import { ThreeD2DiiifHandler } from "../../components/ThreeD2DiiifHandler";
 import { MediaElement } from "../../components/MediaElement";
-import SearchBar from "../../components/SearchBar";
 import Breadcrumbs from "../../components/Breadcrumbs.js";
 import { getTitleTemplateForType, SiteTitle } from "../../components/SiteTitle";
-import {
-  RenderItemsDetailed,
-  addNewlineInDesc
-} from "../../lib/MetadataRenderer";
+import { addNewlineInDesc } from "../../lib/MetadataRenderer";
 import {
   fetchLanguages,
   getParentCollectionForItem,
@@ -30,7 +26,6 @@ import CollapsibleCard from "../../components/CollapsibleCards";
 import "../../css/ArchivePage.scss";
 import { NotFound } from "../NotFound";
 import BabylonElement from "src/components/Babylon/BabylonElement";
-import BabylonController from "src/components/Babylon/BabylonController";
 
 const client = generateClient();
 
