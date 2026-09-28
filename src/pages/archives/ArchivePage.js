@@ -5,7 +5,6 @@ import PDFViewer from "../../components/PDFViewer";
 import { KalturaPlayer } from "../../components/KalturaPlayer";
 import { MinervaPlayer } from "../../components/MinervaPlayer";
 import MiradorViewer from "../../components/MiradorViewer";
-import { OBJModel } from "react-3d-viewer";
 import { ThreeD2DiiifHandler } from "../../components/ThreeD2DiiifHandler";
 import { MediaElement } from "../../components/MediaElement";
 import SearchBar from "../../components/SearchBar";
@@ -24,7 +23,6 @@ import { buildRichSchema } from "../../lib/richSchemaTools";
 import { searchArchives } from "../../graphql/queries";
 import RelatedItems from "../../components/RelatedItems";
 import { Thumbnail } from "../../components/Thumbnail";
-import MtlElement from "../../components/MtlElement";
 import X3DElement from "../../components/X3DElement";
 import ReactGA from "react-ga4";
 import CollapsibleCard from "../../components/CollapsibleCards";
@@ -181,14 +179,6 @@ class ArchivePage extends Component {
       return false;
     }
     return match;
-  }
-
-  isObjURL(url) {
-    return url.match(/\.(obj|OBJ)$/) != null;
-  }
-
-  isMtlUrl(url) {
-    return url.match(/\.(mtl)$/) != null;
   }
 
   isX3DUrl(url) {
@@ -378,22 +368,6 @@ class ArchivePage extends Component {
     } else if (this.isPdfURL(item.manifest_url)) {
       display = (
         <PDFViewer manifest_url={item.manifest_url} title={item.title} />
-      );
-    } else if (this.isObjURL(item.manifest_url)) {
-      const texPath = item.manifest_url.substring(
-        0,
-        item.manifest_url.lastIndexOf("/") + 1
-      );
-      display = (
-        <div className="obj-wrapper" style={{ width: `${width}px` }}>
-          <OBJModel src={item.manifest_url} texPath={texPath} />
-        </div>
-      );
-    } else if (this.isMtlUrl(item.manifest_url)) {
-      display = (
-        <div className="obj-wrapper" style={{ width: `${width}px` }}>
-          <MtlElement mtl={item.manifest_url} />
-        </div>
       );
     } else {
       display = <></>;
