@@ -8,7 +8,7 @@ type Props = {
   collectionMap: MapObject | null;
   expanded: string[] | undefined;
   handleToggle: (
-    event: SyntheticEvent<Element, Event>,
+    event: SyntheticEvent<Element, Event> | null,
     itemIds: string[]
   ) => void;
 };

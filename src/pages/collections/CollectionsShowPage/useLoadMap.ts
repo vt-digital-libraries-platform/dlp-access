@@ -58,7 +58,7 @@ export const useLoadMap = (collection: Collection) => {
   }, [collection]);
 
   const handleToggle = useCallback(
-    (event: SyntheticEvent<Element, Event>, itemIds: string[]) => {
+    (event: SyntheticEvent<Element, Event> | null, itemIds: string[]) => {
       setExpanded(itemIds);
     },
     []
