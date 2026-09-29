@@ -90,6 +90,9 @@
     ]
   },
   "devDependencies": {
+    "@aws-amplify/backend": "^1.18.0",
+    "@aws-amplify/backend-cli": "^1.8.0",
+    "@aws-amplify/backend-data": "^1.6.2",
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@testing-library/dom": "^10.4.2",
     "@testing-library/jest-dom": "^7.0.1",
@@ -98,10 +101,16 @@
     "@types/leaflet": "^1.9.22",
     "@types/react-helmet": "^6.1.11",
     "@types/react-modal": "^3.16.3",
+    "aws-cdk": "^2",
+    "aws-cdk-lib": "^2",
+    "ci-info": "^4.3.1",
+    "constructs": "^10.0.0",
     "cypress": "^15.21.1",
+    "esbuild": "^0.27.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.4.0",
-    "prettier": "^3.9.9"
+    "prettier": "^3.9.9",
+    "tsx": "^4.20.6"
   },
   "jest": {
     "transformIgnorePatterns": [

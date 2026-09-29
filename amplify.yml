@@ -1,0 +1,68 @@
+version: 1
+backend:
+  phases:
+    build:
+      commands:
+        - "# Execute Amplify CLI with the helper script"
+        - npm ci --cache .npm --prefer-offline
+        - npx ampx pipeline-deploy --branch $AWS_BRANCH --app-id $AWS_APP_ID
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - nvm install 17.9.1
+        - nvm use 17.9.1
+        - npm ci --force
+    build:
+      commands:
+        - nvm install 17.9.1
+        - nvm use 17.9.1
+        - node -v
+        - REACT_APP_GIT_COMMIT=`git rev-parse HEAD` npm run build
+  artifacts:
+    baseDirectory: build
+    files:
+      - "**/*"
+  cache:
+    paths:
+      - node_modules/**/*
+  customHeaders:
+    - pattern: "**/*"
+      headers:
+        - key: Permissions-Policy
+          value: unload=(self)
+test:
+  artifacts:
+    baseDirectory: cypress
+    configFilePath: "**/mochawesome.json"
+    files:
+      - "**/*.png"
+      - "**/*.mp4"
+  phases:
+    preTest:
+      commands:
+        - wget
+          https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+        - yum install -y ./google-chrome-stable_current_*.rpm
+        - nvm install 17.9.1
+        - nvm use 17.9.1
+        - npm ci --force
+        - npm install --force wait-on
+        - npm install --force pm2
+        - npm install --force mocha mochawesome mochawesome-merge
+          mochawesome-report-generator
+        - npx pm2 start npm -- start
+        - npx wait-on http://localhost:3000
+    test:
+      commands:
+        - CI=true npm test
+        - CYPRESS_password=access2020 CYPRESS_userPoolId=us-east-1_tTXxRVpK3
+          CYPRESS_clientId=1klfhnq9kuislu56s88h32hdsb npx cypress run --browser
+          chrome --headless --reporter mochawesome --reporter-options
+          "reportDir=cypress/report/mochawesome-report,overwrite=false,html=false,json=true,timestamp=mmddyyyy_HHMMss"
+    postTest:
+      commands:
+        - npx mochawesome-merge
+          cypress/report/mochawesome-report/mochawesome*.json >
+          cypress/report/mochawesome.json
+        - npx pm2 kill
