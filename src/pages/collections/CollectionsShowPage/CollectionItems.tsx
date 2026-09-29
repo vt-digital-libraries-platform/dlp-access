@@ -11,6 +11,17 @@ import { useGetCollectionItems } from "./useGetCollectionItems";
 
 const languages = language_codes["abbr"];
 
+// page_count is written into archiveOptions by the populate-item-page-count Lambda
+const getPageCount = (item: Archive): number => {
+  if (!item.archiveOptions) return 0;
+  try {
+    const { page_count } = JSON.parse(item.archiveOptions);
+    return parseInt(page_count) || 0;
+  } catch {
+    return 0;
+  }
+};
+
 type Props = {
   collection: Collection;
   site: Site;
@@ -97,7 +108,10 @@ export const CollectionItems: FC<Props> = ({
                       <h3>{item.title}</h3>
                       <RenderItems
                         keyArray={[
-                          { field: "description", label: "Description" }
+                          { field: "description", label: "Description" },
+                          ...(getPageCount(item) > 0
+                            ? [{ field: "page_count", label: "Page(s)" }]
+                            : [])
                         ]}
                         item={item}
                         site={site}
@@ -117,6 +131,11 @@ export const CollectionItems: FC<Props> = ({
                       </div>
                       <div className="item-info">
                         <h3>{item.title}</h3>
+                        {getPageCount(item) > 0 && (
+                          <div className="badge badge-secondary page-count-badge">
+                            {getPageCount(item)} page(s)
+                          </div>
+                        )}
                       </div>
                     </Link>
                   </div>

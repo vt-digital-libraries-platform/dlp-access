@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import { generateClient } from "aws-amplify/api";
 import { SiteTitle } from "../components/SiteTitle";
 import { buildHeaderSchema } from "../lib/richSchemaTools";
+import { cleanHTML } from "../lib/MetadataRenderer";
 import { listMetadataFields } from "../graphql/queries";
 import metadataFieldInfo from "../data/metadataFieldInfo.json";
 
@@ -111,8 +112,8 @@ class MetadataPage extends Component {
       category: info.labelName.includes("(Collection)")
         ? "Collection"
         : bothFields.has(columnName)
-        ? "Both"
-        : "Archive",
+          ? "Both"
+          : "Archive",
       sortOrder: idx + 1
     }));
   }
@@ -135,8 +136,8 @@ class MetadataPage extends Component {
       field.required === "Yes"
         ? `${field.labelName} (Required)`
         : field.required === "Conditional"
-        ? `${field.labelName} (Conditional)`
-        : field.labelName
+          ? `${field.labelName} (Conditional)`
+          : field.labelName
     );
     const types = metadataFields.map((field) => field.type);
     const descriptions = metadataFields.map((field) => field.description);
@@ -299,9 +300,13 @@ class MetadataPage extends Component {
                             </th>
                             <td className="label-name">{field.labelName}</td>
                             <td className="type">{field.type}</td>
-                            <td className="description">{field.description}</td>
+                            <td className="description">
+                              {cleanHTML(String(field.description), "html")}
+                            </td>
                             <td className="example">
-                              <code>{field.example}</code>
+                              <code>
+                                {cleanHTML(String(field.example), "html")}
+                              </code>
                             </td>
                           </tr>
                         ))}

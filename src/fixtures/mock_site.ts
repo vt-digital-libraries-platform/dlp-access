@@ -9,6 +9,19 @@ export const mock_site = {
       { field: "start_date", direction: "desc" }
     ]
   }),
+  searchPage: JSON.stringify({
+    facets: {
+      format: {
+        label: "Format",
+        values: ["Photograph", "Manuscript", "Audio"]
+      },
+      subject: {
+        label: "Subject",
+        values: ["Architecture", "History"]
+      }
+    },
+    sort: [{ field: "title", direction: "asc" }]
+  }),
   siteId: "default",
   siteTitle: "Test Site",
   title: "Test Site",

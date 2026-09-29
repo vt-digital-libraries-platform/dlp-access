@@ -64,6 +64,8 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start-dlp": "REACT_APP_REP_TYPE=federated REACT_APP_GIT_COMMIT=`git rev-parse HEAD` react-scripts start",
+    "start-iawa": "REACT_APP_REP_TYPE=iawa REACT_APP_GIT_COMMIT=`git rev-parse HEAD` react-scripts start",
     "build": "react-scripts --max_old_space_size=5632 --optimize-for-size build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -114,7 +116,7 @@
   },
   "jest": {
     "transformIgnorePatterns": [
-      "node_modules/(?!(@react-scripts|react-scripts|decode-uri-component|filter-obj|split-on-first|query-string|html-react-parser|html-dom-parser|htmlparser2|domhandler|domutils|domelementtype|dom-serializer|entities)/)"
+      "node_modules/(?!(.*/)?(@react-scripts|react-scripts|decode-uri-component|filter-obj|split-on-first|query-string|html-react-parser|html-dom-parser|htmlparser2|domhandler|domutils|domelementtype|dom-serializer|entities|axios)/)"
     ],
     "moduleNameMapper": {
       "^react-router/dom$": "<rootDir>/node_modules/react-router/dist/development/dom-export.js",

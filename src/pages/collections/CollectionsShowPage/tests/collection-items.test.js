@@ -80,6 +80,35 @@ describe("CollectionItems component", () => {
     expect(sort).toBeVisible();
   });
 
+  it("displays page count badge in grid view when archiveOptions has page_count", async () => {
+    const itemWithPages = {
+      ...mock_archive,
+      archiveOptions: JSON.stringify({ page_count: 2 })
+    };
+    setup([itemWithPages]);
+    await screen.findAllByRole("img");
+    const badge = screen.getByText("2 page(s)");
+    expect(badge).toBeVisible();
+    expect(badge).toHaveClass("page-count-badge");
+  });
+
+  it("displays page count row in list view when archiveOptions has page_count", async () => {
+    const itemWithPages = {
+      ...mock_archive,
+      archiveOptions: JSON.stringify({ page_count: 2 })
+    };
+    setup([itemWithPages], 1, "list");
+    await screen.findAllByRole("img");
+    expect(screen.getByText(/Page\(s\)/)).toBeVisible();
+    expect(screen.getByText("2")).toBeVisible();
+  });
+
+  it("does not display page count when archiveOptions is missing", async () => {
+    setup();
+    await screen.findAllByRole("img");
+    expect(screen.queryByText(/page\(s\)/i)).not.toBeInTheDocument();
+  });
+
   it("displays CollectionItem component with no items", async () => {
     setup([], 0);
     const text = await screen.findByRole("heading", {

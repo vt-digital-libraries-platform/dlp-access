@@ -6,7 +6,7 @@ import {
   faLocationDot
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { htmlParsedValue } from "src/lib/MetadataRenderer";
+import { htmlParsedValue, cleanHTML } from "src/lib/MetadataRenderer";
 import Citation from "../components/Citation";
 import "../css/CollapsibleCards.scss";
 import "../css/Typography.scss";
@@ -42,6 +42,7 @@ const multi_value_headers = [
   "has_format",
   "has_part",
   "has_version",
+  "is_part_of",
   "is_format_of",
   "is_version_of",
   "language",
@@ -122,14 +123,27 @@ const getLocationData = (data) => {
   );
 };
 
-const modifyKey = (key) => {
+const modifyKey = (key, site) => {
+  let newKey = "";
+  // If the key is in the site's displayedAttributes, use the label from there
+  if (site?.displayedAttributes) {
+    try {
+      const attrObj = JSON.parse(site?.displayedAttributes);
+      newKey =
+        attrObj["archive"]?.find((attr) => attr.field === key)?.label || newKey;
+    } catch (e) {
+      console.log("Error parsing displayedAttributes", e);
+    }
+  }
   if (key === "display_date") {
     return "Date";
   }
-  const newKey = key
-    .split("_")
-    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-    .join(" ");
+  if (!newKey) {
+    newKey = key
+      .split("_")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(" ");
+  }
   return newKey;
 };
 
@@ -139,21 +153,33 @@ const getCitationData = (data, site, parentCollection) => {
   );
 };
 
-const getCopyrightData = (data) => {
+const getCopyrightData = (data, site) => {
   let key1 = "rights_holder";
   let key2 = "rights";
   return (
     <dl className="data-list">
       {data[key1] && (
         <div className="data-list-item">
-          <dt className="data-list-label">{modifyKey(key1)}</dt>
-          <dd className="data-list-value">{htmlParsedValue(data[key1])}</dd>
+          <dt className="data-list-label">{modifyKey(key1, site)}</dt>
+          <dd className="data-list-value">
+            {cleanHTML(String(data[key1]), "html")}
+          </dd>
         </div>
       )}
       {data[key2] && (
         <div className="data-list-item">
-          <dt className="data-list-label">{modifyKey(key2)}</dt>
-          <dd className="data-list-value">{htmlParsedValue(data[key2])}</dd>
+          <dt className="data-list-label">{modifyKey(key2, site)}</dt>
+          {Array.isArray(data[key2]) ? (
+            data[key2].map((value, index) => (
+              <dd key={index} className="data-list-value">
+                {cleanHTML(String(value), "html")}
+              </dd>
+            ))
+          ) : (
+            <dd className="data-list-value">
+              {cleanHTML(String(data[key2]), "html")}
+            </dd>
+          )}
         </div>
       )}
     </dl>
@@ -173,7 +199,8 @@ export default function CollapsibleCard({
     "format_physical",
     "medium",
     "type",
-    "tags"
+    "tags",
+    "language"
   ];
 
   const renderContent = (key, value) => {
@@ -194,22 +221,12 @@ export default function CollapsibleCard({
           {value}
         </a>
       );
-    } else if (key === "language") {
-      return (
-        <a
-          href="https://en.wikipedia.org/wiki/English_language"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          en
-        </a>
-      );
     } else {
       return value;
     }
   };
 
-  const getAboutData = (data) => {
+  const getAboutData = (data, site) => {
     const items = [
       "description",
       "date",
@@ -226,7 +243,7 @@ export default function CollapsibleCard({
         {single_value_headers.map((key) =>
           data[key] && !items.includes(key) ? (
             <div key={key} className="data-list-item">
-              <dt className="data-list-label">{modifyKey(key)}</dt>
+              <dt className="data-list-label">{modifyKey(key, site)}</dt>
               <dd className="data-list-value">
                 {typeof data[key] === "string" &&
                 data[key].startsWith("http") ? (
@@ -244,7 +261,7 @@ export default function CollapsibleCard({
         {multi_value_headers.map((key) =>
           data[key] && !items.includes(key) && data[key].length > 0 ? (
             <div key={key} className="data-list-item">
-              <dt className="data-list-label">{modifyKey(key)}</dt>
+              <dt className="data-list-label">{modifyKey(key, site)}</dt>
               {data[key].map((value, index) => (
                 <dd key={index} className="data-list-value">
                   {renderContent(key, value)}
@@ -263,10 +280,10 @@ export default function CollapsibleCard({
         return getLocationData(data);
 
       case "about":
-        return getAboutData(data);
+        return getAboutData(data, site);
 
       case "copyright":
-        return getCopyrightData(data);
+        return getCopyrightData(data, site);
 
       case "citation":
         return getCitationData(data, site, parentCollection);

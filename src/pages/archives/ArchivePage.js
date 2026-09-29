@@ -47,7 +47,7 @@ class ArchivePage extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props !== prevProps) {
+    if (this.props.customKey !== prevProps.customKey) {
       this.getArchive(this.props.customKey);
     }
   }
@@ -88,9 +88,8 @@ class ArchivePage extends Component {
         });
         return;
       }
-      const topLevelParentCollection = await getTopLevelParentForCollection(
-        collection
-      );
+      const topLevelParentCollection =
+        await getTopLevelParentForCollection(collection);
       if (!topLevelParentCollection) {
         this.setState({
           isError: true
@@ -137,19 +136,19 @@ class ArchivePage extends Component {
   }
 
   isAudioURL(url) {
-    return url.match(/\.(mp3|ogg|wav)$/) != null;
+    return url && url.match(/\.(mp3|ogg|wav)$/) != null;
   }
 
   isVideoURL(url) {
-    return url.match(/\.(mp4|mov)$/) != null;
+    return url && url.match(/\.(mp4|mov)$/) != null;
   }
 
   isKalturaURL(url) {
-    return url.match(/(video.vt.edu\/media)/) != null;
+    return url && url.match(/(video.vt.edu\/media)/) != null;
   }
 
   isPdfURL(url) {
-    return url.match(/\.(pdf)$/) != null;
+    return url && url.match(/\.(pdf)$/) != null;
   }
 
   isMiradorURL(url, item = null) {
@@ -177,10 +176,10 @@ class ArchivePage extends Component {
   }
 
   isX3DUrl(url) {
-    return url.match(/\.(x3d|X3D)$/) != null;
+    return url && url.match(/\.(x3d|X3D)$/) != null;
   }
   isGLTFUrl(url) {
-    return url.match(/\.(gltf|GLTF|glb|GLB)$/) != null;
+    return url && url.match(/\.(gltf|GLTF|glb|GLB)$/) != null;
   }
 
   is3D_2DiiifType(item) {
@@ -307,14 +306,11 @@ class ArchivePage extends Component {
           />
         </div>
       );
-    } else if (this.isX3DUrl(item.manifest_url)) {
+    } else if (this.isX3DType(item)) {
       display = (
-        <div
-          className="obj-wrapper"
-          style={{ width: `${width}px`, height: "100px" }}
-        >
+        <div className="obj-wrapper image-wrapper">
           <X3DElement
-            url={item.manifest_url}
+            url={options.assets?.x3d_config}
             frameSize={width}
             frameHeight={100}
           />
@@ -454,12 +450,14 @@ class ArchivePage extends Component {
                       title="About"
                       marker="about"
                       data={this.state.item}
+                      site={this.props.site}
                       defaultExpand={true}
                     />
                     <CollapsibleCard
                       title="Copyright"
                       marker="copyright"
                       data={this.state.item}
+                      site={this.props.site}
                       defaultExpand={true}
                     />
                     <CollapsibleCard
