@@ -12,7 +12,14 @@ describe("CollectionMetadataSection component", () => {
       JSON.stringify({
         id: "testmap123",
         name: "Test Collection",
-        custom_key: "xxxxj22hdemo"
+        custom_key: "xxxxj22hdemo",
+        children: [
+          {
+            id: "testmap123folder",
+            name: "Folder",
+            custom_key: "xxxxj22hdemo_folder"
+          }
+        ]
       })
     );
     render(

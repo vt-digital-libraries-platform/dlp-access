@@ -43,7 +43,7 @@ describe("CollectionItems component", () => {
       screen.getByRole("region", { name: /Items in Collection/i })
     ).toHaveClass("no-size");
     expect(
-      screen.getByRole("listbox", { name: /Results per page/ })
+      screen.getByRole("combobox", { name: /Results per page/ })
     ).toBeVisible();
     expect(
       screen.getByRole("heading", {
@@ -71,12 +71,11 @@ describe("CollectionItems component", () => {
   });
 
   it("displays sorting options for podcasts site", async () => {
-    const podcasts_site = mock_site;
-    podcasts_site.siteId = "podcasts";
+    const podcasts_site = { ...mock_site, siteId: "podcasts" };
     setup(undefined, undefined, "list", podcasts_site);
     const images = await screen.findAllByRole("presentation");
     expect(images).toHaveLength(1);
-    const sort = screen.getByRole("listbox", { name: /Sort/ });
+    const sort = screen.getByRole("combobox", { name: /Sort/ });
     expect(sort).toBeVisible();
   });
 
@@ -86,7 +85,7 @@ describe("CollectionItems component", () => {
       archiveOptions: JSON.stringify({ page_count: 2 })
     };
     setup([itemWithPages]);
-    await screen.findAllByRole("img");
+    await screen.findAllByRole("presentation");
     const badge = screen.getByText("2 page(s)");
     expect(badge).toBeVisible();
     expect(badge).toHaveClass("page-count-badge");
@@ -98,14 +97,14 @@ describe("CollectionItems component", () => {
       archiveOptions: JSON.stringify({ page_count: 2 })
     };
     setup([itemWithPages], 1, "list");
-    await screen.findAllByRole("img");
+    await screen.findAllByRole("presentation");
     expect(screen.getByText(/Page\(s\)/)).toBeVisible();
     expect(screen.getByText("2")).toBeVisible();
   });
 
   it("does not display page count when archiveOptions is missing", async () => {
     setup();
-    await screen.findAllByRole("img");
+    await screen.findAllByRole("presentation");
     expect(screen.queryByText(/page\(s\)/i)).not.toBeInTheDocument();
   });
 

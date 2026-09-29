@@ -111,13 +111,15 @@ describe("CollectionsShowPage component", () => {
     await screen.findByRole("heading", {
       name: /Items in Collection \(1\)/i
     });
-    const regions = screen.getAllByRole("region");
-    const metadataSection = regions
-      .map((region) => region.className)
-      .indexOf("col-12 col-lg-8 details-section");
-    const itemsSection = regions
-      .map((region) => region.className)
-      .indexOf("collection-items-list-wrapper no-size");
-    expect(itemsSection < metadataSection).toBe(true);
+    const itemsSection = screen.getByRole("region", {
+      name: /Items in Collection/i
+    });
+    const metadataSection = screen.getByRole("region", {
+      name: /Collection Details for Test Collection/i
+    });
+    expect(
+      itemsSection.compareDocumentPosition(metadataSection) &
+        Node.DOCUMENT_POSITION_FOLLOWING
+    ).toBeTruthy();
   });
 });

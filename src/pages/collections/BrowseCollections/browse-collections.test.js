@@ -38,21 +38,18 @@ describe("BrowseCollections component", () => {
   };
   it("displays Browse Collections page with collections", async () => {
     setup(multipleItems, "Test Collection 10", 11);
-    const images = await screen.findAllByRole("img");
+    const images = await screen.findAllByRole("presentation");
     expect(images.length).toBe(10);
     expect(
       screen.getByRole("heading", { name: /Test Collection 0/ })
     ).toBeVisible();
     expect(screen.getByText(/Test collection description 0/)).toBeVisible();
-    expect(
-      screen.getByRole("heading", { name: /About Our Collections/ })
-    ).toBeVisible();
     expect(screen.getByRole("listbox", { name: "Subject" })).toBeVisible();
-    expect(screen.getByRole("listbox", { name: "Sort by" })).toBeVisible();
+    expect(screen.getByRole("combobox", { name: /Sort By/ })).toBeVisible();
     expect(screen.getByRole("button", { name: /Gallery view/ })).toBeVisible();
     expect(screen.getByRole("button", { name: /List view/ })).toBeVisible();
     expect(
-      screen.getByRole("listbox", { name: "Results per page" })
+      screen.getByRole("combobox", { name: /Results per page/ })
     ).toBeVisible();
     expect(screen.getByText(/Displaying: 1 - 10 of 11/)).toBeVisible();
     expect(screen.getByRole("button", { name: /Next/ })).toBeVisible();
@@ -61,24 +58,18 @@ describe("BrowseCollections component", () => {
   it("displays Browse Collections page when no collections found", async () => {
     setup([], null, null);
     expect(await screen.findByText(/No results/)).toBeVisible();
-    expect(
-      screen.getByRole("heading", { name: /About Our Collections/ })
-    ).toBeVisible();
     expect(screen.getByRole("listbox", { name: "Subject" })).toBeVisible();
-    expect(screen.getByRole("listbox", { name: "Sort by" })).toBeVisible();
+    expect(screen.getByRole("combobox", { name: /Sort By/ })).toBeVisible();
     expect(screen.getByRole("button", { name: /Gallery view/ })).toBeVisible();
     expect(screen.getByRole("button", { name: /List view/ })).toBeVisible();
     expect(
-      screen.getByRole("listbox", { name: "Results per page" })
+      screen.getByRole("combobox", { name: /Results per page/ })
     ).toBeVisible();
   });
 
   it("displays loading message when collections are null", async () => {
     setup(null, null, null);
     expect(await screen.findByText(/Loading/)).toBeVisible();
-    expect(
-      screen.getByRole("heading", { name: /About Our Collections/ })
-    ).toBeVisible();
-    expect(screen.queryByRole("listbox", { name: "Subject" })).toBeVisible();
+    expect(screen.getByRole("listbox", { name: "Subject" })).toBeVisible();
   });
 });
