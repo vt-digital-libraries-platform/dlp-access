@@ -2,7 +2,9 @@ import { defineData } from '@aws-amplify/backend';
 import type { Backend } from '../backend';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
-import { readdirSync } from 'fs';
+import { readdirSync, readFileSync } from 'fs';
+import { Stack } from 'aws-cdk-lib';
+import { CfnResolver } from 'aws-cdk-lib/aws-appsync';
 import * as assets from 'aws-cdk-lib/aws-s3-assets';
 
 const schema = `interface Object {
@@ -623,13 +625,25 @@ export function applyEscapeHatches(backend: Backend) {
       (f.endsWith('.req.vtl') || f.endsWith('.res.vtl')) &&
       f.split('.').length === 4
   );
+  const { cfnFunctionConfigurations, cfnDataSources } =
+    backend.data.resources.cfnResources;
+  const customResolverTemplates: Record<string, { req?: string; res?: string }> =
+    {};
   for (const file of overiddenResolverFiles) {
     const [typeName, fieldName, templateType] = file.split('.');
     const capitalizedFieldName =
       fieldName.charAt(0).toUpperCase() + fieldName.slice(1);
     const functionId = `${typeName}${capitalizedFieldName}DataResolverFn`;
-    const fn =
-      backend.data.resources.cfnResources.cfnFunctionConfigurations[functionId];
+    const fn = cfnFunctionConfigurations[functionId];
+    if (!fn) {
+      // Custom query with no generated resolver (Gen 1 used a custom resolver
+      // against the OpenSearch data source); collect templates and create it below.
+      const key = `${typeName}.${fieldName}`;
+      customResolverTemplates[key] ??= {};
+      customResolverTemplates[key][templateType as 'req' | 'res'] =
+        readFileSync(join(resolversDir, file), 'utf8');
+      continue;
+    }
     const vtlTemplate = new assets.Asset(backend.data, `VTLTemplate-${file}`, {
       path: join(resolversDir, file),
     });
@@ -638,5 +652,28 @@ export function applyEscapeHatches(backend: Backend) {
     } else {
       fn.responseMappingTemplateS3Location = vtlTemplate.s3ObjectUrl;
     }
+  }
+  const openSearchDataSource = cfnDataSources['OpenSearchDataSource'];
+  if (!openSearchDataSource) {
+    throw new Error(
+      'OpenSearchDataSource not found; custom search resolvers require @searchable'
+    );
+  }
+  for (const [key, templates] of Object.entries(customResolverTemplates)) {
+    const [typeName, fieldName] = key.split('.');
+    const resolver = new CfnResolver(
+      Stack.of(openSearchDataSource),
+      `${typeName}${fieldName}CustomResolver`,
+      {
+        apiId: backend.data.resources.graphqlApi.apiId,
+        typeName,
+        fieldName,
+        kind: 'UNIT',
+        dataSourceName: openSearchDataSource.attrName,
+        requestMappingTemplate: templates.req,
+        responseMappingTemplate: templates.res,
+      }
+    );
+    resolver.addDependency(openSearchDataSource);
   }
 }
