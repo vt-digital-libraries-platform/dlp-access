@@ -54,7 +54,7 @@
   "overrides": {
     "react-refresh": "0.14.0",
     "react-scripts": {
-      "typescript": "$typescript"
+      "typescript": "^6.0.3"
     }
   },
   "lint-staged": {
