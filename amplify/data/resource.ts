@@ -307,6 +307,7 @@ type Query {
     limit: Int
     nextToken: String
   ): SearchableObjectConnection
+    @aws_api_key @aws_cognito_user_pools @aws_iam
   fulltextCollections(
     allFields: String
     filter: SearchableCollectionFilterInput
@@ -314,6 +315,7 @@ type Query {
     limit: Int
     nextToken: String
   ): SearchableCollectionConnection
+    @aws_api_key @aws_cognito_user_pools @aws_iam
   fulltextArchives(
     allFields: String
     filter: SearchableArchiveFilterInput
@@ -321,9 +323,11 @@ type Query {
     limit: Int
     nextToken: String
   ): SearchableArchiveConnection
+    @aws_api_key @aws_cognito_user_pools @aws_iam
 }
 
-type SearchableObjectConnection {
+type SearchableObjectConnection
+  @aws_api_key @aws_cognito_user_pools @aws_iam {
   items: [Object]
   nextToken: String
   total: Int
@@ -389,7 +393,8 @@ enum SearchableObjectSortableFields {
   custom_key
 }
 
-type SearchableCollectionConnection {
+type SearchableCollectionConnection
+  @aws_api_key @aws_cognito_user_pools @aws_iam {
   items: [Collection]
   nextToken: String
   total: Int
@@ -459,7 +464,8 @@ enum SearchableCollectionSortableFields {
   modified_date
 }
 
-type SearchableArchiveConnection {
+type SearchableArchiveConnection
+  @aws_api_key @aws_cognito_user_pools @aws_iam {
   items: [Archive]
   nextToken: String
   total: Int
