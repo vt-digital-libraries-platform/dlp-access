@@ -356,7 +356,18 @@ div.collection-item .item-image {
   height: 200px;
   width: 100%;
   overflow: hidden;
-  background-color: var(--light-gray);
+}
+
+// SearchResult.scss is bundled globally and positions .page-count-badge
+// absolutely for the search card; on this card it sits in normal flow under
+// the title, so the positioning has to be undone explicitly
+div.collection-item .item-info .page-count-badge {
+  position: static;
+  left: auto;
+  bottom: auto;
+  display: inline-block;
+  margin-top: 0;
+  font-size: 0.75rem !important;
 }
 
 div.collection-item .item-image .image-container {
@@ -364,7 +375,7 @@ div.collection-item .item-image .image-container {
 }
 
 div.collection-item .item-image img {
-  width: 250px;
+  width: 100%;
   height: 200px;
   object-fit: contain;
 }
@@ -393,6 +404,12 @@ div.collection-item .item-image img {
   color: black;
   font-size: 1.15rem;
   font-weight: 400;
+}
+
+// only tighten the title when a badge follows it, so cards without a page
+// count keep their original spacing
+.collection-items-grid .item-info:has(.page-count-badge) h3 {
+  margin-bottom: 0.35rem;
 }
 
 .mid-content-row.list-view div.collection-items-list-wrapper {
