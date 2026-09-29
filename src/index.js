@@ -7,7 +7,7 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
 import { Amplify } from "aws-amplify";
-import config from "./amplifyconfiguration.json";
+import config from "./amplify_outputs.json";
 
 import "bootstrap/dist/css/bootstrap.css";
 import "semantic-ui-css/semantic.min.css";
@@ -22,7 +22,7 @@ Amplify.configure({
     REST: {
       feedbackapi: {
         endpoint: process.env.REACT_APP_FEEDBACK_API_ENDPOINT,
-        region: config.aws_project_region
+        region: config.data.aws_region
       }
     }
   }

@@ -9,7 +9,7 @@ export const S3Triggerf2aaed76 = defineFunction({
   timeoutSeconds: 25,
   memoryMB: 128,
   environment: { ENV: `${branchName}` },
-  runtime: 18,
+  runtime: 22,
 });
 
 export function applyEscapeHatches(backend: Backend) {
