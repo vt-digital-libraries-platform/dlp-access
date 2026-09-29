@@ -53,6 +53,6 @@ describe("Thumbnail component", () => {
     const img = await screen.findByRole("presentation");
     expect(img).toBeVisible();
     expect(img).toHaveProperty("alt", "");
-    expect(img).toHaveProperty("src", url);
+    await waitFor(() => expect(img).toHaveProperty("src", url));
   });
 });

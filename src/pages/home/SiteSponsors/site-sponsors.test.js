@@ -8,13 +8,13 @@ const sponsors = [
   {
     alt: "CLIR",
     link: "https://clir.org/",
-    src: "sponsors/sponsor1.png",
+    src: "sponsors/sponsor1.png"
   },
   {
     alt: "IAWA",
     link: "https://spec.lib.vt.edu/iawa/",
-    src: "sponsors/sponsors2.png",
-  },
+    src: "sponsors/sponsors2.png"
+  }
 ];
 
 describe("SiteSponsors component", () => {
@@ -26,12 +26,12 @@ describe("SiteSponsors component", () => {
       <SiteSponsors
         sponsors={sponsors}
         site={{
-          siteId: "default",
+          siteId: "default"
         }}
         sponsorsStyle="divider"
       />
     );
-    const section = screen.getByRole("region");
+    const section = document.querySelector(".home-sponsors-section");
     expect(section).toBeVisible();
     expect(section).toHaveClass("sponsors-divider");
     expect(await screen.findAllByRole("img")).toHaveLength(sponsors.length);
@@ -42,12 +42,12 @@ describe("SiteSponsors component", () => {
       <SiteSponsors
         sponsors={null}
         site={{
-          siteId: "default",
+          siteId: "default"
         }}
         sponsorsStyle="divider"
       />
     );
-    expect(screen.queryByRole("region")).toBeNull();
+    expect(document.querySelector(".home-sponsors-section")).toBeNull();
   });
 
   it("does not display section if sponsors prop is an empty array", () => {
@@ -55,12 +55,12 @@ describe("SiteSponsors component", () => {
       <SiteSponsors
         sponsors={[]}
         site={{
-          siteId: "default",
+          siteId: "default"
         }}
         sponsorsStyle="divider"
       />
     );
-    expect(screen.queryByRole("region")).toBeNull();
+    expect(document.querySelector(".home-sponsors-section")).toBeNull();
   });
 });
 

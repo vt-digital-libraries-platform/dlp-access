@@ -32,14 +32,9 @@ describe("Featured static image", () => {
     await waitFor(() => expect(image).toHaveProperty("src", imgSrc));
   });
 
-  it("displays site title", async () => {
+  it("does not render the site title (moved out of this component)", async () => {
     setup();
     await screen.findByRole("presentation");
-    const title = screen.getByRole("heading", { level: 1 });
-    expect(title).toBeVisible();
-    expect(title).toHaveTextContent("Demo Site");
-    expect(title).toHaveStyle("text-transform: capitalize");
-    expect(title).toHaveStyle("font-family: Acherus, sans-serif");
-    expect(title).toHaveStyle("font-size: 60px");
+    expect(screen.queryByRole("heading")).toBeNull();
   });
 });

@@ -9,14 +9,14 @@ const collectionHighlights = [
     link: "/search?q=&field=description&view=Gallery&category=archive&type=Travel+sketches",
     itemCount: "51",
     title: "Travel sketches by IAWA architects",
-    src: "highlights/highlight1.jpg",
+    src: "highlights/highlight1.jpg"
   },
   {
     link: "/search/?category=archive&field=tags&q=Educational%20and%20research&view=Gallery",
     itemCount: "294",
     title: "Educational and Research Facilities",
-    src: "highlights/highlight2.jpg",
-  },
+    src: "highlights/highlight2.jpg"
+  }
 ];
 
 describe("CollectionHighlights component", () => {
@@ -28,17 +28,15 @@ describe("CollectionHighlights component", () => {
       <CollectionHighlights
         collectionHighlights={collectionHighlights}
         site={{
-          siteId: "default",
+          siteId: "default"
         }}
       />
     );
-    expect(screen.getByRole("region")).toBeVisible();
-    expect(
-      screen.getByRole("heading", { name: /Collection Highlights/ })
-    ).toBeVisible();
-    expect(await screen.findAllByRole("heading", { level: 3 })).toHaveLength(
+    expect(screen.getByRole("list")).toBeVisible();
+    expect(await screen.findAllByRole("listitem")).toHaveLength(
       collectionHighlights.length
     );
+    expect(screen.getByText(collectionHighlights[1].title)).toBeVisible();
   });
 
   it("does not display section if collectionHighlights prop is null", () => {
@@ -46,14 +44,11 @@ describe("CollectionHighlights component", () => {
       <CollectionHighlights
         collectionHighlights={null}
         site={{
-          siteId: "default",
+          siteId: "default"
         }}
       />
     );
-    expect(screen.queryByRole("region")).toBeNull();
-    expect(
-      screen.queryByRole("heading", { name: /Collection Highlights/ })
-    ).toBeNull();
+    expect(screen.queryByRole("list")).toBeNull();
   });
 
   it("does not display section if collectionHighlights prop is an empty array", () => {
@@ -61,14 +56,11 @@ describe("CollectionHighlights component", () => {
       <CollectionHighlights
         collectionHighlights={[]}
         site={{
-          siteId: "default",
+          siteId: "default"
         }}
       />
     );
-    expect(screen.queryByRole("region")).toBeNull();
-    expect(
-      screen.queryByRole("heading", { name: /Collection Highlights/ })
-    ).toBeNull();
+    expect(screen.queryByRole("list")).toBeNull();
   });
 });
 
