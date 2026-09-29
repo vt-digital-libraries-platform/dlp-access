@@ -40,6 +40,7 @@ export const searchObjects = /* GraphQL */ `
         parent_collection_identifier
         partner_id
         provenance
+        provider
         relation
         rights_holder
         rights
@@ -155,6 +156,7 @@ export const fulltextCollections = /* GraphQL */ `
         parent_collection_identifier
         partner_id
         provenance
+        provider
         relation
         rights_holder
         rights
@@ -243,6 +245,7 @@ export const fulltextArchives = /* GraphQL */ `
         parent_collection_identifier
         partner_id
         provenance
+        provider
         publisher
         references
         relation
@@ -327,6 +330,7 @@ export const getArchive = /* GraphQL */ `
       parent_collection_identifier
       partner_id
       provenance
+      provider
       publisher
       references
       relation
@@ -375,6 +379,7 @@ export const getArchive = /* GraphQL */ `
         parent_collection_identifier
         partner_id
         provenance
+        provider
         relation
         rights_holder
         rights
@@ -471,6 +476,7 @@ export const listArchives = /* GraphQL */ `
         parent_collection_identifier
         partner_id
         provenance
+        provider
         publisher
         references
         relation
@@ -567,6 +573,7 @@ export const archiveByIdentifier = /* GraphQL */ `
         parent_collection_identifier
         partner_id
         provenance
+        provider
         publisher
         references
         relation
@@ -665,6 +672,7 @@ export const searchArchives = /* GraphQL */ `
         parent_collection_identifier
         partner_id
         provenance
+        provider
         publisher
         references
         relation
@@ -728,6 +736,7 @@ export const getCollection = /* GraphQL */ `
       parent_collection_identifier
       partner_id
       provenance
+      provider
       relation
       rights_holder
       rights
@@ -812,6 +821,7 @@ export const listCollections = /* GraphQL */ `
         parent_collection_identifier
         partner_id
         provenance
+        provider
         relation
         rights_holder
         rights
@@ -878,6 +888,7 @@ export const collectionByIdentifier = /* GraphQL */ `
         parent_collection_identifier
         partner_id
         provenance
+        provider
         relation
         rights_holder
         rights
@@ -946,6 +957,7 @@ export const searchCollections = /* GraphQL */ `
         parent_collection_identifier
         partner_id
         provenance
+        provider
         relation
         rights_holder
         rights
@@ -1007,6 +1019,7 @@ export const getCollectionmap = /* GraphQL */ `
         parent_collection_identifier
         partner_id
         provenance
+        provider
         relation
         rights_holder
         rights
