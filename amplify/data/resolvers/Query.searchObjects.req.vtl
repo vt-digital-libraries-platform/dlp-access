@@ -1,0 +1,54 @@
+#**
+The 'params' key accepts any valid Elasticsearch DSL expression.
+You must replace the <index>, <type>, and <field> placeholders with actual values.
+*#
+#set( $indexPath = "/*/_search" )
+#set( $nonKeywordFields = ["visibility", "start_date"] )
+#if( $util.isNullOrEmpty($context.args.sort) )
+  #set( $sortDirection = "desc" )
+  #set( $sortField = "id" )
+#else
+  #set( $sortDirection = $util.defaultIfNull($context.args.sort.direction, "desc") )
+  #set( $sortField = $util.defaultIfNull($context.args.sort.field, "id") )
+#end
+#if( $nonKeywordFields.contains($sortField) )
+  #set( $sortField0 = $util.toJson($sortField) )
+#else
+  #set( $sortField0 = $util.toJson("${sortField}.keyword") )
+#end
+{
+  "version": "2018-05-29",
+  "operation": "GET",
+  "path": "$indexPath",
+  "params": {
+    "body": {
+      #if($context.args.nextToken) "search_after": [$util.toJson($context.args.nextToken)], #end
+      "size": #if($context.args.limit) $context.args.limit #else 100 #end,
+      "sort": [{$sortField0: { "order" : $util.toJson($sortDirection) }}],
+      "query": #if($context.args.filter || $context.args.allFields) {
+        "bool": {
+          #if($context.args.filter)
+            "must": $util.transform.toElasticsearchQueryDSL($context.args.filter),
+          #end
+          #if($context.args.allFields)
+            "should": [{
+              "multi_match" : {
+                "query": $util.toJson($context.args.allFields),
+                "type": "phrase",
+                "fields": ["title", "description", "creator",  "medium", "type", "tags",
+                           "identifier", "is_part_of", "format", "spatial", "subject", "source",
+                           "bibliographic_citation", "rights", "rights_holder"]
+              }
+            }],
+            "minimum_should_match" : 1
+          #end
+        }
+      }
+      #else
+      {
+        "match_all": {}
+      }
+      #end
+    }
+  }
+}

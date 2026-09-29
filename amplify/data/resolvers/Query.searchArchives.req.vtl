@@ -1,0 +1,43 @@
+#set( $indexPath = "/archive/_search" )
+#set( $nonKeywordFields = ["visibility", "start_date"] )
+#if( $util.isNullOrEmpty($context.args.sort) )
+  #set( $sortDirection = "asc" )
+  #set( $sortField = "title" )
+#else
+  #set( $sortDirection = $util.defaultIfNull($context.args.sort[0].direction, "asc") )
+  #set( $sortField = $util.defaultIfNull($context.args.sort[0].field, "title") )
+#end
+#if( $nonKeywordFields.contains($sortField) )
+  #set( $sortField0 = $util.toJson($sortField) )
+#else
+  #set( $sortField0 = $util.toJson("${sortField}.keyword") )
+#end
+#set( $sortFieldCustomKey = $util.toJson("custom_key.keyword") )
+#set( $indexPath = "/archive/_search" )
+{
+  "version": "2018-05-29",
+  "operation": "GET",
+  "path": "$indexPath",
+  "params": {
+    "body": {
+      #if( $context.args.nextToken )
+      	#set( $nextToken = $context.args.nextToken )
+        #set( $tokens = $nextToken.split("::key::") )
+        "search_after": [
+          #if ( $tokens[0] == "NULL_FIELD" ) null #else $util.toJson($tokens[0]) #end,
+          $util.toJson($tokens[1])
+        ],
+      #end
+      "size": #if( $context.args.limit ) $context.args.limit #else 100 #end,
+      "sort": [
+        { $sortField0: { "order": $util.toJson($sortDirection) } },
+        { $sortFieldCustomKey: { "order": "asc" } }
+      ],
+      "query": #if( $context.args.filter )
+        $util.transform.toElasticsearchQueryDSL($ctx.args.filter)
+      #else
+        { "match_all": {} }
+      #end
+    }
+  }
+}
