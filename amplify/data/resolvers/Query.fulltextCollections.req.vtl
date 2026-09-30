@@ -1,5 +1,5 @@
 #set( $indexPath = "/collection/_search" )
-#set( $nonKeywordFields = ["visibility", "start_date"] )
+#set( $nonKeywordFields = ["visibility", "start_date", "end_date"] )
 #if( $util.isNullOrEmpty($context.args.sort) )
   #set( $sortDirection = "desc" )
   #set( $sortField = "id" )

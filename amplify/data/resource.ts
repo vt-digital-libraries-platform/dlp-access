@@ -3,9 +3,13 @@ import type { Backend } from '../backend';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { readdirSync, readFileSync } from 'fs';
-import { Stack } from 'aws-cdk-lib';
+import { CustomResource, Duration, Stack } from 'aws-cdk-lib';
 import { CfnResolver } from 'aws-cdk-lib/aws-appsync';
+import type { Domain } from 'aws-cdk-lib/aws-elasticsearch';
+import * as lambda from 'aws-cdk-lib/aws-lambda';
 import * as assets from 'aws-cdk-lib/aws-s3-assets';
+import { Provider } from 'aws-cdk-lib/custom-resources';
+import { buildOpenSearchMappings } from './opensearch-mappings';
 
 const schema = `interface Object {
   alt_text: AWSJSON
@@ -682,4 +686,39 @@ export function applyEscapeHatches(backend: Backend) {
     );
     resolver.addDependency(openSearchDataSource);
   }
+
+  addOpenSearchIndexTemplates(backend, __dirname);
+}
+
+// Install index templates so the @searchable indexes get mappings derived
+// from the schema instead of dynamic mapping (see opensearch-mappings.ts).
+function addOpenSearchIndexTemplates(backend: Backend, dataDir: string) {
+  const searchableStack = backend.data.resources.nestedStacks['SearchableStack'];
+  const domain = searchableStack?.node.tryFindChild('OpenSearchDomain') as
+    | Domain
+    | undefined;
+  if (!domain) {
+    throw new Error('OpenSearchDomain not found in SearchableStack');
+  }
+  const onEventHandler = new lambda.Function(
+    searchableStack,
+    'OpenSearchIndexTemplatesFn',
+    {
+      runtime: lambda.Runtime.NODEJS_22_X,
+      handler: 'index.handler',
+      code: lambda.Code.fromAsset(join(dataDir, 'opensearch-index-templates')),
+      timeout: Duration.minutes(2),
+    }
+  );
+  domain.grantPathReadWrite('_index_template/*', onEventHandler);
+  const provider = new Provider(searchableStack, 'OpenSearchIndexTemplatesProvider', {
+    onEventHandler,
+  });
+  new CustomResource(searchableStack, 'OpenSearchIndexTemplates', {
+    serviceToken: provider.serviceToken,
+    properties: {
+      Endpoint: domain.domainEndpoint,
+      Mappings: JSON.stringify(buildOpenSearchMappings(schema)),
+    },
+  });
 }
