@@ -29,11 +29,6 @@ export const Thumbnail: FC<Props> = ({
 
   return (
     <div className="image-container">
-      {category && (
-        <div className={`${category}-label`}>
-          <p>{category === "collection" ? "Collection" : "Item"}</p>
-        </div>
-      )}
       <img
         className={className}
         src={image || THUMBNAIL_FALLBACK}
