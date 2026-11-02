@@ -3,11 +3,14 @@ import ItemListView from "../../components/ItemListView";
 import GalleryView from "../../components/GalleryView";
 import { getCategory } from "../../lib/MetadataRenderer";
 import MasonryView from "./MasonryView";
+import "../../css/CardDisplay.css";
 
 class ItemsList extends Component {
   getClassName() {
     if (this.props.view === "Masonry") {
       return "card-columns";
+    } else if (this.props.view === "Gallery") {
+      return "card-display card-display--gallery";
     } else {
       return "row justify-content-center";
     }
@@ -21,7 +24,7 @@ class ItemsList extends Component {
         role="region"
         aria-label="Search results"
       >
-        <div className={this.getClassName()}>
+        <ul className={this.getClassName()}>
           {this.props.items.map((item) => {
             if (this.props.view === "Gallery") {
               return (
@@ -52,7 +55,7 @@ class ItemsList extends Component {
               );
             }
           })}
-        </div>
+        </ul>
       </div>
     );
   }

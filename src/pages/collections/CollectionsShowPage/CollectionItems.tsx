@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import { Link } from "react-router-dom";
 import Pagination from "../../../components/Pagination";
 import ResultsNumberDropdown from "../../../components/ResultsNumberDropdown";
@@ -6,8 +6,15 @@ import SortOrderDropdown from "../../../components/SortOrderDropdown";
 import { Thumbnail } from "../../../components/Thumbnail";
 import "../../../css/Select.scss";
 import { language_codes } from "../../../lib/language_codes";
-import { RenderItems, arkLinkFormatted } from "../../../lib/MetadataRenderer";
+import {
+  RenderItems,
+  arkLinkFormatted,
+  getCategory
+} from "../../../lib/MetadataRenderer";
 import { useGetCollectionItems } from "./useGetCollectionItems";
+
+import GalleryView from "../../../components/GalleryView";
+import "../../../css/CardDisplay.css";
 
 const languages = language_codes["abbr"];
 
@@ -87,14 +94,12 @@ export const CollectionItems: FC<Props> = ({
             atBottom={true}
           />
         </div>
-        <div
+        <ul
           className={
             viewOption === "list"
               ? "collection-items-list"
-              : "collection-items-grid"
+              : "card-display card-display--gallery"
           }
-          role="group"
-          aria-roledescription="Collection items"
         >
           {items.map((item) => {
             if (viewOption === "list") {
@@ -123,27 +128,16 @@ export const CollectionItems: FC<Props> = ({
               );
             } else {
               return (
-                <div className="collection-item" key={item.identifier}>
-                  <div className="collection-item-wrapper">
-                    <Link to={`/archive/${arkLinkFormatted(item.custom_key)}`}>
-                      <div className="item-image">
-                        <Thumbnail item={item} site={site} />
-                      </div>
-                      <div className="item-info">
-                        <h3>{item.title}</h3>
-                        {getPageCount(item) > 0 && (
-                          <div className="badge badge-secondary page-count-badge">
-                            {getPageCount(item)} page(s)
-                          </div>
-                        )}
-                      </div>
-                    </Link>
-                  </div>
-                </div>
+                <GalleryView
+                  key={item.identifier}
+                  item={item}
+                  category={getCategory(item)}
+                  site={site}
+                />
               );
             }
           })}
-        </div>
+        </ul>
         <div aria-live="polite">
           <Pagination
             numResults={items.length}

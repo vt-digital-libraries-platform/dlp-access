@@ -585,6 +585,8 @@ export const getCollectionItems = async (
         description
         tags
         creator
+        format
+        manifest_url
       }
       total
       nextToken

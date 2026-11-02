@@ -2,43 +2,10 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { arkLinkFormatted } from "../lib/MetadataRenderer";
 import { Thumbnail } from "./Thumbnail";
-import { cleanHTML } from "../lib/MetadataRenderer";
+import { cleanHTML, getCategory } from "../lib/MetadataRenderer";
 import "../css/SearchResult.scss";
 
 const GalleryView = (props) => {
-  const formatsForItems = (item) => {
-    let formats = [];
-    if (item?.format) {
-      item.format.forEach((format) => {
-        formats.push(
-          <NavLink
-            to={`/search?q=&field=all&view=Gallery&format=${format}`}
-            key={format}
-            className="card-text"
-          >
-            {format}
-          </NavLink>
-        );
-      });
-    }
-    // if(!formats.length) {
-    //   formats = formatsByManifestURL(item.manifest_url)
-    // }
-    return formats;
-  };
-
-  const formatsByManifestURL = (manifestURL) => {
-    let format = null;
-    if (manifestURL) {
-      if (manifestURL.endsWith("manifest.json")) {
-        format = <p className="card-text">2D Image (tiled)</p>;
-      } else if (manifestURL.endsWith(".pdf")) {
-        format = <p className="card-text">document/pdf</p>;
-      }
-    }
-    return format;
-  };
-
   const getPageCount = () => {
     if (props.item?.archiveOptions) {
       const { page_count } = JSON.parse(props.item.archiveOptions);
@@ -47,51 +14,79 @@ const GalleryView = (props) => {
     return 0;
   };
 
-  const itemPageCnt = getPageCount();
+  const getItemTypes = () => {
+    if (props.item && getCategory(props.item) === "collection")
+      return [true, ["collection"]];
+
+    let formats = new Set();
+
+    // Pull format from item metadata
+    if (props.item?.format?.length > 0) {
+      props.item.format.forEach((format) => {
+        if (format.startsWith("image")) {
+          formats.add("Image");
+        } else if (format.startsWith("pdf") || format.endsWith("pdf")) {
+          formats.add("PDF");
+        } else if (format.startsWith("model")) {
+          formats.add("3D Model");
+        } else {
+          formats.add(format.split("/")[0]);
+        }
+      });
+    }
+
+    // Infer format from manifest
+    if (props.item?.manifest_url?.endsWith("manifest.json")) {
+      formats.add("Image");
+    } else if (props.item?.manifest_url?.endsWith(".pdf")) {
+      formats.add("PDF");
+    } else if (props.item?.manifest_url?.endsWith("exhibit.json")) {
+      formats.add("Exhibit");
+    }
+
+    if (formats.size === 0) formats.add("Item");
+
+    // No identifiable format (is not a collection)
+    return [false, [...formats]];
+  };
+
+  const itemPageCount = getPageCount();
+  const [isCollection, itemFormats] = getItemTypes();
   return (
-    <div className="col-md-6 col-lg-4 gallery-item">
-      <div className="card">
+    <li className={`card${isCollection ? " card--collection" : ""}`}>
+      <Thumbnail className="card__img" item={props.item} site={props.site} />
+      <div className="card__body">
         <NavLink
-          to={`/${props.category}/${arkLinkFormatted(props.item.custom_key)}`}
+          className="card__primary-link"
+          to={`/${getCategory(props.item)}/${arkLinkFormatted(
+            props.item.custom_key
+          )}`}
         >
-          <Thumbnail
-            item={props.item}
-            category={props.category}
-            className="card-img-top"
-            site={props.site}
-          />
-        </NavLink>
-        <div className="card-body">
-          <NavLink
-            to={`/${props.category}/${arkLinkFormatted(props.item.custom_key)}`}
-          >
-            <h3 className="card-title crop-text-3">{props.item.title}</h3>
-          </NavLink>
-          <p className={`card-text crop-text-${itemPageCnt > 0 ? "2" : "3"}`}>
-            {cleanHTML(
-              props.item?.description?.length ? props.item.description[0] : "",
-              "html"
-            )}
+          <p className="card__title">
+            <span className="sr-only">
+              {isCollection ? " Collection" : "Item"}.{" "}
+            </span>
+            {props.item.title}
           </p>
-          {props.item.item_category !== "iawa" &&
-            props.item?.format?.length && (
-              <div className="format-section right-half">
-                <span className="label-left">{`Format${
-                  props.item.format?.length > 1 ? "s" : ""
-                }:`}</span>
-                <span className="value-right">
-                  {formatsForItems(props.item)}
+          <div className="card__tags">
+            <span className="sr-only">. Format: </span>
+            {itemFormats.map((format) => {
+              return (
+                <span key={format} className="card__tag card__tag--type">
+                  {format}
                 </span>
-              </div>
+              );
+            })}
+            {itemPageCount && (
+              // <span className="sr-only">. Pages: </span>
+              <span className="card__tag card__tag--count">
+                {itemPageCount === 1 ? "1 page" : `${itemPageCount} pages`}
+              </span>
             )}
-          {itemPageCnt > 0 && (
-            <div className="badge badge-secondary page-count-badge">
-              {itemPageCnt} page(s)
-            </div>
-          )}
-        </div>
+          </div>
+        </NavLink>
       </div>
-    </div>
+    </li>
   );
 };
 
