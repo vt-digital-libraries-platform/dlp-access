@@ -1,7 +1,13 @@
 import * as BABYLON from "@babylonjs/core";
 
 class Ground {
-  constructor(scene: BABYLON.Scene, scaleFactor: number) {
+  mesh: BABYLON.Mesh;
+
+  constructor(
+    scene: BABYLON.Scene,
+    scaleFactor: number,
+    excludedLights: BABYLON.Light[] = []
+  ) {
     const ground = BABYLON.MeshBuilder.CreateDisc(
       "ground",
       { radius: scaleFactor },
@@ -15,6 +21,12 @@ class Ground {
     );
     groundMaterial.diffuseColor = new BABYLON.Color3(3, 3, 3);
     ground.material = groundMaterial;
+
+    // keep these lights from illuminating the ground
+    for (const light of excludedLights) {
+      light.excludedMeshes.push(ground);
+    }
+    this.mesh = ground;
   }
 }
 export default Ground;
