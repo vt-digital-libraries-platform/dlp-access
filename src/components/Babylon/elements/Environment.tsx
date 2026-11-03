@@ -18,7 +18,7 @@ class Environment {
       new BABYLON.Vector3(0, 1, 0),
       this.scene
     );
-    hemisphericLight.intensity = 0.065;
+    hemisphericLight.intensity = 0.085;
   }
 
   createEnvironmentLight() {
