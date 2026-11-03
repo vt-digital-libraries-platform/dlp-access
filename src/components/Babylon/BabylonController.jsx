@@ -138,17 +138,21 @@ class BabylonController {
 
   createDirectionalLights() {
     // Three lights 2 units high, 120 degrees apart around the Y axis,
-    // each angled down 45 degrees toward the scene origin
+    // each angled down 45 degrees toward the scene origin, plus a mirrored
+    // set 2 units below angled up 45 degrees
     const LIGHT_HEIGHT = 2;
     const ANGLE_SPACING = (2 * Math.PI) / 3;
-    // 45 degree downward angle means horizontal distance equals height
+    // 45 degree angle means horizontal distance equals height
     const horizontalDistance = LIGHT_HEIGHT / Math.tan(Math.PI / 4);
 
-    this.directionalLights = [-1, 0, 1].map((offset, i) => {
-      const angle = offset * ANGLE_SPACING;
+    const placements = [LIGHT_HEIGHT, -LIGHT_HEIGHT].flatMap((height) =>
+      [-1, 0, 1].map((offset) => ({ height, angle: offset * ANGLE_SPACING }))
+    );
+
+    this.directionalLights = placements.map(({ height, angle }, i) => {
       const position = new BABYLON.Vector3(
         horizontalDistance * Math.cos(angle),
-        LIGHT_HEIGHT,
+        height,
         horizontalDistance * Math.sin(angle)
       );
       const direction = BABYLON.Vector3.Zero().subtract(position).normalize();
