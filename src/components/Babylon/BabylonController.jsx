@@ -137,10 +137,10 @@ class BabylonController {
   }
 
   createDirectionalLights() {
-    // Three lights 2 units high, 60 degrees apart around the Y axis,
+    // Three lights 2 units high, 120 degrees apart around the Y axis,
     // each angled down 45 degrees toward the scene origin
     const LIGHT_HEIGHT = 2;
-    const ANGLE_SPACING = Math.PI / 3;
+    const ANGLE_SPACING = (2 * Math.PI) / 3;
     // 45 degree downward angle means horizontal distance equals height
     const horizontalDistance = LIGHT_HEIGHT / Math.tan(Math.PI / 4);
 
