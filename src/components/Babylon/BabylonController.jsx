@@ -81,6 +81,8 @@ class BabylonController {
     // Create the environment around the subject
     const environment = new Environment(this.scene, this.props.env);
 
+    this.createDirectionalLights();
+
     // for debugging
     // this.axesViewer = new BABYLON.AxesViewer(this.scene, 0.5);
 
@@ -131,6 +133,32 @@ class BabylonController {
     // this.engine.hideLoadingUI();
     this.engine.runRenderLoop(() => {
       this.scene.render();
+    });
+  }
+
+  createDirectionalLights() {
+    // Three lights 2 units high, 60 degrees apart around the Y axis,
+    // each angled down 45 degrees toward the scene origin
+    const LIGHT_HEIGHT = 2;
+    const ANGLE_SPACING = Math.PI / 3;
+    // 45 degree downward angle means horizontal distance equals height
+    const horizontalDistance = LIGHT_HEIGHT / Math.tan(Math.PI / 4);
+
+    this.directionalLights = [-1, 0, 1].map((offset, i) => {
+      const angle = offset * ANGLE_SPACING;
+      const position = new BABYLON.Vector3(
+        horizontalDistance * Math.cos(angle),
+        LIGHT_HEIGHT,
+        horizontalDistance * Math.sin(angle)
+      );
+      const direction = BABYLON.Vector3.Zero().subtract(position).normalize();
+      const light = new BABYLON.DirectionalLight(
+        `directionalLight${i}`,
+        direction,
+        this.scene
+      );
+      light.position = position;
+      return light;
     });
   }
 
