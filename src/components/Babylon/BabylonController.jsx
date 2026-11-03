@@ -162,6 +162,7 @@ class BabylonController {
         this.scene
       );
       light.position = position;
+      light.intensity = 0.5;
       return light;
     });
   }
