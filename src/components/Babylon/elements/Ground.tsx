@@ -10,7 +10,7 @@ class Ground {
   constructor(
     scene: BABYLON.Scene,
     radius: number,
-    shadowOpacity: number = 0.35
+    shadowOpacity: number = 0.15
   ) {
     const ground = BABYLON.MeshBuilder.CreateDisc("ground", { radius }, scene);
     ground.rotation.x = Math.PI / 2;
@@ -34,12 +34,16 @@ class Ground {
     // fraction of that range, it would push the shadow off small subjects.
     shadowLight.shadowMinZ = 1;
     shadowLight.shadowMaxZ = 30;
+    // Pad the shadow map well beyond the subject so the blur has room to
+    // fade out instead of being clipped at the map's edge.
+    shadowLight.shadowOrthoScale = 1.5;
 
-    const shadowGenerator = new BABYLON.ShadowGenerator(2048, shadowLight);
-    shadowGenerator.usePercentageCloserFiltering = true;
-    shadowGenerator.filteringQuality = BABYLON.ShadowGenerator.QUALITY_HIGH;
-    shadowGenerator.bias = 0.001;
-    shadowGenerator.normalBias = 0.01;
+    // Blurred exponential shadow map: a wide, diffuse falloff with no hard edge.
+    const shadowGenerator = new BABYLON.ShadowGenerator(512, shadowLight);
+    shadowGenerator.useBlurExponentialShadowMap = true;
+    shadowGenerator.useKernelBlur = true;
+    shadowGenerator.blurKernel = 64;
+    shadowGenerator.depthScale = 30;
 
     const material = new ShadowOnlyMaterial("groundMaterial", scene);
     material.activeLight = shadowLight;
