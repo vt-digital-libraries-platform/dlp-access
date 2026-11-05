@@ -122,5 +122,14 @@
       "^react-router/dom$": "<rootDir>/node_modules/react-router/dist/development/dom-export.js",
       "^entities/(decode|escape)$": "<rootDir>/node_modules/entities/dist/$1.js"
     }
+  },
+  "allowScripts": {
+    "@aws-amplify/hosting@1.0.1": true,
+    "@parcel/watcher@2.6.0": true,
+    "core-js-pure@3.51.0": true,
+    "cypress@15.21.1": true,
+    "fsevents@2.3.3": true,
+    "esbuild@0.28.2": true,
+    "core-js@3.51.0": true
   }
 }
