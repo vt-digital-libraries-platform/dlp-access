@@ -79,7 +79,12 @@ class BabylonController {
     ).getLoadingScreen();
 
     // Create the environment around the subject
-    new Environment(this.scene, this.props.env);
+    const environment = new Environment(this.scene, this.props.env);
+
+    // place lights relative to the camera's starting angle around the subject
+    this.directionalLights = environment.createDirectionalLights(
+      this.toFloat(this.initialRotation.horizontal)
+    );
 
     // for debugging
     // this.axesViewer = new BABYLON.AxesViewer(this.scene, 0.5);
@@ -94,8 +99,11 @@ class BabylonController {
     );
 
     // load and position ground
-    const GROUND_DIAMETER = 4;
-    new Ground(this.scene, GROUND_DIAMETER);
+    const GROUND_RADIUS = 4;
+    const ground = new Ground(this.scene, GROUND_RADIUS);
+    this.model.ready.then((mesh) => {
+      if (mesh) ground.addShadowCaster(mesh);
+    });
 
     // cameras
     this.ArcRotateCamera = new Camera(
@@ -150,7 +158,7 @@ class BabylonController {
   handleAddOn(addOn) {
     switch (addOn.type) {
       case "flash_card":
-        new FlashCard(this.scene, this.props, addOn);
+        const flashCard = new FlashCard(this.scene, this.props, addOn);
         break;
       default:
         console.warn(`Unknown add-on type: ${addOn.type}`);
