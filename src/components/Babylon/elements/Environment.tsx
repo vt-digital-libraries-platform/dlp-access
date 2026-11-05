@@ -39,18 +39,22 @@ class Environment {
       BABYLON.Texture.SKYBOX_MODE;
   }
 
-  createDirectionalLights() {
-    // Three lights 2 units high, 120 degrees apart around the Y axis,
-    // each angled down 45 degrees toward the scene origin, plus a mirrored
-    // set 2 units below angled up 45 degrees
+  // cameraAlpha is the initial ArcRotateCamera alpha: its angle around the
+  // Y axis, using the same x = cos, z = sin convention as the placements below.
+  createDirectionalLights(cameraAlpha: number = 0) {
+    // One light 2 units above, 60 degrees counter-clockwise (seen from above)
+    // of the initial camera position, angled down 45 degrees toward the
+    // origin; and one light 2 units below, 60 degrees clockwise, angled up 45.
     const LIGHT_HEIGHT = 2;
-    const ANGLE_SPACING = (2 * Math.PI) / 3;
+    const OFFSET = Math.PI / 3;
     // 45 degree angle means horizontal distance equals height
     const horizontalDistance = LIGHT_HEIGHT / Math.tan(Math.PI / 4);
 
-    const placements = [LIGHT_HEIGHT, -LIGHT_HEIGHT].flatMap((height) =>
-      [-1, 0, 1].map((offset) => ({ height, angle: offset * ANGLE_SPACING }))
-    );
+    // increasing alpha is counter-clockwise when viewed from above
+    const placements = [
+      { height: LIGHT_HEIGHT, angle: cameraAlpha + OFFSET },
+      { height: -LIGHT_HEIGHT, angle: cameraAlpha - OFFSET }
+    ];
 
     const directionalLights = placements.map(({ height, angle }, i) => {
       const position = new BABYLON.Vector3(

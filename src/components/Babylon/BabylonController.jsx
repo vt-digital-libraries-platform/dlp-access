@@ -81,7 +81,10 @@ class BabylonController {
     // Create the environment around the subject
     const environment = new Environment(this.scene, this.props.env);
 
-    // this.directionalLights = environment.createDirectionalLights();
+    // place lights relative to the camera's starting angle around the subject
+    this.directionalLights = environment.createDirectionalLights(
+      this.toFloat(this.initialRotation.horizontal)
+    );
 
     // for debugging
     // this.axesViewer = new BABYLON.AxesViewer(this.scene, 0.5);

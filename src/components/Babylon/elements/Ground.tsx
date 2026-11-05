@@ -10,7 +10,7 @@ class Ground {
   constructor(
     scene: BABYLON.Scene,
     radius: number,
-    shadowOpacity: number = 0.15
+    shadowOpacity: number = 0.08
   ) {
     const ground = BABYLON.MeshBuilder.CreateDisc("ground", { radius }, scene);
     ground.rotation.x = Math.PI / 2;
