@@ -27,11 +27,13 @@ class Environment {
     skyboxMaterial.disableLighting = false;
     skybox.material = skyboxMaterial;
     skybox.infiniteDistance = true;
+    // https://s3.us-east-1.amazonaws.com/ingest-dev.img.cloud.lib.vt.edu/federated/3d/gltf/environments/light/env
+    
     const envTexture = new BABYLON.CubeTexture(
-      "https://s3.us-east-1.amazonaws.com/ingest-dev.img.cloud.lib.vt.edu/federated/3d/gltf/environments/light/env",
+      "/assets/3d/environments/light/env",
       this.scene
     );
-
+    console.log(envTexture)
     skyboxMaterial.reflectionTexture = envTexture;
     skyboxMaterial.reflectionTexture.coordinatesMode =
       BABYLON.Texture.SKYBOX_MODE;
