@@ -24,16 +24,14 @@ class Environment {
     );
     const skyboxMaterial = new BABYLON.StandardMaterial("skyBox", this.scene);
     skyboxMaterial.backFaceCulling = false;
-    skyboxMaterial.disableLighting = false;
+    skyboxMaterial.disableLighting = true;
     skybox.material = skyboxMaterial;
     skybox.infiniteDistance = true;
-    // https://s3.us-east-1.amazonaws.com/ingest-dev.img.cloud.lib.vt.edu/federated/3d/gltf/environments/light/env
     
     const envTexture = new BABYLON.CubeTexture(
       "/assets/3d/environments/light/env",
       this.scene
     );
-    console.log(envTexture)
     skyboxMaterial.reflectionTexture = envTexture;
     skyboxMaterial.reflectionTexture.coordinatesMode =
       BABYLON.Texture.SKYBOX_MODE;
@@ -69,7 +67,7 @@ class Environment {
         this.scene
       );
       light.position = position;
-      light.intensity = 0.5;
+      light.intensity = 0.75;
       return light;
     });
     return directionalLights;
