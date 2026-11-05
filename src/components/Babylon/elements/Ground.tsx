@@ -29,6 +29,11 @@ class Ground {
     );
     shadowLight.position = new BABYLON.Vector3(0, 10, 0);
     shadowLight.includedOnlyMeshes = [ground];
+    // Keep the shadow depth range tight around the scene. Left unset it falls
+    // back to the camera's clip range (0.1..10000), and since bias is a
+    // fraction of that range, it would push the shadow off small subjects.
+    shadowLight.shadowMinZ = 1;
+    shadowLight.shadowMaxZ = 30;
 
     const shadowGenerator = new BABYLON.ShadowGenerator(2048, shadowLight);
     shadowGenerator.usePercentageCloserFiltering = true;
