@@ -96,8 +96,11 @@ class BabylonController {
     );
 
     // load and position ground
-    const GROUND_DIAMETER = 4;
-    new Ground(this.scene, GROUND_DIAMETER, this.directionalLights);
+    const GROUND_RADIUS = 4;
+    const ground = new Ground(this.scene, GROUND_RADIUS);
+    this.model.ready.then((mesh) => {
+      if (mesh) ground.addShadowCaster(mesh);
+    });
 
     // cameras
     this.ArcRotateCamera = new Camera(

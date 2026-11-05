@@ -8,6 +8,8 @@ class Subject {
   private scene: BABYLON.Scene;
   private loadingScreen?: BABYLON.ILoadingScreen | null;
   private allowTransparency: boolean;
+  // resolves with the loaded model once it is scaled and positioned
+  ready: Promise<BABYLON.AbstractMesh | null>;
   constructor(
     model: string,
     scene: BABYLON.Scene,
@@ -22,10 +24,13 @@ class Subject {
     this.modelDimensions = new BABYLON.Vector3(0, 0, 0);
     this.modelMaxSize = 0;
 
-    this.init(model, scaleFactor);
+    this.ready = this.init(model, scaleFactor);
   }
 
-  async init(model: string, scaleFactor: number) {
+  async init(
+    model: string,
+    scaleFactor: number
+  ): Promise<BABYLON.AbstractMesh | null> {
     this.model = await loadModel(
       model,
       this.scene,
@@ -34,7 +39,7 @@ class Subject {
     );
     if (!this.model) {
       console.error("Failed to load model:", model);
-      return;
+      return null;
     }
     this.modelDimensions = this.model.ellipsoid;
     this.modelMaxSize = Math.max(
@@ -47,6 +52,7 @@ class Subject {
 
     // position model at origin
     this.model.position = new BABYLON.Vector3(0, 0, 0);
+    return this.model;
   }
 
   scaleModel(model: BABYLON.AbstractMesh, scaleFactor: number | null) {
