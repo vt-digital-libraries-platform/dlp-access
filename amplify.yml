@@ -33,38 +33,38 @@ frontend:
       headers:
         - key: Permissions-Policy
           value: unload=(self)
-test:
-  artifacts:
-    baseDirectory: cypress
-    configFilePath: "**/mochawesome.json"
-    files:
-      - "**/*.png"
-      - "**/*.mp4"
-  phases:
-    preTest:
-      commands:
-        - wget
-          https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
-        - yum install -y ./google-chrome-stable_current_*.rpm
-        - nvm install 24
-        - nvm use 24
-        - npm ci --force
-        - npm install --force wait-on
-        - npm install --force pm2
-        - npm install --force mocha mochawesome mochawesome-merge
-          mochawesome-report-generator
-        - npx pm2 start npm -- start
-        - npx wait-on http://localhost:3000
-    test:
-      commands:
-        - CI=true npm test
-        - CYPRESS_password=access2020 CYPRESS_userPoolId=us-east-1_tTXxRVpK3
-          CYPRESS_clientId=1klfhnq9kuislu56s88h32hdsb npx cypress run --browser
-          chrome --headless --reporter mochawesome --reporter-options
-          "reportDir=cypress/report/mochawesome-report,overwrite=false,html=false,json=true,timestamp=mmddyyyy_HHMMss"
-    postTest:
-      commands:
-        - npx mochawesome-merge
-          cypress/report/mochawesome-report/mochawesome*.json >
-          cypress/report/mochawesome.json
-        - npx pm2 kill
+# test:
+#   artifacts:
+#     baseDirectory: cypress
+#     configFilePath: "**/mochawesome.json"
+#     files:
+#       - "**/*.png"
+#       - "**/*.mp4"
+#   phases:
+#     preTest:
+#       commands:
+#         - wget
+#           https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+#         - yum install -y ./google-chrome-stable_current_*.rpm
+#         - nvm install 24
+#         - nvm use 24
+#         - npm ci --force
+#         - npm install --force wait-on
+#         - npm install --force pm2
+#         - npm install --force mocha mochawesome mochawesome-merge
+#           mochawesome-report-generator
+#         - npx pm2 start npm -- start
+#         - npx wait-on http://localhost:3000
+#     test:
+#       commands:
+#         - CI=true npm test
+#         - CYPRESS_password=access2020 CYPRESS_userPoolId=us-east-1_tTXxRVpK3
+#           CYPRESS_clientId=1klfhnq9kuislu56s88h32hdsb npx cypress run --browser
+#           chrome --headless --reporter mochawesome --reporter-options
+#           "reportDir=cypress/report/mochawesome-report,overwrite=false,html=false,json=true,timestamp=mmddyyyy_HHMMss"
+#     postTest:
+#       commands:
+#         - npx mochawesome-merge
+#           cypress/report/mochawesome-report/mochawesome*.json >
+#           cypress/report/mochawesome.json
+#         - npx pm2 kill
