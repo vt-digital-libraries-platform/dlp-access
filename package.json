@@ -55,7 +55,8 @@
     "react-refresh": "0.14.0",
     "react-scripts": {
       "typescript": "^6.0.3"
-    }
+    },
+    "@aws-amplify/data-construct": "1.17.3"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json,css,scss,md}": [
