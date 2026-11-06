@@ -53,7 +53,7 @@ export const CollectionTopContent: FC<Props> = ({
             </span>
           )}
         </div>
-        <CollectionDescription description={description} site={site} />
+        <div className="description full">{description}</div>
         {site.siteId === "podcasts" && (
           <RSSFeeds
             customKey={customKey}

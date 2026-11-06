@@ -56,98 +56,7 @@ div.search-results div.row div#content div.navbar {
   padding-bottom: 1.5rem;
 }
 
-/* Gallery Items */
-
-.gallery-item {
-  max-width: 292.48px;
-
-  a,
-  a:visited,
-  a:hover {
-    color: black;
-    text-decoration: none;
-  }
-}
-
-.gallery-item .card {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border-radius: 0px;
-  border: none;
-}
-
-.gallery-item .card-img-top {
-  width: 100%;
-  height: 170px;
-  object-fit: cover;
-  border-radius: 0;
-}
-
-.gallery-item .card-body {
-  height: 10.5rem;
-  border: 1px solid #e2e0e0;
-  border-top: none;
-  padding: 0.9rem;
-  position: relative;
-
-  div.right-half {
-    width: 50%;
-  }
-
-  div.format-section {
-    position: absolute;
-    right: 0.5rem;
-    bottom: 0.5rem;
-    text-align: right;
-
-    span.label-left {
-      display: inline-block;
-      margin-right: 0.25rem;
-      vertical-align: top;
-    }
-
-    span.value-right {
-      display: inline-block;
-    }
-
-    a.card-text {
-      display: block;
-      color: var(--hokieOrange);
-      margin-bottom: 0;
-      text-decoration: underline !important;
-
-      &:hover {
-        color: var(--hokieMaroon) !important;
-      }
-      &:focus {
-        outline: var(--focus_outline);
-        outline-offset: var(--focus-outline__offset);
-        text-decoration: none !important;
-      }
-    }
-  }
-
-  .card-title {
-    font-family: "gineso-condensed", sans-serif;
-    font-size: 1.1rem;
-    margin-bottom: 0.25rem;
-  }
-
-  .card-text {
-    font-family: "Acherus", sans-serif;
-  }
-
-  p a,
-  p a:visited {
-    color: var(--hokieOrange);
-  }
-
-  p a:hover,
-  p a:focus,
-  p a:active {
-    color: var(--hokieOrangeHover);
-  }
-}
+/* Gallery Item styles located in CardDisplay.css */
 
 @mixin crop-text($max-lines) {
   -webkit-line-clamp: $max-lines;
@@ -163,13 +72,6 @@ div.search-results div.row div#content div.navbar {
 
 .crop-text-3 {
   @include crop-text(3);
-}
-
-.page-count-badge {
-  position: absolute;
-  left: 0.9rem;
-  bottom: 0.9rem;
-  font-size: 0.75rem !important;
 }
 
 div.masonry div.card {

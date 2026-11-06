@@ -1,0 +1,265 @@
+.card-display.card-display--gallery {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  --card-title-max-lines: 3;
+  --card-title-max-height: 3lh;
+  --card-aspect-ratio: 3/4;
+  gap: min(16px, 2.5vh);
+
+  &,
+  & > ul,
+  & > ol {
+    margin: 0;
+    padding: 0;
+  }
+
+  @media (min-width: max(320px, 20rem)) {
+    --card-aspect-ratio: 2/3;
+    grid-template-columns: repeat(2, 1fr);
+    gap: min(24px, 3vw);
+  }
+
+  @media (min-width: max(576px, 36rem)) {
+    --card-aspect-ratio: 3/4;
+  }
+
+  @media (min-width: max(768px, 48rem)) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (min-width: max(1400px, 87.5rem)) {
+    /* --card-aspect-ratio: 3/4; */
+    gap: min(32px, 3vw);
+  }
+
+  @media (min-width: max(1760px, 110rem)) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .card {
+    --card-background-color: var(--vt-smoke-9s);
+    --card-text-color: var(--vt-smoke-9t);
+    --card-accent-color: var(--vt-impactOrange-1s);
+    --card-accent-text-color: var(--vt-smoke-9t);
+
+    margin: 0;
+    overflow: hidden;
+    border-radius: 4px;
+    border: 1px solid var(--vt-smoke);
+    padding-bottom: 8px;
+
+    position: relative;
+    display: grid;
+    grid-template-areas:
+      "card-image"
+      "card-body";
+    grid-template-rows: 1fr minmax(min-content, max-content);
+    place-items: center;
+    padding: 0;
+    aspect-ratio: var(--card-aspect-ratio);
+
+    a,
+    a:visited,
+    a:hover {
+      color: black;
+      text-decoration: none;
+    }
+
+    .image-container {
+      grid-area: card-image;
+      z-index: 10;
+      display: grid;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      position: relative;
+      display: grid;
+      grid-template-areas: "pile";
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        aspect-ratio: 3/4;
+        object-position: top;
+        border-radius: 0;
+      }
+
+      & > * {
+        grid-area: pile;
+        z-index: 1;
+      }
+
+      &::after {
+        content: "";
+        display: block;
+        position: absolute;
+        bottom: 0;
+        z-index: 5;
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(
+          to bottom,
+          transparent,
+          85%,
+          var(--card-background-color) 101%
+        );
+      }
+    }
+
+    .card__body {
+      grid-area: card-body;
+      z-index: 30;
+      width: 100%;
+      height: 100%;
+      padding: min(5%, 16px);
+      align-items: end;
+      background-color: var(--card-background-color);
+      transition: all 0.5s ease;
+
+      display: grid;
+      grid-template-rows: auto fit-content;
+
+      font-size: 0.875rem;
+
+      @media (min-width: max(576px, 36rem)) {
+        font-size: 1rem;
+      }
+
+      @media (min-width: max(1400px, 87.5rem)) {
+        font-size: 1.125rem;
+      }
+
+      .card__title {
+        position: relative;
+        font-family: "Acherus", sans-serif;
+        font-size: 1em;
+        font-weight: 500;
+        line-height: 1.25em;
+        margin-bottom: 0.625rem;
+        letter-spacing: 0.05em;
+        color: var(--card-text-color);
+
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: var(--card-title-max-lines, 2);
+
+        @supports (line-clamp: 2) {
+          line-clamp: var(--card-title-max-lines, 2);
+        }
+
+        max-height: var(--card-title-max-height, 2lh);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        transition: all 0.5s ease;
+      }
+
+      .card__tags {
+        text-transform: uppercase;
+        font-style: italic;
+        font-size: 0.75em;
+        letter-spacing: 0.05em;
+        display: flex;
+        flex-flow: row wrap;
+        gap: 6px;
+
+        .card__tag {
+          text-align: center;
+          padding: 0 6px;
+          margin-bottom: 0;
+          border-radius: 4px;
+          background-color: var(--card-accent-color);
+          color: var(--card-accent-text-color);
+
+          &.card__tag--count {
+            --card-accent-color: var(--vt-grey-6s);
+            --card-accent-text-color: var(--vt-smoke-9t);
+          }
+        }
+      }
+    }
+
+    /* Stretch single NavLink on card across the whole card and handle hover/focus states
+      including prefers-reduced-motion: reduce) */
+    &:has(.card__primary-link) {
+      position: relative;
+
+      .card__primary-link {
+        position: static;
+
+        &::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          z-index: 10;
+          cursor: pointer;
+        }
+
+        &:hover,
+        &:focus-visible {
+          outline: none;
+
+          .card__title {
+            --card-title-max-lines: 6;
+            --card-title-max-height: 6lh;
+          }
+        }
+      }
+
+      .image-container {
+        overflow: hidden;
+        img {
+          transition: transform 0.5s ease;
+          transform: scale(1.1);
+        }
+      }
+    }
+
+    outline-offset: var(--focus-outline__offset);
+
+    &:has(.card__primary-link:focus-visible) {
+      outline: var(--focus_outline);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      &:has(.card__primary-link:hover) {
+        outline: var(--focus_outline);
+      }
+
+      .card__body,
+      .card__title {
+        transition: all 0s ease !important;
+      }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      &:has(.card__primary-link:focus-visible),
+      &:has(.card__primary-link:hover) {
+        .image-container img {
+          transform: scale(1.125);
+        }
+      }
+    }
+  }
+
+  .card--collection {
+    --card-background-color: var(--vt-smoke-9s);
+    --card-text-color: var(--vt-white);
+    --card-accent-color: var(--vt-smoke);
+    --card-accent-text-color: var(--vt-smoke-9s);
+  }
+}
+
+.collection-items-list-wrapper .card-display.card-display--gallery {
+  @media (min-width: max(768px, 48rem)) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  @media (min-width: max(992px, 62rem)) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media (min-width: max(1760px, 110rem)) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}

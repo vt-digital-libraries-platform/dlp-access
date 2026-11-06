@@ -604,29 +604,24 @@ pre code {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
-}
-
-@media (min-width: 576px) {
-  .container {
-    max-width: 540px;
-  }
-}
-
-@media (min-width: 768px) {
-  .container {
-    max-width: 720px;
-  }
+  max-width: 95vw !important;
 }
 
 @media (min-width: 992px) {
   .container {
-    max-width: 960px;
+    max-width: 90vw !important;
   }
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 1400px) {
   .container {
-    max-width: 1140px;
+    max-width: 85vw !important;
+  }
+}
+
+@media (min-width: 1760px) {
+  .container {
+    max-width: 80vw !important;
   }
 }
 

@@ -200,7 +200,7 @@ span.creator:after {
 
 .mid-content-row a,
 .mid-content-row a:visited {
-  color: var(--hokieOrange);
+  color: var(--vt-impactOrange-1s);
 }
 
 .mid-content-row a:hover,
@@ -304,7 +304,7 @@ span.creator:after {
   font-family: "Acherus", sans-serif;
   font-size: 1rem;
   a {
-    color: var(--hokieOrange) !important;
+    color: var(--vt-impactOrange-1s) !important;
     text-decoration: underline !important;
 
     &:hover {
@@ -346,38 +346,28 @@ div.collection-items-grid {
 }
 
 div.collection-item {
-  width: 250px;
-  min-height: 300px;
+  width: 100%;
   margin: 0 auto;
 }
 
 div.collection-item .item-image {
   display: inline-block;
-  height: 200px;
   width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
   overflow: hidden;
-}
-
-// SearchResult.scss is bundled globally and positions .page-count-badge
-// absolutely for the search card; on this card it sits in normal flow under
-// the title, so the positioning has to be undone explicitly
-div.collection-item .item-info .page-count-badge {
-  position: static;
-  left: auto;
-  bottom: auto;
-  display: inline-block;
-  margin-top: 0;
-  font-size: 0.75rem !important;
 }
 
 div.collection-item .item-image .image-container {
   border: none;
+  aspect-ratio: 1;
 }
 
 div.collection-item .item-image img {
   width: 100%;
-  height: 200px;
-  object-fit: contain;
+  aspect-ratio: 1;
+  object-fit: cover;
+  scale: 1.1;
 }
 
 .collection-items-grid .collection-item .collection-item-wrapper a,
@@ -395,21 +385,22 @@ div.collection-item .item-image img {
   text-decoration: none;
 }
 
+.collection-item-wrapper {
+  overflow: hidden;
+  border-radius: 4px;
+  border: 1px solid var(--vt-smoke);
+  padding-bottom: 8px;
+}
+
 .collection-items-grid .item-info {
-  padding: 10px;
+  padding: 16px;
 }
 
 .collection-items-grid .item-info h3 {
   font-family: "gineso-condensed", sans-serif;
   color: black;
   font-size: 1.15rem;
-  font-weight: 400;
-}
-
-// only tighten the title when a badge follows it, so cards without a page
-// count keep their original spacing
-.collection-items-grid .item-info:has(.page-count-badge) h3 {
-  margin-bottom: 0.35rem;
+  font-weight: 500;
 }
 
 .mid-content-row.list-view div.collection-items-list-wrapper {
