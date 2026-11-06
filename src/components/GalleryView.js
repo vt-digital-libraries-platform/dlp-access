@@ -14,6 +14,32 @@ const GalleryView = (props) => {
     return 0;
   };
 
+  /**
+   * Determine if a record is a collection or item. If the recor is an item, uses its formats array
+   * and manifest_url to determine its format type. Supported formats are:
+   *
+   * "Image" where
+   *    the formats array contains a string that starts with "image"
+   *    and/or the manifest ends in "manifest.json"
+   *
+   * "PDF" where
+   *    the formats array contains a string starting or ending with "pdf"
+   *    and/or the manifest ends with ".pdf"
+   *
+   * "3D Model" where
+   *    the formats array contains a string starting with "model"
+   *
+   * "Exhibit" where
+   *    the manifest ends with "exhibit.json"
+   *
+   * "Item" where
+   *    none of the above formats apply
+   *
+   * @returns [boolean, Array<string>] containing:
+   *  - whether the record is a collection
+   *  - an array of unique strings representing the record's format(s). If the record is a
+   *    collection, it's only format will be "collection"
+   */
   const getItemTypes = () => {
     if (props.item && getCategory(props.item) === "collection")
       return [true, ["collection"]];
@@ -29,8 +55,6 @@ const GalleryView = (props) => {
           formats.add("PDF");
         } else if (format.startsWith("model")) {
           formats.add("3D Model");
-        } else {
-          formats.add(format.split("/")[0]);
         }
       });
     }
