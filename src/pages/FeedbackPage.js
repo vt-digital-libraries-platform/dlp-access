@@ -6,6 +6,21 @@ import { SiteTitle } from "../components/SiteTitle";
 import "../css/FeedbackPage.scss";
 import "../css/Typography.scss";
 
+const feedbackTypes = {
+  accessibility: {
+    label: "Accessibility Issue",
+    "email-required": true
+  },
+  issue: {
+    label: "Other Issue",
+    "email-required": false
+  },
+  feedback: {
+    label: "General Feedback",
+    "email-required": false
+  }
+};
+
 // sanitizeMessage: strips \r and invisible control characters from the message field.
 // Keeps \n so the user's line breaks and paragraphs are preserved.
 // \r is stripped because email parsers use \r\n as a header separator.
@@ -142,11 +157,10 @@ class FeedbackPage extends Component {
       return;
     }
 
-    // Validate email required for Accessibility Barrier
-    if (feedbackType === "Accessibility Barrier" && !submittedBy.trim()) {
+    // Validate email required for Accessibility Issue
+    if (feedbackTypes[feedbackType]["email-required"] && !submittedBy.trim()) {
       this.setState({
-        submitError:
-          "Email is required when reporting an accessibility barrier."
+        submitError: `Email is required when reporting a/an ${feedbackTypes[feedbackType]["label"]}.`
       });
       window.scrollTo({ top: 0, behavior: "smooth" });
       return;
@@ -243,10 +257,9 @@ class FeedbackPage extends Component {
           <h2 className="sr-only">Submit Feedback</h2>
           <div className="feedback-content">
             <p>
-              Use this form to report accessibility barriers, issues, or provide
-              general feedback about {siteName}. Your submission will be logged
-              and emailed to our team at{" "}
-              <a href={`mailto:${feedbackEmail}`}>{feedbackEmail}</a>.
+              Use this form to report issues and/or provide feedback about{" "}
+              {siteName}. Your submission will be logged and emailed to our team
+              at <a href={`mailto:${feedbackEmail}`}>{feedbackEmail}</a>.
             </p>
 
             <form onSubmit={this.handleSubmit} className="feedback-form">
@@ -266,60 +279,48 @@ class FeedbackPage extends Component {
               <fieldset className="feedback-type-fieldset">
                 <legend>Feedback Type (Required)</legend>
                 <div className="radio-group">
-                  <div className="radio-option">
-                    <input
-                      type="radio"
-                      id="accessibility-barrier"
-                      name="feedbackType"
-                      value="Accessibility Barrier"
-                      checked={
-                        this.state.feedbackType === "Accessibility Barrier"
-                      }
-                      onChange={this.handleFeedbackTypeChange}
-                    />
-                    <label htmlFor="accessibility-barrier">
-                      Accessibility Barrier
-                    </label>
-                  </div>
-                  <div className="radio-option">
-                    <input
-                      type="radio"
-                      id="issue"
-                      name="feedbackType"
-                      value="Issue"
-                      checked={this.state.feedbackType === "Issue"}
-                      onChange={this.handleFeedbackTypeChange}
-                    />
-                    <label htmlFor="issue">Issue</label>
-                  </div>
-                  <div className="radio-option">
-                    <input
-                      type="radio"
-                      id="general-feedback"
-                      name="feedbackType"
-                      value="General Feedback"
-                      checked={this.state.feedbackType === "General Feedback"}
-                      onChange={this.handleFeedbackTypeChange}
-                    />
-                    <label htmlFor="general-feedback">
-                      Feedback or Suggestion
-                    </label>
-                  </div>
+                  {Object.entries(feedbackTypes).map(
+                    ([feedbackType, feedbackTypeDetails]) => {
+                      return (
+                        <div
+                          key={String(feedbackType)}
+                          className="radio-option"
+                        >
+                          <input
+                            type="radio"
+                            id={`${feedbackType}-radio-option`}
+                            name="feedbackType"
+                            value={feedbackType}
+                            checked={this.state.feedbackType === feedbackType}
+                            onChange={this.handleFeedbackTypeChange}
+                          />
+                          <label htmlFor={`${feedbackType}-radio-option`}>
+                            {feedbackTypeDetails["label"]}
+                          </label>
+                        </div>
+                      );
+                    }
+                  )}
                 </div>
               </fieldset>
 
               <div className="form-control">
                 <label htmlFor="feedback-message">Details (Required)</label>
-                <p id="detailsHelp" className="feedback-instructions">
-                  To help us better understand your feedback or issue, please
-                  include your device type, operating system, web browser, and
-                  the name or URL of the page your feedback is about.
-                  <em>
-                    {" "}
-                    Example: "I encountered an issue on the homepage while using
-                    Safari on an iPhone running iOS 26.5."
-                  </em>
-                </p>
+                <div id="detailsHelp" className="feedback-instructions">
+                  <p>
+                    Please describe the issue you experienced or your
+                    feedback/suggestion, including the page(s) with issues or
+                    that your feedback is about. Optionally, include your device
+                    type and web browser to help us better understand your
+                    issue.
+                  </p>
+                  <p>
+                    <em>
+                      Example: "The homepage's main text was too light to read
+                      on Safari for iOS."
+                    </em>
+                  </p>
+                </div>
                 <textarea
                   id="feedback-message"
                   name="feedbackMessage"
@@ -336,19 +337,19 @@ class FeedbackPage extends Component {
               <div className="form-control">
                 <label htmlFor="submitted-by">
                   Your Email
-                  {this.state.feedbackType === "Accessibility Barrier"
+                  {feedbackTypes[this.state.feedbackType]?.["email-required"]
                     ? " (Required)"
                     : " (Optional)"}
                 </label>
                 <p id="emailHelp" className="feedback-instructions">
                   Please provide your email address
-                  {this.state.feedbackType === "Accessibility Barrier"
-                    ? " so we can contact you about your barrier report and resolve any access issues."
+                  {feedbackTypes[this.state.feedbackType]?.["email-required"]
+                    ? " so we can contact you about your issue report and resolve any access issues."
                     : " if you'd like for us to follow up with you."}
                 </p>
                 <input
                   type="email"
-                  autocomplete="email"
+                  autoComplete="email"
                   id="submitted-by"
                   name="submittedBy"
                   value={this.state.submittedBy}
@@ -356,7 +357,9 @@ class FeedbackPage extends Component {
                   aria-describedby="emailHelp"
                   disabled={this.state.isSubmitting}
                   maxLength={254}
-                  required={this.state.feedbackType === "Accessibility Barrier"}
+                  required={
+                    feedbackTypes[this.state.feedbackType]?.["email-required"]
+                  }
                 />
               </div>
 
